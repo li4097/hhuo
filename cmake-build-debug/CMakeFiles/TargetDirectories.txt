@@ -1,0 +1,14 @@
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/src/CMakeFiles/rebuild_cache.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/src/CMakeFiles/hhuo.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/src/CMakeFiles/hhuo_static.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/src/CMakeFiles/edit_cache.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/tests/CMakeFiles/testPtr.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/tests/CMakeFiles/bind.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/tests/CMakeFiles/testAuto.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/tests/CMakeFiles/edit_cache.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/tests/CMakeFiles/of.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/tests/CMakeFiles/rebuild_cache.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/unittests/CMakeFiles/edit_cache.dir
+C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/unittests/CMakeFiles/rebuild_cache.dir

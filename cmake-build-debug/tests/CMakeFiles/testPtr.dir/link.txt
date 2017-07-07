@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\testPtr.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\testPtr.dir/objects.a @CMakeFiles\testPtr.dir\objects1.rsp
+C:\MinGW\bin\g++.exe  -g   -Wl,--whole-archive CMakeFiles\testPtr.dir/objects.a -Wl,--no-whole-archive  -o ..\bin\testPtr.exe -Wl,--out-implib,..\bin\libtestPtr.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\testPtr.dir\linklibs.rsp

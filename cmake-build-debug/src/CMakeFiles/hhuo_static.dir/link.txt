@@ -1,0 +1,2 @@
+C:\MinGW\bin\ar.exe qc ..\lib\libhhuo.a  CMakeFiles/hhuo_static.dir/HH_Socket.cpp.obj
+C:\MinGW\bin\ranlib.exe ..\lib\libhhuo.a
