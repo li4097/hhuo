@@ -29,13 +29,29 @@ namespace hhou
      * 管理socket句柄的map管理类
      * 或者其他的有相似需求的功能类
      * */
+    template <typename T, typename X>
     class HHMap
     {
+        typedef map<T, X>::iterator hhIter;
+        typedef map<T, X>::const_iterator hhCIter;
     public:
-        /**/
+        /*
+         * 重载复制
+         * */
+        HHMap(const HHMap& map) {m_theMap.insert(map.begi(), map.end());}
+        HHMap& operator=(const HHMap &map) {m_theMap.insert(map.begi(), map.end());}
+
+        /*
+         * 增删改查
+         * */
+        bool AddItem(T key, X value)
+        {
+            hhCIter it = m_theMap.find(key);
+        }
 
     private:
-        map<>
+        map<T, X> m_theMap;
+
     };
 }
 
