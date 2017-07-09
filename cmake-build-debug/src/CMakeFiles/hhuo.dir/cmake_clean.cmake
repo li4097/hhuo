@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/hhuo.dir/HH_Socket.cpp.obj"
+  "CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj"
   "../lib/libhhuo.pdb"
   "../lib/libhhuo.dll"
   "../lib/libhhuo.dll.a"

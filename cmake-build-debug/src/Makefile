@@ -139,35 +139,35 @@ hhuo_static/fast:
 	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/build
 .PHONY : hhuo_static/fast
 
-HH_Socket.obj: HH_Socket.cpp.obj
+HH_FDEvent.obj: HH_FDEvent.cpp.obj
 
-.PHONY : HH_Socket.obj
+.PHONY : HH_FDEvent.obj
 
 # target to build an object file
-HH_Socket.cpp.obj:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_Socket.cpp.obj
-.PHONY : HH_Socket.cpp.obj
+HH_FDEvent.cpp.obj:
+	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj
+	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_FDEvent.cpp.obj
+.PHONY : HH_FDEvent.cpp.obj
 
-HH_Socket.i: HH_Socket.cpp.i
+HH_FDEvent.i: HH_FDEvent.cpp.i
 
-.PHONY : HH_Socket.i
+.PHONY : HH_FDEvent.i
 
 # target to preprocess a source file
-HH_Socket.cpp.i:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_Socket.cpp.i
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_Socket.cpp.i
-.PHONY : HH_Socket.cpp.i
+HH_FDEvent.cpp.i:
+	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.i
+	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_FDEvent.cpp.i
+.PHONY : HH_FDEvent.cpp.i
 
-HH_Socket.s: HH_Socket.cpp.s
+HH_FDEvent.s: HH_FDEvent.cpp.s
 
-.PHONY : HH_Socket.s
+.PHONY : HH_FDEvent.s
 
 # target to generate assembly for a file
-HH_Socket.cpp.s:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_Socket.cpp.s
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_Socket.cpp.s
-.PHONY : HH_Socket.cpp.s
+HH_FDEvent.cpp.s:
+	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.s
+	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_FDEvent.cpp.s
+.PHONY : HH_FDEvent.cpp.s
 
 # Help Target
 help:
@@ -179,9 +179,9 @@ help:
 	@echo ... hhuo
 	@echo ... hhuo_static
 	@echo ... edit_cache
-	@echo ... HH_Socket.obj
-	@echo ... HH_Socket.i
-	@echo ... HH_Socket.s
+	@echo ... HH_FDEvent.obj
+	@echo ... HH_FDEvent.i
+	@echo ... HH_FDEvent.s
 .PHONY : help
 
 

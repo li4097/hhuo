@@ -1,6 +1,6 @@
 PROJECT(hhuo)
 
-set(HHUO_SRCS HH_Socket.cpp)
+set(HHUO_SRCS HH_FDEvent.cpp)
 
 # shared library
 ADD_LIBRARY(hhuo SHARED ${HHUO_SRCS})

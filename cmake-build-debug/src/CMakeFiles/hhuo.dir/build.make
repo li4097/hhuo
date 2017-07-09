@@ -56,39 +56,39 @@ include src/CMakeFiles/hhuo.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/CMakeFiles/hhuo.dir/flags.make
 
-src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj: src/CMakeFiles/hhuo.dir/flags.make
-src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj: src/CMakeFiles/hhuo.dir/includes_CXX.rsp
-src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj: ../src/HH_Socket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj"
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\src && C:\MinGW\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\hhuo.dir\HH_Socket.cpp.obj -c C:\Users\Administrator\Desktop\hhuo\src\HH_Socket.cpp
+src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj: src/CMakeFiles/hhuo.dir/flags.make
+src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj: src/CMakeFiles/hhuo.dir/includes_CXX.rsp
+src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj: ../src/HH_FDEvent.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj"
+	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\src && C:\MinGW\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\hhuo.dir\HH_FDEvent.cpp.obj -c C:\Users\Administrator\Desktop\hhuo\src\HH_FDEvent.cpp
 
-src/CMakeFiles/hhuo.dir/HH_Socket.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hhuo.dir/HH_Socket.cpp.i"
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\src && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\Desktop\hhuo\src\HH_Socket.cpp > CMakeFiles\hhuo.dir\HH_Socket.cpp.i
+src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hhuo.dir/HH_FDEvent.cpp.i"
+	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\src && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\Desktop\hhuo\src\HH_FDEvent.cpp > CMakeFiles\hhuo.dir\HH_FDEvent.cpp.i
 
-src/CMakeFiles/hhuo.dir/HH_Socket.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hhuo.dir/HH_Socket.cpp.s"
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\src && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\Desktop\hhuo\src\HH_Socket.cpp -o CMakeFiles\hhuo.dir\HH_Socket.cpp.s
+src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hhuo.dir/HH_FDEvent.cpp.s"
+	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\src && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\Desktop\hhuo\src\HH_FDEvent.cpp -o CMakeFiles\hhuo.dir\HH_FDEvent.cpp.s
 
-src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj.requires:
+src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj.requires:
 
-.PHONY : src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj.requires
+.PHONY : src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj.requires
 
-src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj.provides: src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj.requires
-	$(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj.provides.build
-.PHONY : src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj.provides
+src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj.provides: src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj.requires
+	$(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj.provides.build
+.PHONY : src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj.provides
 
-src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj.provides.build: src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj
+src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj.provides.build: src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj
 
 
 # Object files for target hhuo
 hhuo_OBJECTS = \
-"CMakeFiles/hhuo.dir/HH_Socket.cpp.obj"
+"CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj"
 
 # External object files for target hhuo
 hhuo_EXTERNAL_OBJECTS =
 
-lib/libhhuo.dll: src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj
+lib/libhhuo.dll: src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj
 lib/libhhuo.dll: src/CMakeFiles/hhuo.dir/build.make
 lib/libhhuo.dll: src/CMakeFiles/hhuo.dir/linklibs.rsp
 lib/libhhuo.dll: src/CMakeFiles/hhuo.dir/objects1.rsp
@@ -101,7 +101,7 @@ src/CMakeFiles/hhuo.dir/build: lib/libhhuo.dll
 
 .PHONY : src/CMakeFiles/hhuo.dir/build
 
-src/CMakeFiles/hhuo.dir/requires: src/CMakeFiles/hhuo.dir/HH_Socket.cpp.obj.requires
+src/CMakeFiles/hhuo.dir/requires: src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj.requires
 
 .PHONY : src/CMakeFiles/hhuo.dir/requires
 

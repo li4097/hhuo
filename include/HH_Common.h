@@ -16,8 +16,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#ifndef _SOCKET_UTIL_H
-#define _SOCKET_UTIL_H
+#ifndef HH_COMMON_H
+#define HH_COMMON_H
 
 #if (defined(__unix__) || defined(unix)) && !defined(USG)
 #include <sys/param.h>
@@ -26,7 +26,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // -----------------------------------
 // 输入输出函数必须包含
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
+#include <time.h>
 #include <iostream>
 using namespace std;
 
@@ -37,9 +38,12 @@ using namespace std;
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/epoll.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <fcntl.h>
 #include <netdb.h>
+#include <errno.h>
 #define Errno errno
 
 // 统一成WIN32的用法
@@ -152,4 +156,17 @@ private:
 #endif
 };
 
-#endif _SOCKET_UTIL_H
+/**poller最大监听的fd数量*/
+#define Poller_MAX_FD 8096
+
+/**poller最大事件数量*/
+#define Poller_MAX_EVENT 1024
+
+/**事件的类型，0--紧急处理，1--队列中等候被处理*/
+enum HHEventFlags
+{
+    HHQueue = 0,
+    HHFast
+};
+
+#endif HH_COMMON_H
