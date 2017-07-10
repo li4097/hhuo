@@ -1,13 +1,11 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/hhuo.dir/HH_FDEvent.obj"
-  "CMakeFiles/hhuo.dir/HH_EventLoop.obj"
-  "CMakeFiles/hhuo.dir/HH_ListenEvent.obj"
-  "CMakeFiles/hhuo.dir/HH_Poller.obj"
-  "CMakeFiles/hhuo.dir/HH_Thread.obj"
+  "CMakeFiles/hhuo.dir/HH_FDEvent.cpp.o"
+  "CMakeFiles/hhuo.dir/HH_EventLoop.cpp.o"
+  "CMakeFiles/hhuo.dir/HH_ListenEvent.cpp.o"
+  "CMakeFiles/hhuo.dir/HH_Poller.cpp.o"
+  "CMakeFiles/hhuo.dir/HH_Thread.cpp.o"
   "../lib/libhhuo.pdb"
-  "../lib/libhhuo.dll"
-  "../lib/libhhuo.dll.a"
-  "../lib/libhhuo.dll.manifest"
+  "../lib/libhhuo.so"
 )
 
 # Per-language clean rules from dependency scanning.

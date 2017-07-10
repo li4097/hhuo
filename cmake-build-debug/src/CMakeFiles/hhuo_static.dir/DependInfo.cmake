@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/mao.liu/CLionProjects/hhuo/src/HH_EventLoop.cpp" "C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/src/CMakeFiles/hhuo_static.dir/HH_EventLoop.obj"
-  "C:/Users/mao.liu/CLionProjects/hhuo/src/HH_FDEvent.cpp" "C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/src/CMakeFiles/hhuo_static.dir/HH_FDEvent.obj"
-  "C:/Users/mao.liu/CLionProjects/hhuo/src/HH_ListenEvent.cpp" "C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/src/CMakeFiles/hhuo_static.dir/HH_ListenEvent.obj"
-  "C:/Users/mao.liu/CLionProjects/hhuo/src/HH_Poller.cpp" "C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/src/CMakeFiles/hhuo_static.dir/HH_Poller.obj"
-  "C:/Users/mao.liu/CLionProjects/hhuo/src/HH_Thread.cpp" "C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/src/CMakeFiles/hhuo_static.dir/HH_Thread.obj"
+  "/home/niumao/CLionProjects/hhuo/src/HH_EventLoop.cpp" "/home/niumao/CLionProjects/hhuo/cmake-build-debug/src/CMakeFiles/hhuo_static.dir/HH_EventLoop.cpp.o"
+  "/home/niumao/CLionProjects/hhuo/src/HH_FDEvent.cpp" "/home/niumao/CLionProjects/hhuo/cmake-build-debug/src/CMakeFiles/hhuo_static.dir/HH_FDEvent.cpp.o"
+  "/home/niumao/CLionProjects/hhuo/src/HH_ListenEvent.cpp" "/home/niumao/CLionProjects/hhuo/cmake-build-debug/src/CMakeFiles/hhuo_static.dir/HH_ListenEvent.cpp.o"
+  "/home/niumao/CLionProjects/hhuo/src/HH_Poller.cpp" "/home/niumao/CLionProjects/hhuo/cmake-build-debug/src/CMakeFiles/hhuo_static.dir/HH_Poller.cpp.o"
+  "/home/niumao/CLionProjects/hhuo/src/HH_Thread.cpp" "/home/niumao/CLionProjects/hhuo/cmake-build-debug/src/CMakeFiles/hhuo_static.dir/HH_Thread.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -16,7 +16,6 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
   "/usr/local/include"
-  "/usr/include"
   )
 
 # Targets to which this target links.

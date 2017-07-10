@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/hhuo_static.dir/HH_FDEvent.obj"
-  "CMakeFiles/hhuo_static.dir/HH_EventLoop.obj"
-  "CMakeFiles/hhuo_static.dir/HH_ListenEvent.obj"
-  "CMakeFiles/hhuo_static.dir/HH_Poller.obj"
-  "CMakeFiles/hhuo_static.dir/HH_Thread.obj"
+  "CMakeFiles/hhuo_static.dir/HH_FDEvent.cpp.o"
+  "CMakeFiles/hhuo_static.dir/HH_EventLoop.cpp.o"
+  "CMakeFiles/hhuo_static.dir/HH_ListenEvent.cpp.o"
+  "CMakeFiles/hhuo_static.dir/HH_Poller.cpp.o"
+  "CMakeFiles/hhuo_static.dir/HH_Thread.cpp.o"
   "../lib/libhhuo.pdb"
   "../lib/libhhuo.a"
 )
