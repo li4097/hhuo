@@ -16,56 +16,62 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
+#include "HH_Common.h"
 #include "HH_ListenEvent.h"
+#include "HH_Poller.h"
 
-hhou::HHListenEvent::HHListenEvent(HHPoller *poller,
-                                   const string &addr,
-                                   const port_t &port)
+hhou::HHListenEvent::HHListenEvent(HHPoller *poller)
         : m_pPoller(poller),
-          m_connectionNum(0),
-          m_strAddr(addr),
-          m_port(port),
-          flag(HHFast)
+          m_connectionNum(0)
 {
+    eventInfo.flags = HHFast;
     cout << "Init ListenEvent" << endl;
 }
 
-SOCKET hhou::HHListenEvent::Init()
+bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, size_t listenFds)
 {
-    sockaddr_in listenAddr;
+    struct sockaddr_in listenAddr;
 #ifdef IPPROTO_IPV6
     handler = socket(AF_INET6, SOCK_STREAM, 0);
     listenAddr.sin_family = AF_INET6;
-#eli
+#else
     handler = socket(AF_INET, SOCK_STREAM, 0);
     listenAddr.sin_family = AF_INET;
 #endif
     if (!NonBlock(true))
     {
         cout << "NonBlock error, errno:" << errno << endl;
-        return INVALID_SOCKET;
+        return false;
     }
     if (!Reuse(true))
     {
         cout << "Reuse error, errno:" << errno << endl;
-        return INVALID_SOCKET;
+        return false;
     }
-    listenAddr.sin_addr.s_addr = htonl(m_strAddr);
-    listenAddr.sin_port = htons(m_port);
-    if (bind(handler, &listenAddr, sizeof(listenAddr)) == -1)
+    listenAddr.sin_addr.s_addr = inet_addr(addr.c_str());
+    listenAddr.sin_port = htons(port);
+    if (bind(handler, (struct sockaddr *)&listenAddr, sizeof(listenAddr)) == -1)
     {
         cout << "bind error, errno:" << errno << endl;
-        return INVALID_SOCKET;
+        return false;
     }
-    if(-1 == listen(handler, Poller_MAX_FD))
+    if(-1 == listen(handler, listenFds))
     {
         cout << "listen error, errno:" << errno << endl;
-        return INVALID_SOCKET;
+        return false;
     }
-    return handler;
+
+    /// 添加到epoll的监控中
+    {
+        eventInfo.status = In;
+        eventInfo.flags = HHFast;
+        eventInfo.nType = 0;
+        m_pPoller->AddEvent(this);
+    }
+    return true;
 }
 
 void hhou::HHListenEvent::OnConneting()
 {
-
+    cout << "new connection" << endl;
 }

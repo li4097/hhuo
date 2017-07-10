@@ -23,19 +23,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 namespace hhou
 {
+    class HHPoller;
     /**
      * 监听对象
      */
     class HHListenEvent : public HHEventBase
     {
+        friend class HHPoller;
     public:
-        HHListenEvent() = delete;
-        HHListenEvent(HHPoller *poller, const string &addr, const port_t &port);
+        HHListenEvent(HHPoller *poller);
 
-        /**
-         * 初始化loop对象
-         */
-        SOCKET Init();
+        /**监听接口(包括bind的动作)*/
+        bool Listen(const string &addr, const port_t &port, size_t listenFds = Poller_MAX_FD);
 
         /**
          * 连接的处理
@@ -45,8 +44,6 @@ namespace hhou
     private:
         HHPoller *m_pPoller; /// poller对象
         size_t m_connectionNum; /// 连接的总数
-        string m_strAddr; /// ip地址
-        port_t m_port; /// 端口
     };
 }
 #endif // HHUO_HHFDEVENT_H

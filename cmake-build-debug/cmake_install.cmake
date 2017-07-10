@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Administrator/Desktop/hhuo
+# Install script for directory: C:/Users/mao.liu/CLionProjects/hhuo
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,9 +29,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/src/cmake_install.cmake")
-  include("C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/tests/cmake_install.cmake")
-  include("C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/unittests/cmake_install.cmake")
+  include("C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/src/cmake_install.cmake")
+  include("C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/tests/cmake_install.cmake")
+  include("C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/unittests/cmake_install.cmake")
 
 endif()
 
@@ -43,5 +43,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Administrator/Desktop/hhuo/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

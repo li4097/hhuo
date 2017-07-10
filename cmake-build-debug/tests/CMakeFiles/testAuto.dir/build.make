@@ -33,19 +33,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe" -E remove -f
+RM = "C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Administrator\Desktop\hhuo
+CMAKE_SOURCE_DIR = C:\Users\mao.liu\CLionProjects\hhuo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Administrator\Desktop\hhuo\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include tests/CMakeFiles/testAuto.dir/depend.make
@@ -56,61 +56,61 @@ include tests/CMakeFiles/testAuto.dir/progress.make
 # Include the compile flags for this target's objects.
 include tests/CMakeFiles/testAuto.dir/flags.make
 
-tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj: tests/CMakeFiles/testAuto.dir/flags.make
-tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj: tests/CMakeFiles/testAuto.dir/includes_CXX.rsp
-tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj: ../tests/testAuto.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj"
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests && C:\MinGW\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\testAuto.dir\testAuto.cpp.obj -c C:\Users\Administrator\Desktop\hhuo\tests\testAuto.cpp
+tests/CMakeFiles/testAuto.dir/testAuto.obj: tests/CMakeFiles/testAuto.dir/flags.make
+tests/CMakeFiles/testAuto.dir/testAuto.obj: tests/CMakeFiles/testAuto.dir/includes_CXX.rsp
+tests/CMakeFiles/testAuto.dir/testAuto.obj: ../tests/testAuto.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/testAuto.dir/testAuto.obj"
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests && C:\MinGW\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\testAuto.dir\testAuto.obj -c C:\Users\mao.liu\CLionProjects\hhuo\tests\testAuto.cpp
 
-tests/CMakeFiles/testAuto.dir/testAuto.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/testAuto.dir/testAuto.cpp.i"
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\Desktop\hhuo\tests\testAuto.cpp > CMakeFiles\testAuto.dir\testAuto.cpp.i
+tests/CMakeFiles/testAuto.dir/testAuto.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/testAuto.dir/testAuto.i"
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mao.liu\CLionProjects\hhuo\tests\testAuto.cpp > CMakeFiles\testAuto.dir\testAuto.i
 
-tests/CMakeFiles/testAuto.dir/testAuto.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/testAuto.dir/testAuto.cpp.s"
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\Desktop\hhuo\tests\testAuto.cpp -o CMakeFiles\testAuto.dir\testAuto.cpp.s
+tests/CMakeFiles/testAuto.dir/testAuto.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/testAuto.dir/testAuto.s"
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mao.liu\CLionProjects\hhuo\tests\testAuto.cpp -o CMakeFiles\testAuto.dir\testAuto.s
 
-tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj.requires:
+tests/CMakeFiles/testAuto.dir/testAuto.obj.requires:
 
-.PHONY : tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj.requires
+.PHONY : tests/CMakeFiles/testAuto.dir/testAuto.obj.requires
 
-tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj.provides: tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj.requires
-	$(MAKE) -f tests\CMakeFiles\testAuto.dir\build.make tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj.provides.build
-.PHONY : tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj.provides
+tests/CMakeFiles/testAuto.dir/testAuto.obj.provides: tests/CMakeFiles/testAuto.dir/testAuto.obj.requires
+	$(MAKE) -f tests\CMakeFiles\testAuto.dir\build.make tests/CMakeFiles/testAuto.dir/testAuto.obj.provides.build
+.PHONY : tests/CMakeFiles/testAuto.dir/testAuto.obj.provides
 
-tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj.provides.build: tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj
+tests/CMakeFiles/testAuto.dir/testAuto.obj.provides.build: tests/CMakeFiles/testAuto.dir/testAuto.obj
 
 
 # Object files for target testAuto
 testAuto_OBJECTS = \
-"CMakeFiles/testAuto.dir/testAuto.cpp.obj"
+"CMakeFiles/testAuto.dir/testAuto.obj"
 
 # External object files for target testAuto
 testAuto_EXTERNAL_OBJECTS =
 
-bin/testAuto.exe: tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj
+bin/testAuto.exe: tests/CMakeFiles/testAuto.dir/testAuto.obj
 bin/testAuto.exe: tests/CMakeFiles/testAuto.dir/build.make
 bin/testAuto.exe: lib/libhhuo.dll.a
 bin/testAuto.exe: tests/CMakeFiles/testAuto.dir/linklibs.rsp
 bin/testAuto.exe: tests/CMakeFiles/testAuto.dir/objects1.rsp
 bin/testAuto.exe: tests/CMakeFiles/testAuto.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ..\bin\testAuto.exe"
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\testAuto.dir\link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ..\bin\testAuto.exe"
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\testAuto.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 tests/CMakeFiles/testAuto.dir/build: bin/testAuto.exe
 
 .PHONY : tests/CMakeFiles/testAuto.dir/build
 
-tests/CMakeFiles/testAuto.dir/requires: tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj.requires
+tests/CMakeFiles/testAuto.dir/requires: tests/CMakeFiles/testAuto.dir/testAuto.obj.requires
 
 .PHONY : tests/CMakeFiles/testAuto.dir/requires
 
 tests/CMakeFiles/testAuto.dir/clean:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests && $(CMAKE_COMMAND) -P CMakeFiles\testAuto.dir\cmake_clean.cmake
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests && $(CMAKE_COMMAND) -P CMakeFiles\testAuto.dir\cmake_clean.cmake
 .PHONY : tests/CMakeFiles/testAuto.dir/clean
 
 tests/CMakeFiles/testAuto.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Administrator\Desktop\hhuo C:\Users\Administrator\Desktop\hhuo\tests C:\Users\Administrator\Desktop\hhuo\cmake-build-debug C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests\CMakeFiles\testAuto.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\mao.liu\CLionProjects\hhuo C:\Users\mao.liu\CLionProjects\hhuo\tests C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests\CMakeFiles\testAuto.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : tests/CMakeFiles/testAuto.dir/depend
 

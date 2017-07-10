@@ -19,8 +19,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef HH_POLLER_H
 #define HH_POLLER_H
 
+#include <vector>
 #include "HH_Map.h"
-#include "HH_Common.h"
+#include "HH_EventBase.h"
 
 namespace hhou
 {
@@ -36,26 +37,27 @@ namespace hhou
         /**
          * 添加监听对象
          */
-        void AddEvent(const HHEventBase& event);
+        void AddEvent(HHEventBase *event);
 
         /**
          * 修改监听对象
          */
-        void ChangeEvent(const HHEventBase& event);
+        void ChangeEvent(HHEventBase *event);
 
         /**
          * 删除监听对象
          */
-        void DelEvent(const HHEventBase& event);
+        void DelEvent(HHEventBase *event);
 
         /**
          * 把epoll_wait事件添加到map
          */
-        void ProcessEvents(int timeout, vector<HHEventBase*> &vEvents);
+        void ProcessEvents(int timeout, vector<HHEventBase *> &vEvents);
 
     private:
-        int m_epollFd; ///poller的fd
-        epoll_event m_events[Poller_MAX_EVENT]; ///关注事件的最大数量
+        SOCKET m_epollFd; ///poller的fd
+        struct epoll_event m_events[Poller_MAX_EVENT]; ///关注事件的最大数量
+        //HHMap<SOCKET, HHEventBase *> m_mHandlers; /// 保存的socket句柄
     };
 }
 

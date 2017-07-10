@@ -32,21 +32,22 @@ namespace hhou
     template <typename T, typename X>
     class HHMap
     {
-        typedef map<T, X>::iterator hhIter;
-        typedef map<T, X>::const_iterator hhCIter;
+        typename map<T, X>::iterator hhIter;
+        typename map<T, X>::const_iterator hhCIter;
     public:
         /*
          * 重载复制
          * */
-        HHMap(const HHMap& map) {m_theMap.insert(map.begi(), map.end());}
-        HHMap& operator=(const HHMap &map) {m_theMap.insert(map.begi(), map.end());}
+        HHMap(const HHMap& map) {m_theMap.insert(map.begin(), map.end());}
+        HHMap& operator=(const HHMap &map) {m_theMap.insert(map.begin(), map.end());}
 
         /*
          * 增删改查
          * */
         bool AddItem(T key, X value)
         {
-            hhCIter it = m_theMap.find(key);
+            //hhCIter it = m_theMap.find(key);
+            return true;
         }
 
     private:

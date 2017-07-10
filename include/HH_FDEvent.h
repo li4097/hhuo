@@ -34,11 +34,6 @@ namespace hhou
         friend class HHPoller;
     public:
         /**
-         * 禁掉默认构造函数
-         */
-        HHFDEvent() = delete;
-
-        /**
          * 默认只能引用构造
          */
         HHFDEvent(HHPoller *poller) {m_pPoller = poller;}
@@ -47,7 +42,7 @@ namespace hhou
         /**
          * socket的fd操作接口
          */
-        inline void Attach(SOCKET fd) { handler = iFd; }
+        inline void Attach(SOCKET fd) { handler = fd; }
         SOCKET GetSocket() { return handler; }
 
         /**

@@ -38,19 +38,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe" -E remove -f
+RM = "C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Administrator\Desktop\hhuo
+CMAKE_SOURCE_DIR = C:\Users\mao.liu\CLionProjects\hhuo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Administrator\Desktop\hhuo\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -58,7 +58,7 @@ CMAKE_BINARY_DIR = C:\Users\Administrator\Desktop\hhuo\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -69,7 +69,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -79,14 +79,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests\CMakeFiles\progress.marks
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 0
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests\CMakeFiles\progress.marks
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/clean
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/clean
 .PHONY : clean
 
 # The main clean target
@@ -96,186 +96,48 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/preinstall
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/preinstall
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
-tests/CMakeFiles/testPtr.dir/rule:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/CMakeFiles/testPtr.dir/rule
-.PHONY : tests/CMakeFiles/testPtr.dir/rule
+tests/CMakeFiles/test4server.dir/rule:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/CMakeFiles/test4server.dir/rule
+.PHONY : tests/CMakeFiles/test4server.dir/rule
 
 # Convenience name for target.
-testPtr: tests/CMakeFiles/testPtr.dir/rule
+test4server: tests/CMakeFiles/test4server.dir/rule
 
-.PHONY : testPtr
+.PHONY : test4server
 
 # fast build rule for target.
-testPtr/fast:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\testPtr.dir\build.make tests/CMakeFiles/testPtr.dir/build
-.PHONY : testPtr/fast
-
-# Convenience name for target.
-tests/CMakeFiles/bind.dir/rule:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/CMakeFiles/bind.dir/rule
-.PHONY : tests/CMakeFiles/bind.dir/rule
-
-# Convenience name for target.
-bind: tests/CMakeFiles/bind.dir/rule
-
-.PHONY : bind
-
-# fast build rule for target.
-bind/fast:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\bind.dir\build.make tests/CMakeFiles/bind.dir/build
-.PHONY : bind/fast
-
-# Convenience name for target.
-tests/CMakeFiles/testAuto.dir/rule:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/CMakeFiles/testAuto.dir/rule
-.PHONY : tests/CMakeFiles/testAuto.dir/rule
-
-# Convenience name for target.
-testAuto: tests/CMakeFiles/testAuto.dir/rule
-
-.PHONY : testAuto
-
-# fast build rule for target.
-testAuto/fast:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\testAuto.dir\build.make tests/CMakeFiles/testAuto.dir/build
-.PHONY : testAuto/fast
-
-# Convenience name for target.
-tests/CMakeFiles/of.dir/rule:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/CMakeFiles/of.dir/rule
-.PHONY : tests/CMakeFiles/of.dir/rule
-
-# Convenience name for target.
-of: tests/CMakeFiles/of.dir/rule
-
-.PHONY : of
-
-# fast build rule for target.
-of/fast:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\of.dir\build.make tests/CMakeFiles/of.dir/build
-.PHONY : of/fast
-
-bind.obj: bind.cpp.obj
-
-.PHONY : bind.obj
+test4server/fast:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\test4server.dir\build.make tests/CMakeFiles/test4server.dir/build
+.PHONY : test4server/fast
 
 # target to build an object file
-bind.cpp.obj:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\bind.dir\build.make tests/CMakeFiles/bind.dir/bind.cpp.obj
-.PHONY : bind.cpp.obj
-
-bind.i: bind.cpp.i
-
-.PHONY : bind.i
+test4server.obj:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\test4server.dir\build.make tests/CMakeFiles/test4server.dir/test4server.obj
+.PHONY : test4server.obj
 
 # target to preprocess a source file
-bind.cpp.i:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\bind.dir\build.make tests/CMakeFiles/bind.dir/bind.cpp.i
-.PHONY : bind.cpp.i
-
-bind.s: bind.cpp.s
-
-.PHONY : bind.s
+test4server.i:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\test4server.dir\build.make tests/CMakeFiles/test4server.dir/test4server.i
+.PHONY : test4server.i
 
 # target to generate assembly for a file
-bind.cpp.s:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\bind.dir\build.make tests/CMakeFiles/bind.dir/bind.cpp.s
-.PHONY : bind.cpp.s
-
-of.obj: of.cpp.obj
-
-.PHONY : of.obj
-
-# target to build an object file
-of.cpp.obj:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\of.dir\build.make tests/CMakeFiles/of.dir/of.cpp.obj
-.PHONY : of.cpp.obj
-
-of.i: of.cpp.i
-
-.PHONY : of.i
-
-# target to preprocess a source file
-of.cpp.i:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\of.dir\build.make tests/CMakeFiles/of.dir/of.cpp.i
-.PHONY : of.cpp.i
-
-of.s: of.cpp.s
-
-.PHONY : of.s
-
-# target to generate assembly for a file
-of.cpp.s:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\of.dir\build.make tests/CMakeFiles/of.dir/of.cpp.s
-.PHONY : of.cpp.s
-
-testAuto.obj: testAuto.cpp.obj
-
-.PHONY : testAuto.obj
-
-# target to build an object file
-testAuto.cpp.obj:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\testAuto.dir\build.make tests/CMakeFiles/testAuto.dir/testAuto.cpp.obj
-.PHONY : testAuto.cpp.obj
-
-testAuto.i: testAuto.cpp.i
-
-.PHONY : testAuto.i
-
-# target to preprocess a source file
-testAuto.cpp.i:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\testAuto.dir\build.make tests/CMakeFiles/testAuto.dir/testAuto.cpp.i
-.PHONY : testAuto.cpp.i
-
-testAuto.s: testAuto.cpp.s
-
-.PHONY : testAuto.s
-
-# target to generate assembly for a file
-testAuto.cpp.s:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\testAuto.dir\build.make tests/CMakeFiles/testAuto.dir/testAuto.cpp.s
-.PHONY : testAuto.cpp.s
-
-testPtr.obj: testPtr.cpp.obj
-
-.PHONY : testPtr.obj
-
-# target to build an object file
-testPtr.cpp.obj:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\testPtr.dir\build.make tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj
-.PHONY : testPtr.cpp.obj
-
-testPtr.i: testPtr.cpp.i
-
-.PHONY : testPtr.i
-
-# target to preprocess a source file
-testPtr.cpp.i:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\testPtr.dir\build.make tests/CMakeFiles/testPtr.dir/testPtr.cpp.i
-.PHONY : testPtr.cpp.i
-
-testPtr.s: testPtr.cpp.s
-
-.PHONY : testPtr.s
-
-# target to generate assembly for a file
-testPtr.cpp.s:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\testPtr.dir\build.make tests/CMakeFiles/testPtr.dir/testPtr.cpp.s
-.PHONY : testPtr.cpp.s
+test4server.s:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\test4server.dir\build.make tests/CMakeFiles/test4server.dir/test4server.s
+.PHONY : test4server.s
 
 # Help Target
 help:
@@ -283,24 +145,12 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... testPtr
-	@echo ... bind
-	@echo ... testAuto
 	@echo ... edit_cache
-	@echo ... of
+	@echo ... test4server
 	@echo ... rebuild_cache
-	@echo ... bind.obj
-	@echo ... bind.i
-	@echo ... bind.s
-	@echo ... of.obj
-	@echo ... of.i
-	@echo ... of.s
-	@echo ... testAuto.obj
-	@echo ... testAuto.i
-	@echo ... testAuto.s
-	@echo ... testPtr.obj
-	@echo ... testPtr.i
-	@echo ... testPtr.s
+	@echo ... test4server.obj
+	@echo ... test4server.i
+	@echo ... test4server.s
 .PHONY : help
 
 
@@ -312,6 +162,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

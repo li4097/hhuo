@@ -16,31 +16,26 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include "HH_Poller.h"
+#ifndef HH_SERVERBASE_H
+#define HH_SERVERBASE_H
 
 namespace hhou
 {
     /**
-     * loop对象
+     * server的基类
+     * 后续添加新的服务继承自即可
      */
-    class HHEventLoop
+    class HHServerBase
     {
     public:
-        HHEventLoop();
-        virtual ~HHEventLoop();
+        HHServerBase() {}
+        virtual ~HHServerBase() {}
 
-        /**
-         * 循环事件处理
-         */
-        bool Loop(const int &timeout);
+        /**初始化本服务（读取配置文件等等）*/
+        virtual bool Init() { return true;}
 
-        /**
-         * 获取poller对象
-         */
-        HHPoller *Poller() { return m_pPoller;}
-
-    private:
-        bool m_bQuit; /// loop的中止标志
-        HHPoller *m_pPoller; /// poller对象
+        /**开始服务*/
+        virtual void Run() {}
     };
 }
+#endif //HH_SERVERBASE_H

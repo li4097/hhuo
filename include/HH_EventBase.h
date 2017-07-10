@@ -28,32 +28,35 @@ namespace hhou
      */
     class HHEventBase
     {
+    public:
         /**读操作*/
-        virtual void OnRead();
+        virtual void OnRead() {}
 
         /**写操作*/
-        virtual void OnWrite();
+        virtual void OnWrite() {}
 
         /**超时操作*/
-        virtual void OnTimeout();
+        virtual void OnTimeout() {}
 
         /**execption*/
-        virtual void OnException();
+        virtual void OnException() {}
 
         /**conneting*/
-        virtual void OnConneting();
+        virtual void OnConneting() {}
 
         /**conneted*/
-        virtual void OnConneted();
+        virtual void OnConneted() {}
 
         /**close*/
-        virtual void OnClosed();
+        virtual void OnClosed() {}
 
         /**nonBlock?*/
         bool NonBlock(bool yes)
         {
-            auto flags = fcntl(socket, F_GETFL, 0);
-            auto newFlag = yes? (flags | O_NONBLOCK) : (flags & ~O_NONBLOCK);
+            int flags = 0;
+            if (fcntl(handler, F_GETFL, 0) == -1)
+                return false;
+            int newFlag = yes? (flags | O_NONBLOCK) : (flags & ~O_NONBLOCK);
             fcntl(handler, F_SETFL, newFlag);
             return true;
         }
@@ -61,7 +64,7 @@ namespace hhou
         /**reuse?*/
         bool Reuse(bool yes)
         {
-            auto on = (yes? 1:0);
+            int on = (yes? 1:0);
             if (setsockopt(handler, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) == -1)
                 return false;
             else
@@ -71,15 +74,12 @@ namespace hhou
         /**keepalive?*/
         bool KeepAlive(bool yes)
         {
-            auto on = (yes? 1:0);
+            int on = (yes? 1:0);
             if (setsockopt(handler, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) == -1)
                 return false;
             else
                 return true;
         }
-
-        /**要处理的事件类型*/
-        int doEvent;
 
         /**句柄对象*/
         SOCKET handler;
@@ -87,8 +87,8 @@ namespace hhou
         /**last active time*/
         time_t m_tLast;
 
-        /**事件的紧急程度*/
-        HHEventFlags flag;
+        /**event's info*/
+        HHEventInfo eventInfo;
     };
 }
 

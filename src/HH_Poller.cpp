@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 #include <vector>
+#include "HH_Common.h"
 #include "HH_Poller.h"
 
 hhou::HHPoller::HHPoller()
@@ -30,22 +31,52 @@ hhou::HHPoller::HHPoller()
     }
 }
 
-void hhou::HHPoller::AddEvent(const HHEventBase &event)
+void hhou::HHPoller::AddEvent(HHEventBase *event)
 {
-
+    struct epoll_event ev;
+    ev.events = EPOLLIN | EPOLLET;
+    ev.data.ptr = event;
+    epoll_ctl(m_epollFd, EPOLL_CTL_ADD, event->handler, &ev);
 }
 
-void hhou::HHPoller::ChangeEvent(const HHEventBase &event)
+void hhou::HHPoller::ChangeEvent(HHEventBase *event)
 {
-
+    struct epoll_event ev;
+    if (event->eventInfo.status == In)
+        ev.events = EPOLLIN | EPOLLET;
+    else
+        ev.events = EPOLLOUT | EPOLLET;
+    ev.data.ptr = event;
+    epoll_ctl(m_epollFd, EPOLL_CTL_MOD, event->handler, &ev);
 }
 
-void hhou::HHPoller::DelEvent(const HHEventBase &event)
+void hhou::HHPoller::DelEvent(HHEventBase *event)
 {
-
+    event->eventInfo.status = Close;
+    struct epoll_event ev;
+    ev.data.ptr = event;
+    epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
 }
 
-void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase*> &vEvents)
+void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
 {
-
+    /// wait for events to happen
+    int fds = epoll_wait(m_epollFd, m_events, Poller_MAX_EVENT, timeout);
+    if (fds == -1)
+    {
+        cout << "epoll_wait error, errno:" << errno << endl;
+        return;
+    }
+    for(int i = 0; i < fds; i++)
+    {
+        HHEventBase *pEvent = static_cast<HHEventBase *>(m_events[i].data.ptr);
+        if (pEvent->eventInfo.nType == 0)
+        {
+            pEvent->OnConneting();
+        }
+        else
+        {
+            vEvents.push_back(pEvent);
+        }
+    }
 }

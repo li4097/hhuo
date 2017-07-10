@@ -44,19 +44,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe" -E remove -f
+RM = "C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Administrator\Desktop\hhuo
+CMAKE_SOURCE_DIR = C:\Users\mao.liu\CLionProjects\hhuo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Administrator\Desktop\hhuo\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug
 
 #=============================================================================
 # Directory level rules for directory src
@@ -85,7 +85,7 @@ src/preinstall:
 src/CMakeFiles/hhuo.dir/all:
 	$(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/depend
 	$(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles --progress-num=3,4 "Built target hhuo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5 "Built target hhuo"
 .PHONY : src/CMakeFiles/hhuo.dir/all
 
 # Include target in all.
@@ -95,9 +95,9 @@ all: src/CMakeFiles/hhuo.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/hhuo.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles 5
 	$(MAKE) -f CMakeFiles\Makefile2 src/CMakeFiles/hhuo.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles 0
 .PHONY : src/CMakeFiles/hhuo.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ clean: src/CMakeFiles/hhuo.dir/clean
 src/CMakeFiles/hhuo_static.dir/all:
 	$(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/depend
 	$(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles --progress-num=5,6 "Built target hhuo_static"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles --progress-num=6,7,8,9,10 "Built target hhuo_static"
 .PHONY : src/CMakeFiles/hhuo_static.dir/all
 
 # Include target in all.
@@ -132,9 +132,9 @@ all: src/CMakeFiles/hhuo_static.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/hhuo_static.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles 5
 	$(MAKE) -f CMakeFiles\Makefile2 src/CMakeFiles/hhuo_static.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles 0
 .PHONY : src/CMakeFiles/hhuo_static.dir/rule
 
 # Convenience name for target.
@@ -156,18 +156,12 @@ clean: src/CMakeFiles/hhuo_static.dir/clean
 # Directory level rules for directory tests
 
 # Convenience name for "all" pass in the directory.
-tests/all: tests/CMakeFiles/testPtr.dir/all
-tests/all: tests/CMakeFiles/bind.dir/all
-tests/all: tests/CMakeFiles/testAuto.dir/all
-tests/all: tests/CMakeFiles/of.dir/all
+tests/all: tests/CMakeFiles/test4server.dir/all
 
 .PHONY : tests/all
 
 # Convenience name for "clean" pass in the directory.
-tests/clean: tests/CMakeFiles/testPtr.dir/clean
-tests/clean: tests/CMakeFiles/bind.dir/clean
-tests/clean: tests/CMakeFiles/testAuto.dir/clean
-tests/clean: tests/CMakeFiles/of.dir/clean
+tests/clean: tests/CMakeFiles/test4server.dir/clean
 
 .PHONY : tests/clean
 
@@ -177,150 +171,39 @@ tests/preinstall:
 .PHONY : tests/preinstall
 
 #=============================================================================
-# Target rules for target tests/CMakeFiles/testPtr.dir
+# Target rules for target tests/CMakeFiles/test4server.dir
 
 # All Build rule for target.
-tests/CMakeFiles/testPtr.dir/all: src/CMakeFiles/hhuo.dir/all
-	$(MAKE) -f tests\CMakeFiles\testPtr.dir\build.make tests/CMakeFiles/testPtr.dir/depend
-	$(MAKE) -f tests\CMakeFiles\testPtr.dir\build.make tests/CMakeFiles/testPtr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles --progress-num=11,12 "Built target testPtr"
-.PHONY : tests/CMakeFiles/testPtr.dir/all
+tests/CMakeFiles/test4server.dir/all: src/CMakeFiles/hhuo.dir/all
+	$(MAKE) -f tests\CMakeFiles\test4server.dir\build.make tests/CMakeFiles/test4server.dir/depend
+	$(MAKE) -f tests\CMakeFiles\test4server.dir\build.make tests/CMakeFiles/test4server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles --progress-num=11,12 "Built target test4server"
+.PHONY : tests/CMakeFiles/test4server.dir/all
 
 # Include target in all.
-all: tests/CMakeFiles/testPtr.dir/all
+all: tests/CMakeFiles/test4server.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-tests/CMakeFiles/testPtr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 4
-	$(MAKE) -f CMakeFiles\Makefile2 tests/CMakeFiles/testPtr.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 0
-.PHONY : tests/CMakeFiles/testPtr.dir/rule
+tests/CMakeFiles/test4server.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles 7
+	$(MAKE) -f CMakeFiles\Makefile2 tests/CMakeFiles/test4server.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles 0
+.PHONY : tests/CMakeFiles/test4server.dir/rule
 
 # Convenience name for target.
-testPtr: tests/CMakeFiles/testPtr.dir/rule
+test4server: tests/CMakeFiles/test4server.dir/rule
 
-.PHONY : testPtr
-
-# clean rule for target.
-tests/CMakeFiles/testPtr.dir/clean:
-	$(MAKE) -f tests\CMakeFiles\testPtr.dir\build.make tests/CMakeFiles/testPtr.dir/clean
-.PHONY : tests/CMakeFiles/testPtr.dir/clean
+.PHONY : test4server
 
 # clean rule for target.
-clean: tests/CMakeFiles/testPtr.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target tests/CMakeFiles/bind.dir
-
-# All Build rule for target.
-tests/CMakeFiles/bind.dir/all: src/CMakeFiles/hhuo.dir/all
-	$(MAKE) -f tests\CMakeFiles\bind.dir\build.make tests/CMakeFiles/bind.dir/depend
-	$(MAKE) -f tests\CMakeFiles\bind.dir\build.make tests/CMakeFiles/bind.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target bind"
-.PHONY : tests/CMakeFiles/bind.dir/all
-
-# Include target in all.
-all: tests/CMakeFiles/bind.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-tests/CMakeFiles/bind.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 4
-	$(MAKE) -f CMakeFiles\Makefile2 tests/CMakeFiles/bind.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 0
-.PHONY : tests/CMakeFiles/bind.dir/rule
-
-# Convenience name for target.
-bind: tests/CMakeFiles/bind.dir/rule
-
-.PHONY : bind
+tests/CMakeFiles/test4server.dir/clean:
+	$(MAKE) -f tests\CMakeFiles\test4server.dir\build.make tests/CMakeFiles/test4server.dir/clean
+.PHONY : tests/CMakeFiles/test4server.dir/clean
 
 # clean rule for target.
-tests/CMakeFiles/bind.dir/clean:
-	$(MAKE) -f tests\CMakeFiles\bind.dir\build.make tests/CMakeFiles/bind.dir/clean
-.PHONY : tests/CMakeFiles/bind.dir/clean
-
-# clean rule for target.
-clean: tests/CMakeFiles/bind.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target tests/CMakeFiles/testAuto.dir
-
-# All Build rule for target.
-tests/CMakeFiles/testAuto.dir/all: src/CMakeFiles/hhuo.dir/all
-	$(MAKE) -f tests\CMakeFiles\testAuto.dir\build.make tests/CMakeFiles/testAuto.dir/depend
-	$(MAKE) -f tests\CMakeFiles\testAuto.dir\build.make tests/CMakeFiles/testAuto.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles --progress-num=9,10 "Built target testAuto"
-.PHONY : tests/CMakeFiles/testAuto.dir/all
-
-# Include target in all.
-all: tests/CMakeFiles/testAuto.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-tests/CMakeFiles/testAuto.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 4
-	$(MAKE) -f CMakeFiles\Makefile2 tests/CMakeFiles/testAuto.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 0
-.PHONY : tests/CMakeFiles/testAuto.dir/rule
-
-# Convenience name for target.
-testAuto: tests/CMakeFiles/testAuto.dir/rule
-
-.PHONY : testAuto
-
-# clean rule for target.
-tests/CMakeFiles/testAuto.dir/clean:
-	$(MAKE) -f tests\CMakeFiles\testAuto.dir\build.make tests/CMakeFiles/testAuto.dir/clean
-.PHONY : tests/CMakeFiles/testAuto.dir/clean
-
-# clean rule for target.
-clean: tests/CMakeFiles/testAuto.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target tests/CMakeFiles/of.dir
-
-# All Build rule for target.
-tests/CMakeFiles/of.dir/all: src/CMakeFiles/hhuo.dir/all
-	$(MAKE) -f tests\CMakeFiles\of.dir\build.make tests/CMakeFiles/of.dir/depend
-	$(MAKE) -f tests\CMakeFiles\of.dir\build.make tests/CMakeFiles/of.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles --progress-num=7,8 "Built target of"
-.PHONY : tests/CMakeFiles/of.dir/all
-
-# Include target in all.
-all: tests/CMakeFiles/of.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-tests/CMakeFiles/of.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 4
-	$(MAKE) -f CMakeFiles\Makefile2 tests/CMakeFiles/of.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 0
-.PHONY : tests/CMakeFiles/of.dir/rule
-
-# Convenience name for target.
-of: tests/CMakeFiles/of.dir/rule
-
-.PHONY : of
-
-# clean rule for target.
-tests/CMakeFiles/of.dir/clean:
-	$(MAKE) -f tests\CMakeFiles\of.dir\build.make tests/CMakeFiles/of.dir/clean
-.PHONY : tests/CMakeFiles/of.dir/clean
-
-# clean rule for target.
-clean: tests/CMakeFiles/of.dir/clean
+clean: tests/CMakeFiles/test4server.dir/clean
 
 .PHONY : clean
 

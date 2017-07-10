@@ -31,11 +31,16 @@ hhou::HHEventLoop::~HHEventLoop()
     m_bQuit = true;
 }
 
-bool hhou::HHEventLoop::Loop(const HHPollerOpeation &op)
+bool hhou::HHEventLoop::Loop(const int &timeout)
 {
     while (!m_bQuit)
     {
-
+        vector<HHEventBase *> vDoEvents;
+        m_pPoller->ProcessEvents(timeout, vDoEvents);
+        if (vDoEvents.size() > 0)
+        {
+            cout << "new events" << endl;
+        }
     }
     return true;
 }

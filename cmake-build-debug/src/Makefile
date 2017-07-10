@@ -38,19 +38,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe" -E remove -f
+RM = "C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Administrator\Desktop\hhuo
+CMAKE_SOURCE_DIR = C:\Users\mao.liu\CLionProjects\hhuo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Administrator\Desktop\hhuo\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -58,7 +58,7 @@ CMAKE_BINARY_DIR = C:\Users\Administrator\Desktop\hhuo\cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -69,7 +69,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -79,14 +79,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\src\CMakeFiles\progress.marks
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles 0
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\src\CMakeFiles\progress.marks
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 src/clean
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -96,22 +96,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 src/preinstall
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 src/preinstall
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/hhuo.dir/rule:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 src/CMakeFiles/hhuo.dir/rule
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 src/CMakeFiles/hhuo.dir/rule
 .PHONY : src/CMakeFiles/hhuo.dir/rule
 
 # Convenience name for target.
@@ -121,12 +121,12 @@ hhuo: src/CMakeFiles/hhuo.dir/rule
 
 # fast build rule for target.
 hhuo/fast:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/build
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/build
 .PHONY : hhuo/fast
 
 # Convenience name for target.
 src/CMakeFiles/hhuo_static.dir/rule:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 src/CMakeFiles/hhuo_static.dir/rule
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 src/CMakeFiles/hhuo_static.dir/rule
 .PHONY : src/CMakeFiles/hhuo_static.dir/rule
 
 # Convenience name for target.
@@ -136,38 +136,80 @@ hhuo_static: src/CMakeFiles/hhuo_static.dir/rule
 
 # fast build rule for target.
 hhuo_static/fast:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/build
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/build
 .PHONY : hhuo_static/fast
 
-HH_FDEvent.obj: HH_FDEvent.cpp.obj
-
-.PHONY : HH_FDEvent.obj
-
 # target to build an object file
-HH_FDEvent.cpp.obj:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.obj
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_FDEvent.cpp.obj
-.PHONY : HH_FDEvent.cpp.obj
-
-HH_FDEvent.i: HH_FDEvent.cpp.i
-
-.PHONY : HH_FDEvent.i
+HH_EventLoop.obj:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_EventLoop.obj
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_EventLoop.obj
+.PHONY : HH_EventLoop.obj
 
 # target to preprocess a source file
-HH_FDEvent.cpp.i:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.i
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_FDEvent.cpp.i
-.PHONY : HH_FDEvent.cpp.i
-
-HH_FDEvent.s: HH_FDEvent.cpp.s
-
-.PHONY : HH_FDEvent.s
+HH_EventLoop.i:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_EventLoop.i
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_EventLoop.i
+.PHONY : HH_EventLoop.i
 
 # target to generate assembly for a file
-HH_FDEvent.cpp.s:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.s
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_FDEvent.cpp.s
-.PHONY : HH_FDEvent.cpp.s
+HH_EventLoop.s:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_EventLoop.s
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_EventLoop.s
+.PHONY : HH_EventLoop.s
+
+# target to build an object file
+HH_FDEvent.obj:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_FDEvent.obj
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_FDEvent.obj
+.PHONY : HH_FDEvent.obj
+
+# target to preprocess a source file
+HH_FDEvent.i:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_FDEvent.i
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_FDEvent.i
+.PHONY : HH_FDEvent.i
+
+# target to generate assembly for a file
+HH_FDEvent.s:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_FDEvent.s
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_FDEvent.s
+.PHONY : HH_FDEvent.s
+
+# target to build an object file
+HH_ListenEvent.obj:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_ListenEvent.obj
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_ListenEvent.obj
+.PHONY : HH_ListenEvent.obj
+
+# target to preprocess a source file
+HH_ListenEvent.i:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_ListenEvent.i
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_ListenEvent.i
+.PHONY : HH_ListenEvent.i
+
+# target to generate assembly for a file
+HH_ListenEvent.s:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_ListenEvent.s
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_ListenEvent.s
+.PHONY : HH_ListenEvent.s
+
+# target to build an object file
+HH_Poller.obj:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_Poller.obj
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_Poller.obj
+.PHONY : HH_Poller.obj
+
+# target to preprocess a source file
+HH_Poller.i:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_Poller.i
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_Poller.i
+.PHONY : HH_Poller.i
+
+# target to generate assembly for a file
+HH_Poller.s:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_Poller.s
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_Poller.s
+.PHONY : HH_Poller.s
 
 # Help Target
 help:
@@ -179,9 +221,18 @@ help:
 	@echo ... hhuo
 	@echo ... hhuo_static
 	@echo ... edit_cache
+	@echo ... HH_EventLoop.obj
+	@echo ... HH_EventLoop.i
+	@echo ... HH_EventLoop.s
 	@echo ... HH_FDEvent.obj
 	@echo ... HH_FDEvent.i
 	@echo ... HH_FDEvent.s
+	@echo ... HH_ListenEvent.obj
+	@echo ... HH_ListenEvent.i
+	@echo ... HH_ListenEvent.s
+	@echo ... HH_Poller.obj
+	@echo ... HH_Poller.i
+	@echo ... HH_Poller.s
 .PHONY : help
 
 
@@ -193,6 +244,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -33,19 +33,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe" -E remove -f
+RM = "C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Administrator\Desktop\hhuo
+CMAKE_SOURCE_DIR = C:\Users\mao.liu\CLionProjects\hhuo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Administrator\Desktop\hhuo\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include tests/CMakeFiles/testPtr.dir/depend.make
@@ -56,61 +56,61 @@ include tests/CMakeFiles/testPtr.dir/progress.make
 # Include the compile flags for this target's objects.
 include tests/CMakeFiles/testPtr.dir/flags.make
 
-tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj: tests/CMakeFiles/testPtr.dir/flags.make
-tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj: tests/CMakeFiles/testPtr.dir/includes_CXX.rsp
-tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj: ../tests/testPtr.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj"
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests && C:\MinGW\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\testPtr.dir\testPtr.cpp.obj -c C:\Users\Administrator\Desktop\hhuo\tests\testPtr.cpp
+tests/CMakeFiles/testPtr.dir/testPtr.obj: tests/CMakeFiles/testPtr.dir/flags.make
+tests/CMakeFiles/testPtr.dir/testPtr.obj: tests/CMakeFiles/testPtr.dir/includes_CXX.rsp
+tests/CMakeFiles/testPtr.dir/testPtr.obj: ../tests/testPtr.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/testPtr.dir/testPtr.obj"
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests && C:\MinGW\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\testPtr.dir\testPtr.obj -c C:\Users\mao.liu\CLionProjects\hhuo\tests\testPtr.cpp
 
-tests/CMakeFiles/testPtr.dir/testPtr.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/testPtr.dir/testPtr.cpp.i"
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\Desktop\hhuo\tests\testPtr.cpp > CMakeFiles\testPtr.dir\testPtr.cpp.i
+tests/CMakeFiles/testPtr.dir/testPtr.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/testPtr.dir/testPtr.i"
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mao.liu\CLionProjects\hhuo\tests\testPtr.cpp > CMakeFiles\testPtr.dir\testPtr.i
 
-tests/CMakeFiles/testPtr.dir/testPtr.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/testPtr.dir/testPtr.cpp.s"
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\Desktop\hhuo\tests\testPtr.cpp -o CMakeFiles\testPtr.dir\testPtr.cpp.s
+tests/CMakeFiles/testPtr.dir/testPtr.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/testPtr.dir/testPtr.s"
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mao.liu\CLionProjects\hhuo\tests\testPtr.cpp -o CMakeFiles\testPtr.dir\testPtr.s
 
-tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj.requires:
+tests/CMakeFiles/testPtr.dir/testPtr.obj.requires:
 
-.PHONY : tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj.requires
+.PHONY : tests/CMakeFiles/testPtr.dir/testPtr.obj.requires
 
-tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj.provides: tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj.requires
-	$(MAKE) -f tests\CMakeFiles\testPtr.dir\build.make tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj.provides.build
-.PHONY : tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj.provides
+tests/CMakeFiles/testPtr.dir/testPtr.obj.provides: tests/CMakeFiles/testPtr.dir/testPtr.obj.requires
+	$(MAKE) -f tests\CMakeFiles\testPtr.dir\build.make tests/CMakeFiles/testPtr.dir/testPtr.obj.provides.build
+.PHONY : tests/CMakeFiles/testPtr.dir/testPtr.obj.provides
 
-tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj.provides.build: tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj
+tests/CMakeFiles/testPtr.dir/testPtr.obj.provides.build: tests/CMakeFiles/testPtr.dir/testPtr.obj
 
 
 # Object files for target testPtr
 testPtr_OBJECTS = \
-"CMakeFiles/testPtr.dir/testPtr.cpp.obj"
+"CMakeFiles/testPtr.dir/testPtr.obj"
 
 # External object files for target testPtr
 testPtr_EXTERNAL_OBJECTS =
 
-bin/testPtr.exe: tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj
+bin/testPtr.exe: tests/CMakeFiles/testPtr.dir/testPtr.obj
 bin/testPtr.exe: tests/CMakeFiles/testPtr.dir/build.make
 bin/testPtr.exe: lib/libhhuo.dll.a
 bin/testPtr.exe: tests/CMakeFiles/testPtr.dir/linklibs.rsp
 bin/testPtr.exe: tests/CMakeFiles/testPtr.dir/objects1.rsp
 bin/testPtr.exe: tests/CMakeFiles/testPtr.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ..\bin\testPtr.exe"
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\testPtr.dir\link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ..\bin\testPtr.exe"
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\testPtr.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 tests/CMakeFiles/testPtr.dir/build: bin/testPtr.exe
 
 .PHONY : tests/CMakeFiles/testPtr.dir/build
 
-tests/CMakeFiles/testPtr.dir/requires: tests/CMakeFiles/testPtr.dir/testPtr.cpp.obj.requires
+tests/CMakeFiles/testPtr.dir/requires: tests/CMakeFiles/testPtr.dir/testPtr.obj.requires
 
 .PHONY : tests/CMakeFiles/testPtr.dir/requires
 
 tests/CMakeFiles/testPtr.dir/clean:
-	cd /d C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests && $(CMAKE_COMMAND) -P CMakeFiles\testPtr.dir\cmake_clean.cmake
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests && $(CMAKE_COMMAND) -P CMakeFiles\testPtr.dir\cmake_clean.cmake
 .PHONY : tests/CMakeFiles/testPtr.dir/clean
 
 tests/CMakeFiles/testPtr.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Administrator\Desktop\hhuo C:\Users\Administrator\Desktop\hhuo\tests C:\Users\Administrator\Desktop\hhuo\cmake-build-debug C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests C:\Users\Administrator\Desktop\hhuo\cmake-build-debug\tests\CMakeFiles\testPtr.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\mao.liu\CLionProjects\hhuo C:\Users\mao.liu\CLionProjects\hhuo\tests C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\tests\CMakeFiles\testPtr.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : tests/CMakeFiles/testPtr.dir/depend
 

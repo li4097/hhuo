@@ -122,12 +122,12 @@ typedef unsigned short port_t;
 
 // -------------------------------------------
 // 错误信息的打印
-const char *StrError(int x)
+/*static const char *StrError(int x)
 {
     static char tmp[100];
     sprintf(tmp, "Socket error code: %d", x);
     return tmp;
-}
+}*/
 
 // socket的初始化
 class SocketInitializer
@@ -169,4 +169,20 @@ enum HHEventFlags
     HHFast
 };
 
-#endif HH_COMMON_H
+/**状态的类型，0--in，1--out, 2--close*/
+enum HHEventStatus
+{
+    In = 0,
+    Out,
+    Close
+};
+
+/**SOCKET的基本信息*/
+struct HHEventInfo
+{
+    HHEventFlags flags;
+    HHEventStatus status;
+    int nType; /// 0--listenfd,1--commonfd
+};
+
+#endif //HH_COMMON_H

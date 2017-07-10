@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Administrator/Desktop/hhuo/src
+# Install script for directory: C:/Users/mao.liu/CLionProjects/hhuo/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

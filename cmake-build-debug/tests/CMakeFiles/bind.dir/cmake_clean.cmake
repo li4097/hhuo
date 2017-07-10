@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/bind.dir/bind.cpp.obj"
+  "CMakeFiles/bind.dir/bind.obj"
   "../bin/bind.pdb"
   "../bin/bind.exe"
   "../bin/bind.exe.manifest"
