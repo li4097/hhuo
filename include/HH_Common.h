@@ -43,6 +43,7 @@ using namespace std;
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <netdb.h>
+#include <string.h>
 #include <errno.h>
 #define Errno errno
 
@@ -120,15 +121,6 @@ typedef unsigned long ipaddr_t;
 typedef unsigned short port_t;
 #endif
 
-// -------------------------------------------
-// 错误信息的打印
-/*static const char *StrError(int x)
-{
-    static char tmp[100];
-    sprintf(tmp, "Socket error code: %d", x);
-    return tmp;
-}*/
-
 // socket的初始化
 class SocketInitializer
 {
@@ -161,6 +153,9 @@ private:
 
 /**poller最大事件数量*/
 #define Poller_MAX_EVENT 1024
+
+/**默认最大超时时间(单位：s)*/
+#define TIMEOUT 60
 
 /**事件的类型，0--紧急处理，1--队列中等候被处理*/
 enum HHEventFlags

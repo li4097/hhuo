@@ -31,13 +31,8 @@ hhou::HHListenEvent::HHListenEvent(HHPoller *poller)
 bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, size_t listenFds)
 {
     struct sockaddr_in listenAddr;
-#ifdef IPPROTO_IPV6
-    handler = socket(AF_INET6, SOCK_STREAM, 0);
-    listenAddr.sin_family = AF_INET6;
-#else
+    memset(&listenAddr, 0, sizeof(listenAddr));
     handler = socket(AF_INET, SOCK_STREAM, 0);
-    listenAddr.sin_family = AF_INET;
-#endif
     if (!NonBlock(true))
     {
         cout << "NonBlock error, errno:" << errno << endl;
@@ -48,6 +43,7 @@ bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, size_t 
         cout << "Reuse error, errno:" << errno << endl;
         return false;
     }
+    listenAddr.sin_family = AF_INET;
     listenAddr.sin_addr.s_addr = inet_addr(addr.c_str());
     listenAddr.sin_port = htons(port);
     if (bind(handler, (struct sockaddr *)&listenAddr, sizeof(listenAddr)) == -1)
@@ -55,7 +51,7 @@ bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, size_t 
         cout << "bind error, errno:" << errno << endl;
         return false;
     }
-    if(-1 == listen(handler, listenFds))
+    if(listen(handler, listenFds) == -1)
     {
         cout << "listen error, errno:" << errno << endl;
         return false;

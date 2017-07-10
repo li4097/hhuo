@@ -37,6 +37,8 @@ void hhou::HHPoller::AddEvent(HHEventBase *event)
     ev.events = EPOLLIN | EPOLLET;
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_ADD, event->handler, &ev);
+    event->m_tLast = time(0);
+    m_mHandlers.insert(make_pair(event->m_tLast, event));
 }
 
 void hhou::HHPoller::ChangeEvent(HHEventBase *event)
@@ -48,6 +50,7 @@ void hhou::HHPoller::ChangeEvent(HHEventBase *event)
         ev.events = EPOLLOUT | EPOLLET;
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_MOD, event->handler, &ev);
+    event->m_tLast = time(0);
 }
 
 void hhou::HHPoller::DelEvent(HHEventBase *event)
@@ -56,10 +59,21 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
     struct epoll_event ev;
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
+    m_mHandlers.erase(event->m_tLast);
+    event->m_tLast = 0;
 }
 
 void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
 {
+    /// checkout timeout
+    time_t expireTime = time(0) - TIMEOUT;
+    pair<multiMapItor, multiMapItor> pos = m_mHandlers.equal_range(expireTime);
+    while(pos.first != pos.second)
+    {
+        (pos.first->second)->OnTimeout(); /// 作超时处理
+        pos.first++;
+    }
+
     /// wait for events to happen
     int fds = epoll_wait(m_epollFd, m_events, Poller_MAX_EVENT, timeout);
     if (fds == -1)
@@ -72,6 +86,7 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
         HHEventBase *pEvent = static_cast<HHEventBase *>(m_events[i].data.ptr);
         if (pEvent->eventInfo.nType == 0)
         {
+            /// accept立即响应
             pEvent->OnConneting();
         }
         else

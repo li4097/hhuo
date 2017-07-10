@@ -40,12 +40,6 @@ namespace hhou
         virtual ~HHFDEvent() {}
 
         /**
-         * socket的fd操作接口
-         */
-        inline void Attach(SOCKET fd) { handler = fd; }
-        SOCKET GetSocket() { return handler; }
-
-        /**
          * 重载读事件
          * */
         void OnRead();
