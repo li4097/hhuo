@@ -6,6 +6,8 @@ src/CMakeFiles/hhuo.dir/HH_EventLoop.cpp.o: ../include/HH_EventBase.h
 src/CMakeFiles/hhuo.dir/HH_EventLoop.cpp.o: ../include/HH_EventLoop.h
 src/CMakeFiles/hhuo.dir/HH_EventLoop.cpp.o: ../include/HH_ListenEvent.h
 src/CMakeFiles/hhuo.dir/HH_EventLoop.cpp.o: ../include/HH_Poller.h
+src/CMakeFiles/hhuo.dir/HH_EventLoop.cpp.o: ../include/HH_Thread.h
+src/CMakeFiles/hhuo.dir/HH_EventLoop.cpp.o: ../include/HH_ThreadPool.h
 src/CMakeFiles/hhuo.dir/HH_EventLoop.cpp.o: ../src/HH_EventLoop.cpp
 
 src/CMakeFiles/hhuo.dir/HH_FDEvent.cpp.o: ../include/HH_Common.h
@@ -25,6 +27,12 @@ src/CMakeFiles/hhuo.dir/HH_Poller.cpp.o: ../include/HH_Poller.h
 src/CMakeFiles/hhuo.dir/HH_Poller.cpp.o: ../src/HH_Poller.cpp
 
 src/CMakeFiles/hhuo.dir/HH_Thread.cpp.o: ../include/HH_Common.h
+src/CMakeFiles/hhuo.dir/HH_Thread.cpp.o: ../include/HH_EventBase.h
 src/CMakeFiles/hhuo.dir/HH_Thread.cpp.o: ../include/HH_Thread.h
 src/CMakeFiles/hhuo.dir/HH_Thread.cpp.o: ../src/HH_Thread.cpp
+
+src/CMakeFiles/hhuo.dir/HH_ThreadPool.cpp.o: ../include/HH_Common.h
+src/CMakeFiles/hhuo.dir/HH_ThreadPool.cpp.o: ../include/HH_Thread.h
+src/CMakeFiles/hhuo.dir/HH_ThreadPool.cpp.o: ../include/HH_ThreadPool.h
+src/CMakeFiles/hhuo.dir/HH_ThreadPool.cpp.o: ../src/HH_ThreadPool.cpp
 

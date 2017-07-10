@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/hhuo.dir/HH_ListenEvent.cpp.o"
   "CMakeFiles/hhuo.dir/HH_Poller.cpp.o"
   "CMakeFiles/hhuo.dir/HH_Thread.cpp.o"
+  "CMakeFiles/hhuo.dir/HH_ThreadPool.cpp.o"
   "../lib/libhhuo.pdb"
   "../lib/libhhuo.so"
 )

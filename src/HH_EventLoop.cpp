@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "HH_ListenEvent.h"
+#include "HH_ThreadPool.h"
 #include "HH_EventLoop.h"
 
 hhou::HHEventLoop::HHEventLoop()
@@ -39,7 +40,16 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
         m_pPoller->ProcessEvents(timeout, vDoEvents);
         if (vDoEvents.size() > 0)
         {
-            cout << "new events" << endl;
+            /// 准备任务，将作分发处理
+            vector<HHTask> vDispatchTasks;
+            int nId = 0;
+            for (vector<HHEventBase *>::iterator iter = vDoEvents.begin(); iter != vDoEvents.end(); iter++)
+            {
+                HHTask tsk;
+                tsk.nID = nId++;
+                tsk.pData = static_cast<void *>(*iter);
+            }
+            HHThreadPool::Instance().Dispatch(vDispatchTasks);
         }
     }
     return true;

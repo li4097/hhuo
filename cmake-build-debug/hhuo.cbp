@@ -250,6 +250,10 @@
 			<Option target="hhuo_static"/>
 			<Option target="hhuo"/>
 		</Unit>
+		<Unit filename="/home/niumao/CLionProjects/hhuo/src/HH_ThreadPool.cpp">
+			<Option target="hhuo_static"/>
+			<Option target="hhuo"/>
+		</Unit>
 		<Unit filename="/home/niumao/CLionProjects/hhuo/tests/test4server.cpp">
 			<Option target="test4server"/>
 		</Unit>

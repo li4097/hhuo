@@ -41,11 +41,13 @@ namespace hhou
     {
     public:
         HHThread();
-        virtual int Run();
         virtual ~HHThread();
 
         /**线程执行的函数*/
-        static void *StartThread(void *);
+        static void *Run(void *pParm);
+
+        /**开启线程处理任务*/
+        void StartThread();
 
         /**获取线程状态*/
         bool GetStatus() { return m_bRunning; }
@@ -58,6 +60,8 @@ namespace hhou
         int m_nThreadID; /// 线程的ID
         bool m_bRunning; /// 线程是否正常启动
         pthread_t m_thread; /// 线程
+        pthread_cond_t m_cond; /// 条件
+        pthread_mutex_t m_mutex; /// 锁
     };
 }
 
