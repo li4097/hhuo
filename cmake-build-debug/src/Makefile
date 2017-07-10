@@ -211,6 +211,24 @@ HH_Poller.s:
 	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_Poller.s
 .PHONY : HH_Poller.s
 
+# target to build an object file
+HH_Thread.obj:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_Thread.obj
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_Thread.obj
+.PHONY : HH_Thread.obj
+
+# target to preprocess a source file
+HH_Thread.i:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_Thread.i
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_Thread.i
+.PHONY : HH_Thread.i
+
+# target to generate assembly for a file
+HH_Thread.s:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo.dir\build.make src/CMakeFiles/hhuo.dir/HH_Thread.s
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_Thread.s
+.PHONY : HH_Thread.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -233,6 +251,9 @@ help:
 	@echo ... HH_Poller.obj
 	@echo ... HH_Poller.i
 	@echo ... HH_Poller.s
+	@echo ... HH_Thread.obj
+	@echo ... HH_Thread.i
+	@echo ... HH_Thread.s
 .PHONY : help
 
 

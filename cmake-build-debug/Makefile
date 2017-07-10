@@ -148,6 +148,19 @@ test4server/fast:
 	$(MAKE) -f tests\CMakeFiles\test4server.dir\build.make tests/CMakeFiles/test4server.dir/build
 .PHONY : test4server/fast
 
+#=============================================================================
+# Target rules for targets named test4thread
+
+# Build rule for target.
+test4thread: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 test4thread
+.PHONY : test4thread
+
+# fast build rule for target.
+test4thread/fast:
+	$(MAKE) -f tests\CMakeFiles\test4thread.dir\build.make tests/CMakeFiles/test4thread.dir/build
+.PHONY : test4thread/fast
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -159,6 +172,7 @@ help:
 	@echo ... hhuo
 	@echo ... hhuo_static
 	@echo ... test4server
+	@echo ... test4thread
 .PHONY : help
 
 

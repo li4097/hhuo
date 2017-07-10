@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/hhuo.dir/HH_EventLoop.obj"
   "CMakeFiles/hhuo.dir/HH_ListenEvent.obj"
   "CMakeFiles/hhuo.dir/HH_Poller.obj"
+  "CMakeFiles/hhuo.dir/HH_Thread.obj"
   "../lib/libhhuo.pdb"
   "../lib/libhhuo.dll"
   "../lib/libhhuo.dll.a"

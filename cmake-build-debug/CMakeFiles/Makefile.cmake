@@ -58,4 +58,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/CMakeFiles/hhuo.dir/DependInfo.cmake"
   "src/CMakeFiles/hhuo_static.dir/DependInfo.cmake"
   "tests/CMakeFiles/test4server.dir/DependInfo.cmake"
+  "tests/CMakeFiles/test4thread.dir/DependInfo.cmake"
   )

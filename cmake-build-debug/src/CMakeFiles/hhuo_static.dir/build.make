@@ -156,12 +156,38 @@ src/CMakeFiles/hhuo_static.dir/HH_Poller.obj.provides: src/CMakeFiles/hhuo_stati
 src/CMakeFiles/hhuo_static.dir/HH_Poller.obj.provides.build: src/CMakeFiles/hhuo_static.dir/HH_Poller.obj
 
 
+src/CMakeFiles/hhuo_static.dir/HH_Thread.obj: src/CMakeFiles/hhuo_static.dir/flags.make
+src/CMakeFiles/hhuo_static.dir/HH_Thread.obj: src/CMakeFiles/hhuo_static.dir/includes_CXX.rsp
+src/CMakeFiles/hhuo_static.dir/HH_Thread.obj: ../src/HH_Thread.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/hhuo_static.dir/HH_Thread.obj"
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\src && C:\MinGW\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\hhuo_static.dir\HH_Thread.obj -c C:\Users\mao.liu\CLionProjects\hhuo\src\HH_Thread.cpp
+
+src/CMakeFiles/hhuo_static.dir/HH_Thread.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hhuo_static.dir/HH_Thread.i"
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\src && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mao.liu\CLionProjects\hhuo\src\HH_Thread.cpp > CMakeFiles\hhuo_static.dir\HH_Thread.i
+
+src/CMakeFiles/hhuo_static.dir/HH_Thread.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hhuo_static.dir/HH_Thread.s"
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\src && C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mao.liu\CLionProjects\hhuo\src\HH_Thread.cpp -o CMakeFiles\hhuo_static.dir\HH_Thread.s
+
+src/CMakeFiles/hhuo_static.dir/HH_Thread.obj.requires:
+
+.PHONY : src/CMakeFiles/hhuo_static.dir/HH_Thread.obj.requires
+
+src/CMakeFiles/hhuo_static.dir/HH_Thread.obj.provides: src/CMakeFiles/hhuo_static.dir/HH_Thread.obj.requires
+	$(MAKE) -f src\CMakeFiles\hhuo_static.dir\build.make src/CMakeFiles/hhuo_static.dir/HH_Thread.obj.provides.build
+.PHONY : src/CMakeFiles/hhuo_static.dir/HH_Thread.obj.provides
+
+src/CMakeFiles/hhuo_static.dir/HH_Thread.obj.provides.build: src/CMakeFiles/hhuo_static.dir/HH_Thread.obj
+
+
 # Object files for target hhuo_static
 hhuo_static_OBJECTS = \
 "CMakeFiles/hhuo_static.dir/HH_FDEvent.obj" \
 "CMakeFiles/hhuo_static.dir/HH_EventLoop.obj" \
 "CMakeFiles/hhuo_static.dir/HH_ListenEvent.obj" \
-"CMakeFiles/hhuo_static.dir/HH_Poller.obj"
+"CMakeFiles/hhuo_static.dir/HH_Poller.obj" \
+"CMakeFiles/hhuo_static.dir/HH_Thread.obj"
 
 # External object files for target hhuo_static
 hhuo_static_EXTERNAL_OBJECTS =
@@ -170,9 +196,10 @@ lib/libhhuo.a: src/CMakeFiles/hhuo_static.dir/HH_FDEvent.obj
 lib/libhhuo.a: src/CMakeFiles/hhuo_static.dir/HH_EventLoop.obj
 lib/libhhuo.a: src/CMakeFiles/hhuo_static.dir/HH_ListenEvent.obj
 lib/libhhuo.a: src/CMakeFiles/hhuo_static.dir/HH_Poller.obj
+lib/libhhuo.a: src/CMakeFiles/hhuo_static.dir/HH_Thread.obj
 lib/libhhuo.a: src/CMakeFiles/hhuo_static.dir/build.make
 lib/libhhuo.a: src/CMakeFiles/hhuo_static.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library ..\lib\libhhuo.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library ..\lib\libhhuo.a"
 	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\src && $(CMAKE_COMMAND) -P CMakeFiles\hhuo_static.dir\cmake_clean_target.cmake
 	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug\src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\hhuo_static.dir\link.txt --verbose=$(VERBOSE)
 
@@ -185,6 +212,7 @@ src/CMakeFiles/hhuo_static.dir/requires: src/CMakeFiles/hhuo_static.dir/HH_FDEve
 src/CMakeFiles/hhuo_static.dir/requires: src/CMakeFiles/hhuo_static.dir/HH_EventLoop.obj.requires
 src/CMakeFiles/hhuo_static.dir/requires: src/CMakeFiles/hhuo_static.dir/HH_ListenEvent.obj.requires
 src/CMakeFiles/hhuo_static.dir/requires: src/CMakeFiles/hhuo_static.dir/HH_Poller.obj.requires
+src/CMakeFiles/hhuo_static.dir/requires: src/CMakeFiles/hhuo_static.dir/HH_Thread.obj.requires
 
 .PHONY : src/CMakeFiles/hhuo_static.dir/requires
 

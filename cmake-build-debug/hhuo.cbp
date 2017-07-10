@@ -187,6 +187,56 @@
 					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="test4thread">
+				<Option output="C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/bin/test4thread.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/mao.liu/CLionProjects/hhuo/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/include-fixed"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/../../../../mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 test4thread"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test4thread/fast">
+				<Option output="C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/bin/test4thread.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/mao.liu/CLionProjects/hhuo/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/include-fixed"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/5.3.0/../../../../mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 test4thread/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mao.liu/CLionProjects/hhuo/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
 		<Unit filename="C:/Users/mao.liu/CLionProjects/hhuo/src/HH_EventLoop.cpp">
 			<Option target="hhuo"/>
@@ -204,8 +254,15 @@
 			<Option target="hhuo"/>
 			<Option target="hhuo_static"/>
 		</Unit>
+		<Unit filename="C:/Users/mao.liu/CLionProjects/hhuo/src/HH_Thread.cpp">
+			<Option target="hhuo"/>
+			<Option target="hhuo_static"/>
+		</Unit>
 		<Unit filename="C:/Users/mao.liu/CLionProjects/hhuo/tests/test4server.cpp">
 			<Option target="test4server"/>
+		</Unit>
+		<Unit filename="C:/Users/mao.liu/CLionProjects/hhuo/tests/test4thread.cpp">
+			<Option target="test4thread"/>
 		</Unit>
 		<Unit filename="C:/Users/mao.liu/CLionProjects/hhuo/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

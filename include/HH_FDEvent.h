@@ -34,6 +34,11 @@ namespace hhou
         friend class HHPoller;
     public:
         /**
+         * 禁用的构造函数
+         */
+        //HHFDEvent() = delete;
+
+        /**
          * 默认只能引用构造
          */
         HHFDEvent(HHPoller *poller) {m_pPoller = poller;}

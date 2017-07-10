@@ -44,6 +44,7 @@ using namespace std;
 #include <fcntl.h>
 #include <netdb.h>
 #include <string.h>
+#include <pthread.h>
 #include <errno.h>
 #define Errno errno
 

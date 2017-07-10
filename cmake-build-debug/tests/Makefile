@@ -124,6 +124,21 @@ test4server/fast:
 	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\test4server.dir\build.make tests/CMakeFiles/test4server.dir/build
 .PHONY : test4server/fast
 
+# Convenience name for target.
+tests/CMakeFiles/test4thread.dir/rule:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f CMakeFiles\Makefile2 tests/CMakeFiles/test4thread.dir/rule
+.PHONY : tests/CMakeFiles/test4thread.dir/rule
+
+# Convenience name for target.
+test4thread: tests/CMakeFiles/test4thread.dir/rule
+
+.PHONY : test4thread
+
+# fast build rule for target.
+test4thread/fast:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\test4thread.dir\build.make tests/CMakeFiles/test4thread.dir/build
+.PHONY : test4thread/fast
+
 # target to build an object file
 test4server.obj:
 	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\test4server.dir\build.make tests/CMakeFiles/test4server.dir/test4server.obj
@@ -139,6 +154,21 @@ test4server.s:
 	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\test4server.dir\build.make tests/CMakeFiles/test4server.dir/test4server.s
 .PHONY : test4server.s
 
+# target to build an object file
+test4thread.obj:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\test4thread.dir\build.make tests/CMakeFiles/test4thread.dir/test4thread.obj
+.PHONY : test4thread.obj
+
+# target to preprocess a source file
+test4thread.i:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\test4thread.dir\build.make tests/CMakeFiles/test4thread.dir/test4thread.i
+.PHONY : test4thread.i
+
+# target to generate assembly for a file
+test4thread.s:
+	cd /d C:\Users\mao.liu\CLionProjects\hhuo\cmake-build-debug && $(MAKE) -f tests\CMakeFiles\test4thread.dir\build.make tests/CMakeFiles/test4thread.dir/test4thread.s
+.PHONY : test4thread.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -147,10 +177,14 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... test4server
+	@echo ... test4thread
 	@echo ... rebuild_cache
 	@echo ... test4server.obj
 	@echo ... test4server.i
 	@echo ... test4server.s
+	@echo ... test4thread.obj
+	@echo ... test4thread.i
+	@echo ... test4thread.s
 .PHONY : help
 
 
