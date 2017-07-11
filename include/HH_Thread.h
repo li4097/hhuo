@@ -19,28 +19,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef HH_THREAD_H
 #define HH_THREAD_H
 
-#include <set>
+#include <vector>
 #include "HH_Common.h"
 
 namespace hhou
 {
     /**当本线程的任务完成时（包括执行失败的）想管理者提交信息*/
-    typedef void (*commit)(int nThreadID, set<int> sFailTask);
+    typedef void (*commit)(int nThreadID, vector<int> sFailTask);
 
-    /**任务*/
-    struct HHTask
-    {
-        int nID; /// 任务编号
-        void *pData; /// 任务的数据
-    };
-
+    class HHTask;
     /**
      * 线程类
      */
     class HHThread
     {
+        friend class HHThreadPool;
     public:
-        HHThread();
+        HHThread(int nThreadID);
         virtual ~HHThread();
 
         /**线程执行的函数*/
@@ -49,16 +44,13 @@ namespace hhou
         /**开启线程处理任务*/
         void StartThread();
 
-        /**获取线程状态*/
-        bool GetStatus() { return m_bRunning; }
-
     public:
         commit Tell; /// 保存提交函数指针
-        set<HHTask> m_sTasks; /// 要处理的任务
+        vector<HHTask> m_vTasks; /// 要处理的任务
 
     private:
+        int m_bStatus; /// 线程状态(0---未启动，1---空闲，2---忙碌)
         int m_nThreadID; /// 线程的ID
-        bool m_bRunning; /// 线程是否正常启动
         pthread_t m_thread; /// 线程
         pthread_cond_t m_cond; /// 条件
         pthread_mutex_t m_mutex; /// 锁

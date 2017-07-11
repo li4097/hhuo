@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_ListenEvent.h"
 #include "HH_ThreadPool.h"
 #include "HH_EventLoop.h"
+#include "HH_Task.h"
 
 hhou::HHEventLoop::HHEventLoop()
         : m_bQuit(false),
@@ -45,9 +46,8 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
             int nId = 0;
             for (vector<HHEventBase *>::iterator iter = vDoEvents.begin(); iter != vDoEvents.end(); iter++)
             {
-                HHTask tsk;
-                tsk.nID = nId++;
-                tsk.pData = static_cast<void *>(*iter);
+                HHTask tsk(nId++, static_cast<void *>(*iter));
+                vDispatchTasks.push_back(tsk);
             }
             HHThreadPool::Instance().Dispatch(vDispatchTasks);
         }

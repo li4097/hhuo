@@ -17,9 +17,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "HH_Thread.h"
-#include "HH_EventBase.h"
+#include "HH_Task.h"
 
-hhou::HHThread::HHThread()
+hhou::HHThread::HHThread(int nThreadID)
+        : m_bStatus(0),
+          m_nThreadID(nThreadID)
 {
     pthread_attr_t attr;
     pthread_attr_init(&attr);
@@ -27,17 +29,16 @@ hhou::HHThread::HHThread()
     if (pthread_create(&m_thread, &attr, Run, this) == -1)
     {
         cout << "pthread_create errno: " << errno << endl;
-        m_bRunning = false;
     }
     pthread_attr_destroy(&attr);
     m_cond = PTHREAD_COND_INITIALIZER;
     m_mutex = PTHREAD_MUTEX_INITIALIZER;
-    m_bRunning = true;
+    m_bStatus = 1;
 }
 
 hhou::HHThread::~HHThread()
 {
-    m_bRunning = false;
+    m_bStatus = 0;
     pthread_join(m_thread, NULL);
     pthread_mutex_destroy(&m_mutex);
     pthread_cond_destroy(&m_cond);
@@ -46,33 +47,24 @@ hhou::HHThread::~HHThread()
 void* hhou::HHThread::Run(void *pParm)
 {
     HHThread *pclThread = (HHThread *)pParm;
-    while (pclThread->m_bRunning)
+    while (pclThread->m_bStatus)
     {
         pthread_mutex_lock(&pclThread->m_mutex); /// 先锁
-        if (pclThread->m_sTasks.size() <= 0)
+        if (pclThread->m_vTasks.size() <= 0)
         {
+            pclThread->m_bStatus = 1; /// 空闲中
             /// TODO<上报信息>
             pthread_cond_wait(&pclThread->m_cond, &pclThread->m_mutex); /// 等待条件触发
         }
         else
         {
+            pclThread->m_bStatus = 2; /// 忙碌中
             /// 开始处理task的任务
-            for (set<HHTask>::iterator iter = pclThread->m_sTasks.begin();
-                 iter != pclThread->m_sTasks.end(); iter++)
+            for (vector<HHTask>::iterator iter = pclThread->m_vTasks.begin();
+                 iter != pclThread->m_vTasks.end();
+                 iter++)
             {
-                HHEventBase *pEvent = static_cast<HHEventBase *>(iter->pData);
-                if (pEvent->eventInfo.status == In)
-                {
-                    pEvent->OnRead();
-                }
-                else if (pEvent->eventInfo.status == Out)
-                {
-                    pEvent->OnWrite();
-                }
-                else
-                {
-                    pEvent->OnClosed();
-                }
+                (*iter).Excute();
             }
         }
         pthread_mutex_unlock(&pclThread->m_mutex);

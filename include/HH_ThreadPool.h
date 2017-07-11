@@ -31,13 +31,13 @@ namespace hhou
          /**
           * 线程池的构造函数
           */
-         HHThreadPool() {cout << "Init threadpool" << endl;}
+         HHThreadPool();
          virtual ~HHThreadPool() {}
 
          /**
           * 初始化
           */
-         bool Init(int nThreadNum);
+         bool Init(int nThreadNum = THREAD_NUM);
 
          /**
           * dispatch任务到各个线程上
@@ -55,7 +55,6 @@ namespace hhou
 
      private:
          int m_nThreadNums; /// 线程的个数
-         set<int> m_ideThread; /// 空闲的线程编号
          map<int, HHThread *> m_threadPool; /// 线程存放map中
      };
 }
