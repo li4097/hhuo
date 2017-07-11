@@ -61,10 +61,10 @@ void* hhou::HHThread::Run(void *pParm)
             pclThread->m_bStatus = 2; /// 忙碌中
             /// 开始处理task的任务
             for (vector<HHTask>::iterator iter = pclThread->m_vTasks.begin();
-                 iter != pclThread->m_vTasks.end();
-                 iter++)
+                 iter != pclThread->m_vTasks.end();)
             {
                 (*iter).Excute();
+                iter = pclThread->m_vTasks.erase(iter);
             }
         }
         pthread_mutex_unlock(&pclThread->m_mutex);

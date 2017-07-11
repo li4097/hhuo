@@ -34,7 +34,8 @@ hhou::HHFDEvent::~HHFDEvent()
 
 void hhou::HHFDEvent::OnRead()
 {
-    cout << "HHFDEvent OnRead" << endl;
+    int n = (int)m_bufIn.Space();
+    char buf[n + 1];
 }
 
 void hhou::HHFDEvent::OnWrite()
