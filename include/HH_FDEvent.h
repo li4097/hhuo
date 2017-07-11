@@ -25,6 +25,7 @@ namespace hhou
 {
     /*net的loop对象*/
     class HHPoller;
+    class HHCircularBuffer;
 
     /*
     * HH_FDEvent是一个fd的封装类，封装了fd的处理
@@ -41,8 +42,8 @@ namespace hhou
         /**
          * 默认只能引用构造
          */
-        HHFDEvent(HHPoller *poller) {m_pPoller = poller;}
-        virtual ~HHFDEvent() {}
+        HHFDEvent(HHPoller *poller, size_t bufSize = TCP_BUFSIZE);
+        virtual ~HHFDEvent();
 
         /**
          * 重载读事件
@@ -71,6 +72,8 @@ namespace hhou
         size_t m_count; /// 接收的字节数
         ipaddr_t m_remoteAddr; /// 对端的ip地址
         port_t m_remotePort; /// 对端的port端口
+        HHCircularBuffer m_bufIn; /// 接受的data
+        HHCircularBuffer m_bufOut; /// 发送的data
     };
 }
 #endif //HHUO_HHFDEVENT_H

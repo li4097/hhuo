@@ -17,6 +17,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "HH_FDEvent.h"
+#include "HH_CircularBuffer.h"
+
+hhou::HHFDEvent::HHFDEvent(HHPoller *poller, size_t bufSize)
+        : m_pPoller(poller),
+          m_bufIn(*this, bufSize),
+          m_bufOut(*this, bufSize)
+{
+    cout << "create new fdEvent" << endl;
+}
+
+hhou::HHFDEvent::~HHFDEvent()
+{
+    delete m_bufIn;
+    m_bufIn = nullptr;
+    delete m_bufOut;
+    m_bufOut = nullptr;
+}
 
 void hhou::HHFDEvent::OnRead()
 {

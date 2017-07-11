@@ -122,6 +122,14 @@ typedef unsigned long ipaddr_t;
 typedef unsigned short port_t;
 #endif
 
+// ----------------------------
+// SSL
+#ifdef HAVE_OPENSSL
+#include <openssl/ssl.h>
+#include <openssl/err.h>
+#include <openssl/bio.h>
+#endif // HAVE_OPENSSL
+
 // socket的初始化
 class SocketInitializer
 {
@@ -160,6 +168,9 @@ private:
 
 /**开启线程的默认值*/
 #define THREAD_NUM 10
+
+/**event数据的默认值*/
+#define TCP_BUFSIZE 80960
 
 /**事件的类型，0--紧急处理，1--队列中等候被处理*/
 enum HHEventFlags

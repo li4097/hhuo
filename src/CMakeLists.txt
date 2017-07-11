@@ -6,7 +6,8 @@ set(HHUO_SRCS
         HH_ListenEvent.cpp
         HH_Poller.cpp
         HH_Thread.cpp
-        HH_ThreadPool.cpp)
+        HH_ThreadPool.cpp
+        HH_CircularBuffer.cpp)
 
 # shared library
 ADD_LIBRARY(hhuo SHARED ${HHUO_SRCS})
