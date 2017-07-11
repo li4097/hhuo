@@ -28,6 +28,8 @@ hhou::HHThreadPool::HHThreadPool()
 
 bool hhou::HHThreadPool::Dispatch(const vector<HHTask> &vTasks)
 {
+    cout << "New task " << vTasks.size();
+
     /// 统计下空闲的线程
     set<int> idleThreadID;
     for (int i = 0; i < m_nThreadNums; i++)

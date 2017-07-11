@@ -16,14 +16,15 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#ifndef HHUO_HHFDEVENT_H
-#define HHUO_HHFDEVENT_H
+#ifndef HHUO_HHLISTENEVENT_H
+#define HHUO_HHLISTENEVENT_H
 
 #include "HH_EventBase.h"
 
 namespace hhou
 {
     class HHPoller;
+    class HHFDEvent;
     /**
      * 监听对象
      */
@@ -33,6 +34,9 @@ namespace hhou
     public:
         HHListenEvent(HHPoller *poller);
 
+        /**初始化*/
+        bool Init();
+
         /**监听接口(包括bind的动作)*/
         bool Listen(const string &addr, const port_t &port, size_t listenFds = Poller_MAX_FD);
 
@@ -41,9 +45,21 @@ namespace hhou
          */
         void OnConneting();
 
+        /**
+         * poller获取
+         */
+        HHPoller *GetPoller() { return m_pPoller; }
+
     private:
         HHPoller *m_pPoller; /// poller对象
         size_t m_connectionNum; /// 连接的总数
+
+#ifdef HAVE_OPENSSL
+        static SSL_CTX *m_sCtx;
+        static BIO* m_errBio;
+        string m_strCert;
+        string m_strKey;
+#endif
     };
 }
-#endif // HHUO_HHFDEVENT_H
+#endif // HHUO_HHLISTENEVENT_H

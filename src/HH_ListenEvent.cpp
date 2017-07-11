@@ -19,13 +19,57 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_Common.h"
 #include "HH_ListenEvent.h"
 #include "HH_Poller.h"
+#include "HH_FDEvent.h"
 
 hhou::HHListenEvent::HHListenEvent(HHPoller *poller)
         : m_pPoller(poller),
           m_connectionNum(0)
 {
     eventInfo.flags = HHFast;
-    cout << "Init ListenEvent" << endl;
+    if (Init())
+        cout << "Init ListenEvent" << endl;
+    else
+    {
+        cout << "Init ListenEvent fail" << endl;
+        exit(1);
+    }
+}
+
+bool hhou::HHListenEvent::Init()
+{
+    bool bRet = true;
+#ifdef HAVE_OPENSSL
+    SSL_load_error_strings(); /// 加载SSL错误信息
+    if (!SSL_library_init()) /// 初始化ssl
+    {
+        cout << "SSL_library_init failed" << endl;
+        bRet = false;
+    }
+    m_sCtx = SSL_CTX_new(SSLv23_method());
+    if (!m_sCtx)
+    {
+        cout << "SSL_CTX_new failed" << endl;
+        bRet = false;
+    }
+    m_errBio = BIO_new_fd(2, BIO_NOCLOSE);
+    if (SSL_CTX_use_certificate_file(m_sCtx, m_strCert.c_str(), SSL_FILETYPE_PEM) < 0)
+    {
+        cout << "SSL_CTX_use_certificate_file failed" << endl;
+        bRet = false;
+    }
+    if (SSL_CTX_use_PrivateKey_file(m_sCtx, m_strKey.c_str(), SSL_FILETYPE_PEM) < 0)
+    {
+        cout << "SSL_CTX_use_PrivateKey_file failed" << endl;
+        bRet = false;
+    }
+    if (SSL_CTX_check_private_key(m_sCtx) < 0)
+    {
+        cout << "SSL_CTX_check_private_key failed" << endl;
+        bRet = false;
+    }
+    cout << "Init ssl ListenEvent" << endl;
+#endif
+    return bRet;
 }
 
 bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, size_t listenFds)
@@ -69,5 +113,19 @@ bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, size_t 
 
 void hhou::HHListenEvent::OnConneting()
 {
-    cout << "new connection" << endl;
+    struct sockaddr_in raddr;
+    socklen_t rsz = sizeof(raddr);
+    int fd;
+    while ((fd = accept4(handler, (struct sockaddr *) &raddr, &rsz, SOCK_CLOEXEC)) >= 0)
+    {
+        /// 有新的connection
+        HHFDEvent *pNew = new HHFDEvent(m_pPoller);
+        pNew->handler = (SOCKET)fd;
+        pNew->eventInfo.status = In;
+        pNew->eventInfo.flags = HHQueue;
+        pNew->eventInfo.nType = 1;
+        m_pPoller->AddEvent(pNew);
+        m_connectionNum++;
+    }
+    cout << "There are " << m_connectionNum << " connections." << endl;
 }

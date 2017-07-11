@@ -20,12 +20,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define HHUO_HHFDEVENT_H
 
 #include "HH_EventBase.h"
+#include "HH_CircularBuffer.h"
 
 namespace hhou
 {
     /*net的loop对象*/
     class HHPoller;
-    class HHCircularBuffer;
 
     /*
     * HH_FDEvent是一个fd的封装类，封装了fd的处理
@@ -74,6 +74,12 @@ namespace hhou
         port_t m_remotePort; /// 对端的port端口
         HHCircularBuffer m_bufIn; /// 接受的data
         HHCircularBuffer m_bufOut; /// 发送的data
+
+    public:
+#ifdef HAVE_OPENSSL
+        SSL *m_sSSL; /// ssl对象
+        bool m_bSSLConnected; /// ssl是否已经握手成功
+#endif
     };
 }
 #endif //HHUO_HHFDEVENT_H

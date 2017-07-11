@@ -29,28 +29,25 @@ hhou::HHFDEvent::HHFDEvent(HHPoller *poller, size_t bufSize)
 
 hhou::HHFDEvent::~HHFDEvent()
 {
-    delete m_bufIn;
-    m_bufIn = nullptr;
-    delete m_bufOut;
-    m_bufOut = nullptr;
+
 }
 
 void hhou::HHFDEvent::OnRead()
 {
-
+    cout << "HHFDEvent OnRead" << endl;
 }
 
 void hhou::HHFDEvent::OnWrite()
 {
-
+    cout << "HHFDEvent OnWrite" << endl;
 }
 
 void hhou::HHFDEvent::OnTimeout()
 {
-
+    cout << "HHFDEvent OnTimeout" << endl;
 }
 
 void hhou::HHFDEvent::OnClosed()
 {
-
+    cout << "HHFDEvent OnClosed" << endl;
 }

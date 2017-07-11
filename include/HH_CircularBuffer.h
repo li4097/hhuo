@@ -23,7 +23,7 @@ class HHEventBase;
 class HHCircularBuffer
 {
 public:
-	HHCircularBuffer(HHEventBase &owner, size_t size);
+	HHCircularBuffer(hhou::HHEventBase &owner, size_t size);
 	~HHCircularBuffer();
 
 	/** append l bytes from p to buffer */
@@ -46,10 +46,10 @@ public:
 	unsigned long ByteCounter() { return m_count; }
 
 private:
-	HHEventBase &GetOwner() const { return m_owner; }
+	hhou::HHEventBase &GetOwner() const { return m_owner; }
 	HHCircularBuffer(const HHCircularBuffer &s) : m_owner(s.GetOwner()) {}
 	HHCircularBuffer &operator=(const HHCircularBuffer &) { return *this; }
-	HHEventBase &m_owner;
+	hhou::HHEventBase &m_owner;
 	char *buf;
 	size_t m_max;
 	size_t m_q;

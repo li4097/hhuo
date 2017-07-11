@@ -20,9 +20,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_EventBase.h"
 #include "HH_CircularBuffer.h"
 
-HHCircularBuffer::HHCircularBuffer(HHEventBase &owner, size_t size)
+HHCircularBuffer::HHCircularBuffer(hhou::HHEventBase &owner, size_t size)
         : m_owner(owner), buf(new char[size]), m_max(size), m_q(0), m_b(0), m_t(0), m_count(0)
 {
+
 }
 
 HHCircularBuffer::~HHCircularBuffer()
