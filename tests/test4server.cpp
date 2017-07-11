@@ -2,8 +2,6 @@
 #include "HH_EventLoop.h"
 #include "HH_ServerBase.h"
 
-#include <assert.h>
-
 class Test4Server : public hhou::HHServerBase
 {
 public:

@@ -158,6 +158,9 @@ private:
 /**默认最大超时时间(单位：s)*/
 #define TIMEOUT 60
 
+/**开启线程的默认值*/
+#define THREAD_NUM 10
+
 /**事件的类型，0--紧急处理，1--队列中等候被处理*/
 enum HHEventFlags
 {
