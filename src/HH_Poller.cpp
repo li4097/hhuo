@@ -39,7 +39,10 @@ void hhou::HHPoller::AddEvent(HHEventBase *event)
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_ADD, event->handler, &ev);
     event->m_tLast = time(0);
-    m_mHandlers.insert(make_pair(event->m_tLast, event));
+    if (event->eventInfo.nType != 0)  /// listen不加入监控
+    {
+        m_mHandlers.insert(make_pair(event->m_tLast, event));
+    }
 }
 
 void hhou::HHPoller::ChangeEvent(HHEventBase *event)
@@ -68,11 +71,18 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
 {
     /// checkout timeout
     time_t expireTime = time(0) - TIMEOUT;
-    pair<multiMapItor, multiMapItor> pos = m_mHandlers.equal_range(expireTime);
-    while(pos.first != pos.second)
+    for (multimap<time_t, HHEventBase *>::iterator iter = m_mHandlers.begin(); iter != m_mHandlers.end(); iter++)
     {
-        (pos.first->second)->OnTimeout(); /// 作超时处理
-        pos.first++;
+        if (iter->first < expireTime)
+        {
+            pair<multiMapItor, multiMapItor> pos = m_mHandlers.equal_range(iter->first);
+            for (multimap<time_t, HHEventBase *>::iterator it = pos.first; it != pos.second;)
+            {
+                HHEventBase *pEvent = it->second;
+                it = m_mHandlers.erase(it);
+                pEvent->OnTimeout(); /// 作超时处理
+            }
+        }
     }
 
     /// wait for events to happen

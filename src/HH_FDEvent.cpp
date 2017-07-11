@@ -109,10 +109,8 @@ void hhou::HHFDEvent::OnTimeout()
 void hhou::HHFDEvent::OnClosed()
 {
     eventInfo.status = Close;
-    closesocket(handler);
     m_pPoller->DelEvent(this);
     m_pPoller->UpdateConnNums(-1);
-
-    /// 析构资源
+    closesocket(handler);
     delete this;
 }
