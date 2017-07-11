@@ -55,10 +55,16 @@ namespace hhou
          */
         void ProcessEvents(int timeout, vector<HHEventBase *> &vEvents);
 
+        /**
+         * 更新连接数
+         */
+        void UpdateConnNums(int nNum);
+
     private:
         SOCKET m_epollFd; ///poller的fd
         struct epoll_event m_events[Poller_MAX_EVENT]; ///关注事件的最大数量
         multimap<time_t, HHEventBase *> m_mHandlers; /// 保存的socket句柄(用于超时操作)
+        size_t m_connectionNum; /// 连接的总数
     };
 }
 

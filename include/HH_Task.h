@@ -66,7 +66,7 @@ namespace hhou
         /**
          * 带参数的构造函数
          */
-        HHTask(int nID, void *pVoid) : m_nID(nID), m_pData(pVoid) {cout << "HHTask(X,X)" << endl;}
+        HHTask(int nID, void *pVoid) : m_nID(nID), m_pData(pVoid) {}
 
         /**
          * 执行任务

@@ -38,7 +38,7 @@ bool hhou::HHThreadPool::Dispatch(const vector<HHTask> &vTasks)
 
     /// 将任务平均分配至线程执行
     size_t cout = 0;
-    int threadSize = vTasks.size() / idleThreadID.size();
+    size_t threadSize = vTasks.size() / idleThreadID.size();
     for (set<int>::iterator j = idleThreadID.begin(); j != idleThreadID.end(); j++)
     {
         HHThread *pThread = m_threadPool[*j];

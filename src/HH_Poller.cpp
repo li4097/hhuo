@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_Poller.h"
 
 hhou::HHPoller::HHPoller()
+        : m_connectionNum(0)
 {
     m_epollFd = epoll_create(Poller_MAX_FD); // 新建epoll对象
     if (m_epollFd <= 0)
@@ -94,4 +95,10 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
             vEvents.push_back(pEvent);
         }
     }
+}
+
+void hhou::HHPoller::UpdateConnNums(int nNum)
+{
+    m_connectionNum += nNum;
+    cout << "Current connection num: " << m_connectionNum << endl;
 }

@@ -52,7 +52,6 @@ namespace hhou
 
     private:
         HHPoller *m_pPoller; /// poller对象
-        size_t m_connectionNum; /// 连接的总数
 
 #ifdef HAVE_OPENSSL
         static SSL_CTX *m_sCtx;

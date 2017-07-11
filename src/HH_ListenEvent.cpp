@@ -22,8 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_FDEvent.h"
 
 hhou::HHListenEvent::HHListenEvent(HHPoller *poller)
-        : m_pPoller(poller),
-          m_connectionNum(0)
+        : m_pPoller(poller)
 {
     eventInfo.flags = HHFast;
     if (Init())
@@ -124,8 +123,8 @@ void hhou::HHListenEvent::OnConneting()
         pNew->eventInfo.status = In;
         pNew->eventInfo.flags = HHQueue;
         pNew->eventInfo.nType = 1;
+        pNew->NonBlock(true);
         m_pPoller->AddEvent(pNew);
-        m_connectionNum++;
+        m_pPoller->UpdateConnNums(1);
     }
-    cout << "There are " << m_connectionNum << " connections." << endl;
 }

@@ -35,49 +35,84 @@ hhou::HHFDEvent::~HHFDEvent()
 
 void hhou::HHFDEvent::OnRead()
 {
-    int n = (int)m_bufIn.Space();
+    size_t n = m_bufIn.Space();
     char buf[TCP_BUFSIZE];
 
-    int ret = 1;
-    while (ret)
+    ssize_t rSize = 0;
+    do
     {
-        n = recv(handler, buf, (n < TCP_BUFSIZE) ? n : TCP_BUFSIZE, MSG_PEEK);
-        if (n < 0)
+        rSize = recv(handler, buf, (n < TCP_BUFSIZE) ? n : TCP_BUFSIZE, MSG_DONTWAIT);
+        if (rSize <= 0)
         {
-            /// 由于是非阻塞的模式,
-            /// 所以当errno为EAGAIN时,表示当前缓冲区已无数据可读
-            if(errno == EAGAIN)
-                break;
-        }
-        else if (n == 0) /// 这里表示对端的socket已正常关闭.
-        {
-            cout << "fdEvent " << handler << " read erron" << errno << endl;
-            eventInfo.status = Close;
-            m_pPoller->DelEvent(this);
-            closesocket(handler);
+            if(errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR)
+            {
+                /// 需要继续读data
+                continue;
+            }
+            else
+            {
+                /// 对端已经关闭socket
+                OnClosed();
+            }
         }
         else
         {
-            /// TODO<添加处理代码>
+            /// 拿出读到的数据
+            m_bufIn.Write(buf, (size_t)rSize);
+            m_bufOut.Write(m_bufIn.GetStart(), m_bufIn.GetLength());
+            m_bufIn.Remove((size_t)rSize);
+            eventInfo.status = Out;
+            m_pPoller->ChangeEvent(this);
         }
-        if(n == TCP_BUFSIZE)
-            ret = 1;
-        else
-            ret = 0;
-    }
+        /// 判断是否还有后续的data
+        rSize = (rSize == TCP_BUFSIZE) ? 1 : 0;
+    }while(rSize);
 }
 
 void hhou::HHFDEvent::OnWrite()
 {
-    cout << "HHFDEvent OnWrite" << endl;
+    ssize_t sLength = m_bufOut.GetLength();
+    do
+    {
+        sLength = send(handler, m_bufOut.GetStart() + (m_bufOut.GetLength() - sLength), (size_t)sLength, MSG_DONTWAIT);
+        if (sLength <= 0)
+        {
+            if(errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR)
+            {
+                /// 需要继续读data
+                continue;
+            }
+            else
+            {
+                /// 关闭socket
+                OnClosed();
+            }
+        }
+        else
+        {
+            /// 剩余的data长度
+            sLength = m_bufOut.GetLength() - sLength;
+        }
+    }while(sLength > 0);
+
+    /// 将data拷贝到发送缓冲区
+    m_bufOut.Remove(m_bufOut.GetLength());
+    eventInfo.status = In;
+    m_pPoller->ChangeEvent(this);
 }
 
 void hhou::HHFDEvent::OnTimeout()
 {
-    cout << "HHFDEvent OnTimeout" << endl;
+    OnClosed();
 }
 
 void hhou::HHFDEvent::OnClosed()
 {
-    cout << "HHFDEvent OnClosed" << endl;
+    eventInfo.status = Close;
+    closesocket(handler);
+    m_pPoller->DelEvent(this);
+    m_pPoller->UpdateConnNums(-1);
+
+    /// 析构资源
+    delete this;
 }
