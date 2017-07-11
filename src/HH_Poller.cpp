@@ -71,18 +71,12 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
 {
     /// checkout timeout
     time_t expireTime = time(0) - TIMEOUT;
-    for (multimap<time_t, HHEventBase *>::iterator iter = m_mHandlers.begin(); iter != m_mHandlers.end(); iter++)
+    pair<multiMapItor, multiMapItor> pos = m_mHandlers.equal_range(expireTime);
+    for (multimap<time_t, HHEventBase *>::iterator it = pos.first; it != pos.second;)
     {
-        if (iter->first < expireTime)
-        {
-            pair<multiMapItor, multiMapItor> pos = m_mHandlers.equal_range(iter->first);
-            for (multimap<time_t, HHEventBase *>::iterator it = pos.first; it != pos.second;)
-            {
-                HHEventBase *pEvent = it->second;
-                it = m_mHandlers.erase(it);
-                pEvent->OnTimeout(); /// 作超时处理
-            }
-        }
+        HHEventBase *pEvent = it->second;
+        it = m_mHandlers.erase(it);
+        pEvent->OnTimeout(); /// 作超时处理
     }
 
     /// wait for events to happen
