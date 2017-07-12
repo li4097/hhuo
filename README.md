@@ -6,8 +6,7 @@ next steps:
 1. threadpool;
 
 2017.07.12
-1. add ssl;
+1. add http;
 
 2017.07.13
-1. parse socket's data;
-2. add log;
+1. parse http;
