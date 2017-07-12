@@ -17,21 +17,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include <string.h>
 
-#include "HH_EventBase.h"
+#include "../net/HH_EventBase.h"
 #include "HH_CircularBuffer.h"
 
-HHCircularBuffer::HHCircularBuffer(hhou::HHEventBase &owner, size_t size)
+hhou::HHCircularBuffer::HHCircularBuffer(hhou::HHEventBase &owner, size_t size)
         : m_owner(owner), buf(new char[size]), m_max(size), m_q(0), m_b(0), m_t(0), m_count(0)
 {
 
 }
 
-HHCircularBuffer::~HHCircularBuffer()
+hhou::HHCircularBuffer::~HHCircularBuffer()
 {
 	delete[] buf;
 }
 
-bool HHCircularBuffer::Write(const char *s, size_t l)
+bool hhou::HHCircularBuffer::Write(const char *s, size_t l)
 {
 	if (m_q + l > m_max)
 	{
@@ -58,7 +58,7 @@ bool HHCircularBuffer::Write(const char *s, size_t l)
 	return true;
 }
 
-bool HHCircularBuffer::Read(char *s, size_t l)
+bool hhou::HHCircularBuffer::Read(char *s, size_t l)
 {
 	if (l > m_q)
 	{
@@ -94,7 +94,7 @@ bool HHCircularBuffer::Read(char *s, size_t l)
 	return true;
 }
 
-bool HHCircularBuffer::Remove(size_t l)
+bool hhou::HHCircularBuffer::Remove(size_t l)
 {
 	return Read(NULL, l);
 }

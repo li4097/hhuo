@@ -1,4 +1,4 @@
-#include "../hhou/include/HH_Thread.h"
+#include "../hhou/net/HH_Thread.h"
 
 bool bQuit = false;
 int main(int argc, char *argv[])

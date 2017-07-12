@@ -1,7 +1,7 @@
-#include "../hhou/include/HH_ListenEvent.h"
-#include "../hhou/include/HH_EventLoop.h"
-#include "../hhou/include/HH_ServerBase.h"
-#include "../hhou/include/HH_Parse.h"
+#include "../hhou/net/HH_ListenEvent.h"
+#include "../hhou/net/HH_EventLoop.h"
+#include "../hhou/net/HH_ServerBase.h"
+#include "../hhou/parser/HH_Parse.h"
 
 class Test4Server : public hhou::HHServerBase
 {

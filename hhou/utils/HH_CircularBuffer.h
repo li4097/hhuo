@@ -18,44 +18,63 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef HH_CIRCULARBUFFER_H
 #define HH_CIRCULARBUFFER_H
 
-class HHEventBase;
-
-class HHCircularBuffer
+namespace hhou
 {
-public:
-	HHCircularBuffer(hhou::HHEventBase &owner, size_t size);
-	~HHCircularBuffer();
+	class HHEventBase;
 
-	/** append l bytes from p to buffer */
-	bool Write(const char *p,size_t l);
-	/** copy l bytes from buffer to dest */
-	bool Read(char *dest,size_t l);
-	/** skip l bytes from buffer */
-	bool Remove(size_t l);
+	class HHCircularBuffer
+	{
+	public:
+		HHCircularBuffer(hhou::HHEventBase &owner, size_t size);
 
-	/** total buffer length */
-	size_t GetLength() { return m_q; }
-	/** pointer to circular buffer beginning */
-	char *GetStart() { return buf + m_b; }
-	/** return number of bytes from circular buffer beginning to buffer physical end */
-	size_t GetL() { return (m_b + m_q > m_max) ? m_max - m_b : m_q; }
-	/** return free space in buffer, number of bytes until buffer overrun */
-	size_t Space() { return m_max - m_q; }
+		~HHCircularBuffer();
 
-	/** return total number of bytes written to this buffer, ever */
-	unsigned long ByteCounter() { return m_count; }
+		/** append l bytes from p to buffer */
+		bool Write(const char *p, size_t l);
 
-private:
-	hhou::HHEventBase &GetOwner() const { return m_owner; }
-	HHCircularBuffer(const HHCircularBuffer &s) : m_owner(s.GetOwner()) {}
-	HHCircularBuffer &operator=(const HHCircularBuffer &) { return *this; }
-	hhou::HHEventBase &m_owner;
-	char *buf;
-	size_t m_max;
-	size_t m_q;
-	size_t m_b;
-	size_t m_t;
-	unsigned long m_count;
-};
+		/** copy l bytes from buffer to dest */
+		bool Read(char *dest, size_t l);
 
+		/** skip l bytes from buffer */
+		bool Remove(size_t l);
+
+		/** total buffer length */
+		size_t GetLength()
+		{ return m_q; }
+
+		/** pointer to circular buffer beginning */
+		char *GetStart()
+		{ return buf + m_b; }
+
+		/** return number of bytes from circular buffer beginning to buffer physical end */
+		size_t GetL()
+		{ return (m_b + m_q > m_max) ? m_max - m_b : m_q; }
+
+		/** return free space in buffer, number of bytes until buffer overrun */
+		size_t Space()
+		{ return m_max - m_q; }
+
+		/** return total number of bytes written to this buffer, ever */
+		unsigned long ByteCounter()
+		{ return m_count; }
+
+	private:
+		hhou::HHEventBase &GetOwner() const
+		{ return m_owner; }
+
+		HHCircularBuffer(const HHCircularBuffer &s) : m_owner(s.GetOwner())
+		{}
+
+		HHCircularBuffer &operator=(const HHCircularBuffer &)
+		{ return *this; }
+
+		hhou::HHEventBase &m_owner;
+		char *buf;
+		size_t m_max;
+		size_t m_q;
+		size_t m_b;
+		size_t m_t;
+		unsigned long m_count;
+	};
+}
 #endif // HH_CIRCULARBUFFER_H

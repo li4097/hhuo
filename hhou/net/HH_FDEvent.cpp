@@ -18,7 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_FDEvent.h"
 #include "HH_Poller.h"
-#include "HH_Parse.h"
+#include "../parser/HH_Parse.h"
 
 hhou::HHFDEvent::HHFDEvent(HHPoller *poller, size_t bufSize)
         : m_pPoller(poller),
