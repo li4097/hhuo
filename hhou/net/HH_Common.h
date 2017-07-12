@@ -174,9 +174,6 @@ enum
 
     /**event数据的默认值*/
     #define TCP_BUFSIZE 80960
-
-    /**http还是tcp服务*/
-    #define SERVICE "http"
 };
 
 /**事件的类型，0--紧急处理，1--队列中等候被处理*/

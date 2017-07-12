@@ -17,8 +17,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "HH_Parse.h"
+#include "HH_HttpParser.h"
 
-void hhou::HHParse::ParseData(const string &strIn, string &strRet)
+void hhou::HHParse::ParseData(const char *buf, size_t nLen, string &strRet)
 {
 
 }

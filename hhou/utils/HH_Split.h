@@ -15,26 +15,38 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#ifndef HH_PARSE_H
-#define HH_PARSE_H
+#ifndef HH_SPLIT_H
+#define HH_SPLIT_H
 
+#include <vector>
+#include <map>
 #include "../net/HH_Common.h"
 
 namespace hhou
 {
     /**
-     * 解析数据的基础类
+     * 定义一些常用的轮子
      */
-    class HHParse
+    void SplitString(const string &s, vector<string> &v, const string &c)
     {
-    public:
-        /**默认构造函数*/
-        HHParse() {}
-        virtual ~HHParse() {}
+        size_t pos1, pos2;
+        pos2 = s.find(c);
+        pos1 = 0;
+        while(std::string::npos != pos2)
+        {
+            v.push_back(s.substr(pos1, pos2-pos1));
+            pos1 = pos2 + c.size();
+            pos2 = s.find(c, pos1);
+        }
+        if(pos1 != s.length())
+            v.push_back(s.substr(pos1));
+    }
 
-        /**先进行必要信息的解析*/
-        virtual void ParseData(const char *buf, size_t nLen, string &strRet);
-    };
+    void SplitKV(const string &s, map<string, string> &mKV, const string &c)
+    {
+        size_t pos = s.find(c);
+        mKV.insert(make_pair(s.substr(0, pos), s.substr(pos + 1)));
+    }
 }
 
-#endif //HH_PARSE_H
+#endif //HH_SPLIT_H

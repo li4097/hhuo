@@ -6,3 +6,6 @@ TARGET_LINK_LIBRARIES(test4thread hhuo)
 
 ADD_EXECUTABLE(test4task test4task.cpp)
 TARGET_LINK_LIBRARIES(test4task hhuo)
+
+ADD_EXECUTABLE(test4httpparamparse test4httpparamparse.cpp)
+TARGET_LINK_LIBRARIES(test4httpparamparse hhuo)

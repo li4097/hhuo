@@ -59,10 +59,9 @@ void hhou::HHFDEvent::OnRead()
         {
             /// 拿出读到的数据
             m_bufIn.Write(buf, (size_t)rSize);
-            string strIn, strOut;
+            string strOut;
             hhou::HHParse parse;
-            strIn = m_bufIn.GetStart();
-            parse.ParseData(strIn, strOut);
+            parse.ParseData(m_bufIn.GetStart(), m_bufIn.GetLength(), strOut);
             if (strOut.length() > 0)
             {
                 eventInfo.status = Out;
