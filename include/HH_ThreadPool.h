@@ -16,6 +16,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
+#ifndef HH_THREADPOOL_H
+#define HH_THREADPOOL_H
+
 #include <vector>
 #include <map>
 #include "HH_Thread.h"
@@ -58,3 +61,4 @@ namespace hhou
          map<int, HHThread *> m_threadPool; /// 线程存放map中
      };
 }
+#endif //HH_THREADPOOL_H

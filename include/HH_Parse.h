@@ -15,36 +15,26 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#ifndef HH_EVENTLOOP_H
-#define HH_EVENTLOOP_H
+#ifndef HH_PARSE_H
+#define HH_PARSE_H
 
-#include "HH_Poller.h"
+#include "HH_Common.h"
 
 namespace hhou
 {
     /**
-     * loop对象
+     * 解析数据的基础类
      */
-    class HHEventLoop
+    class HHParse
     {
     public:
-        HHEventLoop();
-        virtual ~HHEventLoop();
+        /**默认构造函数*/
+        HHParse() {}
+        virtual ~HHParse() {}
 
-        /**
-         * 循环事件处理
-         */
-        bool Loop(const int &timeout);
-
-        /**
-         * 获取poller对象
-         */
-        HHPoller *Poller() { return m_pPoller;}
-
-    private:
-        bool m_bQuit; /// loop的中止标志
-        HHPoller *m_pPoller; /// poller对象
+        /**解析的虚函数*/
+        virtual void ParseData(const string &strIn, string &strRet) {}
     };
 }
 
-#endif //HH_EVENTLOOP_H
+#endif //HH_PARSE_H

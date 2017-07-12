@@ -18,7 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_FDEvent.h"
 #include "HH_Poller.h"
-#include "HH_CircularBuffer.h"
+#include "HH_Parse.h"
 
 hhou::HHFDEvent::HHFDEvent(HHPoller *poller, size_t bufSize)
         : m_pPoller(poller),
@@ -59,10 +59,16 @@ void hhou::HHFDEvent::OnRead()
         {
             /// 拿出读到的数据
             m_bufIn.Write(buf, (size_t)rSize);
-            /// TODO <添加数据的解析>
+            string strIn, strOut;
+            HHParse parse;
+            strIn = m_bufIn.GetStart();
+            parse.ParseData(strIn, strOut);
+            if (strOut.length() > 0)
+            {
+                eventInfo.status = Out;
+                m_pPoller->ChangeEvent(this);
+            }
             m_bufIn.Remove((size_t)rSize);
-            eventInfo.status = Out;
-            m_pPoller->ChangeEvent(this);
         }
         /// 判断是否还有后续的data
         rSize = (rSize == TCP_BUFSIZE) ? 1 : 0;
