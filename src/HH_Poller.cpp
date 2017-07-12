@@ -75,7 +75,7 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
     for (multimap<time_t, HHEventBase *>::iterator it = pos.first; it != pos.second;)
     {
         HHEventBase *pEvent = it->second;
-        it = m_mHandlers.erase(it);
+        m_mHandlers.erase(it++);
         pEvent->OnTimeout(); /// 作超时处理
     }
 

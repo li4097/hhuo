@@ -59,7 +59,7 @@ void hhou::HHFDEvent::OnRead()
         {
             /// 拿出读到的数据
             m_bufIn.Write(buf, (size_t)rSize);
-            m_bufOut.Write(m_bufIn.GetStart(), m_bufIn.GetLength());
+            /// TODO <添加数据的解析>
             m_bufIn.Remove((size_t)rSize);
             eventInfo.status = Out;
             m_pPoller->ChangeEvent(this);
