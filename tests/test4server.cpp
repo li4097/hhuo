@@ -1,15 +1,7 @@
-#include "HH_ListenEvent.h"
-#include "HH_EventLoop.h"
-#include "HH_ServerBase.h"
-#include "HH_Parse.h"
-
-class Test4Parse : public hhou::HHParse
-{
-    virtual void ParseData(const string &strIn, string &strRet)
-    {
-        cout << strIn << endl;
-    }
-};
+#include "../hhou/include/HH_ListenEvent.h"
+#include "../hhou/include/HH_EventLoop.h"
+#include "../hhou/include/HH_ServerBase.h"
+#include "../hhou/include/HH_Parse.h"
 
 class Test4Server : public hhou::HHServerBase
 {
