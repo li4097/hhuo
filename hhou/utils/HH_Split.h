@@ -45,7 +45,9 @@ namespace hhou
     void SplitKV(const string &s, map<string, string> &mKV, const string &c)
     {
         size_t pos = s.find(c);
-        mKV.insert(make_pair(s.substr(0, pos), s.substr(pos + 1)));
+        string strKey = s.substr(0, pos);
+        string strValue = s.substr(pos + 1);
+        mKV.insert(make_pair(strKey.erase(0, strKey.find_first_not_of(" ")), strValue.erase(0, strValue.find_first_not_of(" "))));
     }
 }
 

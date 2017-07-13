@@ -32,8 +32,8 @@ namespace hhou
         HHParse() {}
         virtual ~HHParse() {}
 
-        /**先进行必要信息的解析*/
-        virtual void ParseData(const char *buf, size_t nLen, string &strRet);
+        /**先进行必要信息的解析(错误数据返回-1，数据不完整返回0，接收完全返回>0)*/
+        virtual int ParseData(const char *buf, size_t nLen, string &strRet);
     };
 }
 
