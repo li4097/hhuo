@@ -54,29 +54,29 @@ namespace hhou
         /**
          * 解析的函数(错误数据返回-1，数据不完整返回0，接收完全返回>0)
          */
-        int Parse(const char *szHttpReq, size_t nDataLen, string &strOut);
+        int Parse(const char *szHttpReq, int nDataLen, string &strOut);
 
     private:
         /**解析第一行参数*/
-        bool ParseFirstLine(const char *buf, size_t &nLen);
+        bool ParseFirstLine(const char *buf, int &nLen);
 
         /**解析请求参数*/
         bool ParseParam(const char *buf);
 
         /**解析域的键值对*/
-        bool ParseFields(const char *buf, size_t &nLen);
+        bool ParseFields(const char *buf, int &nLen);
 
         /**解析content内容*/
-        bool ParseContent(const char *buf, size_t &nLen);
+        bool ParseContent(const char *buf, int &nLen);
 
         /**检测是否合法*/
-        bool CheckSecurity(const char *buf, size_t nLen) { return true; }
+        bool CheckSecurity(const char *buf, int nLen) { return true; }
 
     private:
+        HttpParamType m_nParamType; /// 需要解析的参数
         HttpMethodType m_nMethod; /// 请求类型
         string m_strMethod;  /// 方法名（以此作路由）
         string m_strContent;  /// content
-        HttpParamType m_nParamType; /// 需要解析的参数
         map<string, string> m_mField; /// 存放域值
         map<string, string> m_mParam; /// 存放参数
 

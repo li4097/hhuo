@@ -31,6 +31,8 @@ namespace hhou
     {
         size_t pos1, pos2;
         pos2 = s.find(c);
+        if ((int)pos2 == -1)
+            return;
         pos1 = 0;
         while(std::string::npos != pos2)
         {
@@ -45,6 +47,8 @@ namespace hhou
     void SplitKV(const string &s, map<string, string> &mKV, const string &c)
     {
         size_t pos = s.find(c);
+        if ((int)pos == -1)
+            return;
         string strKey = s.substr(0, pos);
         string strValue = s.substr(pos + 1);
         mKV.insert(make_pair(strKey.erase(0, strKey.find_first_not_of(" ")), strValue.erase(0, strValue.find_first_not_of(" "))));
