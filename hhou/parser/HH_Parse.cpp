@@ -23,5 +23,6 @@ int hhou::HHParse::ParseData(const char *buf, int nLen, string &strRet)
 {
     hhou::HH_HttpRequest request;
     request.Parse(buf, nLen, strRet);
+    cout << "Method: " << request.GetMethod() << endl;
     return 1;
 }

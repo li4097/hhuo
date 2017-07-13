@@ -18,7 +18,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_HttpRequest.h"
 #include "../utils/HH_Split.h"
 
-hhou::HH_HttpRequest::HH_HttpRequest(HttpParamType paramType) : m_nParamType(paramType), m_nMethod(HTTP_METHOD_NONE)
+hhou::HH_HttpRequest::HH_HttpRequest(HttpParamType paramType)
+        : m_nParamType(paramType),
+          m_nMethod(HTTP_METHOD_NONE),
+          m_strMethod(""),
+          m_strContent("")
 {
 
 }
@@ -57,7 +61,7 @@ bool hhou::HH_HttpRequest::ParseFirstLine(const char *buf, int &nLen)
     if ((int) strLine.find("GET") == 0)
     {
         m_nMethod = HTTP_METHOD_GET;
-        if (!ParseParam(buf))  /// 优先解析“Get”方法的
+        if (!ParseParam(buf + 4))  /// 优先解析“Get”方法的
             return false;
     }
     else if ((int) strLine.find("POST") == 0)
@@ -68,11 +72,16 @@ bool hhou::HH_HttpRequest::ParseFirstLine(const char *buf, int &nLen)
 
 bool hhou::HH_HttpRequest::ParseParam(const char *buf)
 {
-    string strParam = string(buf + 4);
+    string strParam = string(buf);
     vector<string> vMethod;
     SplitString(strParam, vMethod, "?");
-    if (!vMethod.size())
+    if (!vMethod.size())  /// 没带参数
+    {
+        int pos = strParam.find(" ");
+        if (pos != -1)
+            m_strMethod = strParam.substr(0, pos);
         return true;
+    }
     m_strMethod = vMethod[0]; /// 保存请求方法字符串
     vector<string> vParam;
     if (vMethod.size() < 2)

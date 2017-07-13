@@ -44,6 +44,8 @@ namespace hhou
      */
     class HH_HttpRequest
     {
+        typedef map<string, string>::iterator ReqIter;
+        typedef map<string, string>::const_iterator ReqCIter;
     public:
         /**
          * 构造函数
@@ -55,6 +57,25 @@ namespace hhou
          * 解析的函数(错误数据返回-1，数据不完整返回0，接收完全返回>0)
          */
         int Parse(const char *szHttpReq, int nDataLen, string &strOut);
+
+        /**
+         * 外部调用的获取接口
+         */
+        HttpMethodType &GetMethodType() { return m_nMethod;}
+        string &GetMethod() { return m_strMethod;}
+        string &GetContent() { return m_strContent;}
+        void GetParam(const string &strKey, string &strVal)
+        {
+            ReqIter it = m_mParam.find(strKey);
+            if (it != m_mParam.end())
+                strVal = it->second;
+        }
+        void GetField(const string &strKey, string &strVal)
+        {
+            ReqIter it = m_mField.find(strKey);
+            if (it != m_mField.end())
+                strVal = it->second;
+        }
 
     private:
         /**解析第一行参数*/
