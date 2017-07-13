@@ -124,6 +124,7 @@ void hhou::HHListenEvent::OnConneting()
         pNew->eventInfo.flags = HHQueue;
         pNew->eventInfo.nType = 1;
         pNew->NonBlock(true);
+        pNew->KeepAlive(true);
         m_pPoller->AddEvent(pNew);
         m_pPoller->UpdateConnNums(1);
     }
