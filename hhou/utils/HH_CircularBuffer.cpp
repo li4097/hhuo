@@ -98,5 +98,3 @@ bool hhou::HHCircularBuffer::Remove(size_t l)
 {
 	return Read(NULL, l);
 }
-
-

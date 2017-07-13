@@ -18,11 +18,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_Parse.h"
 #include "HH_HttpRequest.h"
+#include "HH_HttpResponse.h"
 
-int hhou::HHParse::ParseData(const char *buf, int nLen, string &strRet)
+int hhou::HHParse::ParseData(const char *buf, int nLen, char *strRet)
 {
     hhou::HH_HttpRequest request;
-    request.Parse(buf, nLen, strRet);
-    cout << "Method: " << request.GetMethod() << endl;
+    request.Parse(buf, nLen);
+
+    hhou::HH_HttpResponse response;
+    response.MakeRes(strRet, "Ok");
     return 1;
 }

@@ -173,7 +173,8 @@ enum
     #define THREAD_NUM 10
 
     /**event数据的默认值*/
-    #define TCP_BUFSIZE 80960
+    #define CIRCULAR_BUFFSIZE 80960
+    #define TCP_BUFSIZE 8096
 };
 
 /**事件的类型，0--紧急处理，1--队列中等候被处理*/

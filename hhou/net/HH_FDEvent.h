@@ -42,7 +42,7 @@ namespace hhou
         /**
          * 默认只能引用构造
          */
-        HHFDEvent(HHPoller *poller, size_t bufSize = TCP_BUFSIZE);
+        HHFDEvent(HHPoller *poller, size_t bufSize = CIRCULAR_BUFFSIZE);
         virtual ~HHFDEvent();
 
         /**

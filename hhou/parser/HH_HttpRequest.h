@@ -56,7 +56,7 @@ namespace hhou
         /**
          * 解析的函数(错误数据返回-1，数据不完整返回0，接收完全返回>0)
          */
-        int Parse(const char *szHttpReq, int nDataLen, string &strOut);
+        int Parse(const char *szHttpReq, int nDataLen);
 
         /**
          * 外部调用的获取接口

@@ -15,26 +15,12 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#ifndef HH_PARSE_H
-#define HH_PARSE_H
 
-#include "../net/HH_Common.h"
+#include "HH_HttpResponse.h"
 
-namespace hhou
+int hhou::HH_HttpResponse::MakeRes(char *strResp, const string &strContent, const char *strContentType)
 {
-    /**
-     * 解析数据的基础类
-     */
-    class HHParse
-    {
-    public:
-        /**默认构造函数*/
-        HHParse() {}
-        virtual ~HHParse() {}
-
-        /**先进行必要信息的解析(错误数据返回-1，数据不完整返回0，接收完全返回>0)*/
-        virtual int ParseData(const char *buf, int nLen, char *strRet);
-    };
+    sprintf(strResp, "HTTP/1.1 200 OK\r\nContent-Length: %d\r\nContent-Type: %s\r\nConnection: Keep-Alive\r\n\r\n%s",
+            (int)strContent.size(), strContentType, strContent.c_str());
+    return 1;
 }
-
-#endif //HH_PARSE_H

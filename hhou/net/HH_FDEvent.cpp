@@ -36,12 +36,12 @@ hhou::HHFDEvent::~HHFDEvent()
 void hhou::HHFDEvent::OnRead()
 {
     size_t n = m_bufIn.Space();
-    char buf[TCP_BUFSIZE];
+    char bufIn[TCP_BUFSIZE];
 
     ssize_t rSize = 0;
     do
     {
-        rSize = recv(handler, buf, (n < TCP_BUFSIZE) ? n : TCP_BUFSIZE, MSG_DONTWAIT);
+        rSize = recv(handler, bufIn, (n < TCP_BUFSIZE) ? n : TCP_BUFSIZE, MSG_DONTWAIT);
         if (rSize <= 0)
         {
             if(errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR)
@@ -58,11 +58,12 @@ void hhou::HHFDEvent::OnRead()
         else
         {
             /// 拿出读到的数据
-            m_bufIn.Write(buf, (size_t)rSize);
-            string strOut;
+            m_bufIn.Write(bufIn, (size_t)rSize);
             hhou::HHParse parse;
-            parse.ParseData(m_bufIn.GetStart(), m_bufIn.GetLength(), strOut);
-            if (strOut.length() > 0)
+            char bufOut[TCP_BUFSIZE];
+            parse.ParseData(m_bufIn.GetStart(), m_bufIn.GetLength(), bufOut);
+            m_bufOut.Write(bufOut, strlen(bufOut));
+            if (m_bufOut.GetStart() > 0)
             {
                 eventInfo.status = Out;
                 m_pPoller->ChangeEvent(this);

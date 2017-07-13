@@ -15,26 +15,42 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#ifndef HH_PARSE_H
-#define HH_PARSE_H
 
+#ifndef HHUO_HH_HTTPRESPONSE_H
+#define HHUO_HH_HTTPRESPONSE_H
+
+#include <map>
+#include <vector>
 #include "../net/HH_Common.h"
 
 namespace hhou
 {
-    /**
-     * 解析数据的基础类
-     */
-    class HHParse
-    {
-    public:
-        /**默认构造函数*/
-        HHParse() {}
-        virtual ~HHParse() {}
+    #define HTTP_CONTENT_TYPE_TXT	"text/html;charset=utf-8"
+    #define HTTP_CONTENT_TYPE_JSON	"application/json;charset=utf-8"
+    #define HTTP_CONTENT_TYPE_XML	"text/xml;charset=utf-8"
 
-        /**先进行必要信息的解析(错误数据返回-1，数据不完整返回0，接收完全返回>0)*/
-        virtual int ParseData(const char *buf, int nLen, char *strRet);
+    /**
+     * http的response生成
+     */
+    class HH_HttpResponse
+    {
+        typedef map<string, string>::iterator ResIter;
+        typedef map<string, string>::const_iterator ResCIter;
+    public:
+        /**
+         * 构造函数
+         */
+        HH_HttpResponse() {};
+        virtual ~HH_HttpResponse() {}
+
+        /**
+         * 生成的函数(失败0，正确返回1)
+         */
+        int MakeRes(char *strResp, const string &strContent, const char *strContentType = HTTP_CONTENT_TYPE_TXT);
+
+    private:
+
     };
 }
 
-#endif //HH_PARSE_H
+#endif //HHUO_HH_HTTPRESPONSE_H

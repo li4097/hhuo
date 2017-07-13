@@ -27,7 +27,7 @@ hhou::HH_HttpRequest::HH_HttpRequest(HttpParamType paramType)
 
 }
 
-int hhou::HH_HttpRequest::Parse(const char *szHttpReq, int nDataLen, string &strOut)
+int hhou::HH_HttpRequest::Parse(const char *szHttpReq, int nDataLen)
 {
     /// 检测是否合法
     if (!CheckSecurity(szHttpReq, nDataLen))
