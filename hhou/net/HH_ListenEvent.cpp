@@ -125,6 +125,17 @@ void hhou::HHListenEvent::OnConneting()
         pNew->eventInfo.nType = 1;
         pNew->NonBlock(true);
         pNew->KeepAlive(true);
+#ifdef HAVE_OPENSSL
+        /// 基于ctx产生一个新的SSL
+        pNew->m_sSSL = ssl_new(m_sCtx);
+        /// 将连接用户的socket加入到SSL
+        SSL_set_fd(pNew->m_sSSL, pNew->handler);
+        /// 建立SSL连接
+        if (SSL_accept(pNew->m_sSSL) == -1)
+        {
+            cout << "Create ssl connection with " << pNew->handler << " fail" << endl;
+        }
+#endif
         m_pPoller->AddEvent(pNew);
         m_pPoller->UpdateConnNums(1);
     }

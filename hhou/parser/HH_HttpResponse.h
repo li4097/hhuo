@@ -49,6 +49,7 @@ namespace hhou
         int MakeRes(char *strResp, const string &strContent, const char *strContentType = HTTP_CONTENT_TYPE_TXT);
 
     private:
+        map<string, string>
 
     };
 }

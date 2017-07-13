@@ -125,9 +125,9 @@ typedef unsigned short port_t;
 // ----------------------------
 // SSL
 #ifdef HAVE_OPENSSL
-#include <openssl/ssl.h>
-#include <openssl/err.h>
-#include <openssl/bio.h>
+#include "../thrid/openssl/ssl.h"
+#include "../thrid/openssl/err.h"
+#include "../thrid/openssl/bio.h"
 #endif // HAVE_OPENSSL
 
 // socket的初始化
@@ -199,5 +199,7 @@ struct HHEventInfo
     HHEventStatus status;
     int nType; /// 0--listenfd,1--commonfd
 };
+
+#define HAVE_OPENSSL
 
 #endif //HH_COMMON_H
