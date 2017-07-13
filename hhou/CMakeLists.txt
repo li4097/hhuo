@@ -2,13 +2,17 @@ PROJECT(hhuo)
 
 FILE(GLOB HHUO_SRCS net/*.cpp parser/*.cpp utils/*.cpp)
 
+# find ssl
+FIND_PACKAGE(OpenSSL REQUIRED)
+
+# add ssl
+INCLUDE_DIRECTORIES(thridparty)
+
 # shared library
 ADD_LIBRARY(hhuo SHARED ${HHUO_SRCS})
-
-# static library
-ADD_LIBRARY(hhuo_static STATIC ${HHUO_SRCS})
-SET_TARGET_PROPERTIES(hhuo_static PROPERTIES OUTPUT_NAME "hhuo")
-set_target_properties(hhuo_static PROPERTIES LINKER_LANGUAGE CXX)
+SET_TARGET_PROPERTIES(hhuo PROPERTIES OUTPUT_NAME "hhuo")
 SET_TARGET_PROPERTIES(hhuo PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 set_target_properties(hhuo PROPERTIES LINKER_LANGUAGE CXX)
-SET_TARGET_PROPERTIES(hhuo_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+
+#link ssl
+TARGET_LINK_LIBRARIES(hhou)

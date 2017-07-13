@@ -66,7 +66,7 @@ bool hhou::HHListenEvent::Init()
         cout << "SSL_CTX_check_private_key failed" << endl;
         bRet = false;
     }
-    cout << "Init ssl ListenEvent" << endl;
+    cout << "Init openssl ListenEvent" << endl;
 #endif
     return bRet;
 }
@@ -133,7 +133,7 @@ void hhou::HHListenEvent::OnConneting()
         /// 建立SSL连接
         if (SSL_accept(pNew->m_sSSL) == -1)
         {
-            cout << "Create ssl connection with " << pNew->handler << " fail" << endl;
+            cout << "Create openssl connection with " << pNew->handler << " fail" << endl;
         }
 #endif
         m_pPoller->AddEvent(pNew);
