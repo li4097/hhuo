@@ -116,7 +116,7 @@ void hhou::HHFDEvent::OnWrite()
     ssize_t sLength = m_bufOut.GetLength();
     do
     {
-#ifndef HAVE_OPENSSL
+#ifdef HAVE_OPENSSL
         sLength = SSL_write(m_sSSL, m_bufOut.GetStart() + (m_bufOut.GetLength() - sLength), (size_t)sLength);
         int nRet = SSL_get_error(m_sSSL, sLength);
         if (sLength <= 0)
