@@ -20,6 +20,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "../HH_Common.h"
 
+///////////////////////////////
+/// 库和功能代码分开
+typedef int (*CommitObject)(void *, int, void *);
+bool SetCallBack(CommitObject obj);
+///////////////////////////////
+
 namespace hhou
 {
     /**

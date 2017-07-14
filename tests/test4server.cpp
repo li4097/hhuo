@@ -3,12 +3,18 @@
 #include "../include/net/HH_ServerBase.h"
 #include "../include/parser/HH_Parse.h"
 
+int shit(void *one, int len, void *two)
+{
+    cout << "6666" << endl;
+    return 1;
+}
+
 class Test4Server : public hhou::HHServerBase
 {
 public:
     Test4Server()
     {
-
+        SetCallBack(shit);
     }
 
     ~Test4Server()

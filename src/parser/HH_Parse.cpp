@@ -23,6 +23,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #else
 #endif
 
+///////////////////////////////
+/// 库和功能代码分开
+CommitObject DealObject;
+bool SetCallBack(CommitObject obj)
+{
+    DealObject = obj;
+    return true;
+}
+///////////////////////////////
+
 int hhou::HHParse::ParseData(const char *buf, int nLen, char *strRet)
 {
 #ifdef HH_HTTP
@@ -32,7 +42,7 @@ int hhou::HHParse::ParseData(const char *buf, int nLen, char *strRet)
     hhou::HH_HttpResponse response;
     response.MakeRes(strRet, "Ok");
 #else
-
+    (*DealObject)((void *)buf, nLen, (void *)strRet);
 #endif
     return 1;
 }
