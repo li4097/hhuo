@@ -34,6 +34,15 @@ hhou::HHListenEvent::HHListenEvent(HHPoller *poller)
     }
 }
 
+hhou::HHListenEvent::~HHListenEvent()
+{
+    closesocket(handler);
+#ifdef HAVE_OPENSSL
+    SSL_CTX_free(m_sCtx);
+    BIO_free(m_errBio);
+#endif
+}
+
 bool hhou::HHListenEvent::Init()
 {
     bool bRet = true;

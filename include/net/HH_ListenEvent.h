@@ -33,6 +33,7 @@ namespace hhou
         friend class HHPoller;
     public:
         HHListenEvent(HHPoller *poller);
+        virtual ~HHListenEvent();
 
         /**初始化*/
         bool Init();
