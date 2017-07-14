@@ -1,0 +1,4 @@
+# add sub dirs
+ADD_SUBDIRECTORY(net)
+ADD_SUBDIRECTORY(parser)
+ADD_SUBDIRECTORY(utils)

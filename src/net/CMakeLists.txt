@@ -1,0 +1,13 @@
+PROJECT(hhnet)
+
+#add headers
+INCLUDE_DIRECTORIES(
+)
+
+# add src
+AUX_SOURCE_DIRECTORY(. HHNET_SRC)
+
+# static library
+ADD_LIBRARY(hhnet STATIC ${HHNET_SRC})
+SET_TARGET_PROPERTIES(hhnet PROPERTIES OUTPUT_NAME "hhnet")
+set_target_properties(hhnet PROPERTIES LINKER_LANGUAGE CXX)

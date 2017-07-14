@@ -1,0 +1,13 @@
+PROJECT(hhutils)
+
+#add headers
+INCLUDE_DIRECTORIES(
+)
+
+# add src
+AUX_SOURCE_DIRECTORY(. HHUTILS_SRC)
+
+# static library
+ADD_LIBRARY(hhutils STATIC ${HHUTILS_SRC})
+SET_TARGET_PROPERTIES(hhutils PROPERTIES OUTPUT_NAME "hhutils")
+set_target_properties(hhutils PROPERTIES LINKER_LANGUAGE CXX)
