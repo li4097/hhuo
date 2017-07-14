@@ -2,8 +2,10 @@ PROJECT(hhutils)
 
 #add headers
 INCLUDE_DIRECTORIES(
+        ../../include
+        ../../include/net
+        ../../include/utils
 )
-
 # add src
 AUX_SOURCE_DIRECTORY(. HHUTILS_SRC)
 

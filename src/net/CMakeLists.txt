@@ -2,6 +2,10 @@ PROJECT(hhnet)
 
 #add headers
 INCLUDE_DIRECTORIES(
+        ../../include
+        ../../include/net
+        ../../include/parser
+        ../../include/utils
 )
 
 # add src

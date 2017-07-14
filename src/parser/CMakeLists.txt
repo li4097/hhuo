@@ -2,6 +2,9 @@ PROJECT(hhparser)
 
 #add headers
 INCLUDE_DIRECTORIES(
+        ../../include
+        ../../include/parser
+        ../../include/utils
 )
 
 # add src
