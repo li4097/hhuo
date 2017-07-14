@@ -41,7 +41,7 @@ void hhou::HHFDEvent::OnRead()
     ssize_t rSize = 0;
     do
     {
-#ifndef HAVE_OPENSSL
+#ifdef HAVE_OPENSSL
         rSize = SSL_read(m_sSSL, bufIn, (n < TCP_BUFSIZE) ? n - 1 : TCP_BUFSIZE - 1);
         int nRet = SSL_get_error(m_sSSL, rSize);
         if (rSize <= 0)
