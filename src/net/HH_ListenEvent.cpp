@@ -127,7 +127,7 @@ void hhou::HHListenEvent::OnConneting()
         pNew->KeepAlive(true);
 #ifdef HAVE_OPENSSL
         /// 基于ctx产生一个新的SSL
-        pNew->m_sSSL = ssl_new(m_sCtx);
+        pNew->m_sSSL = SSL_new(m_sCtx);
         /// 将连接用户的socket加入到SSL
         SSL_set_fd(pNew->m_sSSL, pNew->handler);
         /// 建立SSL连接

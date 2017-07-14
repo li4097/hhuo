@@ -54,8 +54,8 @@ namespace hhou
         HHPoller *m_pPoller; /// poller对象
 
 #ifdef HAVE_OPENSSL
-        static SSL_CTX *m_sCtx;
-        static BIO* m_errBio;
+        SSL_CTX *m_sCtx;
+        BIO* m_errBio;
         string m_strCert;
         string m_strKey;
 #endif
