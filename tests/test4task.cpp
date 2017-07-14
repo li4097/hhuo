@@ -2,9 +2,9 @@
 // Created by mao.liu on 2017/7/11.
 //
 
-#include "../hhou/net/HH_EventBase.h"
-#include "../hhou/net/HH_Task.h"
-#include "../hhou/net/HH_ThreadPool.h"
+#include "../include/net/HH_EventBase.h"
+#include "../include/net/HH_Task.h"
+#include "../include/net/HH_ThreadPool.h"
 
 class testShit : public hhou::HHEventBase
 {
