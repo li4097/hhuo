@@ -1,3 +1,0 @@
-PROJECT(hhuo)
-
-SET(HHUO_SRCS ./)
