@@ -17,7 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "HH_Parse.h"
-#ifdef HH_HTTP
+#ifdef BE_HTTP
 #include "HH_HttpRequest.h"
 #include "HH_HttpResponse.h"
 #else
@@ -35,7 +35,7 @@ bool SetCallBack(CommitObject obj)
 
 int hhou::HHParse::ParseData(const char *buf, int nLen, char *strRet)
 {
-#ifdef HH_HTTP
+#ifdef BE_HTTP
     hhou::HH_HttpRequest request;
     request.Parse(buf, nLen);
 

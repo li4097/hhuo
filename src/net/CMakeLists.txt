@@ -17,4 +17,6 @@ SET_TARGET_PROPERTIES(hhnet PROPERTIES OUTPUT_NAME "hhnet")
 set_target_properties(hhnet PROPERTIES LINKER_LANGUAGE CXX)
 
 # add ssl
-TARGET_LINK_LIBRARIES(hhnet ssl crypto)
+IF (USESSL)
+    TARGET_LINK_LIBRARIES(hhnet ssl crypto)
+ENDIF()
