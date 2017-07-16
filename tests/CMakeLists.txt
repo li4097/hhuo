@@ -12,3 +12,6 @@ TARGET_LINK_LIBRARIES(test4json hhnet hhparser hhutils hhdata)
 
 ADD_EXECUTABLE(test4mysql test4mysql.cpp)
 TARGET_LINK_LIBRARIES(test4mysql hhdata)
+
+ADD_EXECUTABLE(test4log test4log.cpp)
+TARGET_LINK_LIBRARIES(test4log glog)

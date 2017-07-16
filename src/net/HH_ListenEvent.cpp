@@ -20,16 +20,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_ListenEvent.h"
 #include "HH_Poller.h"
 #include "HH_FDEvent.h"
+#include "HH_Log.h"
 
 hhou::HHListenEvent::HHListenEvent(HHPoller *poller)
         : m_pPoller(poller)
 {
     eventInfo.flags = HHFast;
     if (Init())
-        cout << "Init ListenEvent" << endl;
+    {
+        LOG(INFO) << "Init ListenEvent";
+    }
     else
     {
-        cout << "Init ListenEvent fail" << endl;
+        LOG(ERROR) << "Init ListenEvent fail";
         exit(1);
     }
 }
@@ -50,32 +53,32 @@ bool hhou::HHListenEvent::Init()
     SSL_load_error_strings(); /// 加载SSL错误信息
     if (!SSL_library_init()) /// 初始化ssl
     {
-        cout << "SSL_library_init failed" << endl;
+        LOG(ERROR) << "SSL_library_init failed";
         bRet = false;
     }
     m_sCtx = SSL_CTX_new(SSLv23_method());
     if (!m_sCtx)
     {
-        cout << "SSL_CTX_new failed" << endl;
+        LOG(ERROR) << "SSL_CTX_new failed";
         bRet = false;
     }
     m_errBio = BIO_new_fd(2, BIO_NOCLOSE);
     if (SSL_CTX_use_certificate_file(m_sCtx, m_strCert.c_str(), SSL_FILETYPE_PEM) < 0)
     {
-        cout << "SSL_CTX_use_certificate_file failed" << endl;
+        LOG(ERROR) << "SSL_CTX_use_certificate_file failed";
         bRet = false;
     }
     if (SSL_CTX_use_PrivateKey_file(m_sCtx, m_strKey.c_str(), SSL_FILETYPE_PEM) < 0)
     {
-        cout << "SSL_CTX_use_PrivateKey_file failed" << endl;
+        LOG(ERROR) << "SSL_CTX_use_PrivateKey_file failed";
         bRet = false;
     }
     if (SSL_CTX_check_private_key(m_sCtx) < 0)
     {
-        cout << "SSL_CTX_check_private_key failed" << endl;
+        LOG(ERROR) << "SSL_CTX_check_private_key failed";
         bRet = false;
     }
-    cout << "Init ssl ListenEvent" << endl;
+    LOG(INFO) << "Init ssl ListenEvent";
 #endif
     return bRet;
 }
@@ -87,12 +90,12 @@ bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, size_t 
     handler = socket(AF_INET, SOCK_STREAM, 0);
     if (!NonBlock(true))
     {
-        cout << "NonBlock error, errno:" << errno << endl;
+        LOG(ERROR) << "NonBlock error, errno:" << errno;
         return false;
     }
     if (!Reuse(true))
     {
-        cout << "Reuse error, errno:" << errno << endl;
+        LOG(ERROR) << "Reuse error, errno:" << errno;
         return false;
     }
     listenAddr.sin_family = AF_INET;
@@ -100,12 +103,12 @@ bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, size_t 
     listenAddr.sin_port = htons(port);
     if (bind(handler, (struct sockaddr *)&listenAddr, sizeof(listenAddr)) == -1)
     {
-        cout << "bind error, errno:" << errno << endl;
+        LOG(ERROR) << "bind error, errno:" << errno;
         return false;
     }
     if(listen(handler, listenFds) == -1)
     {
-        cout << "listen error, errno:" << errno << endl;
+        LOG(ERROR) << "listen error, errno:" << errno;
         return false;
     }
 
@@ -142,7 +145,7 @@ void hhou::HHListenEvent::OnConneting()
         /// 建立SSL连接
         if (SSL_accept(pNew->m_sSSL) == -1)
         {
-            cout << "Create ssl connection with " << pNew->handler << " fail" << endl;
+            LOG(ERROR) << "Create ssl connection with " << pNew->handler << " fail";
         }
 #endif
         m_pPoller->AddEvent(pNew);

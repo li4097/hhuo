@@ -2,6 +2,7 @@
 #include "../include/net/HH_EventLoop.h"
 #include "../include/net/HH_ServerBase.h"
 #include "../include/parser/HH_Parse.h"
+#include "../include/HH_Log.h"
 
 int shit(void *one, int len, void *two)
 {
@@ -39,6 +40,7 @@ public:
 
 int main(int argc, char *argv[])
 {
+    hhou::HHLog log("../log");
     Test4Server test;
     test.Run();
     return 0;

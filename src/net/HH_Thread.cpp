@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_Thread.h"
 #include "HH_Task.h"
+#include "HH_Log.h"
 
 hhou::HHThread::HHThread(int nThreadID)
         : m_bStatus(0),
@@ -28,7 +29,7 @@ hhou::HHThread::HHThread(int nThreadID)
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
     if (pthread_create(&m_thread, &attr, Run, this) == -1)
     {
-        cout << "pthread_create errno: " << errno << endl;
+        LOG(ERROR) << "pthread_create errno: " << errno;
     }
     pthread_attr_destroy(&attr);
     m_cond = PTHREAD_COND_INITIALIZER;

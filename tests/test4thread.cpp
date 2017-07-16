@@ -1,4 +1,5 @@
 #include "../include/net/HH_Thread.h"
+#include "../include/HH_Log.h"
 
 bool bQuit = false;
 int main(int argc, char *argv[])

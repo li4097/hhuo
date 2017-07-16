@@ -19,13 +19,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_FDEvent.h"
 #include "HH_Poller.h"
 #include "HH_Parse.h"
+#include "HH_Log.h"
 
 hhou::HHFDEvent::HHFDEvent(HHPoller *poller, size_t bufSize)
         : m_pPoller(poller),
           m_bufIn(*this, bufSize),
           m_bufOut(*this, bufSize)
 {
-    cout << "create new fdEvent" << endl;
+    LOG(INFO) << "create new fdEvent";
 }
 
 hhou::HHFDEvent::~HHFDEvent()
@@ -96,7 +97,7 @@ void hhou::HHFDEvent::OnRead()
             m_bufIn.Write(bufIn, (size_t)rSize);
             hhou::HHParse parse;
             char bufOut[TCP_BUFSIZE];
-            parse.ParseData(m_bufIn.GetStart(), m_bufIn.GetLength(), bufOut);
+            parse.ParseData(m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut);
             m_bufOut.Write(bufOut, strlen(bufOut));
             if (m_bufOut.GetStart() > 0)
             {

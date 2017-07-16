@@ -5,6 +5,7 @@
 #include "../include/net/HH_EventBase.h"
 #include "../include/net/HH_Task.h"
 #include "../include/net/HH_ThreadPool.h"
+#include "../include/HH_Log.h"
 
 class testShit : public hhou::HHEventBase
 {

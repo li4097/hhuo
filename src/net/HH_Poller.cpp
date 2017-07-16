@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <vector>
 #include "HH_Common.h"
 #include "HH_Poller.h"
+#include "HH_Log.h"
 
 hhou::HHPoller::HHPoller()
         : m_connectionNum(0)
@@ -27,7 +28,7 @@ hhou::HHPoller::HHPoller()
     m_epollFd = epoll_create(Poller_MAX_FD); // 新建epoll对象
     if (m_epollFd <= 0)
     {
-        cout << "Poller epoll_create failure!" << endl;
+        LOG(ERROR) << "Poller epoll_create failure!";
         exit(-1);
     }
 }
@@ -83,7 +84,7 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
     int fds = epoll_wait(m_epollFd, m_events, Poller_MAX_EVENT, timeout);
     if (fds == -1)
     {
-        cout << "epoll_wait error, errno:" << errno << endl;
+        LOG(ERROR) << "epoll_wait error, errno:" << errno;
         return;
     }
     for(int i = 0; i < fds; i++)
@@ -104,5 +105,5 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
 void hhou::HHPoller::UpdateConnNums(int nNum)
 {
     m_connectionNum += nNum;
-    cout << "Current connection num: " << m_connectionNum << endl;
+    LOG(INFO) << "Current connection num: " << m_connectionNum;
 }

@@ -19,11 +19,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <set>
 #include "HH_Task.h"
 #include "HH_ThreadPool.h"
+#include "HH_Log.h"
 
 hhou::HHThreadPool::HHThreadPool()
 {
     Init(); /// 初始化
-    cout << "Init threadpool" << endl;
+    LOG(INFO) << "Init threadpool";
 }
 
 bool hhou::HHThreadPool::Dispatch(const vector<HHTask> &vTasks)

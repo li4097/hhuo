@@ -17,11 +17,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "HH_Mysql.h"
+#include "HH_Log.h"
 
 hhou::HHMysql::HHMysql()
 {
     mysql_init(&m_mysql);
-    cout << "Init mysql" << endl;
+    LOG(INFO) << "Init mysql";
 }
 
 hhou::HHMysql::~HHMysql()
@@ -34,13 +35,13 @@ bool hhou::HHMysql::ConnectDB(const string &strHost, const string &strUser, cons
     /// 设置字符
     if (mysql_options(&m_mysql, MYSQL_SET_CHARSET_NAME, "utf8"))
     {
-        cout << "Set charset utf8 fail: " << mysql_error(&m_mysql) << endl;
+        LOG(ERROR) << "Set charset utf8 fail: " << mysql_error(&m_mysql);
     }
 
     /// 连接mysql
     if (!mysql_real_connect(&m_mysql,strHost.c_str(), strUser.c_str(), strPass.c_str(),strDBName.c_str(), port, NULL, 0))
     {
-        cout << "Cannot connect to host: " << strHost << " port: " << port << " user: " << strUser << endl;
+        LOG(INFO) << "Cannot connect to host: " << strHost << " port: " << port << " user: " << strUser;
         mysql_close(&m_mysql);
         return false;
     }
@@ -53,7 +54,7 @@ bool hhou::HHMysql::SelectDB(const string &strDBName)
 {
     if (!mysql_select_db(&m_mysql, strDBName.c_str()))
     {
-        cout << "SelectDB failure" << mysql_error(&m_mysql) << endl;
+        LOG(ERROR) << "SelectDB failure" << mysql_error(&m_mysql);
         return false;
     }
     return true;
@@ -78,9 +79,10 @@ void hhou::HHMysql::SeekData(my_ulonglong offset)
 
 bool hhou::HHMysql::ExcuteSql(const string &str)
 {
+    LOG(INFO) << "Sql: " << str;
     if (mysql_query(&m_mysql, str.c_str()))
     {
-        cout << "ExcuteSql sql: " << str << " fail: " << mysql_error(&m_mysql) << endl;
+        LOG(ERROR) << "ExcuteSql sql: " << str << " fail: " << mysql_error(&m_mysql);
         return false;
     }
     m_pQuery = mysql_store_result(&m_mysql);

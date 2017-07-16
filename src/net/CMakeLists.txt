@@ -18,5 +18,7 @@ set_target_properties(hhnet PROPERTIES LINKER_LANGUAGE CXX)
 
 # add ssl
 IF (USESSL)
-    TARGET_LINK_LIBRARIES(hhnet ssl crypto)
+    TARGET_LINK_LIBRARIES(hhnet ssl crypto glog)
+ELSE()
+    TARGET_LINK_LIBRARIES(hhnet glog)
 ENDIF()
