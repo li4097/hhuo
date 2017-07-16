@@ -5,7 +5,7 @@
 
 int shit(void *one, int len, void *two)
 {
-    cout << "6666" << endl;
+    cout << "::one " << (char *)one << " len: " << len << " ::two" << (char *)two << endl;
     return 1;
 }
 
