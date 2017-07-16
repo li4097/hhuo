@@ -175,6 +175,13 @@ enum
     /**event数据的默认值*/
     #define CIRCULAR_BUFFSIZE 80960
     #define TCP_BUFSIZE 8096
+
+    /**mysql cfg*/
+    #define HOST "127.0.0.1"
+    #define PORT 3306
+    #define USER "test"
+    #define PASSWORD "1234"
+    #define DBNAME "test"
 };
 
 /**事件的类型，0--紧急处理，1--队列中等候被处理*/
