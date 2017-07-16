@@ -10,3 +10,8 @@ next steps:
 
 2017.07.13
 1. parse http;
+
+
+next step:
+1. 添加nosql（目测redis）；
+2. 添加业务；
