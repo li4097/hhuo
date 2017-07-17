@@ -47,10 +47,10 @@ namespace hhou
 
             /// 初始化glog
             google::InitGoogleLogging("");
-            google::SetLogDestination(google::GLOG_FATAL, strDir + "/Fatal_");
-            google::SetLogDestination(google::GLOG_ERROR, strDir + "/Error_");
-            google::SetLogDestination(google::GLOG_WARNING, strDir + "/Warning_");
-            google::SetLogDestination(google::GLOG_INFO, strDir + "/Info_");
+            google::SetLogDestination(google::GLOG_FATAL, string(strDir + "/Fatal_").c_str());
+            google::SetLogDestination(google::GLOG_ERROR, string(strDir + "/Error_").c_str());
+            google::SetLogDestination(google::GLOG_WARNING, string(strDir + "/Warning_").c_str());
+            google::SetLogDestination(google::GLOG_INFO, string(strDir + "/Info_").c_str());
 
             /// 配置glog
             FLAGS_logtostderr = bStdErr; /// 是否将所有日志输出到stderr而非文件
