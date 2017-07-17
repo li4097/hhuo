@@ -40,6 +40,14 @@ IF(HTTPSERVER)
     ADD_DEFINITIONS(-DBE_HTTP)
 ENDIF()
 
+# glog option
+OPTION(GLOG "Write into file with glog" OFF)
+IF(GLOG)
+    MESSAGE(STATUS "GLOG ON")
+    ADD_DEFINITIONS(-DGLOG)
+ENDIF()
+
+# add subdirs
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(tests)
 ADD_SUBDIRECTORY(unittests)
