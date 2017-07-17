@@ -22,6 +22,4 @@ IF (USESSL)
 ENDIF()
 
 # add glog
-IF (GLOG)
-    TARGET_LINK_LIBRARIES(hhnet glog)
-ENDIF()
+TARGET_LINK_LIBRARIES(hhnet glog)

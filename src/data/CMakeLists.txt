@@ -22,6 +22,4 @@ set_target_properties(hhdata PROPERTIES LINKER_LANGUAGE CXX)
 TARGET_LINK_LIBRARIES(hhdata json mysqlclient)
 
 #add glog
-IF (GLOG)
-    TARGET_LINK_LIBRARIES(hhdata glog)
-ENDIF()
+TARGET_LINK_LIBRARIES(hhdata glog)

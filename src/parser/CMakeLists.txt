@@ -16,6 +16,4 @@ SET_TARGET_PROPERTIES(hhparser PROPERTIES OUTPUT_NAME "hhparser")
 set_target_properties(hhparser PROPERTIES LINKER_LANGUAGE CXX)
 
 #add log
-IF (GLOG)
-    TARGET_LINK_LIBRARIES(hhparser glog)
-ENDIF()
+TARGET_LINK_LIBRARIES(hhparser glog)
