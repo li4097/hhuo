@@ -18,3 +18,6 @@ TARGET_LINK_LIBRARIES(test4log glog)
 
 ADD_EXECUTABLE(test4redis test4redis.cpp)
 TARGET_LINK_LIBRARIES(test4redis hhdata)
+
+ADD_EXECUTABLE(test4base64 test4base64.cpp)
+TARGET_LINK_LIBRARIES(test4base64 hhutils glog)
