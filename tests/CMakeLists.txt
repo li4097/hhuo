@@ -15,3 +15,6 @@ TARGET_LINK_LIBRARIES(test4mysql hhdata)
 
 ADD_EXECUTABLE(test4log test4log.cpp)
 TARGET_LINK_LIBRARIES(test4log glog)
+
+ADD_EXECUTABLE(test4redis test4redis.cpp)
+TARGET_LINK_LIBRARIES(test4redis hhdata)

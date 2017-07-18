@@ -19,7 +19,4 @@ SET_TARGET_PROPERTIES(hhdata PROPERTIES OUTPUT_NAME "hhdata")
 set_target_properties(hhdata PROPERTIES LINKER_LANGUAGE CXX)
 
 #add josn
-TARGET_LINK_LIBRARIES(hhdata jsoncpp mysqlclient)
-
-#add glog
-TARGET_LINK_LIBRARIES(hhdata glog)
+TARGET_LINK_LIBRARIES(hhdata jsoncpp mysqlclient hiredis glog)

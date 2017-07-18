@@ -16,41 +16,41 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#ifndef HH_THREAD_H
-#define HH_THREAD_H
+#ifndef HH_REDIS_H
+#define HH_REDIS_H
 
-#include <vector>
+#include <hiredis/hiredis.h>
 #include "HH_Common.h"
 
 namespace hhou
 {
-    class HHTask;
     /**
-     * 线程类
+     * redis操作类
      */
-    class HHThread
+    class HHRedis
     {
-        friend class HHThreadPool;
     public:
-        HHThread(int nThreadID);
-        virtual ~HHThread();
+        /**
+         * 默认构造函数
+         */
+        HHRedis();
+        virtual ~HHRedis();
 
-        /**线程执行的函数*/
-        static void *Run(void *pParm);
+        /**
+         * connect to redis sever
+         */
+        bool ConnectToRedis(const string &strHost, int nPort, struct timeval &timeout);
 
-        /**开启线程处理任务*/
-        void StartThread();
-
-    public:
-        vector<HHTask> m_vTasks; /// 要处理的任务
+        /**
+         * excute redis command
+         */
+        void Excute(const string &command, string &strRet);
 
     private:
-        int m_bStatus; /// 线程状态(0---未启动，1---空闲，2---忙碌)
-        int m_nThreadID; /// 线程的ID
-        pthread_t m_thread; /// 线程
-        pthread_cond_t m_cond; /// 条件
-        pthread_mutex_t m_mutex; /// 锁
+        redisContext *m_pRedisConn; /// redis客户端对象
+        redisReply *m_pRedisReply; /// redis具体操作
+
     };
 }
 
-#endif //HH_THREAD_H
+#endif // HH_REDIS_H
