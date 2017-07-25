@@ -34,7 +34,7 @@ IF(USESSL)
 ENDIF()
 
 # http option
-OPTION(HTTPSERVER "Is http server?" OFF)
+OPTION(HTTPSERVER "Is http server?" ON)
 IF(HTTPSERVER)
     MESSAGE(STATUS "HttpServer ON")
     ADD_DEFINITIONS(-DBE_HTTP)

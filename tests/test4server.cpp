@@ -32,15 +32,17 @@ public:
     {
         hhou::HHEventLoop *pLoop = new hhou::HHEventLoop();
         hhou::HHListenEvent *pListen = new hhou::HHListenEvent(pLoop->Poller());
-        pListen->Listen("0.0.0.0", 9999);
+        if (pListen->Listen("0.0.0.0", 9999))
+        {
+            LOG(INFO) << "Server Listen Addr: 0.0.0.0, port: 9999";
+        }
         pLoop->Loop(500);
     }
 };
 
-
 int main(int argc, char *argv[])
 {
-    hhou::HHLog log("../log");
+    hhou::HHLog log("../log", true);
     Test4Server test;
     test.Run();
     return 0;
