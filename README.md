@@ -15,3 +15,6 @@ next steps:
 next step:
 1. 添加nosql（目测redis）；
 2. 添加业务；
+
+next step:
+1. 添加配置文件模块;
