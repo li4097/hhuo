@@ -1,4 +1,4 @@
-ADD_EXECUTABLE(test4server test4server.cpp)
+ADD_EXECUTABLE(test4server test4server.cpp ../app/ImgProcessor.cpp)
 TARGET_LINK_LIBRARIES(test4server hhnet hhparser hhutils)
 
 ADD_EXECUTABLE(test4thread test4thread.cpp)

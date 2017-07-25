@@ -3,11 +3,12 @@
 #include "../include/net/HH_ServerBase.h"
 #include "../include/parser/HH_Parse.h"
 #include "../include/HH_Log.h"
+#include "../app/ImgProcessor.h"
 
-int shit(void *one, int len, void *two)
+int DealData(void *first, int nFisrtLen, void *second)
 {
-    cout << "::one " << (char *)one << " len: " << len << " ::two" << (char *)two << endl;
-    return 1;
+    ImgProcessor processor;
+    return processor.Processor(first, nFisrtLen, second);
 }
 
 class Test4Server : public hhou::HHServerBase
@@ -15,7 +16,7 @@ class Test4Server : public hhou::HHServerBase
 public:
     Test4Server()
     {
-        SetCallBack(shit);
+        SetCallBack(DealData);
     }
 
     ~Test4Server()
