@@ -22,9 +22,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <vector>
 #include <map>
 #include "HH_EventBase.h"
+#include "HH_Config.h"
 
 namespace hhou
 {
+    /**poller最大事件数量*/
+    #define Poller_MAX_EVENT 1024
+
     /**
      * epoll的操作类
      */

@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 hhou::HHPoller::HHPoller()
         : m_connectionNum(0)
 {
-    m_epollFd = epoll_create(Poller_MAX_FD); // 新建epoll对象
+    m_epollFd = epoll_create(8096); // 新建epoll对象
     if (m_epollFd <= 0)
     {
         LOG(ERROR) << "Poller epoll_create failure!";
@@ -71,7 +71,7 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
 void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
 {
     /// checkout timeout
-    time_t expireTime = time(0) - TIMEOUT;
+    time_t expireTime = time(0) - HH_Config::Instance().ReadInt("connection", "timeout", 60);
     pair<multiMapItor, multiMapItor> pos = m_mHandlers.equal_range(expireTime);
     for (multimap<time_t, HHEventBase *>::iterator it = pos.first; it != pos.second;)
     {

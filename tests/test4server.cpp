@@ -33,17 +33,19 @@ public:
     {
         hhou::HHEventLoop *pLoop = new hhou::HHEventLoop();
         hhou::HHListenEvent *pListen = new hhou::HHListenEvent(pLoop->Poller());
-        if (pListen->Listen("0.0.0.0", 9999))
+        if (pListen->Listen(hhou::HH_Config::Instance().ReadStr("listener", "host", "0.0.0.0"),
+                            hhou::HH_Config::Instance().ReadInt("listener", "port", 9999)))
         {
             LOG(INFO) << "Server Listen Addr: 0.0.0.0, port: 9999";
         }
-        pLoop->Loop(500);
+        pLoop->Loop(hhou::HH_Config::Instance().ReadInt("loop", "timeout", 600));
     }
 };
 
 int main(int argc, char *argv[])
 {
-    hhou::HHLog log("../log", true);
+    hhou::HHLog log(hhou::HH_Config::Instance().ReadStr("log", "path", "../log"),
+                    hhou::HH_Config::Instance().ReadInt("log", "tostderror", 1));
     Test4Server test;
     test.Run();
     return 0;

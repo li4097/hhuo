@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_EventBase.h"
 #include "HH_Common.h"
 #include "HH_CircularBuffer.h"
+#include "HH_Config.h"
 
 namespace hhou
 {
@@ -43,7 +44,7 @@ namespace hhou
         /**
          * 默认只能引用构造
          */
-        HHFDEvent(HHPoller *poller, size_t bufSize = CIRCULAR_BUFFSIZE);
+        HHFDEvent(HHPoller *poller, size_t bufSize = HH_Config::Instance().ReadInt("connection", "circular", 8096));
         virtual ~HHFDEvent();
 
         /**

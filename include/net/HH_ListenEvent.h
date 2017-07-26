@@ -20,9 +20,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define HHUO_HHLISTENEVENT_H
 
 #include "HH_EventBase.h"
+#include "HH_Config.h"
 
 namespace hhou
 {
+    /**poller最大监听的fd数量*/
+    #define Poller_MAX_FD 8096
+
     class HHPoller;
     class HHFDEvent;
     /**

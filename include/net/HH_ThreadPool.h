@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <vector>
 #include <map>
 #include "HH_Thread.h"
+#include "HH_Config.h"
 
 namespace hhou
 {
@@ -40,7 +41,7 @@ namespace hhou
          /**
           * 初始化
           */
-         bool Init(int nThreadNum = THREAD_NUM);
+         bool Init(int nThreadNum = HH_Config::Instance().ReadInt("thread", "num", 10));
 
          /**
           * dispatch任务到各个线程上

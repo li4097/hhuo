@@ -158,33 +158,6 @@ private:
 #endif
 };
 
-/**都是放到配置文件中的*/
-enum
-{
-    /**poller最大监听的fd数量*/
-    #define Poller_MAX_FD 8096
-
-    /**poller最大事件数量*/
-    #define Poller_MAX_EVENT 1024
-
-    /**默认最大超时时间(单位：s)*/
-    #define TIMEOUT 60
-
-    /**开启线程的默认值*/
-    #define THREAD_NUM 10
-
-    /**event数据的默认值*/
-    #define CIRCULAR_BUFFSIZE 80960
-    #define TCP_BUFSIZE 8096
-
-    /**mysql cfg*/
-    #define HOST "127.0.0.1"
-    #define PORT 3306
-    #define USER "test"
-    #define PASSWORD "1234"
-    #define DBNAME "test"
-};
-
 /**事件的类型，0--紧急处理，1--队列中等候被处理*/
 enum HHEventFlags
 {
