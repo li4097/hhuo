@@ -41,7 +41,7 @@ namespace hhou
          /**
           * 初始化
           */
-         bool Init(int nThreadNum = HH_Config::Instance().ReadInt("thread", "num", 10));
+         bool Init(int nThreadNum = HHConfig::Instance().ReadInt("thread", "num", 10));
 
          /**
           * dispatch任务到各个线程上

@@ -31,7 +31,7 @@ namespace hhou
      * 读取配置文件类
      */
     typedef map<string, map<string, string> > gStorage;
-    class HH_Config
+    class HHConfig
     {
     private:
         fstream m_file; /// 文件操作对象
@@ -40,7 +40,7 @@ namespace hhou
         int m_nError; /// 错误代码
 
     private:
-        /**获取信息*/
+		/**获取信息*/
         void GetInfo()
         {
             try
@@ -57,7 +57,7 @@ namespace hhou
             }
         }
 
-        /**解析*/
+		/**解析*/
         void Parser()
         {
             string tmp;
@@ -65,7 +65,7 @@ namespace hhou
             while (getline(m_file, tmp))
             {
                 if (!tmp.length())
-                    continue;
+					continue;
                 if (tmp.at(0) == '[')
                     section = tmp.substr(1, tmp.length() - 2);
                 else if (tmp.find("=") < tmp.length())
@@ -75,20 +75,20 @@ namespace hhou
                     else
                         throw 1;
                 }
-                else
-                {
-                    cerr << tmp << "  ";
-                    throw 0;
-                }
+				else
+				{
+					cerr << tmp << "  ";
+					throw 0;
+				}
             }
         }
 
     public:
-        /**
-         * 带参数的构造函数
-         * pName: ini文件的路径
-         */
-        HH_Config(const char *pName) : m_pName(pName)
+		/**
+		 * 带参数的构造函数
+		 * pName: ini文件的路径
+		 */
+		HHConfig(const char *pName) : m_pName(pName)
         {
             m_nError = 0;
             m_file.open(pName, ios::in);
@@ -99,10 +99,10 @@ namespace hhou
             }
         }
 
-        /**
-         * 将内存中的kv更新到文件中
-         */
-        ~HH_Config()
+		/**
+		 * 将内存中的kv更新到文件中
+		 */
+		~HHConfig()
         {
             map<string, string>	tmp;
             if (m_nError)
@@ -118,54 +118,54 @@ namespace hhou
             m_file.close();
         }
 
-        /**
-         * 去掉string的空格
-         */
-        void Trim(string &s)
-        {
-            int index = 0;
-            if (!s.empty())
-            {
-                while ((index = s.find(' ', index)) != string::npos)
-                {
-                    s.erase(index, 1);
-                }
-            }
-        }
+		/**
+		 * 去掉string的空格
+		 */
+		void Trim(string &s)
+		{
+			int index = 0;
+			if (!s.empty())
+			{
+				while ((index = s.find(' ', index)) != string::npos)
+				{
+					s.erase(index, 1);
+				}
+			}
+		}
 
-        /**
-         * 获取cfg文件中的值
-         * defalut：是不存在key的情况下的默认值
-         */
+		/**
+		 * 获取cfg文件中的值
+		 * defalut：是不存在key的情况下的默认值
+		 */
         string ReadStr(const string &section, const string &param, string defalut)
         {
-            return m_mKV[section][param].empty() ? defalut : m_mKV[section][param];
+			return m_mKV[section][param].empty() ? defalut : m_mKV[section][param];
         }
 
-        /**
-         * 获取cfg文件中的值
-         * defalut：是不存在key的情况下的默认值
-         */
-        int ReadInt(const string &section, const string &param, int defalut)
-        {
-            string strRet = m_mKV[section][param];
-            if (strRet.empty())
-                return defalut;
-            Trim(strRet);
-            return atoi(strRet.c_str());
-        }
+		/**
+		 * 获取cfg文件中的值
+		 * defalut：是不存在key的情况下的默认值
+		 */
+		int ReadInt(const string &section, const string &param, int defalut)
+		{
+			string strRet = m_mKV[section][param];
+			if (strRet.empty())
+				return defalut;
+			Trim(strRet);
+			return atoi(strRet.c_str());
+		}
 
-        /**
-         * 更新cfg文件中的值
-         */
+		/**
+		 * 更新cfg文件中的值
+		 */
         void Writeini(const string &section, const string &param, const string value)
         {
             m_mKV[section][param] = value;
         }
 
-        /**
-         * 删除section的值
-         */
+		/**
+		 * 删除section的值
+		 */
         void Remini(const string &param, const string &section = "")
         {
             if (m_nError)
@@ -178,9 +178,9 @@ namespace hhou
 
     public:
         /**单例模式*/
-        static HH_Config &Instance(const char *pName = "../config/cfg.ini")
+        static HHConfig &Instance(const char *pName = "./cfg.ini")
         {
-            static HH_Config cfg(pName);
+            static HHConfig cfg(pName);
             return cfg;
         }
     };

@@ -71,7 +71,7 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
 void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
 {
     /// checkout timeout
-    time_t expireTime = time(0) - HH_Config::Instance().ReadInt("connection", "timeout", 60);
+    time_t expireTime = time(0) - HHConfig::Instance().ReadInt("connection", "timeout", 60);
     pair<multiMapItor, multiMapItor> pos = m_mHandlers.equal_range(expireTime);
     for (multimap<time_t, HHEventBase *>::iterator it = pos.first; it != pos.second;)
     {
