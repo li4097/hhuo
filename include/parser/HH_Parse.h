@@ -18,7 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef HH_PARSE_H
 #define HH_PARSE_H
 
-#include "../HH_Common.h"
+#include "HH_Common.h"
 
 ///////////////////////////////
 /// 库和功能代码分开

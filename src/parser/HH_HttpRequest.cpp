@@ -30,6 +30,7 @@ hhou::HH_HttpRequest::HH_HttpRequest(HttpParamType paramType)
 
 int hhou::HH_HttpRequest::Parse(const char *szHttpReq, int nDataLen)
 {
+    cout << szHttpReq << " " << nDataLen << endl;
     /// 检测是否合法
     if (!CheckSecurity(szHttpReq, nDataLen))
         return -1;
@@ -62,11 +63,15 @@ bool hhou::HH_HttpRequest::ParseFirstLine(const char *buf, int &nLen)
     if ((int) strLine.find("GET") == 0)
     {
         m_nMethod = HTTP_METHOD_GET;
-        if (!ParseParam(buf + 4))  /// 优先解析“Get”方法的
+        if (!ParseParam(buf + 4))
             return false;
     }
     else if ((int) strLine.find("POST") == 0)
+    {
         m_nMethod = HTTP_METHOD_POST;
+        if (!ParseParam(buf + 5))
+            return false;
+    }
     nLen += pos;
     return true;
 }

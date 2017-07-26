@@ -85,26 +85,28 @@ void hhou::HHFDEvent::OnRead()
                 /// 需要继续读data
                 continue;
             }
-            else
-            {
-                /// 对端已经关闭socket
-                OnClosed();
-            }
+            /// 对端已经关闭socket
+            OnClosed();
         }
         else
         {
             /// 拿出读到的数据
             m_bufIn.Write(bufIn, (size_t)rSize);
-            hhou::HHParse parse;
-            char bufOut[TCP_BUFSIZE];
-            parse.ParseData(m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
-            m_bufOut.Write(bufOut, strlen(bufOut));
-            if (m_bufOut.GetStart() > 0)
             {
-                eventInfo.status = Out;
-                m_pPoller->ChangeEvent(this);
+                /// TODO
+                /// 添加解析器的管理器
+                /// 因为client存在分段传输数据的情况
+                hhou::HHParse parse;
+                char bufOut[TCP_BUFSIZE];
+                parse.ParseData(m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
+                m_bufOut.Write(bufOut, strlen(bufOut));
+                if (m_bufOut.GetStart() > 0)
+                {
+                    eventInfo.status = Out;
+                    m_pPoller->ChangeEvent(this);
+                }
+                m_bufIn.Remove((size_t)rSize);
             }
-            m_bufIn.Remove((size_t)rSize);
         }
         /// 判断是否还有后续的data
         rSize = (rSize == TCP_BUFSIZE) ? 1 : 0;
@@ -150,11 +152,8 @@ void hhou::HHFDEvent::OnWrite()
                 /// 需要继续读data
                 continue;
             }
-            else
-            {
-                /// 关闭socket
-                OnClosed();
-            }
+            /// 关闭socket
+            OnClosed();
         }
         else
         {

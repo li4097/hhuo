@@ -26,7 +26,7 @@ bool ImgProcessor::DoGet(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
     string method = req->GetMethod();
     LOG(INFO) << "Request method: " << method;
 
-    /// get img url: xxxxx/getImg?id=xxxx&w=20&h=30
+    /// get img url: xxxxx/getimg?id=xxxx&w=20&h=30
     string strRet = "OK";
     res->AddHeader("nConnection", "Keep-Alive");
     if (method == "/")  /// test?
@@ -47,5 +47,24 @@ bool ImgProcessor::DoGet(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
 
 bool ImgProcessor::DoPost(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
 {
+    string method = req->GetMethod();
+    LOG(INFO) << "Request method: " << method;
+
+    /// opst img url: xxxxx/uploadimg?id=xxxx&w=20&h=30
+    string strRet = "OK";
+    res->AddHeader("nConnection", "Keep-Alive");
+    if (method == "/")  /// test?
+    {
+        res->SetContent(strRet);
+    }
+    else if (method == "/uploadimg")
+    {
+        /// 解析后面具体的参数
+        string strID, strW, strH;
+        req->GetParam("id", strID);
+        req->GetParam("w", strW);
+        req->GetParam("h", strH);
+        LOG(INFO) << "GetImg ID: " << strID << " width: " << strW << " height: " << strH;
+    }
     return true;
 }
