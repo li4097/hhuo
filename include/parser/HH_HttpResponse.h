@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <map>
 #include <vector>
-#include "../HH_Common.h"
+#include "HH_Common.h"
 
 namespace hhou
 {
@@ -40,15 +40,30 @@ namespace hhou
         /**
          * 构造函数
          */
-        HH_HttpResponse() {};
+        HH_HttpResponse() {}
         virtual ~HH_HttpResponse() {}
 
         /**
          * 生成的函数(失败0，正确返回1)
          */
-        int MakeRes(char *strResp, const string &strContent, const char *strContentType = HTTP_CONTENT_TYPE_TXT);
+        int MakeRes(char *strRet, int nSize, const string &strResContentType = HTTP_CONTENT_TYPE_TXT);
+
+        /**
+         * 设置response
+         */
+        void SetContent(const string &strContent) { m_strContent = strContent; }
+
+        /**
+         * 添加头部信息
+         */
+        void AddHeader(const string &strKey, const string &strVal)
+        {
+            m_mHeaders.insert(make_pair(strKey, strVal));
+        }
 
     private:
+        string m_strContent; /// 回应包
+        map<string, string> m_mHeaders; /// 头部的键值对
 
     };
 }

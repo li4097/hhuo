@@ -97,7 +97,7 @@ void hhou::HHFDEvent::OnRead()
             m_bufIn.Write(bufIn, (size_t)rSize);
             hhou::HHParse parse;
             char bufOut[TCP_BUFSIZE];
-            parse.ParseData(m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut);
+            parse.ParseData(m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
             m_bufOut.Write(bufOut, strlen(bufOut));
             if (m_bufOut.GetStart() > 0)
             {

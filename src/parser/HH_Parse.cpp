@@ -33,17 +33,16 @@ bool SetCallBack(CommitObject obj)
 }
 ///////////////////////////////
 
-int hhou::HHParse::ParseData(const char *buf, int nLen, char *strRet)
+int hhou::HHParse::ParseData(const char *buf, int nLen, char *strRet, int nSize)
 {
-    void *first = (void *)buf;
-    void *second = (void *)strRet;
 #ifdef BE_HTTP
     hhou::HH_HttpRequest request;
     request.Parse(buf, nLen);
     hhou::HH_HttpResponse response;
-    first = (void *)&request;
-    second = (void *)&response;
+    (*DealObject)((void *)&request, nLen, (void *)&response);
+    response.MakeRes(strRet, nSize);
+#else
+    (*DealObject)(buf, nLen, strRet);
 #endif
-    (*DealObject)(first, nLen, second);
     return 1;
 }

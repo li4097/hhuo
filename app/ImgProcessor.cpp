@@ -31,6 +31,12 @@ bool ImgProcessor::DoGet(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
     LOG(INFO) << "Request method: " << method;
 
     /// get img url: xxxxx/getImg?id=xxxx&w=20&h=30
+    string strRet = "OK";
+    if (method == "/")  /// test?
+    {
+        res->SetContent(strRet);
+        res->AddHeader("nConnection", "Keep-Alive");
+    }
     return true;
 }
 

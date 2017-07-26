@@ -47,6 +47,7 @@ using namespace std;
 #include <string.h>
 #include <pthread.h>
 #include <errno.h>
+#include <stdio.h>
 #define Errno errno
 
 // 统一成WIN32的用法

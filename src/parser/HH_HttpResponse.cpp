@@ -18,9 +18,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_HttpResponse.h"
 
-int hhou::HH_HttpResponse::MakeRes(char *strResp, const string &strContent, const char *strContentType)
+int hhou::HH_HttpResponse::MakeRes(char *strResp, int nSize, const string &strResContentType)
 {
-    sprintf(strResp, "HTTP/1.1 200 OK\r\nContent-Length: %d\r\nContent-Type: %s\r\nConnection: Keep-Alive\r\n\r\n%s",
-            (int)strContent.size(), strContentType, strContent.c_str());
+    int nPos = snprintf(strResp, nSize, "HTTP/1.1 200 OK\r\nContent-Length: %d\r\nContent-Type: %s\r\n",
+            (int)m_strContent.size(), strResContentType.c_str());
+    for (auto it = m_mHeaders.begin(); it != m_mHeaders.end(); it++)
+        nPos += snprintf(strResp + nPos, nSize - nPos, "%s: %s\r\n",
+                         it->first.c_str(), it->second.c_str());
+    snprintf(strResp + nPos, nSize - nPos, "\r\n%s", m_strContent.c_str());
     return 1;
 }
