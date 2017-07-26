@@ -96,6 +96,7 @@ void hhou::HHFDEvent::OnRead()
                 /// TODO
                 /// 添加解析器的管理器
                 /// 因为client存在分段传输数据的情况
+                /// 多线程的情况下，解析管理器需要加锁机制
                 hhou::HHParse parse;
                 char bufOut[TCP_BUFSIZE];
                 parse.ParseData(m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
