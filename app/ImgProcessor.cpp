@@ -15,13 +15,9 @@ bool ImgProcessor::Processor(void *Request, int nLen, void *Reponse)
 
     /// 判断是get还是post
     if (type == hhou::HTTP_METHOD_GET)
-    {
         DoGet(req, res);
-    }
     else
-    {
         DoPost(req, res);
-    }
     return true;
 }
 
@@ -32,10 +28,19 @@ bool ImgProcessor::DoGet(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
 
     /// get img url: xxxxx/getImg?id=xxxx&w=20&h=30
     string strRet = "OK";
+    res->AddHeader("nConnection", "Keep-Alive");
     if (method == "/")  /// test?
     {
         res->SetContent(strRet);
-        res->AddHeader("nConnection", "Keep-Alive");
+    }
+    else if (method == "/getimg")
+    {
+        /// 解析后面具体的参数
+        string strID, strW, strH;
+        req->GetParam("id", strID);
+        req->GetParam("w", strW);
+        req->GetParam("h", strH);
+        LOG(INFO) << "GetImg ID: " << strID << " width: " << strW << " height: " << strH;
     }
     return true;
 }

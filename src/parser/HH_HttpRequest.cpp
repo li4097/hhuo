@@ -87,7 +87,12 @@ bool hhou::HH_HttpRequest::ParseParam(const char *buf)
     vector<string> vParam;
     if (vMethod.size() < 2)
         return true;
-    SplitString(vMethod[1], vParam, "&");
+    /// 去掉后面的“ HTTP”
+    vector<string> vAct;
+    SplitString(vMethod[1], vAct, " ");
+    if (!vAct.size())
+        return true;
+    SplitString(vAct[0], vParam, "&");
     for (vector<string>::iterator it = vParam.begin(); it != vParam.end(); it++)
     {
         SplitKV(*it, m_mParam, "=");
