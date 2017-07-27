@@ -38,19 +38,23 @@ int hhou::HHParse::ParseData(char *buf, int nLen, char *strRet, int nSize)
     second = (void *)&response;
 #endif
     (*DealObject)(first, nLen, second);
-    response.MakeRes(buf, nSize);
+    if (request.AllDone())
+        response.MakeRes(buf, nSize);
     return 1;
 }
 
-bool hhou::HHParse::GetParser(const int fd, HHParse &parser)
+HHParse *hhou::HHParse::GetParser(const int fd)
 {
     /// 先去空闲的里面找，没有则new
     auto it = m_mParsers.find(fd);
-    if (it != m_mParsers.end())
-        parser = *(it->second);
+    if (it == m_mParsers.end())
+        return it->second;
     else
-        m_mParsers.insert(make_pair(fd, new HHParse));
-    return true;
+    {
+        HHParse *pParse = new HHParse;
+        m_mParsers.insert(make_pair(fd, pParse));
+        return pParse;
+    }
 }
 
 bool hhou::HHParse::RmParser(const int fd)

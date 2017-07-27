@@ -97,23 +97,19 @@ void hhou::HHFDEvent::OnRead()
                 /// 添加解析器的管理器
                 /// 因为client存在分段传输数据的情况
                 /// 多线程的情况下，解析管理器需要加锁机制
-                hhou::HHParse *parse;
-                hhou::HHParse::Instance().GetParser(SOCKET, parse);
-                if (parse)
+                hhou::HHParse *parse = hhou::HHParse::Instance().GetParser(handler);
+                char bufOut[TCP_BUFSIZE];
+                parse->ParseData(m_bufIn.GetStart(), (int) m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
+                if (parse->CanResponse())
                 {
-                    char bufOut[TCP_BUFSIZE];
-                    parse->ParseData(m_bufIn.GetStart(), (int) m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
                     m_bufOut.Write(bufOut, strlen(bufOut));
-                    if (parse->CanResponse())
+                    if (m_bufOut.GetStart() > 0)
                     {
-                        if (m_bufOut.GetStart() > 0)
-                        {
-                            eventInfo.status = Out;
-                            m_pPoller->ChangeEvent(this);
-                        }
+                        eventInfo.status = Out;
+                        m_pPoller->ChangeEvent(this);
                     }
-                    m_bufIn.Remove((size_t) rSize);
                 }
+                m_bufIn.Remove((size_t) rSize);
             }
         }
         /// 判断是否还有后续的data

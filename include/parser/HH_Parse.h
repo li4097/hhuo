@@ -47,7 +47,7 @@ namespace hhou
         virtual int ParseData(char *buf, int nLen, char *strRet, int nSize);
 
         /**获取解析器，没有的话就给个新的*/
-        bool GetParser(const int fd, HHParse &parser);
+        HHParse *GetParser(const int fd);
         bool RmParser(const int fd);
 
         /**获取req的状态*/
