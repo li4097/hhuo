@@ -17,7 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include <string.h>
 
-#include "../net/HH_EventBase.h"
+#include "net/HH_EventBase.h"
 #include "HH_CircularBuffer.h"
 
 hhou::HHCircularBuffer::HHCircularBuffer(hhou::HHEventBase &owner, size_t size)
