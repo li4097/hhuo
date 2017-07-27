@@ -39,6 +39,13 @@ namespace hhou
         HTTP_PARAM_CONTENT            /// 只获取CONTENT
     };
 
+    enum HttpParse
+    {
+        HTTP_NONE_DONE,    /// 还未进行解析
+        HTTP_HEAD_DONE,    /// 头解析完成
+        HTTP_BODY_DONE     /// body解析完成
+    };
+
     /**
      * http的request解析
      */
@@ -100,6 +107,7 @@ namespace hhou
         string m_strContent;  /// content
         map<string, string> m_mField; /// 存放域值
         map<string, string> m_mParam; /// 存放参数
+        HttpParse m_nParseWhere;  /// 解析到哪里了
 
     };
 }

@@ -23,17 +23,24 @@ hhou::HH_HttpRequest::HH_HttpRequest(HttpParamType paramType)
         : m_nParamType(paramType),
           m_nMethod(HTTP_METHOD_NONE),
           m_strMethod(""),
-          m_strContent("")
+          m_strContent(""),
+          m_nParseWhere(HTTP_NONE_DONE)
 {
 
 }
 
 int hhou::HH_HttpRequest::Parse(const char *szHttpReq, int nDataLen)
 {
-    cout << szHttpReq << " " << nDataLen << endl;
     /// 检测是否合法
     if (!CheckSecurity(szHttpReq, nDataLen))
         return -1;
+
+    /// 判断body是否完整
+    if (m_nParseWhere > HTTP_HEAD_DONE)
+    {
+        ParseContent(szHttpReq, nDataLen);
+        return 1;
+    }
 
     /// 解析第一行
     int nLen;
@@ -43,10 +50,19 @@ int hhou::HH_HttpRequest::Parse(const char *szHttpReq, int nDataLen)
     /// 解析域
     if (!ParseFields(szHttpReq + nLen + 2, nLen))
         return -1;
+    else
+        m_nParseWhere = HTTP_BODY_DONE;
 
     /// 解析content（如果有的话）
     if (!ParseContent(szHttpReq + nLen + 4, nLen))
         return -1;
+    else
+    {
+        string strContentLen;
+        GetParam("Content-Length", strContentLen);
+        if (atoi(strContentLen.c_str()) <= nLen)
+            m_nParseWhere = HTTP_NONE_DONE;
+    }
     return 1;
 }
 
@@ -124,6 +140,6 @@ bool hhou::HH_HttpRequest::ParseFields(const char *buf, int &nLen)
 
 bool hhou::HH_HttpRequest::ParseContent(const char *buf, int &nLen)
 {
-    m_strContent = string(buf + nLen);
+    m_strContent.append(string(buf + nLen));
     return true;
 }
