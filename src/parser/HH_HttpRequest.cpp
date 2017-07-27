@@ -36,7 +36,7 @@ int hhou::HH_HttpRequest::Parse(const char *szHttpReq, int nDataLen)
         return -1;
 
     /// 判断body是否完整
-    if (m_nParseWhere > HTTP_HEAD_DONE)
+    if (m_nParseWhere == HTTP_HEAD_DONE)
     {
         ParseContent(szHttpReq, nDataLen);
         return 1;
@@ -51,7 +51,7 @@ int hhou::HH_HttpRequest::Parse(const char *szHttpReq, int nDataLen)
     if (!ParseFields(szHttpReq + nLen + 2, nLen))
         return -1;
     else
-        m_nParseWhere = HTTP_BODY_DONE;
+        m_nParseWhere = HTTP_HEAD_DONE;
 
     /// 解析content（如果有的话）
     if (!ParseContent(szHttpReq + nLen + 4, nLen))
@@ -61,7 +61,7 @@ int hhou::HH_HttpRequest::Parse(const char *szHttpReq, int nDataLen)
         string strContentLen;
         GetParam("Content-Length", strContentLen);
         if (atoi(strContentLen.c_str()) <= nLen)
-            m_nParseWhere = HTTP_NONE_DONE;
+            m_nParseWhere = HTTP_BODY_DONE;
     }
     return 1;
 }

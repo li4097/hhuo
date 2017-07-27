@@ -83,6 +83,7 @@ namespace hhou
             if (it != m_mField.end())
                 strVal = it->second;
         }
+        bool AllDone() { return m_nParseWhere == HTTP_BODY_DONE; }
 
     private:
         /**解析第一行参数*/

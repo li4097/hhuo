@@ -28,7 +28,7 @@ bool SetCallBack(CommitObject obj)
 }
 ///////////////////////////////
 
-int hhou::HHParse::ParseData(const char *buf, int nLen, char *strRet)
+int hhou::HHParse::ParseData(char *buf, int nLen, char *strRet, int nSize)
 {
     void *first = (void *)buf;
     void *second = (void *)strRet;
@@ -38,5 +38,28 @@ int hhou::HHParse::ParseData(const char *buf, int nLen, char *strRet)
     second = (void *)&response;
 #endif
     (*DealObject)(first, nLen, second);
+    response.MakeRes(buf, nSize);
     return 1;
+}
+
+bool hhou::HHParse::GetParser(const int fd, HHParse &parser)
+{
+    /// 先去空闲的里面找，没有则new
+    auto it = m_mParsers.find(fd);
+    if (it != m_mParsers.end())
+        parser = *(it->second);
+    else
+        m_mParsers.insert(make_pair(fd, new HHParse));
+    return true;
+}
+
+bool hhou::HHParse::RmParser(const int fd)
+{
+    auto it = m_mParsers.find(fd);
+    if (it != m_mParsers.end())
+    {
+        delete it->second;
+        it->second = NULL;
+        m_mParsers.erase(it);
+    }
 }
