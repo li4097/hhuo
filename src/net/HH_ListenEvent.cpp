@@ -137,6 +137,7 @@ void hhou::HHListenEvent::OnConneting()
         pNew->eventInfo.nType = 1;
         pNew->NonBlock(true);
         pNew->KeepAlive(true);
+        pNew->SetIpAndPort(raddr.sin_addr.s_addr, raddr.sin_port);
 #ifdef HAVE_OPENSSL
         /// 基于ctx产生一个新的SSL
         pNew->m_sSSL = SSL_new(m_sCtx);

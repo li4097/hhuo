@@ -16,64 +16,66 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#ifndef HH_MUTEX_H
-#define HH_MUTEX_H
+#ifndef HH_CONDITION_H
+#define HH_CONDITION_H
 
 #include "HH_Common.h"
+#include "HH_Mutex.h"
 
 namespace hhou
 {
     /**
-     * 互斥锁
+     * 条件变量对象
      */
-    class HHMutex
+    class HHCond
     {
     public:
         /**
-         * 禁用锁的复制
+         * 禁用条件变量的复制
          */
-        HHMutex(const HHMutex &rhs) = delete;
-        HHMutex &operator=(const HHMutex &rhs) = delete;
+        HHCond(const HHCond &rhs) = delete;
+        HHCond &operator=(const HHCond &rhs) = delete;
 
         /**
          * 默认构造函数
          */
-        HHMutex()
+        HHCond()
         {
-            pthread_mutex_init(&m_mutex, NULL);
+            pthread_cond_init(&m_cond, NULL);
         }
 
         /**
          * 析构
          */
-        virtual ~HHMutex()
+        virtual ~HHCond() {}
+
+        /**
+         * 等待触发
+         */
+        void Wait(HHMutex &mutex)
         {
-            pthread_mutex_destroy(&m_mutex);
+            pthread_cond_wait(&m_cond, mutex.GetMutexObj());
         }
 
         /**
-         * 上锁
+         * 通知
          */
-        void Lock()
+        void Notify()
         {
-            pthread_mutex_lock(&m_mutex);
+            pthread_cond_signal(&m_cond);
         }
 
         /**
-         * 解锁
+         * 通知ALL
          */
-        void Unlock()
+        void NotifyAll()
         {
-            pthread_mutex_unlock(&m_mutex);
+            pthread_cond_broadcast(&m_cond);
         }
-
-        /**
-         * 获取锁对象
-         */
-        pthread_mutex_t *GetMutexObj() { return &m_mutex; }
 
     private:
-        pthread_mutex_t m_mutex;  /// 锁的对象
+        pthread_cond_t m_cond; /// 条件变量
+        HHMutex m_mutex;  /// 锁的对象
     };
 }
 

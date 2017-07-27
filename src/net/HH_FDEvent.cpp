@@ -22,7 +22,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_Log.h"
 
 hhou::HHFDEvent::HHFDEvent(HHPoller *poller, size_t bufSize)
-        : m_pPoller(poller),
+        : m_nTotalRecv(0),
+          m_nTotalSend(0),
+          m_pPoller(poller),
           m_bufIn(*this, bufSize),
           m_bufOut(*this, bufSize)
 {
@@ -92,6 +94,7 @@ void hhou::HHFDEvent::OnRead()
         else
         {
             /// 拿出读到的数据
+            m_nTotalRecv += rSize;
             m_bufIn.Write(bufIn, (size_t)rSize);
             hhou::HHParse *parse = hhou::HHParserMgr::Instance().GetParser(handler);
             if (parse != nullptr)
@@ -100,7 +103,6 @@ void hhou::HHFDEvent::OnRead()
                 parse->ParseData(m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
                 if (parse->CanResponse())
                 {
-                    LOG(INFO) << "Res: " << bufOut;
                     m_bufOut.Write(bufOut, strlen(bufOut));
                     if (m_bufOut.GetStart() > 0)
                     {
@@ -158,6 +160,7 @@ void hhou::HHFDEvent::OnWrite()
         else
         {
             /// 剩余的data长度
+            m_nTotalSend += sLength;
             sLength = m_bufOut.GetLength() - sLength;
         }
 #endif
@@ -187,5 +190,4 @@ void hhou::HHFDEvent::OnClosed()
 #endif
     m_pPoller->UpdateConnNums(-1);
     closesocket(handler);
-    delete this;
 }

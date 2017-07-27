@@ -75,6 +75,26 @@ namespace hhou
          * */
         void OnTimeout();
 
+        /**
+         * 设置客户端的ip和port
+         */
+        void SetIpAndPort(ipaddr_t ip, port_t port)
+        {
+            m_remoteAddr = ip;
+            m_remotePort = port;
+        }
+
+        /**获取ip和端口*/
+        void GetIpAndPort(ipaddr_t &ip, port_t &port)
+        {
+            ip = m_remoteAddr;
+            port = m_remotePort;
+        }
+
+    public:
+        unsigned long m_nTotalRecv; /// 次socket接受的总字节数
+        unsigned long m_nTotalSend; /// 次socket发送的总字节数
+
     private:
         HHPoller *m_pPoller; /// poller对象
         time_t m_tCreate; /// 创建时间

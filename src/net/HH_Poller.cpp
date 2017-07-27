@@ -18,7 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 #include <vector>
-#include "HH_Common.h"
+#include "net/HH_FDEvent.h"
 #include "HH_Poller.h"
 #include "HH_Log.h"
 
@@ -60,13 +60,13 @@ void hhou::HHPoller::ChangeEvent(HHEventBase *event)
 
 void hhou::HHPoller::DelEvent(HHEventBase *event)
 {
+    m_mutex.Lock();
     event->eventInfo.status = Close;
     struct epoll_event ev;
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
     m_mHandlers.erase(event->m_tLast);
     event->m_tLast = 0;
-    m_mutex.Lock();
     m_mClosing.insert(make_pair(event->handler, event));
     m_mutex.Unlock();
 }
@@ -81,7 +81,8 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
         if (pSocket != NULL)
         {
             pSocket->OnClosed();
-            pSocket = NULL;
+            delete pSocket;
+            pSocket = nullptr;
         }
         iter = m_mClosing.erase(iter);
     }
@@ -116,6 +117,18 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
         {
             vEvents.push_back(pEvent);
         }
+    }
+
+    /// 打印客户端的流量信息
+    for (int n = 0; n < fds; n++)
+    {
+        ipaddr_t ip;
+        port_t port;
+        HHFDEvent *pEvent = static_cast<HHFDEvent *>(m_events[n].data.ptr);
+        pEvent->GetIpAndPort(ip, port);
+        LOG(INFO) << "IP: " << ip << ", port: " << port
+                  << ", recved: " << pEvent->m_nTotalRecv << ", sent: " << pEvent->m_nTotalSend;
+
     }
 }
 

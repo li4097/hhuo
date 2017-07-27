@@ -21,6 +21,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <vector>
 #include "HH_Common.h"
+#include "utils/HH_Condition.h"
+#include "utils/HH_MutexLockGuard.h"
 
 namespace hhou
 {
@@ -48,8 +50,8 @@ namespace hhou
         int m_bStatus; /// 线程状态(0---未启动，1---空闲，2---忙碌)
         int m_nThreadID; /// 线程的ID
         pthread_t m_thread; /// 线程
-        pthread_cond_t m_cond; /// 条件
-        pthread_mutex_t m_mutex; /// 锁
+        HHCond m_cond; /// 条件
+        HHMutex m_mutex; /// 锁
     };
 }
 

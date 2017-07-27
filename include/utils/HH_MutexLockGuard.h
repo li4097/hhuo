@@ -16,65 +16,44 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#ifndef HH_MUTEX_H
-#define HH_MUTEX_H
+#ifndef HH_MUTEXLOCKGUARD_H
+#define HH_MUTEXLOCKGUARD_H
 
-#include "HH_Common.h"
+#include "HH_Mutex.h"
 
 namespace hhou
 {
     /**
      * 互斥锁
      */
-    class HHMutex
+    class HHMutexLockGuard
     {
     public:
         /**
          * 禁用锁的复制
          */
-        HHMutex(const HHMutex &rhs) = delete;
-        HHMutex &operator=(const HHMutex &rhs) = delete;
+        HHMutexLockGuard(const HHMutexLockGuard &rhs) = delete;
+        HHMutexLockGuard &operator=(const HHMutexLockGuard &rhs) = delete;
 
         /**
          * 默认构造函数
          */
-        HHMutex()
+        HHMutexLockGuard(HHMutex &mutex) : m_mutex(mutex)
         {
-            pthread_mutex_init(&m_mutex, NULL);
+            m_mutex.Lock();
         }
 
         /**
          * 析构
          */
-        virtual ~HHMutex()
+        virtual ~HHMutexLockGuard()
         {
-            pthread_mutex_destroy(&m_mutex);
+            m_mutex.Unlock();
         }
-
-        /**
-         * 上锁
-         */
-        void Lock()
-        {
-            pthread_mutex_lock(&m_mutex);
-        }
-
-        /**
-         * 解锁
-         */
-        void Unlock()
-        {
-            pthread_mutex_unlock(&m_mutex);
-        }
-
-        /**
-         * 获取锁对象
-         */
-        pthread_mutex_t *GetMutexObj() { return &m_mutex; }
 
     private:
-        pthread_mutex_t m_mutex;  /// 锁的对象
+        HHMutex &m_mutex;  /// 锁的对象
     };
 }
 
-#endif // HH_MUTEX_H
+#endif // HH_MUTEXLOCKGUARD_H

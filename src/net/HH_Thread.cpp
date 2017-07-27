@@ -32,8 +32,6 @@ hhou::HHThread::HHThread(int nThreadID)
         LOG(ERROR) << "pthread_create errno: " << errno;
     }
     pthread_attr_destroy(&attr);
-    m_cond = PTHREAD_COND_INITIALIZER;
-    m_mutex = PTHREAD_MUTEX_INITIALIZER;
     m_bStatus = 1;
 }
 
@@ -41,8 +39,6 @@ hhou::HHThread::~HHThread()
 {
     m_bStatus = 0;
     pthread_join(m_thread, NULL);
-    pthread_mutex_destroy(&m_mutex);
-    pthread_cond_destroy(&m_cond);
 }
 
 void* hhou::HHThread::Run(void *pParm)
@@ -50,11 +46,11 @@ void* hhou::HHThread::Run(void *pParm)
     HHThread *pclThread = (HHThread *)pParm;
     while (pclThread->m_bStatus)
     {
-        pthread_mutex_lock(&pclThread->m_mutex); /// 先锁
+        pclThread->m_mutex.Lock();  /// 先锁
         if (pclThread->m_vTasks.size() <= 0)
         {
             pclThread->m_bStatus = 1; /// 空闲中
-            pthread_cond_wait(&pclThread->m_cond, &pclThread->m_mutex); /// 等待条件触发
+            pclThread->m_cond.Wait(pclThread->m_mutex); /// 等待条件触发
         }
         else
         {
@@ -67,15 +63,15 @@ void* hhou::HHThread::Run(void *pParm)
                 iter = pclThread->m_vTasks.erase(iter);
             }
         }
-        pthread_mutex_unlock(&pclThread->m_mutex);
+        pclThread->m_mutex.Unlock();
     }
     return pParm;
 }
 
 void hhou::HHThread::StartThread()
 {
-    pthread_mutex_lock(&m_mutex);
-    pthread_cond_signal(&m_cond);
-    pthread_mutex_unlock(&m_mutex);
+    m_mutex.Lock();
+    m_cond.Notify();
+    m_mutex.Unlock();
 }
 
