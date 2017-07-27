@@ -17,11 +17,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "HH_Parse.h"
-#ifdef BE_HTTP
-#include "HH_HttpRequest.h"
-#include "HH_HttpResponse.h"
-#else
-#endif
 
 ///////////////////////////////
 /// 库和功能代码分开
@@ -33,16 +28,15 @@ bool SetCallBack(CommitObject obj)
 }
 ///////////////////////////////
 
-int hhou::HHParse::ParseData(const char *buf, int nLen, char *strRet, int nSize)
+int hhou::HHParse::ParseData(const char *buf, int nLen, char *strRet)
 {
+    void *first = (void *)buf;
+    void *second = (void *)strRet;
 #ifdef BE_HTTP
-    hhou::HH_HttpRequest request;
     request.Parse(buf, nLen);
-    hhou::HH_HttpResponse response;
-    (*DealObject)((void *)&request, nLen, (void *)&response);
-    response.MakeRes(strRet, nSize);
-#else
-    (*DealObject)(buf, nLen, strRet);
+    first = (void *)&request;
+    second = (void *)&response;
 #endif
+    (*DealObject)(first, nLen, second);
     return 1;
 }

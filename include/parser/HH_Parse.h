@@ -19,6 +19,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define HH_PARSE_H
 
 #include "HH_Common.h"
+#ifdef BE_HTTP
+#include "HH_HttpRequest.h"
+#include "HH_HttpResponse.h"
+#else
+#endif
 
 ///////////////////////////////
 /// 库和功能代码分开
@@ -39,7 +44,13 @@ namespace hhou
         virtual ~HHParse() {}
 
         /**先进行必要信息的解析(错误数据返回-1，数据不完整返回0，接收完全返回>0)*/
-        virtual int ParseData(const char *buf, int nLen, char *strRet, int nSize);
+        virtual int ParseData(const char *buf, int nLen, char *strRet);
+
+    private:
+#ifdef BE_HTTP
+        hhou::HH_HttpRequest request;  /// 加入解析的状态标志
+        hhou::HH_HttpResponse response; /// 回包的对象
+#endif
     };
 }
 
