@@ -38,30 +38,40 @@ int hhou::HH_HttpRequest::Parse(const char *szHttpReq, int nDataLen)
     /// 判断body是否完整
     if (m_nParseWhere == HTTP_HEAD_DONE)
     {
-        ParseContent(szHttpReq, nDataLen);
+        /// 判断是否接受完全
+        string strContentLen;
+        GetField("Content-Length", strContentLen);
+        if (atoi(strContentLen.c_str()) > (int)m_strContent.size())
+        {
+            m_strContent.append(szHttpReq);
+        }
+        if (atoi(strContentLen.c_str()) <= (int)m_strContent.size())
+        {
+            m_nParseWhere = HTTP_BODY_DONE;
+            m_strContent.clear();
+        }
         return 1;
     }
 
     /// 解析第一行
-    int nLen;
+    int nLen = 0;
     if (!ParseFirstLine(szHttpReq, nLen))
         return -1;
 
     /// 解析域
     if (!ParseFields(szHttpReq + nLen + 2, nLen))
         return -1;
-    else
-        m_nParseWhere = HTTP_HEAD_DONE;
 
     /// 解析content（如果有的话）
-    if (!ParseContent(szHttpReq + nLen + 4, nLen))
-        return -1;
-    else
+    m_strContent.append(szHttpReq + nLen);
+
+    /// 判断是否接受完全
+    string strContentLen;
+    GetField("Content-Length", strContentLen);
+    if (atoi(strContentLen.c_str()) <= (int)m_strContent.size())
     {
-        string strContentLen;
-        GetParam("Content-Length", strContentLen);
-        if (atoi(strContentLen.c_str()) <= nLen)
-            m_nParseWhere = HTTP_BODY_DONE;
+        m_nParseWhere = HTTP_BODY_DONE;
+        m_strContent.clear();
     }
     return 1;
 }
@@ -134,12 +144,7 @@ bool hhou::HH_HttpRequest::ParseFields(const char *buf, int &nLen)
     {
         SplitKV(*it, m_mField, ":");
     }
+    m_nParseWhere = HTTP_HEAD_DONE;
     nLen += pos + 4;
-    return true;
-}
-
-bool hhou::HH_HttpRequest::ParseContent(const char *buf, int &nLen)
-{
-    m_strContent.append(string(buf + nLen));
     return true;
 }

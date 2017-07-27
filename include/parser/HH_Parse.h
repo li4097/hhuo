@@ -46,27 +46,39 @@ namespace hhou
         /**先进行必要信息的解析(错误数据返回-1，数据不完整返回0，接收完全返回>0)*/
         virtual int ParseData(char *buf, int nLen, char *strRet, int nSize);
 
-        /**获取解析器，没有的话就给个新的*/
-        HHParse *GetParser(const int fd);
-        bool RmParser(const int fd);
-
         /**获取req的状态*/
         bool CanResponse() { return request.AllDone(); }
 
-        /**单例模式*/
-        static HHParse &Instance()
-        {
-            static HHParse parser;
-            return parser;
-        }
-
     private:
-        map<int, HHParse *> m_mParsers;   /// fd对应的解析器
-
 #ifdef BE_HTTP
         hhou::HH_HttpRequest request;  /// 加入解析的状态标志
         hhou::HH_HttpResponse response; /// 回包的对象
 #endif
+    };
+
+    /**
+     * 解析器的管理器
+     */
+    class HHParserMgr
+    {
+    public:
+        /**默认构造函数*/
+        HHParserMgr() {}
+        virtual ~HHParserMgr() {}
+
+        /**获取解析器，没有的话就给个新的*/
+        hhou::HHParse *GetParser(const int fd);
+        bool RmParser(const int fd);
+
+        /**单例模式*/
+        static HHParserMgr &Instance()
+        {
+            static HHParserMgr parserMgr;
+            return parserMgr;
+        }
+
+    private:
+        map<int, HHParse *> m_mParsers;   /// fd对应的解析器
     };
 }
 

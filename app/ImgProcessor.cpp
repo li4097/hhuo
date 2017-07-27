@@ -11,7 +11,6 @@ bool ImgProcessor::Processor(void *Request, int nLen, void *Reponse)
     auto res = static_cast<hhou::HH_HttpResponse *>(Reponse);
 
     hhou::HttpMethodType type = req->GetMethodType();
-    LOG(INFO) << "Request type: " << type;
 
     /// 判断是get还是post
     if (type == hhou::HTTP_METHOD_GET)
@@ -24,11 +23,10 @@ bool ImgProcessor::Processor(void *Request, int nLen, void *Reponse)
 bool ImgProcessor::DoGet(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
 {
     string method = req->GetMethod();
-    LOG(INFO) << "Request method: " << method;
 
     /// get img url: xxxxx/getimg?id=xxxx&w=20&h=30
     string strRet = "OK";
-    res->AddHeader("nConnection", "Keep-Alive");
+    res->AddHeader("Connection", "Keep-Alive");
     if (method == "/")  /// test?
     {
         res->SetContent(strRet);
@@ -48,11 +46,10 @@ bool ImgProcessor::DoGet(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
 bool ImgProcessor::DoPost(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
 {
     string method = req->GetMethod();
-    LOG(INFO) << "Request method: " << method;
 
     /// opst img url: xxxxx/uploadimg?id=xxxx&w=20&h=30
     string strRet = "OK";
-    res->AddHeader("nConnection", "Keep-Alive");
+    res->AddHeader("Connection", "Keep-Alive");
     if (method == "/")  /// test?
     {
         res->SetContent(strRet);

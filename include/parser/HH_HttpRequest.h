@@ -95,9 +95,6 @@ namespace hhou
         /**解析域的键值对*/
         bool ParseFields(const char *buf, int &nLen);
 
-        /**解析content内容*/
-        bool ParseContent(const char *buf, int &nLen);
-
         /**检测是否合法*/
         bool CheckSecurity(const char *buf, int nLen) { return true; }
 

@@ -123,7 +123,7 @@ namespace hhou
 		 */
 		void Trim(string &s)
 		{
-			int index = 0;
+			size_t index = 0;
 			if (!s.empty())
 			{
 				while ((index = s.find(' ', index)) != string::npos)

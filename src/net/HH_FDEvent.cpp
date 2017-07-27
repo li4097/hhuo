@@ -37,11 +37,10 @@ hhou::HHFDEvent::~HHFDEvent()
 void hhou::HHFDEvent::OnRead()
 {
     size_t n = m_bufIn.Space();
-    char bufIn[TCP_BUFSIZE];
-
     ssize_t rSize = 0;
     do
     {
+        char bufIn[TCP_BUFSIZE];
 #ifdef HAVE_OPENSSL
         rSize = SSL_read(m_sSSL, bufIn, (n < TCP_BUFSIZE) ? n - 1 : TCP_BUFSIZE - 1);
         int nRet = SSL_get_error(m_sSSL, rSize);
@@ -78,30 +77,30 @@ void hhou::HHFDEvent::OnRead()
         }
 #else
         rSize = recv(handler, bufIn, (n < TCP_BUFSIZE) ? n - 1 : TCP_BUFSIZE - 1, MSG_DONTWAIT);
-        if (rSize <= 0)
+        if (rSize < 0)
         {
             if(errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR)
             {
                 /// 需要继续读data
                 continue;
             }
-            /// 对端已经关闭socket
-            OnClosed();
+        }
+        else if (rSize == 0)
+        {
+            OnClosing();
         }
         else
         {
             /// 拿出读到的数据
             m_bufIn.Write(bufIn, (size_t)rSize);
+            hhou::HHParse *parse = hhou::HHParserMgr::Instance().GetParser(handler);
+            if (parse != nullptr)
             {
-                /// TODO
-                /// 添加解析器的管理器
-                /// 因为client存在分段传输数据的情况
-                /// 多线程的情况下，解析管理器需要加锁机制
-                hhou::HHParse *parse = hhou::HHParse::Instance().GetParser(handler);
                 char bufOut[TCP_BUFSIZE];
-                parse->ParseData(m_bufIn.GetStart(), (int) m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
+                parse->ParseData(m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
                 if (parse->CanResponse())
                 {
+                    LOG(INFO) << "Res: " << bufOut;
                     m_bufOut.Write(bufOut, strlen(bufOut));
                     if (m_bufOut.GetStart() > 0)
                     {
@@ -112,10 +111,8 @@ void hhou::HHFDEvent::OnRead()
                 m_bufIn.Remove((size_t) rSize);
             }
         }
-        /// 判断是否还有后续的data
-        rSize = (rSize == TCP_BUFSIZE) ? 1 : 0;
 #endif
-    }while(rSize);
+    }while(rSize == TCP_BUFSIZE - 1);
 }
 
 void hhou::HHFDEvent::OnWrite()
@@ -156,8 +153,7 @@ void hhou::HHFDEvent::OnWrite()
                 /// 需要继续读data
                 continue;
             }
-            /// 关闭socket
-            OnClosed();
+            OnClosing();
         }
         else
         {
@@ -178,15 +174,18 @@ void hhou::HHFDEvent::OnTimeout()
     OnClosed();
 }
 
+void hhou::HHFDEvent::OnClosing()
+{
+    m_pPoller->DelEvent(this);
+}
+
 void hhou::HHFDEvent::OnClosed()
 {
-    eventInfo.status = Close;
-    m_pPoller->DelEvent(this);
-    m_pPoller->UpdateConnNums(-1);
 #ifdef HAVE_OPENSSL
     SSL_shutdown(m_sSSL);
     SSL_free(m_sSSL);
 #endif
+    m_pPoller->UpdateConnNums(-1);
     closesocket(handler);
     delete this;
 }

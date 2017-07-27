@@ -66,10 +66,27 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
     epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
     m_mHandlers.erase(event->m_tLast);
     event->m_tLast = 0;
+    m_mutex.Lock();
+    m_mClosing.insert(make_pair(event->handler, event));
+    m_mutex.Unlock();
 }
 
 void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
 {
+    /// close closing socket
+    m_mutex.Lock();
+    for (map<SOCKET, HHEventBase *>::iterator iter = m_mClosing.begin(); iter != m_mClosing.end();)
+    {
+        HHEventBase *pSocket = iter->second;
+        if (pSocket != NULL)
+        {
+            pSocket->OnClosed();
+            pSocket = NULL;
+        }
+        iter = m_mClosing.erase(iter);
+    }
+    m_mutex.Unlock();
+
     /// checkout timeout
     time_t expireTime = time(0) - HHConfig::Instance().ReadInt("connection", "timeout", 60);
     pair<multiMapItor, multiMapItor> pos = m_mHandlers.equal_range(expireTime);

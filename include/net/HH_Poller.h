@@ -23,6 +23,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <map>
 #include "HH_EventBase.h"
 #include "HH_Config.h"
+#include "HH_Mutex.h"
 
 namespace hhou
 {
@@ -68,7 +69,9 @@ namespace hhou
         SOCKET m_epollFd; ///poller的fd
         struct epoll_event m_events[Poller_MAX_EVENT]; ///关注事件的最大数量
         multimap<time_t, HHEventBase *> m_mHandlers; /// 保存的socket句柄(用于超时操作)
-        size_t m_connectionNum; /// 连接的总数
+        HHMutex m_mutex; /// 需要锁的保护
+        map<SOCKET, HHEventBase *> m_mClosing; /// 即将要关闭的socket（多线程下不可线程自己关闭连接）
+        int m_connectionNum; /// 连接的总数
     };
 }
 

@@ -50,6 +50,9 @@ namespace hhou
         /**close*/
         virtual void OnClosed() {}
 
+        /**closing*/
+        virtual void OnClosing() {}
+
         /**nonBlock?*/
         bool NonBlock(bool yes)
         {

@@ -39,25 +39,28 @@ int hhou::HHParse::ParseData(char *buf, int nLen, char *strRet, int nSize)
 #endif
     (*DealObject)(first, nLen, second);
     if (request.AllDone())
-        response.MakeRes(buf, nSize);
+        response.MakeRes(strRet, nSize);
     return 1;
 }
 
-HHParse *hhou::HHParse::GetParser(const int fd)
+hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)
 {
     /// 先去空闲的里面找，没有则new
+    HHParse *pParse;
     auto it = m_mParsers.find(fd);
-    if (it == m_mParsers.end())
-        return it->second;
+    if (it != m_mParsers.end())
+    {
+        pParse = it->second;
+    }
     else
     {
-        HHParse *pParse = new HHParse;
+        pParse = new hhou::HHParse;
         m_mParsers.insert(make_pair(fd, pParse));
-        return pParse;
     }
+    return pParse;
 }
 
-bool hhou::HHParse::RmParser(const int fd)
+bool hhou::HHParserMgr::RmParser(const int fd)
 {
     auto it = m_mParsers.find(fd);
     if (it != m_mParsers.end())
@@ -66,4 +69,5 @@ bool hhou::HHParse::RmParser(const int fd)
         it->second = NULL;
         m_mParsers.erase(it);
     }
+    return true;
 }

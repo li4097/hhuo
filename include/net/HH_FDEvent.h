@@ -66,6 +66,11 @@ namespace hhou
         void OnClosed();
 
         /**
+         * 重载将关闭事件
+         */
+        void OnClosing();
+
+        /**
          * 重载超时事件
          * */
         void OnTimeout();
