@@ -19,11 +19,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <vector>
 #include "net/HH_FDEvent.h"
+#include "utils/HH_MutexLockGuard.h"
+#include "net/HH_ThreadPool.h"
 #include "HH_Poller.h"
+#include "HH_Task.h"
 #include "HH_Log.h"
 
 hhou::HHPoller::HHPoller()
-        : m_connectionNum(0)
+        : m_connectionNum(0),
+          m_nStart(time(0))
 {
     m_epollFd = epoll_create(8096); // 新建epoll对象
     if (m_epollFd <= 0)
@@ -60,33 +64,33 @@ void hhou::HHPoller::ChangeEvent(HHEventBase *event)
 
 void hhou::HHPoller::DelEvent(HHEventBase *event)
 {
-    m_mutex.Lock();
     event->eventInfo.status = Close;
     struct epoll_event ev;
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
     m_mHandlers.erase(event->m_tLast);
     event->m_tLast = 0;
-    m_mClosing.insert(make_pair(event->handler, event));
-    m_mutex.Unlock();
+    {
+        HHMutexLockGuard lock(m_mutex);
+        m_mClosing.insert(make_pair(event->handler, event));
+    }
 }
 
 void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
 {
     /// close closing socket
-    m_mutex.Lock();
-    for (map<SOCKET, HHEventBase *>::iterator iter = m_mClosing.begin(); iter != m_mClosing.end();)
     {
-        HHEventBase *pSocket = iter->second;
-        if (pSocket != NULL)
+        HHMutexLockGuard lock(m_mutex);
+        for (map<SOCKET, HHEventBase *>::iterator iter = m_mClosing.begin(); iter != m_mClosing.end();)
         {
-            pSocket->OnClosed();
-            delete pSocket;
-            pSocket = nullptr;
+            HHEventBase *pSocket = iter->second;
+            if (pSocket != NULL)
+            {
+                pSocket->OnClosed();
+            }
+            iter = m_mClosing.erase(iter);
         }
-        iter = m_mClosing.erase(iter);
     }
-    m_mutex.Unlock();
 
     /// checkout timeout
     time_t expireTime = time(0) - HHConfig::Instance().ReadInt("connection", "timeout", 60);
@@ -129,6 +133,17 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
         LOG(INFO) << "IP: " << ip << ", port: " << port
                   << ", recved: " << pEvent->m_nTotalRecv << ", sent: " << pEvent->m_nTotalSend;
 
+    }
+
+    /// 打印线程里的剩余任务数
+    if ((time(0) - m_nStart) % 60 == 0)
+    {
+        for (auto it = HHThreadPool::Instance().m_threadPool.begin();
+             it != HHThreadPool::Instance().m_threadPool.end(); it++)
+        {
+            HHThread *th = it->second;
+            LOG(INFO) << "Thread ID: " << it->first << " task's num: " << th->m_vTasks.size();
+        }
     }
 }
 

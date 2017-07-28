@@ -43,10 +43,9 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
         {
             /// 准备任务，将作分发处理
             vector<HHTask> vDispatchTasks;
-            int nId = 0;
             for (vector<HHEventBase *>::iterator iter = vDoEvents.begin(); iter != vDoEvents.end(); iter++)
             {
-                HHTask tsk(nId++, static_cast<void *>(*iter));
+                HHTask tsk((*iter)->handler, static_cast<void *>(*iter));
                 vDispatchTasks.push_back(tsk);
             }
             HHThreadPool::Instance().Dispatch(vDispatchTasks);

@@ -29,32 +29,29 @@ hhou::HHThreadPool::HHThreadPool()
 
 bool hhou::HHThreadPool::Dispatch(const vector<HHTask> &vTasks)
 {
-    /// 统计下空闲的线程
-    set<int> idleThreadID;
-    for (int i = 0; i < m_nThreadNums; i++)
+    /**
+     * fd除余就是线程的ID号
+     * 相同的fd应当放到一个线程中执行
+     * 因为不同线程之间存在对象被删除的时候，其他线程正在访问
+     * */
+    vector<HHThread *> vecToStart;  /// 需要工作的线程
+    for (auto it = vTasks.begin(); it != vTasks.end(); it++)
     {
-        if (m_threadPool[i]->m_bStatus == 1)
-            idleThreadID.insert(m_threadPool[i]->m_nThreadID);
+        auto thread = m_threadPool.find((*it).m_nID);
+        if (thread != m_threadPool.end())
+        {
+            vecToStart.push_back(thread->second);
+            thread->second->m_vTasks.push_back((*it));
+        }
     }
 
-    /// 将任务平均分配至线程执行
-    size_t cout = 0;
-    size_t threadSize = vTasks.size() / idleThreadID.size();
-    for (set<int>::iterator j = idleThreadID.begin(); j != idleThreadID.end(); j++)
+    /// 开启线程（已经在运行的则跳过）
+    for (auto item = vecToStart.begin(); item != vecToStart.end(); item++)
     {
-        HHThread *pThread = m_threadPool[*j];
-        if (cout == idleThreadID.size())
+        if ((*item)->m_bStatus == 1)  /// 空闲中
         {
-            pThread->m_vTasks.assign(vTasks.begin() + cout * threadSize, vTasks.begin() + (cout + 1) * threadSize);
-            pThread->StartThread();  /// 开启线程处理
+            (*item)->StartThread();
         }
-        else
-        {
-            pThread->m_vTasks.assign(vTasks.begin() + cout * threadSize, vTasks.end());
-            pThread->StartThread();  /// 开启线程处理
-            break;
-        }
-        cout++; /// 下一个线程任务集的起始位置
     }
     return true;
 }

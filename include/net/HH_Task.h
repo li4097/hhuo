@@ -28,6 +28,7 @@ namespace hhou
     class HHTask
     {
         friend class HHThread;
+        friend class HHThreadPool;
         friend class HHEventLoop;
     public:
         /**

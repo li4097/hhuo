@@ -190,4 +190,5 @@ void hhou::HHFDEvent::OnClosed()
 #endif
     m_pPoller->UpdateConnNums(-1);
     closesocket(handler);
+    delete this;
 }

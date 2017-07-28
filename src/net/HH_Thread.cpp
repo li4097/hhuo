@@ -16,6 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
+#include "utils/HH_MutexLockGuard.h"
 #include "HH_Thread.h"
 #include "HH_Task.h"
 #include "HH_Log.h"
@@ -46,7 +47,7 @@ void* hhou::HHThread::Run(void *pParm)
     HHThread *pclThread = (HHThread *)pParm;
     while (pclThread->m_bStatus)
     {
-        pclThread->m_mutex.Lock();  /// 先锁
+        HHMutexLockGuard lock(pclThread->m_mutex);  /// 先锁
         if (pclThread->m_vTasks.size() <= 0)
         {
             pclThread->m_bStatus = 1; /// 空闲中
@@ -56,22 +57,20 @@ void* hhou::HHThread::Run(void *pParm)
         {
             pclThread->m_bStatus = 2; /// 忙碌中
             /// 开始处理task的任务
-            for (vector<HHTask>::iterator iter = pclThread->m_vTasks.begin();
-                 iter != pclThread->m_vTasks.end();)
+            while (!pclThread->m_vTasks.empty())
             {
-                (*iter).Excute();
-                iter = pclThread->m_vTasks.erase(iter);
+                HHTask it = pclThread->m_vTasks.front();
+                pclThread->m_vTasks.erase(pclThread->m_vTasks.begin());
+                it.Excute();
             }
         }
-        pclThread->m_mutex.Unlock();
     }
     return pParm;
 }
 
 void hhou::HHThread::StartThread()
 {
-    m_mutex.Lock();
+    HHMutexLockGuard lock(m_mutex);
     m_cond.Notify();
-    m_mutex.Unlock();
 }
 

@@ -57,7 +57,7 @@ namespace hhou
              return threadPool;
          }
 
-     private:
+     public:
          int m_nThreadNums; /// 线程的个数
          map<int, HHThread *> m_threadPool; /// 线程存放map中
      };
