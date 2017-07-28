@@ -1,0 +1,1 @@
+/usr/bin/c++    -O0 -Wall -g2 -ggdb -pthread -std=c++11   CMakeFiles/test4base64.dir/test4base64.cpp.o  -o ../bin/test4base64  -L/home/hhou/CLionProjects/hhuo/build/lib  -L/usr/local/lib -rdynamic ../lib/libhhutils.a -lglog -lz -Wl,-rpath,/home/hhou/CLionProjects/hhuo/build/lib:/usr/local/lib 
