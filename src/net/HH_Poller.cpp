@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <vector>
 #include "net/HH_FDEvent.h"
 #include "utils/HH_MutexLockGuard.h"
-#include "net/HH_ThreadPool.h"
+#include "utils/HH_ThreadPool.h"
 #include "HH_Poller.h"
 #include "HH_Task.h"
 #include "HH_Log.h"
@@ -137,11 +137,10 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
     /// 打印线程里的剩余任务数
     if ((time(nullptr) - m_nStart) % 120 == 0)
     {
-        for (auto it = HHThreadPool::Instance().m_threadPool.begin();
-             it != HHThreadPool::Instance().m_threadPool.end(); it++)
+        for (auto it : HHThreadPool::Instance().m_threadPool)
         {
-            HHThread *th = it->second;
-            LOG(INFO) << "Thread ID: " << it->first << " task's num: " << th->m_vTasks.size();
+            auto th = it.second;
+            LOG(INFO) << "Thread ID: " << it.first << " task's num: " << th->m_vTasks.size();
         }
     }
 }
