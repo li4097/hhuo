@@ -20,7 +20,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <vector>
 #include <map>
-#include "../HH_Common.h"
+#include <string>
+#include <algorithm>
+#include "HH_Common.h"
 
 namespace hhou
 {
@@ -50,6 +52,7 @@ namespace hhou
         if ((int)pos == -1)
             return;
         string strKey = s.substr(0, pos);
+        transform(strKey.begin(), strKey.end(), strKey.begin(), ::tolower);
         string strValue = s.substr(pos + 1);
         mKV.insert(make_pair(strKey.erase(0, strKey.find_first_not_of(" ")), strValue.erase(0, strValue.find_first_not_of(" "))));
     }

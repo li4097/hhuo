@@ -20,7 +20,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <map>
 #include <vector>
-#include "../HH_Common.h"
+#include <sstream>
+#include "HH_Common.h"
 
 namespace hhou
 {
@@ -70,7 +71,8 @@ namespace hhou
          */
         HttpMethodType &GetMethodType() { return m_nMethod;}
         string &GetMethod() { return m_strMethod;}
-        string &GetContent() { return m_strContent;}
+        void GetContent(string &content) { content = m_strContent.str();}
+        void ClearContent() {m_strContent.str("");}
         void GetParam(const string &strKey, string &strVal)
         {
             ReqIter it = m_mParam.find(strKey);
@@ -102,7 +104,7 @@ namespace hhou
         HttpParamType m_nParamType; /// 需要解析的参数
         HttpMethodType m_nMethod; /// 请求类型
         string m_strMethod;  /// 方法名（以此作路由）
-        string m_strContent;  /// content
+        ostringstream m_strContent;  /// content
         map<string, string> m_mField; /// 存放域值
         map<string, string> m_mParam; /// 存放参数
         HttpParse m_nParseWhere;  /// 解析到哪里了
