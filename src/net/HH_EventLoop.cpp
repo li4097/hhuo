@@ -39,11 +39,11 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
     {
         vector<HHEventBase *> vDoEvents;
         m_pPoller->ProcessEvents(timeout, vDoEvents);
-        if (vDoEvents.size() > 0)
+        if (!vDoEvents.empty())
         {
             /// 准备任务，将作分发处理
             vector<HHTask> vDispatchTasks;
-            for (vector<HHEventBase *>::iterator iter = vDoEvents.begin(); iter != vDoEvents.end(); iter++)
+            for (auto iter = vDoEvents.begin(); iter != vDoEvents.end(); iter++)
             {
                 HHTask tsk((*iter)->handler, static_cast<void *>(*iter));
                 vDispatchTasks.push_back(tsk);

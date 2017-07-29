@@ -27,7 +27,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 hhou::HHPoller::HHPoller()
         : m_connectionNum(0),
-          m_nStart(time(0))
+          m_nStart(time(nullptr))
 {
     m_epollFd = epoll_create(8096); // 新建epoll对象
     if (m_epollFd <= 0)
@@ -39,7 +39,7 @@ hhou::HHPoller::HHPoller()
 
 void hhou::HHPoller::AddEvent(HHEventBase *event)
 {
-    struct epoll_event ev;
+    struct epoll_event ev = {};
     ev.events = EPOLLIN | EPOLLET;
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_ADD, event->handler, &ev);
@@ -52,20 +52,20 @@ void hhou::HHPoller::AddEvent(HHEventBase *event)
 
 void hhou::HHPoller::ChangeEvent(HHEventBase *event)
 {
-    struct epoll_event ev;
+    struct epoll_event ev = {};
     if (event->eventInfo.status == In)
         ev.events = EPOLLIN | EPOLLET;
     else
         ev.events = EPOLLOUT | EPOLLET;
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_MOD, event->handler, &ev);
-    event->m_tLast = time(0);
+    event->m_tLast = time(nullptr);
 }
 
 void hhou::HHPoller::DelEvent(HHEventBase *event)
 {
     event->eventInfo.status = Close;
-    struct epoll_event ev;
+    struct epoll_event ev = {};
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
     m_mHandlers.erase(event->m_tLast);
@@ -81,10 +81,10 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
     /// close closing socket
     {
         HHMutexLockGuard lock(m_mutex);
-        for (map<SOCKET, HHEventBase *>::iterator iter = m_mClosing.begin(); iter != m_mClosing.end();)
+        for (auto iter = m_mClosing.begin(); iter != m_mClosing.end();)
         {
             HHEventBase *pSocket = iter->second;
-            if (pSocket != NULL)
+            if (pSocket != nullptr)
             {
                 pSocket->OnClosed();
             }
@@ -93,9 +93,9 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
     }
 
     /// checkout timeout
-    time_t expireTime = time(0) - HHConfig::Instance().ReadInt("connection", "timeout", 60);
+    time_t expireTime = time(nullptr) - HHConfig::Instance().ReadInt("connection", "timeout", 60);
     pair<multiMapItor, multiMapItor> pos = m_mHandlers.equal_range(expireTime);
-    for (multimap<time_t, HHEventBase *>::iterator it = pos.first; it != pos.second;)
+    for (auto it = pos.first; it != pos.second;)
     {
         HHEventBase *pEvent = it->second;
         m_mHandlers.erase(it++);
@@ -111,7 +111,7 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
     }
     for(int i = 0; i < fds; i++)
     {
-        HHEventBase *pEvent = static_cast<HHEventBase *>(m_events[i].data.ptr);
+        auto pEvent = static_cast<HHEventBase *>(m_events[i].data.ptr);
         if (pEvent->eventInfo.nType == 0)
         {
             /// accept立即响应
@@ -128,15 +128,14 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
     {
         ipaddr_t ip;
         port_t port;
-        HHFDEvent *pEvent = static_cast<HHFDEvent *>(m_events[n].data.ptr);
+        auto pEvent = static_cast<HHFDEvent *>(m_events[n].data.ptr);
         pEvent->GetIpAndPort(ip, port);
-        LOG(INFO) << "IP: " << ip << ", port: " << port
-                  << ", recved: " << pEvent->m_nTotalRecv << ", sent: " << pEvent->m_nTotalSend;
+        LOG(INFO) << "IP: " << ip << ", port: " << port << ", recved: " << pEvent->m_nTotalRecv << ", sent: " << pEvent->m_nTotalSend;
 
     }
 
     /// 打印线程里的剩余任务数
-    if ((time(0) - m_nStart) % 60 == 0)
+    if ((time(nullptr) - m_nStart) % 120 == 0)
     {
         for (auto it = HHThreadPool::Instance().m_threadPool.begin();
              it != HHThreadPool::Instance().m_threadPool.end(); it++)

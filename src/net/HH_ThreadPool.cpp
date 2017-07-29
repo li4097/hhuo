@@ -62,7 +62,7 @@ bool hhou::HHThreadPool::Init(int nThreadNum)
     m_nThreadNums = nThreadNum;
     for (int i = 0; i < m_nThreadNums; ++i)
     {
-        HHThread *pThread = new HHThread(i); /// 初始化线程
+        auto pThread = new HHThread(i); /// 初始化线程
         m_threadPool.insert(make_pair(i, pThread)); /// 添加到map中
     }
     return true;

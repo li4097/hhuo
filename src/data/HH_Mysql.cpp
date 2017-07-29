@@ -80,7 +80,7 @@ void hhou::HHMysql::SeekData(my_ulonglong offset)
 bool hhou::HHMysql::ExcuteSql(const string &str)
 {
     LOG(INFO) << "Sql: " << str;
-    if (mysql_query(&m_mysql, str.c_str()))
+    if (mysql_query(&m_mysql, str.c_str()) > 0)
     {
         LOG(ERROR) << "ExcuteSql sql: " << str << " fail: " << mysql_error(&m_mysql);
         return false;
@@ -107,7 +107,7 @@ bool hhou::HHMysql::SelectRecord(const string &strTableName, const string &strSe
 {
     ostringstream Ostr;
     Ostr << "select " << strSelect << " from " << strTableName;
-    if (strWhere.size() > 0)
+    if (!strWhere.empty())
         Ostr << " where " << strWhere;
     return ExcuteSql(Ostr.str());
 }
@@ -116,14 +116,14 @@ bool hhou::HHMysql::UpdateRecord(const string &strTableName, const string &strVa
 {
     ostringstream Ostr;
     Ostr << "update " << strTableName << " set " << strVal;
-    if (strWhere.size() > 0)
+    if (!strWhere.empty())
         Ostr << " where " << strWhere;
     return (bool)mysql_query(&m_mysql, Ostr.str().c_str());
 }
 
 bool hhou::HHMysql::IsEnd()
 {
-    return mysql_eof(m_pQuery);
+    return mysql_eof(m_pQuery) == '\0';
 }
 
 my_ulonglong hhou::HHMysql::GetRowNum()

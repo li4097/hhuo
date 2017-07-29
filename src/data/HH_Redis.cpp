@@ -20,22 +20,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_Log.h"
 
 hhou::HHRedis::HHRedis()
-        : m_pRedisConn(NULL),
-          m_pRedisReply(NULL)
+        : m_pRedisConn(nullptr),
+          m_pRedisReply(nullptr)
 {
 
 }
 
 hhou::HHRedis::~HHRedis()
 {
-    m_pRedisConn = NULL;
-    m_pRedisReply = NULL;
+    m_pRedisConn = nullptr;
+    m_pRedisReply = nullptr;
 }
 
 bool hhou::HHRedis::ConnectToRedis(const string &strHost, int nPort, struct timeval &timeout)
 {
     m_pRedisConn = redisConnectWithTimeout(strHost.c_str(), nPort, timeout);
-    if (m_pRedisConn == NULL && m_pRedisConn->errstr)
+    if (m_pRedisConn == nullptr && strlen(m_pRedisConn->errstr) > 0)
     {
         LOG(ERROR) << "Redis connect " << strHost << " port: " << nPort << " error: " << m_pRedisConn->errstr;
         return false;

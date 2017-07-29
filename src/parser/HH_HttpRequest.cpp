@@ -79,7 +79,7 @@ int hhou::HH_HttpRequest::Parse(const char *szHttpReq, int nDataLen)
 bool hhou::HH_HttpRequest::ParseFirstLine(const char *buf, int &nLen)
 {
     string strAll = string(buf);
-    int pos = strAll.find("\r\n");
+    unsigned long pos = strAll.find("\r\n");
     string strLine = strAll.substr(0, pos);   /// 获取到第一行数据
     if(strLine.size() < 10)		/// 第一行不能小于10个字符
         return false;
@@ -107,10 +107,10 @@ bool hhou::HH_HttpRequest::ParseParam(const char *buf)
     string strParam = string(buf);
     vector<string> vMethod;
     SplitString(strParam, vMethod, "?");
-    if (!vMethod.size())  /// 没带参数
+    if (vMethod.empty())  /// 没带参数
     {
-        int pos = strParam.find(" ");
-        if (pos != -1)
+        unsigned long pos = strParam.find(" ");
+        if (pos != string::npos)
             m_strMethod = strParam.substr(0, pos);
         return true;
     }
@@ -121,10 +121,10 @@ bool hhou::HH_HttpRequest::ParseParam(const char *buf)
     /// 去掉后面的“ HTTP”
     vector<string> vAct;
     SplitString(vMethod[1], vAct, " ");
-    if (!vAct.size())
+    if (vAct.empty())
         return true;
     SplitString(vAct[0], vParam, "&");
-    for (vector<string>::iterator it = vParam.begin(); it != vParam.end(); it++)
+    for (auto it = vParam.begin(); it != vParam.end(); it++)
     {
         SplitKV(*it, m_mParam, "=");
     }
@@ -134,13 +134,13 @@ bool hhou::HH_HttpRequest::ParseParam(const char *buf)
 bool hhou::HH_HttpRequest::ParseFields(const char *buf, int &nLen)
 {
     string strAll = string(buf);
-    int pos = strAll.find("\r\n\r\n");
-    if (pos == -1)
+    unsigned long pos = strAll.find("\r\n\r\n");
+    if (pos == string::npos)
         pos = strAll.size();
     string strField = strAll.substr(0, pos);  /// 所有的field的字符串
     vector<string> vField;
     SplitString(strField, vField, "\r\n");
-    for (vector<string>::iterator it = vField.begin(); it != vField.end(); it++)
+    for (auto it = vField.begin(); it != vField.end(); it++)
     {
         SplitKV(*it, m_mField, ":");
     }

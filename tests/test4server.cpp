@@ -4,11 +4,12 @@
 #include "../include/parser/HH_Parse.h"
 #include "../include/HH_Log.h"
 #include "../app/ImgProcessor.h"
+#include <memory>
 
 int DealData(void *first, int nFisrtLen, void *second)
 {
     ImgProcessor processor;
-    return processor.Processor(first, nFisrtLen, second);
+    return (int)processor.Processor(first, nFisrtLen, second);
 }
 
 class Test4Server : public hhou::HHServerBase
@@ -31,8 +32,8 @@ public:
 
     void Run()
     {
-        hhou::HHEventLoop *pLoop = new hhou::HHEventLoop();
-        hhou::HHListenEvent *pListen = new hhou::HHListenEvent(pLoop->Poller());
+        std::shared_ptr<hhou::HHEventLoop> pLoop(new hhou::HHEventLoop());
+        std::shared_ptr<hhou::HHListenEvent> pListen(new hhou::HHListenEvent(pLoop->Poller()));
         string strHost = hhou::HHConfig::Instance().ReadStr("listener", "host", "0.0.0.0");
         int port = hhou::HHConfig::Instance().ReadInt("listener", "port", 9999);
         if (pListen->Listen(strHost, port))
@@ -46,8 +47,7 @@ public:
 
 int main(int argc, char *argv[])
 {
-    hhou::HHLog log(hhou::HHConfig::Instance().ReadStr("log", "path", "../log"),
-                    hhou::HHConfig::Instance().ReadInt("log", "tostderror", 1));
+    hhou::HHLog log(hhou::HHConfig::Instance().ReadStr("log", "path", "../log"), hhou::HHConfig::Instance().ReadInt("log", "tostderror", 1) == 1);
     Test4Server test;
     test.Run();
     return 0;

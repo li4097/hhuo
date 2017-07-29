@@ -25,7 +25,7 @@ hhou::HHThread::HHThread(int nThreadID)
         : m_bStatus(0),
           m_nThreadID(nThreadID)
 {
-    pthread_attr_t attr;
+    pthread_attr_t attr = {};
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
     if (pthread_create(&m_thread, &attr, Run, this) == -1)
@@ -39,16 +39,16 @@ hhou::HHThread::HHThread(int nThreadID)
 hhou::HHThread::~HHThread()
 {
     m_bStatus = 0;
-    pthread_join(m_thread, NULL);
+    pthread_join(m_thread, nullptr);
 }
 
 void* hhou::HHThread::Run(void *pParm)
 {
-    HHThread *pclThread = (HHThread *)pParm;
-    while (pclThread->m_bStatus)
+    auto pclThread = (HHThread *)pParm;
+    while (pclThread->m_bStatus > 0)
     {
         HHMutexLockGuard lock(pclThread->m_mutex);  /// 先锁
-        if (pclThread->m_vTasks.size() <= 0)
+        if (pclThread->m_vTasks.empty())
         {
             pclThread->m_bStatus = 1; /// 空闲中
             pclThread->m_cond.Wait(pclThread->m_mutex); /// 等待条件触发
