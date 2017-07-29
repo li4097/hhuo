@@ -37,7 +37,8 @@ bool hhou::HHThreadPool::Dispatch(const vector<HHTask> &vTasks)
     vector<HHThread *> vecToStart;  /// 需要工作的线程
     for (auto it = vTasks.begin(); it != vTasks.end(); it++)
     {
-        auto thread = m_threadPool.find((*it).m_nID);
+        int nSeq = (*it).m_nID % m_nThreadNums;
+        auto thread = m_threadPool.find(nSeq);
         if (thread != m_threadPool.end())
         {
             vecToStart.push_back(thread->second);
