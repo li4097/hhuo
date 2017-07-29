@@ -40,15 +40,14 @@ int hhou::HH_HttpRequest::Parse(const char *szHttpReq, int nDataLen)
     {
         /// 判断是否接受完全
         string strContentLen;
-        GetField("Content-Length", strContentLen);
-        if (atoi(strContentLen.c_str()) > (int)m_strContent.size())
+        GetField("content-length", strContentLen);
+        if (atoi(strContentLen.c_str()) > (int)m_strContent.str().size())
         {
-            m_strContent.append(szHttpReq);
+            m_strContent << string(szHttpReq, 0, nDataLen);
         }
-        if (atoi(strContentLen.c_str()) <= (int)m_strContent.size())
+        if (atoi(strContentLen.c_str()) <= (int)m_strContent.str().size())
         {
             m_nParseWhere = HTTP_BODY_DONE;
-            m_strContent.clear();
         }
         return 1;
     }
@@ -63,15 +62,14 @@ int hhou::HH_HttpRequest::Parse(const char *szHttpReq, int nDataLen)
         return -1;
 
     /// 解析content（如果有的话）
-    m_strContent.append(szHttpReq + nLen);
+    m_strContent << szHttpReq + nLen;
 
     /// 判断是否接受完全
     string strContentLen;
-    GetField("Content-Length", strContentLen);
-    if (atoi(strContentLen.c_str()) <= (int)m_strContent.size())
+    GetField("content-length", strContentLen);
+    if (atoi(strContentLen.c_str()) <= (int)m_strContent.str().size())
     {
         m_nParseWhere = HTTP_BODY_DONE;
-        m_strContent.clear();
     }
     return 1;
 }

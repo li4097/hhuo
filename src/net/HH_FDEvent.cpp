@@ -42,7 +42,7 @@ void hhou::HHFDEvent::OnRead()
     ssize_t rSize = 0;
     do
     {
-        char bufIn[TCP_BUFSIZE];
+        char bufIn[TCP_BUFSIZE] = {0};
 #ifdef HAVE_OPENSSL
         rSize = SSL_read(m_sSSL, bufIn, (n < TCP_BUFSIZE) ? n - 1 : TCP_BUFSIZE - 1);
         int nRet = SSL_get_error(m_sSSL, rSize);
@@ -78,7 +78,7 @@ void hhou::HHFDEvent::OnRead()
             }
         }
 #else
-        rSize = recv(handler, bufIn, (n < TCP_BUFSIZE) ? n - 1 : TCP_BUFSIZE - 1, MSG_DONTWAIT);
+        rSize = recv(handler, bufIn, (n < TCP_BUFSIZE) ? n - 1 : TCP_BUFSIZE - 1, 0);
         if (rSize < 0)
         {
             if(errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR)
@@ -147,7 +147,7 @@ void hhou::HHFDEvent::OnWrite()
             }
         }
 #else
-        sLength = send(handler, m_bufOut.GetStart() + (m_bufOut.GetLength() - sLength), (size_t)sLength, MSG_DONTWAIT);
+        sLength = send(handler, m_bufOut.GetStart() + (m_bufOut.GetLength() - sLength), (size_t)sLength, 0);
         if (sLength <= 0)
         {
             if(errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR)

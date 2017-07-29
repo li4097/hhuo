@@ -34,12 +34,16 @@ int hhou::HHParse::ParseData(char *buf, int nLen, char *strRet, int nSize)
     void *second = (void *)strRet;
 #ifdef BE_HTTP
     request.Parse(buf, nLen);
-    first = (void *)&request;
-    second = (void *)&response;
-#endif
-    (*DealObject)(first, nLen, second);
     if (request.AllDone())
+    {
+        first = (void *)&request;
+        second = (void *)&response;
+        (*DealObject)(first, nLen, second);
         response.MakeRes(strRet, nSize);
+    }
+#else
+    (*DealObject)(first, nLen, second);
+#endif
     return 1;
 }
 
