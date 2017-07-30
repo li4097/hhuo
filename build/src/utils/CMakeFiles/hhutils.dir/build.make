@@ -57,9 +57,33 @@ include src/utils/CMakeFiles/hhutils.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/utils/CMakeFiles/hhutils.dir/flags.make
 
+src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o: src/utils/CMakeFiles/hhutils.dir/flags.make
+src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o: ../src/utils/HH_Thread.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o"
+	cd /home/hhou/CLionProjects/hhuo/build/src/utils && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hhutils.dir/HH_Thread.cpp.o -c /home/hhou/CLionProjects/hhuo/src/utils/HH_Thread.cpp
+
+src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hhutils.dir/HH_Thread.cpp.i"
+	cd /home/hhou/CLionProjects/hhuo/build/src/utils && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hhou/CLionProjects/hhuo/src/utils/HH_Thread.cpp > CMakeFiles/hhutils.dir/HH_Thread.cpp.i
+
+src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hhutils.dir/HH_Thread.cpp.s"
+	cd /home/hhou/CLionProjects/hhuo/build/src/utils && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hhou/CLionProjects/hhuo/src/utils/HH_Thread.cpp -o CMakeFiles/hhutils.dir/HH_Thread.cpp.s
+
+src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o.requires:
+
+.PHONY : src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o.requires
+
+src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o.provides: src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o.requires
+	$(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o.provides.build
+.PHONY : src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o.provides
+
+src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o.provides.build: src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o
+
+
 src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o: src/utils/CMakeFiles/hhutils.dir/flags.make
 src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o: ../src/utils/HH_CircularBuffer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o"
 	cd /home/hhou/CLionProjects/hhuo/build/src/utils && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o -c /home/hhou/CLionProjects/hhuo/src/utils/HH_CircularBuffer.cpp
 
 src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.i: cmake_force
@@ -81,17 +105,45 @@ src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o.provides: src/utils/CMa
 src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o.provides.build: src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o
 
 
+src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o: src/utils/CMakeFiles/hhutils.dir/flags.make
+src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o: ../src/utils/HH_ThreadPool.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o"
+	cd /home/hhou/CLionProjects/hhuo/build/src/utils && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o -c /home/hhou/CLionProjects/hhuo/src/utils/HH_ThreadPool.cpp
+
+src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.i"
+	cd /home/hhou/CLionProjects/hhuo/build/src/utils && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hhou/CLionProjects/hhuo/src/utils/HH_ThreadPool.cpp > CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.i
+
+src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.s"
+	cd /home/hhou/CLionProjects/hhuo/build/src/utils && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hhou/CLionProjects/hhuo/src/utils/HH_ThreadPool.cpp -o CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.s
+
+src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o.requires:
+
+.PHONY : src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o.requires
+
+src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o.provides: src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o.requires
+	$(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o.provides.build
+.PHONY : src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o.provides
+
+src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o.provides.build: src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o
+
+
 # Object files for target hhutils
 hhutils_OBJECTS = \
-"CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o"
+"CMakeFiles/hhutils.dir/HH_Thread.cpp.o" \
+"CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o" \
+"CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o"
 
 # External object files for target hhutils
 hhutils_EXTERNAL_OBJECTS =
 
+lib/libhhutils.a: src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o
 lib/libhhutils.a: src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o
+lib/libhhutils.a: src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o
 lib/libhhutils.a: src/utils/CMakeFiles/hhutils.dir/build.make
 lib/libhhutils.a: src/utils/CMakeFiles/hhutils.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ../../lib/libhhutils.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library ../../lib/libhhutils.a"
 	cd /home/hhou/CLionProjects/hhuo/build/src/utils && $(CMAKE_COMMAND) -P CMakeFiles/hhutils.dir/cmake_clean_target.cmake
 	cd /home/hhou/CLionProjects/hhuo/build/src/utils && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hhutils.dir/link.txt --verbose=$(VERBOSE)
 
@@ -100,7 +152,9 @@ src/utils/CMakeFiles/hhutils.dir/build: lib/libhhutils.a
 
 .PHONY : src/utils/CMakeFiles/hhutils.dir/build
 
+src/utils/CMakeFiles/hhutils.dir/requires: src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o.requires
 src/utils/CMakeFiles/hhutils.dir/requires: src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o.requires
+src/utils/CMakeFiles/hhutils.dir/requires: src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o.requires
 
 .PHONY : src/utils/CMakeFiles/hhutils.dir/requires
 

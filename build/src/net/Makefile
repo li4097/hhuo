@@ -233,60 +233,6 @@ HH_Poller.cpp.s:
 	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.s
 .PHONY : HH_Poller.cpp.s
 
-HH_Thread.o: HH_Thread.cpp.o
-
-.PHONY : HH_Thread.o
-
-# target to build an object file
-HH_Thread.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o
-.PHONY : HH_Thread.cpp.o
-
-HH_Thread.i: HH_Thread.cpp.i
-
-.PHONY : HH_Thread.i
-
-# target to preprocess a source file
-HH_Thread.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.i
-.PHONY : HH_Thread.cpp.i
-
-HH_Thread.s: HH_Thread.cpp.s
-
-.PHONY : HH_Thread.s
-
-# target to generate assembly for a file
-HH_Thread.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.s
-.PHONY : HH_Thread.cpp.s
-
-HH_ThreadPool.o: HH_ThreadPool.cpp.o
-
-.PHONY : HH_ThreadPool.o
-
-# target to build an object file
-HH_ThreadPool.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o
-.PHONY : HH_ThreadPool.cpp.o
-
-HH_ThreadPool.i: HH_ThreadPool.cpp.i
-
-.PHONY : HH_ThreadPool.i
-
-# target to preprocess a source file
-HH_ThreadPool.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.i
-.PHONY : HH_ThreadPool.cpp.i
-
-HH_ThreadPool.s: HH_ThreadPool.cpp.s
-
-.PHONY : HH_ThreadPool.s
-
-# target to generate assembly for a file
-HH_ThreadPool.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.s
-.PHONY : HH_ThreadPool.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -308,12 +254,6 @@ help:
 	@echo "... HH_Poller.o"
 	@echo "... HH_Poller.i"
 	@echo "... HH_Poller.s"
-	@echo "... HH_Thread.o"
-	@echo "... HH_Thread.i"
-	@echo "... HH_Thread.s"
-	@echo "... HH_ThreadPool.o"
-	@echo "... HH_ThreadPool.i"
-	@echo "... HH_ThreadPool.s"
 .PHONY : help
 
 

@@ -20,13 +20,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 namespace hhou
 {
-	class HHEventBase;
-
 	class HHCircularBuffer
 	{
 	public:
-		HHCircularBuffer(hhou::HHEventBase &owner, size_t size);
-
+		HHCircularBuffer(size_t size);
 		~HHCircularBuffer();
 
 		/** append l bytes from p to buffer */
@@ -59,16 +56,11 @@ namespace hhou
 		{ return m_count; }
 
 	private:
-		hhou::HHEventBase &GetOwner() const
-		{ return m_owner; }
-
-		HHCircularBuffer(const HHCircularBuffer &s) : m_owner(s.GetOwner())
-		{}
+		HHCircularBuffer(const HHCircularBuffer &s) {}
 
 		HHCircularBuffer &operator=(const HHCircularBuffer &)
 		{ return *this; }
 
-		hhou::HHEventBase &m_owner;
 		char *buf;
 		size_t m_max;
 		size_t m_q;

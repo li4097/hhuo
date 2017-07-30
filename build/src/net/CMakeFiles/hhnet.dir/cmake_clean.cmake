@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/hhnet.dir/HH_FDEvent.cpp.o"
-  "CMakeFiles/hhnet.dir/HH_Poller.cpp.o"
-  "CMakeFiles/hhnet.dir/HH_ListenEvent.cpp.o"
-  "CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o"
   "CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o"
-  "CMakeFiles/hhnet.dir/HH_Thread.cpp.o"
+  "CMakeFiles/hhnet.dir/HH_FDEvent.cpp.o"
+  "CMakeFiles/hhnet.dir/HH_ListenEvent.cpp.o"
+  "CMakeFiles/hhnet.dir/HH_Poller.cpp.o"
   "../../lib/libhhnet.pdb"
   "../../lib/libhhnet.a"
 )

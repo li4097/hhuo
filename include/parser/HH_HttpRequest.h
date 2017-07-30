@@ -71,7 +71,7 @@ namespace hhou
          */
         HttpMethodType &GetMethodType() { return m_nMethod;}
         string &GetMethod() { return m_strMethod;}
-        void GetContent(string &content) { content = m_strContent.str();}
+        void GetContent(string &content) { content = m_strContent.str(); }
         void ClearContent() {m_strContent.str("");}
         void GetParam(const string &strKey, string &strVal)
         {

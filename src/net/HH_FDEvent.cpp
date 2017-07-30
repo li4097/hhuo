@@ -25,8 +25,8 @@ hhou::HHFDEvent::HHFDEvent(HHPoller *poller, size_t bufSize)
         : m_nTotalRecv(0),
           m_nTotalSend(0),
           m_pPoller(poller),
-          m_bufIn(*this, bufSize),
-          m_bufOut(*this, bufSize)
+          m_bufIn(bufSize),
+          m_bufOut(bufSize)
 {
     LOG(INFO) << "create new fdEvent";
 }

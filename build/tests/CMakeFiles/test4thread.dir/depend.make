@@ -5,8 +5,8 @@ tests/CMakeFiles/test4thread.dir/test4thread.cpp.o: ../include/HH_Common.h
 tests/CMakeFiles/test4thread.dir/test4thread.cpp.o: ../include/utils/HH_Condition.h
 tests/CMakeFiles/test4thread.dir/test4thread.cpp.o: ../include/utils/HH_Mutex.h
 tests/CMakeFiles/test4thread.dir/test4thread.cpp.o: ../include/utils/HH_MutexLockGuard.h
+tests/CMakeFiles/test4thread.dir/test4thread.cpp.o: ../include/utils/HH_Thread.h
 tests/CMakeFiles/test4thread.dir/test4thread.cpp.o: ../include/HH_Log.h
-tests/CMakeFiles/test4thread.dir/test4thread.cpp.o: ../include/net/HH_Thread.h
 tests/CMakeFiles/test4thread.dir/test4thread.cpp.o: ../tests/test4thread.cpp
 tests/CMakeFiles/test4thread.dir/test4thread.cpp.o: /usr/local/include/glog/log_severity.h
 tests/CMakeFiles/test4thread.dir/test4thread.cpp.o: /usr/local/include/glog/logging.h

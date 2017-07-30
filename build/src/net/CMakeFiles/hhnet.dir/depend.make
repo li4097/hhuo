@@ -11,8 +11,8 @@ src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/net/HH
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/net/HH_ListenEvent.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/net/HH_Poller.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/net/HH_Task.h
-src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/net/HH_Thread.h
-src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/net/HH_ThreadPool.h
+src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/utils/HH_Thread.h
+src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/utils/HH_ThreadPool.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/HH_EventLoop.cpp
 
 src/net/CMakeFiles/hhnet.dir/HH_FDEvent.cpp.o: ../include/HH_Common.h
@@ -50,44 +50,16 @@ src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/HH_Config.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/HH_Log.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/net/HH_EventBase.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/net/HH_FDEvent.h
-src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/net/HH_Thread.h
-src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/net/HH_ThreadPool.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/utils/HH_CircularBuffer.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/utils/HH_Condition.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/utils/HH_Mutex.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/utils/HH_MutexLockGuard.h
+src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/utils/HH_Thread.h
+src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/utils/HH_ThreadPool.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../src/net/../../include/net/HH_Poller.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../src/net/../../include/net/HH_Task.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../src/net/HH_Poller.cpp
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: /usr/local/include/glog/log_severity.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: /usr/local/include/glog/logging.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: /usr/local/include/glog/vlog_is_on.h
-
-src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o: ../include/HH_Common.h
-src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o: ../include/HH_Log.h
-src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o: ../include/utils/HH_Condition.h
-src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o: ../include/utils/HH_Mutex.h
-src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o: ../include/utils/HH_MutexLockGuard.h
-src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o: ../src/net/../../include/net/HH_EventBase.h
-src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o: ../src/net/../../include/net/HH_Task.h
-src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o: ../src/net/../../include/net/HH_Thread.h
-src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o: ../src/net/HH_Thread.cpp
-src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o: /usr/local/include/glog/log_severity.h
-src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o: /usr/local/include/glog/logging.h
-src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o: /usr/local/include/glog/vlog_is_on.h
-
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: ../include/HH_Common.h
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: ../include/HH_Config.h
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: ../include/HH_Log.h
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: ../include/utils/HH_Condition.h
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: ../include/utils/HH_Mutex.h
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: ../include/utils/HH_MutexLockGuard.h
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: ../src/net/../../include/net/HH_EventBase.h
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: ../src/net/../../include/net/HH_Task.h
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: ../src/net/../../include/net/HH_Thread.h
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: ../src/net/../../include/net/HH_ThreadPool.h
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: ../src/net/HH_ThreadPool.cpp
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: /usr/local/include/glog/log_severity.h
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: /usr/local/include/glog/logging.h
-src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o: /usr/local/include/glog/vlog_is_on.h
 

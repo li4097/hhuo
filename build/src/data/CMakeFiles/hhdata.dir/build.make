@@ -57,9 +57,33 @@ include src/data/CMakeFiles/hhdata.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/data/CMakeFiles/hhdata.dir/flags.make
 
+src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o: src/data/CMakeFiles/hhdata.dir/flags.make
+src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o: ../src/data/HH_Mysql.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o"
+	cd /home/hhou/CLionProjects/hhuo/build/src/data && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hhdata.dir/HH_Mysql.cpp.o -c /home/hhou/CLionProjects/hhuo/src/data/HH_Mysql.cpp
+
+src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hhdata.dir/HH_Mysql.cpp.i"
+	cd /home/hhou/CLionProjects/hhuo/build/src/data && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hhou/CLionProjects/hhuo/src/data/HH_Mysql.cpp > CMakeFiles/hhdata.dir/HH_Mysql.cpp.i
+
+src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hhdata.dir/HH_Mysql.cpp.s"
+	cd /home/hhou/CLionProjects/hhuo/build/src/data && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hhou/CLionProjects/hhuo/src/data/HH_Mysql.cpp -o CMakeFiles/hhdata.dir/HH_Mysql.cpp.s
+
+src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.requires:
+
+.PHONY : src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.requires
+
+src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.provides: src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.requires
+	$(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.provides.build
+.PHONY : src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.provides
+
+src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.provides.build: src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o
+
+
 src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o: src/data/CMakeFiles/hhdata.dir/flags.make
 src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o: ../src/data/HH_Redis.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o"
 	cd /home/hhou/CLionProjects/hhuo/build/src/data && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hhdata.dir/HH_Redis.cpp.o -c /home/hhou/CLionProjects/hhuo/src/data/HH_Redis.cpp
 
 src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.i: cmake_force
@@ -83,7 +107,7 @@ src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o.provides.build: src/data/CMakeFile
 
 src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o: src/data/CMakeFiles/hhdata.dir/flags.make
 src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o: ../src/data/HH_Json.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o"
 	cd /home/hhou/CLionProjects/hhuo/build/src/data && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hhdata.dir/HH_Json.cpp.o -c /home/hhou/CLionProjects/hhuo/src/data/HH_Json.cpp
 
 src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.i: cmake_force
@@ -105,42 +129,18 @@ src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o.provides: src/data/CMakeFiles/hhdat
 src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o.provides.build: src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o
 
 
-src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o: src/data/CMakeFiles/hhdata.dir/flags.make
-src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o: ../src/data/HH_Mysql.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o"
-	cd /home/hhou/CLionProjects/hhuo/build/src/data && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hhdata.dir/HH_Mysql.cpp.o -c /home/hhou/CLionProjects/hhuo/src/data/HH_Mysql.cpp
-
-src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hhdata.dir/HH_Mysql.cpp.i"
-	cd /home/hhou/CLionProjects/hhuo/build/src/data && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hhou/CLionProjects/hhuo/src/data/HH_Mysql.cpp > CMakeFiles/hhdata.dir/HH_Mysql.cpp.i
-
-src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hhdata.dir/HH_Mysql.cpp.s"
-	cd /home/hhou/CLionProjects/hhuo/build/src/data && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hhou/CLionProjects/hhuo/src/data/HH_Mysql.cpp -o CMakeFiles/hhdata.dir/HH_Mysql.cpp.s
-
-src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.requires:
-
-.PHONY : src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.requires
-
-src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.provides: src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.requires
-	$(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.provides.build
-.PHONY : src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.provides
-
-src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.provides.build: src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o
-
-
 # Object files for target hhdata
 hhdata_OBJECTS = \
+"CMakeFiles/hhdata.dir/HH_Mysql.cpp.o" \
 "CMakeFiles/hhdata.dir/HH_Redis.cpp.o" \
-"CMakeFiles/hhdata.dir/HH_Json.cpp.o" \
-"CMakeFiles/hhdata.dir/HH_Mysql.cpp.o"
+"CMakeFiles/hhdata.dir/HH_Json.cpp.o"
 
 # External object files for target hhdata
 hhdata_EXTERNAL_OBJECTS =
 
+lib/libhhdata.a: src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o
 lib/libhhdata.a: src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o
 lib/libhhdata.a: src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o
-lib/libhhdata.a: src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o
 lib/libhhdata.a: src/data/CMakeFiles/hhdata.dir/build.make
 lib/libhhdata.a: src/data/CMakeFiles/hhdata.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library ../../lib/libhhdata.a"
@@ -152,9 +152,9 @@ src/data/CMakeFiles/hhdata.dir/build: lib/libhhdata.a
 
 .PHONY : src/data/CMakeFiles/hhdata.dir/build
 
+src/data/CMakeFiles/hhdata.dir/requires: src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.requires
 src/data/CMakeFiles/hhdata.dir/requires: src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o.requires
 src/data/CMakeFiles/hhdata.dir/requires: src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o.requires
-src/data/CMakeFiles/hhdata.dir/requires: src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o.requires
 
 .PHONY : src/data/CMakeFiles/hhdata.dir/requires
 

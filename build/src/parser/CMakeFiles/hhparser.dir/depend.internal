@@ -5,7 +5,6 @@ src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o
  ../include/HH_Common.h
  ../include/HH_Log.h
  ../include/utils/HH_Split.h
- ../src/parser/../../include/HH_Common.h
  ../src/parser/../../include/parser/HH_HttpRequest.h
  /home/hhou/CLionProjects/hhuo/src/parser/HH_HttpRequest.cpp
  /usr/local/include/glog/log_severity.h
@@ -17,7 +16,6 @@ src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o
  /home/hhou/CLionProjects/hhuo/src/parser/HH_HttpResponse.cpp
 src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o
  ../include/HH_Common.h
- ../src/parser/../../include/HH_Common.h
  ../src/parser/../../include/parser/HH_HttpRequest.h
  ../src/parser/../../include/parser/HH_HttpResponse.h
  ../src/parser/../../include/parser/HH_Parse.h

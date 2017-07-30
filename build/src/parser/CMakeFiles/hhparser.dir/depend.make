@@ -4,7 +4,6 @@
 src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o: ../include/HH_Common.h
 src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o: ../include/HH_Log.h
 src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o: ../include/utils/HH_Split.h
-src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o: ../src/parser/../../include/HH_Common.h
 src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o: ../src/parser/../../include/parser/HH_HttpRequest.h
 src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o: ../src/parser/HH_HttpRequest.cpp
 src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o: /usr/local/include/glog/log_severity.h
@@ -16,7 +15,6 @@ src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o: ../src/parser/../../in
 src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o: ../src/parser/HH_HttpResponse.cpp
 
 src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../include/HH_Common.h
-src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../src/parser/../../include/HH_Common.h
 src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../src/parser/../../include/parser/HH_HttpRequest.h
 src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../src/parser/../../include/parser/HH_HttpResponse.h
 src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../src/parser/../../include/parser/HH_Parse.h

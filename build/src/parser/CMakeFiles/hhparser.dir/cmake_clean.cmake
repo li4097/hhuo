@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/hhparser.dir/HH_Parse.cpp.o"
-  "CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o"
   "CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o"
+  "CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o"
+  "CMakeFiles/hhparser.dir/HH_Parse.cpp.o"
   "../../lib/libhhparser.pdb"
   "../../lib/libhhparser.a"
 )

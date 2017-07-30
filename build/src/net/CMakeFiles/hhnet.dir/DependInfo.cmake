@@ -8,8 +8,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/hhou/CLionProjects/hhuo/src/net/HH_FDEvent.cpp" "/home/hhou/CLionProjects/hhuo/build/src/net/CMakeFiles/hhnet.dir/HH_FDEvent.cpp.o"
   "/home/hhou/CLionProjects/hhuo/src/net/HH_ListenEvent.cpp" "/home/hhou/CLionProjects/hhuo/build/src/net/CMakeFiles/hhnet.dir/HH_ListenEvent.cpp.o"
   "/home/hhou/CLionProjects/hhuo/src/net/HH_Poller.cpp" "/home/hhou/CLionProjects/hhuo/build/src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o"
-  "/home/hhou/CLionProjects/hhuo/src/net/HH_Thread.cpp" "/home/hhou/CLionProjects/hhuo/build/src/net/CMakeFiles/hhnet.dir/HH_Thread.cpp.o"
-  "/home/hhou/CLionProjects/hhuo/src/net/HH_ThreadPool.cpp" "/home/hhou/CLionProjects/hhuo/build/src/net/CMakeFiles/hhnet.dir/HH_ThreadPool.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

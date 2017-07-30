@@ -1,2 +1,2 @@
-/usr/bin/ar qc ../../lib/libhhparser.a  CMakeFiles/hhparser.dir/HH_Parse.cpp.o CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o
+/usr/bin/ar qc ../../lib/libhhparser.a  CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o CMakeFiles/hhparser.dir/HH_Parse.cpp.o
 /usr/bin/ranlib ../../lib/libhhparser.a

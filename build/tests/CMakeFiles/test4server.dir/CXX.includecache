@@ -183,8 +183,10 @@ map
 -
 vector
 -
-../HH_Common.h
-/home/hhou/CLionProjects/hhuo/include/HH_Common.h
+sstream
+-
+HH_Common.h
+/home/hhou/CLionProjects/hhuo/include/parser/HH_Common.h
 
 /home/hhou/CLionProjects/hhuo/include/parser/HH_HttpResponse.h
 map
@@ -215,6 +217,8 @@ HH_HttpResponse.h
 /home/hhou/CLionProjects/hhuo/include/HH_Log.h
 ../app/ImgProcessor.h
 /home/hhou/CLionProjects/hhuo/app/ImgProcessor.h
+memory
+-
 
 /usr/local/include/glog/log_severity.h
 

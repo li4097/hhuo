@@ -6,8 +6,8 @@ tests/CMakeFiles/test4thread.dir/test4thread.cpp.o
  ../include/utils/HH_Condition.h
  ../include/utils/HH_Mutex.h
  ../include/utils/HH_MutexLockGuard.h
+ ../include/utils/HH_Thread.h
  /home/hhou/CLionProjects/hhuo/include/HH_Log.h
- /home/hhou/CLionProjects/hhuo/include/net/HH_Thread.h
  /home/hhou/CLionProjects/hhuo/tests/test4thread.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
