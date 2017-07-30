@@ -178,7 +178,7 @@ namespace hhou
 
     public:
         /**单例模式*/
-        static HHConfig &Instance(const char *pName = "./cfg.ini")
+        static HHConfig &Instance(const char *pName = "../config/cfg.ini")
         {
             static HHConfig cfg(pName);
             return cfg;

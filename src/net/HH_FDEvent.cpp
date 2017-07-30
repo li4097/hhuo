@@ -46,35 +46,41 @@ void hhou::HHFDEvent::OnRead()
 #ifdef HAVE_OPENSSL
         rSize = SSL_read(m_sSSL, bufIn, (n < TCP_BUFSIZE) ? n - 1 : TCP_BUFSIZE - 1);
         int nRet = SSL_get_error(m_sSSL, rSize);
-        if (rSize <= 0)
+        if (rSize < 0)
         {
             if (nRet == SSL_ERROR_WANT_READ)
             {
                 /// 需要继续读data
                 continue;
             }
-            else
-            {
-                /// 对端已经关闭ssl
-                OnClosed();
-            }
+        }
+        else if (rSize == 0)
+        {
+            OnClosing();
         }
         else
         {
             if(nRet == SSL_ERROR_NONE)
             {
                 /// 拿出读到的数据
+                m_nTotalRecv += rSize;
                 m_bufIn.Write(bufIn, (size_t)rSize);
-                hhou::HHParse parse;
-                char bufOut[TCP_BUFSIZE];
-                parse.ParseData(m_bufIn.GetStart(), m_bufIn.GetLength(), bufOut);
-                m_bufOut.Write(bufOut, strlen(bufOut));
-                if (m_bufOut.GetStart() > 0)
+                hhou::HHParse *parse = hhou::HHParserMgr::Instance().GetParser(handler);
+                if (parse != nullptr)
                 {
-                    eventInfo.status = Out;
-                    m_pPoller->ChangeEvent(this);
+                    char bufOut[TCP_BUFSIZE];
+                    parse->ParseData(m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
+                    if (parse->CanResponse())
+                    {
+                        m_bufOut.Write(bufOut, strlen(bufOut));
+                        if (m_bufOut.GetStart() > 0)
+                        {
+                            eventInfo.status = Out;
+                            m_pPoller->ChangeEvent(this);
+                        }
+                    }
+                    m_bufIn.Remove((size_t) rSize);
                 }
-                m_bufIn.Remove((size_t)rSize);
             }
         }
 #else

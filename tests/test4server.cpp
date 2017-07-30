@@ -34,6 +34,12 @@ public:
     {
         std::shared_ptr<hhou::HHEventLoop> pLoop(new hhou::HHEventLoop());
         std::shared_ptr<hhou::HHListenEvent> pListen(new hhou::HHListenEvent(pLoop->Poller()));
+        string strCert, strKey;
+        strCert = hhou::HHConfig::Instance().ReadStr("ssl", "cert", "../certificate/cacert.pem");
+        strKey = hhou::HHConfig::Instance().ReadStr("ssl", "key", "../certificate/privkey.pem");
+        if (!pListen->Init(strCert, strKey))
+            return;
+
         string strHost = hhou::HHConfig::Instance().ReadStr("listener", "host", "0.0.0.0");
         int port = hhou::HHConfig::Instance().ReadInt("listener", "port", 9999);
         if (pListen->Listen(strHost, port))
@@ -43,7 +49,6 @@ public:
         pLoop->Loop(hhou::HHConfig::Instance().ReadInt("loop", "timeout", 600));
     }
 };
-
 
 int main(int argc, char *argv[])
 {

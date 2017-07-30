@@ -59,7 +59,6 @@ bool ImgProcessor::DoPost(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
         /// 上传图片的不设置参数
         string strContent;
         req->GetContent(strContent);
-
     }
     return true;
 }

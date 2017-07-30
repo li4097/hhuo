@@ -40,7 +40,7 @@ namespace hhou
         virtual ~HHListenEvent();
 
         /**初始化*/
-        bool Init();
+        bool Init(const string &strCert = "", const string &strKey = "");
 
         /**监听接口(包括bind的动作)*/
         bool Listen(const string &addr, const port_t &port, size_t listenFds = Poller_MAX_FD);
@@ -61,8 +61,6 @@ namespace hhou
 #ifdef HAVE_OPENSSL
         SSL_CTX *m_sCtx;
         BIO* m_errBio;
-        string m_strCert;
-        string m_strKey;
 #endif
     };
 }

@@ -26,15 +26,7 @@ hhou::HHListenEvent::HHListenEvent(HHPoller *poller)
         : m_pPoller(poller)
 {
     eventInfo.flags = HHFast;
-    if (Init())
-    {
-        LOG(INFO) << "Init ListenEvent";
-    }
-    else
-    {
-        LOG(ERROR) << "Init ListenEvent fail";
-        exit(1);
-    }
+    LOG(INFO) << "Init ListenEvent";
 }
 
 hhou::HHListenEvent::~HHListenEvent()
@@ -46,10 +38,16 @@ hhou::HHListenEvent::~HHListenEvent()
 #endif
 }
 
-bool hhou::HHListenEvent::Init()
+bool hhou::HHListenEvent::Init(const string &strCert, const string &strKey)
 {
     bool bRet = true;
 #ifdef HAVE_OPENSSL
+    if (strCert.empty() || strKey.empty())
+    {
+        LOG(ERROR) << "SSL certificate is empty";
+        return false;
+    }
+    LOG(INFO) << "SSL cert: " << strCert << " , key: " << strKey;
     SSL_load_error_strings(); /// 加载SSL错误信息
     if (!SSL_library_init()) /// 初始化ssl
     {
@@ -63,12 +61,12 @@ bool hhou::HHListenEvent::Init()
         bRet = false;
     }
     m_errBio = BIO_new_fd(2, BIO_NOCLOSE);
-    if (SSL_CTX_use_certificate_file(m_sCtx, m_strCert.c_str(), SSL_FILETYPE_PEM) < 0)
+    if (SSL_CTX_use_certificate_file(m_sCtx, strCert.c_str(), SSL_FILETYPE_PEM) < 0)
     {
         LOG(ERROR) << "SSL_CTX_use_certificate_file failed";
         bRet = false;
     }
-    if (SSL_CTX_use_PrivateKey_file(m_sCtx, m_strKey.c_str(), SSL_FILETYPE_PEM) < 0)
+    if (SSL_CTX_use_PrivateKey_file(m_sCtx, strKey.c_str(), SSL_FILETYPE_PEM) < 0)
     {
         LOG(ERROR) << "SSL_CTX_use_PrivateKey_file failed";
         bRet = false;
@@ -144,9 +142,10 @@ void hhou::HHListenEvent::OnConneting()
         /// 将连接用户的socket加入到SSL
         SSL_set_fd(pNew->m_sSSL, pNew->handler);
         /// 建立SSL连接
-        if (SSL_accept(pNew->m_sSSL) == -1)
+        int nRet = SSL_accept(pNew->m_sSSL);
+        if (nRet == -1)
         {
-            LOG(ERROR) << "Create ssl connection with " << pNew->handler << " fail";
+            LOG(ERROR) << "Create ssl connection with " << pNew->handler << " fail: " << SSL_get_error(pNew->m_sSSL, nRet);
         }
 #endif
         m_pPoller->AddEvent(pNew);
