@@ -141,11 +141,27 @@ void hhou::HHListenEvent::OnConneting()
         pNew->m_sSSL = SSL_new(m_sCtx);
         /// 将连接用户的socket加入到SSL
         SSL_set_fd(pNew->m_sSSL, pNew->handler);
+
         /// 建立SSL连接
-        int nRet = SSL_accept(pNew->m_sSSL);
-        if (nRet == -1)
+        while(true)
         {
-            LOG(ERROR) << "Create ssl connection with " << pNew->handler << " fail: " << SSL_get_error(pNew->m_sSSL, nRet);
+            if(SSL_accept(pNew->m_sSSL) != 1)
+            {
+                int nCode = -1;
+                int nRet = SSL_get_error(pNew->m_sSSL, nCode);
+                if (nRet == SSL_ERROR_WANT_READ)
+                {
+                    continue;
+                }
+                else
+                {
+                    LOG(ERROR) << "Create ssl connection with " << pNew->handler << " fail code: " << nCode;
+                }
+            }
+            else
+            {
+                break;
+            }
         }
 #endif
         m_pPoller->AddEvent(pNew);
