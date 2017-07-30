@@ -153,10 +153,8 @@ void hhou::HHListenEvent::OnConneting()
                 {
                     continue;
                 }
-                else
-                {
-                    LOG(ERROR) << "Create ssl connection with " << pNew->handler << " fail code: " << nCode;
-                }
+                LOG(ERROR) << "Create ssl connection with " << pNew->handler << " fail code: " << nCode;
+                break;
             }
             else
             {
