@@ -43,7 +43,7 @@ namespace hhou
         bool Init(const string &strCert = "", const string &strKey = "");
 
         /**监听接口(包括bind的动作)*/
-        bool Listen(const string &addr, const port_t &port, size_t listenFds = Poller_MAX_FD);
+        bool Listen(const string &addr, const port_t &port, int listenFds = Poller_MAX_FD);
 
         /**
          * 连接的处理

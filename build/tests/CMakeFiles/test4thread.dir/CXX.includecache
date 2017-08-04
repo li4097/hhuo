@@ -75,7 +75,7 @@ HH_Mutex.h
 ../include/utils/HH_Mutex.h
 
 ../include/utils/HH_Thread.h
-vector
+queue
 -
 HH_Common.h
 ../include/utils/HH_Common.h

@@ -97,11 +97,13 @@ HH_Common.h
 ../src/utils/../../include/net/HH_Task.h
 HH_EventBase.h
 ../src/utils/../../include/net/HH_EventBase.h
+HH_Log.h
+../src/utils/../../include/net/HH_Log.h
 
 ../src/utils/../../include/utils/HH_CircularBuffer.h
 
 ../src/utils/../../include/utils/HH_Thread.h
-vector
+queue
 -
 HH_Common.h
 ../src/utils/../../include/utils/HH_Common.h
@@ -139,14 +141,12 @@ HH_Log.h
 /home/hhou/CLionProjects/hhuo/src/utils/HH_Log.h
 
 /home/hhou/CLionProjects/hhuo/src/utils/HH_ThreadPool.cpp
-set
+queue
 -
 HH_Task.h
 /home/hhou/CLionProjects/hhuo/src/utils/HH_Task.h
 HH_ThreadPool.h
 /home/hhou/CLionProjects/hhuo/src/utils/HH_ThreadPool.h
-HH_Log.h
-/home/hhou/CLionProjects/hhuo/src/utils/HH_Log.h
 
 /usr/local/include/glog/log_severity.h
 

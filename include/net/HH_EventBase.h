@@ -29,6 +29,9 @@ namespace hhou
     class HHEventBase
     {
     public:
+        virtual ~HHEventBase() {}
+
+    public:
         /**读操作*/
         virtual void OnRead() {}
 
@@ -77,6 +80,7 @@ namespace hhou
         /**keepalive?*/
         bool KeepAlive(bool yes)
         {
+            eventInfo.once = !yes;
             int on = (yes? 1:0);
             if (setsockopt(handler, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) == -1)
                 return false;

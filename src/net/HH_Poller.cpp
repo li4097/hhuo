@@ -43,11 +43,7 @@ void hhou::HHPoller::AddEvent(HHEventBase *event)
     ev.events = EPOLLIN | EPOLLET;
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_ADD, event->handler, &ev);
-    event->m_tLast = time(0);
-    if (event->eventInfo.nType != 0)  /// listen不加入监控
-    {
-        m_mHandlers.insert(make_pair(event->m_tLast, event));
-    }
+    event->m_tLast = time(nullptr);
 }
 
 void hhou::HHPoller::ChangeEvent(HHEventBase *event)
@@ -68,15 +64,14 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
     struct epoll_event ev = {};
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
-    m_mHandlers.erase(event->m_tLast);
-    event->m_tLast = 0;
     {
         HHMutexLockGuard lock(m_mutex);
+        event->m_tLast = 0;
         m_mClosing.insert(make_pair(event->handler, event));
     }
 }
 
-void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
+void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
 {
     /// close closing socket
     {
@@ -87,28 +82,15 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
             if (pSocket != nullptr)
             {
                 pSocket->OnClosed();
+                delete pSocket;
+                pSocket = nullptr;
             }
             iter = m_mClosing.erase(iter);
         }
     }
 
-    /// checkout timeout
-    time_t expireTime = time(nullptr) - HHConfig::Instance().ReadInt("connection", "timeout", 60);
-    pair<multiMapItor, multiMapItor> pos = m_mHandlers.equal_range(expireTime);
-    for (auto it = pos.first; it != pos.second;)
-    {
-        HHEventBase *pEvent = it->second;
-        m_mHandlers.erase(it++);
-        pEvent->OnTimeout(); /// 作超时处理
-    }
-
     /// wait for events to happen
     int fds = epoll_wait(m_epollFd, m_events, Poller_MAX_EVENT, timeout);
-    if (fds == -1)
-    {
-        LOG(ERROR) << "epoll_wait error, errno:" << errno;
-        return;
-    }
     for(int i = 0; i < fds; i++)
     {
         auto pEvent = static_cast<HHEventBase *>(m_events[i].data.ptr);
@@ -119,7 +101,7 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
         }
         else
         {
-            vEvents.push_back(pEvent);
+            qEvents.push(pEvent);
         }
     }
 
@@ -131,7 +113,6 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
         auto pEvent = static_cast<HHFDEvent *>(m_events[n].data.ptr);
         pEvent->GetIpAndPort(ip, port);
         LOG(INFO) << "IP: " << ip << ", port: " << port << ", recved: " << pEvent->m_nTotalRecv << ", sent: " << pEvent->m_nTotalSend;
-
     }
 
     /// 打印线程里的剩余任务数
@@ -140,7 +121,7 @@ void hhou::HHPoller::ProcessEvents(int timeout, vector<HHEventBase *> &vEvents)
         for (auto it : HHThreadPool::Instance().m_threadPool)
         {
             auto th = it.second;
-            LOG(INFO) << "Thread ID: " << it.first << " task's num: " << th->m_vTasks.size();
+            LOG(INFO) << "Thread ID: " << it.first << " task's num: " << th->m_qTasks.size();
         }
     }
 }

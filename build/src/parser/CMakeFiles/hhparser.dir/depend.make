@@ -15,8 +15,11 @@ src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o: ../src/parser/../../in
 src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o: ../src/parser/HH_HttpResponse.cpp
 
 src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../include/HH_Common.h
+src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../include/utils/HH_Mutex.h
 src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../src/parser/../../include/parser/HH_HttpRequest.h
 src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../src/parser/../../include/parser/HH_HttpResponse.h
 src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../src/parser/../../include/parser/HH_Parse.h
+src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../src/parser/../../include/utils/HH_Mutex.h
+src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../src/parser/../../include/utils/HH_MutexLockGuard.h
 src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o: ../src/parser/HH_Parse.cpp
 

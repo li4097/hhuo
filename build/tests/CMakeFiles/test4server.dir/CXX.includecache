@@ -165,7 +165,7 @@ HH_Config.h
 /home/hhou/CLionProjects/hhuo/include/net/HH_Config.h
 
 /home/hhou/CLionProjects/hhuo/include/net/HH_Poller.h
-vector
+queue
 -
 map
 -
@@ -199,6 +199,8 @@ HH_Common.h
 /home/hhou/CLionProjects/hhuo/include/parser/HH_Parse.h
 HH_Common.h
 /home/hhou/CLionProjects/hhuo/include/parser/HH_Common.h
+utils/HH_Mutex.h
+/home/hhou/CLionProjects/hhuo/include/parser/utils/HH_Mutex.h
 HH_HttpRequest.h
 /home/hhou/CLionProjects/hhuo/include/parser/HH_HttpRequest.h
 HH_HttpResponse.h

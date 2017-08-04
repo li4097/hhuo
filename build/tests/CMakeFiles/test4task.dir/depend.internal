@@ -4,6 +4,7 @@
 tests/CMakeFiles/test4task.dir/test4task.cpp.o
  ../include/HH_Common.h
  ../include/HH_Config.h
+ ../include/HH_Log.h
  ../include/utils/HH_Condition.h
  ../include/utils/HH_Mutex.h
  ../include/utils/HH_MutexLockGuard.h

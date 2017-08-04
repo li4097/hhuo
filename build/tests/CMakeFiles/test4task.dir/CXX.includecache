@@ -70,6 +70,12 @@ fstream
 map
 -
 
+../include/HH_Log.h
+glog/logging.h
+-
+HH_Common.h
+../include/HH_Common.h
+
 ../include/utils/HH_Condition.h
 HH_Common.h
 ../include/utils/HH_Common.h
@@ -85,7 +91,7 @@ HH_Mutex.h
 ../include/utils/HH_Mutex.h
 
 ../include/utils/HH_Thread.h
-vector
+queue
 -
 HH_Common.h
 ../include/utils/HH_Common.h
@@ -117,6 +123,8 @@ HH_Common.h
 /home/hhou/CLionProjects/hhuo/include/net/HH_Task.h
 HH_EventBase.h
 /home/hhou/CLionProjects/hhuo/include/net/HH_EventBase.h
+HH_Log.h
+/home/hhou/CLionProjects/hhuo/include/net/HH_Log.h
 
 /home/hhou/CLionProjects/hhuo/tests/test4task.cpp
 ../include/net/HH_EventBase.h

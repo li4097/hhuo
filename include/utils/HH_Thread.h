@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef HH_THREAD_H
 #define HH_THREAD_H
 
-#include <vector>
+#include <queue>
 #include "HH_Common.h"
 #include "utils/HH_Condition.h"
 #include "utils/HH_MutexLockGuard.h"
@@ -43,11 +43,17 @@ namespace hhou
         /**开启线程处理任务*/
         void StartThread();
 
+        /**push任务*/
+        void PushTask(HHTask &tsk);
+
+        /**pop任务*/
+        void PopTask(HHTask &tsk);
+
     public:
-        vector<HHTask> m_vTasks; /// 要处理的任务
+        queue<HHTask> m_qTasks; /// 要处理的任务
+        int m_bStatus; /// 线程状态(0---未启动，1---空闲，2---忙碌)
 
     private:
-        int m_bStatus; /// 线程状态(0---未启动，1---空闲，2---忙碌)
         int m_nThreadID; /// 线程的ID
         pthread_t m_thread; /// 线程
         HHCond m_cond; /// 条件

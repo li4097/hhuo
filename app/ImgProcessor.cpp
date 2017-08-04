@@ -26,7 +26,6 @@ bool ImgProcessor::DoGet(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
 
     /// get img url: xxxxx/getimg?id=xxxx&w=20&h=30
     string strRet = "OK";
-    res->AddHeader("Connection", "Keep-Alive");
     if (method == "/")  /// test?
     {
         res->SetContent(strRet);
@@ -49,7 +48,6 @@ bool ImgProcessor::DoPost(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
 
     /// opst img url: xxxxx/uploadimg
     string strRet = "OK";
-    res->AddHeader("Connection", "Keep-Alive");
     if (method == "/")  /// test?
     {
         res->SetContent(strRet);

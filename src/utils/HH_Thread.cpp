@@ -42,13 +42,24 @@ hhou::HHThread::~HHThread()
     pthread_join(m_thread, nullptr);
 }
 
+void hhou::HHThread::PushTask(HHTask &tsk)
+{
+    m_qTasks.push(tsk);
+}
+
+void hhou::HHThread::PopTask(HHTask &tsk)
+{
+    tsk = m_qTasks.front();
+    m_qTasks.pop();
+}
+
 void* hhou::HHThread::Run(void *pParm)
 {
     auto pclThread = (HHThread *)pParm;
     while (pclThread->m_bStatus > 0)
     {
         HHMutexLockGuard lock(pclThread->m_mutex);  /// 先锁
-        if (pclThread->m_vTasks.empty())
+        if (pclThread->m_qTasks.empty())
         {
             pclThread->m_bStatus = 1; /// 空闲中
             pclThread->m_cond.Wait(pclThread->m_mutex); /// 等待条件触发
@@ -56,12 +67,11 @@ void* hhou::HHThread::Run(void *pParm)
         else
         {
             pclThread->m_bStatus = 2; /// 忙碌中
-            /// 开始处理task的任务
-            while (!pclThread->m_vTasks.empty())
+            while (!pclThread->m_qTasks.empty())
             {
-                HHTask it = pclThread->m_vTasks.front();
-                pclThread->m_vTasks.erase(pclThread->m_vTasks.begin());
-                it.Excute();
+                HHTask tsk;
+                pclThread->PopTask(tsk);
+                tsk.Excute();
             }
         }
     }

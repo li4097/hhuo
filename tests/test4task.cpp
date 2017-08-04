@@ -22,13 +22,6 @@ class testShit : public hhou::HHEventBase
 bool bQuit = false;
 int main(int argc, char *argv[])
 {
-    hhou::HHEventBase *pEvent = new testShit;
-    pEvent->eventInfo.status = In;
-    hhou::HHTask task;
-    task.SetParm(0, static_cast<void *>(pEvent));
-    vector<hhou::HHTask> test;
-    test.push_back(task);
-    hhou::HHThreadPool::Instance().Dispatch(test);
-    while (!bQuit);
+
     return 0;
 }

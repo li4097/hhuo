@@ -81,7 +81,7 @@ bool hhou::HHListenEvent::Init(const string &strCert, const string &strKey)
     return bRet;
 }
 
-bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, size_t listenFds)
+bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, int listenFds)
 {
     struct sockaddr_in listenAddr;
     memset(&listenAddr, 0, sizeof(listenAddr));
@@ -134,7 +134,7 @@ void hhou::HHListenEvent::OnConneting()
         pNew->eventInfo.flags = HHQueue;
         pNew->eventInfo.nType = 1;
         pNew->NonBlock(true);
-        pNew->KeepAlive(true);
+        pNew->KeepAlive(false);
         pNew->SetIpAndPort(raddr.sin_addr.s_addr, raddr.sin_port);
 #ifdef HAVE_OPENSSL
         /// 基于ctx产生一个新的SSL

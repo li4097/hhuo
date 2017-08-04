@@ -180,6 +180,7 @@ struct HHEventInfo
     HHEventFlags flags;
     HHEventStatus status;
     int nType; /// 0--listenfd,1--commonfd
+    bool once; /// 是否长连接
 };
 
 #endif //HH_COMMON_H

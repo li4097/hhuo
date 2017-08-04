@@ -16,6 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
+#include <set>
 #include "HH_ListenEvent.h"
 #include "HH_ThreadPool.h"
 #include "HH_EventLoop.h"
@@ -37,18 +38,31 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
 {
     while (!m_bQuit)
     {
-        vector<HHEventBase *> vDoEvents;
+        queue<HHEventBase *> vDoEvents;
         m_pPoller->ProcessEvents(timeout, vDoEvents);
-        if (!vDoEvents.empty())
+        vector<HHThread *> vToStart;  /// 需要工作的线程
+        while (!vDoEvents.empty())
         {
             /// 准备任务，将作分发处理
-            vector<HHTask> vDispatchTasks;
-            for (auto iter : vDoEvents)
+            auto iter = vDoEvents.front();
+            HHTask tsk(iter->handler, static_cast<void *>(iter));
+            int nSeq = iter->handler % HHThreadPool::Instance().m_nThreadNums;
+            auto thread = HHThreadPool::Instance().m_threadPool.find(nSeq);
+            if (thread != HHThreadPool::Instance().m_threadPool.end())
             {
-                HHTask tsk(iter->handler, static_cast<void *>(iter));
-                vDispatchTasks.push_back(tsk);
+                vToStart.push_back(thread->second);
+                thread->second->PushTask(tsk);
             }
-            HHThreadPool::Instance().Dispatch(vDispatchTasks);
+            vDoEvents.pop();
+        }
+
+        /// 开启线程（已经在运行的则跳过）
+        for (auto item = vToStart.begin(); item != vToStart.end(); item++)
+        {
+            if ((*item)->m_bStatus == 1)  /// 空闲中
+            {
+                (*item)->StartThread();
+            }
         }
     }
     return true;

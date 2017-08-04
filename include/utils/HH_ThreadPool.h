@@ -44,11 +44,6 @@ namespace hhou
          bool Init(int nThreadNum = HHConfig::Instance().ReadInt("thread", "num", 10));
 
          /**
-          * dispatch任务到各个线程上
-          */
-         bool Dispatch(const vector<HHTask> &vTasks);
-
-         /**
           * 线程池的单例模式
           */
          static HHThreadPool &Instance()

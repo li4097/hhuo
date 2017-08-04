@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "HH_Parse.h"
+#include "HH_MutexLockGuard.h"
 
 ///////////////////////////////
 /// 库和功能代码分开
@@ -28,7 +29,7 @@ bool SetCallBack(CommitObject obj)
 }
 ///////////////////////////////
 
-int hhou::HHParse::ParseData(char *buf, int nLen, char *strRet, int nSize)
+int hhou::HHParse::ParseData(bool bOnce, char *buf, int nLen, char *strRet, int nSize)
 {
     void *first = (void *)buf;
     void *second = (void *)strRet;
@@ -39,6 +40,10 @@ int hhou::HHParse::ParseData(char *buf, int nLen, char *strRet, int nSize)
         first = (void *)&request;
         second = (void *)&response;
         (*DealObject)(first, nLen, second);
+        if (bOnce)
+            response.AddHeader("Connection", "Close");
+        else
+            response.AddHeader("Connection", "Keep-Alive");
         response.MakeRes(strRet, nSize);
     }
 #else
@@ -58,6 +63,7 @@ hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)
     }
     else
     {
+        HHMutexLockGuard lock(m_mutex);
         pParse = new hhou::HHParse;
         m_mParsers.insert(make_pair(fd, pParse));
     }

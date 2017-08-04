@@ -69,7 +69,7 @@ void hhou::HHFDEvent::OnRead()
                 if (parse != nullptr)
                 {
                     char bufOut[TCP_BUFSIZE];
-                    parse->ParseData(m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
+                    parse->ParseData(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
                     if (parse->CanResponse())
                     {
                         m_bufOut.Write(bufOut, strlen(bufOut));
@@ -106,7 +106,7 @@ void hhou::HHFDEvent::OnRead()
             if (parse != nullptr)
             {
                 char bufOut[TCP_BUFSIZE];
-                parse->ParseData(m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
+                parse->ParseData(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
                 if (parse->CanResponse())
                 {
                     m_bufOut.Write(bufOut, strlen(bufOut));
@@ -131,18 +131,17 @@ void hhou::HHFDEvent::OnWrite()
 #ifdef HAVE_OPENSSL
         sLength = SSL_write(m_sSSL, m_bufOut.GetStart() + (m_bufOut.GetLength() - sLength), (size_t)sLength);
         int nRet = SSL_get_error(m_sSSL, sLength);
-        if (sLength <= 0)
+        if (sLength < 0)
         {
             if (nRet == SSL_ERROR_WANT_WRITE)
             {
-                /// 需要继续读data
+                /// 需要继续写data
                 continue;
             }
-            else
-            {
-                /// 关闭socket
-                OnClosed();
-            }
+        }
+        else if (sLength == 0)
+        {
+            OnClosing();
         }
         else
         {
@@ -154,13 +153,16 @@ void hhou::HHFDEvent::OnWrite()
         }
 #else
         sLength = send(handler, m_bufOut.GetStart() + (m_bufOut.GetLength() - sLength), (size_t)sLength, 0);
-        if (sLength <= 0)
+        if (sLength < 0)
         {
             if(errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR)
             {
                 /// 需要继续读data
                 continue;
             }
+        }
+        else if (sLength == 0)
+        {
             OnClosing();
         }
         else
@@ -172,6 +174,12 @@ void hhou::HHFDEvent::OnWrite()
 #endif
     }while(sLength > 0);
 
+    /// 是否短连接
+    if (eventInfo.once)
+    {
+        OnClosing();
+    }
+
     /// 将data拷贝到发送缓冲区
     m_bufOut.Remove(m_bufOut.GetLength());
     eventInfo.status = In;
@@ -180,6 +188,7 @@ void hhou::HHFDEvent::OnWrite()
 
 void hhou::HHFDEvent::OnTimeout()
 {
+    OnClosing();
     OnClosed();
 }
 
@@ -196,5 +205,4 @@ void hhou::HHFDEvent::OnClosed()
 #endif
     m_pPoller->UpdateConnNums(-1);
     closesocket(handler);
-    delete this;
 }

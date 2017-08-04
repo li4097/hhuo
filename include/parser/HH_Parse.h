@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define HH_PARSE_H
 
 #include "HH_Common.h"
+#include "utils/HH_Mutex.h"
 #ifdef BE_HTTP
 #include "HH_HttpRequest.h"
 #include "HH_HttpResponse.h"
@@ -44,7 +45,7 @@ namespace hhou
         virtual ~HHParse() {}
 
         /**先进行必要信息的解析(错误数据返回-1，数据不完整返回0，接收完全返回>0)*/
-        virtual int ParseData(char *buf, int nLen, char *strRet, int nSize);
+        virtual int ParseData(bool bOnce, char *buf, int nLen, char *strRet, int nSize);
 
         /**获取req的状态*/
         bool CanResponse() { return request.AllDone(); }
@@ -78,6 +79,7 @@ namespace hhou
         }
 
     private:
+        HHMutex m_mutex; /// 锁
         map<int, HHParse *> m_mParsers;   /// fd对应的解析器
     };
 }

@@ -20,9 +20,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_CircularBuffer.h"
 
 hhou::HHCircularBuffer::HHCircularBuffer(size_t size)
-        : buf(new char[size]), m_max(size), m_q(0), m_b(0), m_t(0), m_count(0)
+        : m_max(size), m_q(0), m_b(0), m_t(0), m_count(0)
 {
-
+	buf = new char[size];
+	if (buf == nullptr)
+	{
+		LOG(INFO) << "New memory fail";
+	}
 }
 
 hhou::HHCircularBuffer::~HHCircularBuffer()

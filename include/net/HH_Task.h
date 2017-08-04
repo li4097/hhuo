@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define HH_TASK_H
 
 #include "HH_EventBase.h"
+#include "HH_Log.h"
 
 namespace hhou
 {
@@ -76,6 +77,11 @@ namespace hhou
          */
         int Excute() const
         {
+            if (!m_pData)
+            {
+                LOG(INFO) << "Fd: " << m_nID << " has been closed";
+                return 1;
+            }
             HHEventBase *pEvent = static_cast<HHEventBase *>(m_pData);
             if (pEvent->eventInfo.status == In)
             {
