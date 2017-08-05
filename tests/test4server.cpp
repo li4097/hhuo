@@ -46,7 +46,7 @@ public:
         {
             LOG(INFO) << "Server Listen Addr: " << strHost <<" , port: " << port;
         }
-        pLoop->Loop(hhou::HHConfig::Instance().ReadInt("loop", "timeout", 600));
+        pLoop->Loop(hhou::HHConfig::Instance().ReadInt("loop", "timeout", 60));
     }
 };
 

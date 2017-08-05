@@ -35,7 +35,6 @@ namespace hhou
      */
     class HHPoller
     {
-        typedef multimap<time_t, HHEventBase *>::iterator multiMapItor;
     public:
         HHPoller();
         virtual ~HHPoller() {}
@@ -68,8 +67,6 @@ namespace hhou
     private:
         SOCKET m_epollFd; ///poller的fd
         struct epoll_event m_events[Poller_MAX_EVENT]; ///关注事件的最大数量
-        HHMutex m_mutex; /// 需要锁的保护
-        map<SOCKET, HHEventBase *> m_mClosing; /// 即将要关闭的socket（多线程下不可线程自己关闭连接）
         int m_connectionNum; /// 连接的总数
         time_t m_nStart; /// 启动的开始时间
     };

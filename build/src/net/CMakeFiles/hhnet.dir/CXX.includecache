@@ -159,6 +159,8 @@ HH_Common.h
 ../src/net/../../include/net/HH_Common.h
 
 ../src/net/../../include/net/HH_EventLoop.h
+queue
+-
 HH_Poller.h
 ../src/net/../../include/net/HH_Poller.h
 
@@ -239,6 +241,8 @@ HH_Log.h
 /home/hhou/CLionProjects/hhuo/src/net/HH_Log.h
 
 /home/hhou/CLionProjects/hhuo/src/net/HH_ListenEvent.cpp
+memory
+-
 HH_Common.h
 /home/hhou/CLionProjects/hhuo/src/net/HH_Common.h
 HH_ListenEvent.h

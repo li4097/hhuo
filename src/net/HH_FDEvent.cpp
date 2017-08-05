@@ -56,7 +56,7 @@ void hhou::HHFDEvent::OnRead()
         }
         else if (rSize == 0)
         {
-            OnClosing();
+            OnClosed();
         }
         else
         {
@@ -95,7 +95,7 @@ void hhou::HHFDEvent::OnRead()
         }
         else if (rSize == 0)
         {
-            OnClosing();
+            OnClosed();
         }
         else
         {
@@ -141,7 +141,7 @@ void hhou::HHFDEvent::OnWrite()
         }
         else if (sLength == 0)
         {
-            OnClosing();
+            OnClosed();
         }
         else
         {
@@ -163,7 +163,7 @@ void hhou::HHFDEvent::OnWrite()
         }
         else if (sLength == 0)
         {
-            OnClosing();
+            OnClosed();
         }
         else
         {
@@ -174,12 +174,6 @@ void hhou::HHFDEvent::OnWrite()
 #endif
     }while(sLength > 0);
 
-    /// 是否短连接
-    if (eventInfo.once)
-    {
-        OnClosing();
-    }
-
     /// 将data拷贝到发送缓冲区
     m_bufOut.Remove(m_bufOut.GetLength());
     eventInfo.status = In;
@@ -188,13 +182,7 @@ void hhou::HHFDEvent::OnWrite()
 
 void hhou::HHFDEvent::OnTimeout()
 {
-    OnClosing();
     OnClosed();
-}
-
-void hhou::HHFDEvent::OnClosing()
-{
-    m_pPoller->DelEvent(this);
 }
 
 void hhou::HHFDEvent::OnClosed()
@@ -203,6 +191,10 @@ void hhou::HHFDEvent::OnClosed()
     SSL_shutdown(m_sSSL);
     SSL_free(m_sSSL);
 #endif
-    m_pPoller->UpdateConnNums(-1);
-    closesocket(handler);
+    if (handler != INVALID_SOCKET)
+    {
+        m_pPoller->DelEvent(this);
+        closesocket(handler);
+        delete this;
+    }
 }

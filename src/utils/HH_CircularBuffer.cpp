@@ -31,7 +31,11 @@ hhou::HHCircularBuffer::HHCircularBuffer(size_t size)
 
 hhou::HHCircularBuffer::~HHCircularBuffer()
 {
-	delete[] buf;
+	if (buf != nullptr)
+	{
+		delete[] buf;
+		buf = nullptr;
+	}
 }
 
 bool hhou::HHCircularBuffer::Write(const char *s, size_t l)

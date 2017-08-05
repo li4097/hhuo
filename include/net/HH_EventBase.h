@@ -29,7 +29,10 @@ namespace hhou
     class HHEventBase
     {
     public:
-        virtual ~HHEventBase() {}
+        virtual ~HHEventBase()
+        {
+            handler = INVALID_SOCKET;
+        }
 
     public:
         /**读操作*/

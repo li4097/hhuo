@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef HH_EVENTLOOP_H
 #define HH_EVENTLOOP_H
 
+#include <queue>
 #include "HH_Poller.h"
 
 namespace hhou
@@ -44,6 +45,7 @@ namespace hhou
     private:
         bool m_bQuit; /// loop的中止标志
         HHPoller *m_pPoller; /// poller对象
+        queue<HHEventBase *>  m_qEvents; ///触发的socket
     };
 }
 

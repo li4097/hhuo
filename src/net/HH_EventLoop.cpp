@@ -38,13 +38,12 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
 {
     while (!m_bQuit)
     {
-        queue<HHEventBase *> vDoEvents;
-        m_pPoller->ProcessEvents(timeout, vDoEvents);
+        m_pPoller->ProcessEvents(timeout, m_qEvents);
         vector<HHThread *> vToStart;  /// 需要工作的线程
-        while (!vDoEvents.empty())
+        while (!m_qEvents.empty())
         {
             /// 准备任务，将作分发处理
-            auto iter = vDoEvents.front();
+            auto iter = m_qEvents.front();
             HHTask tsk(iter->handler, static_cast<void *>(iter));
             int nSeq = iter->handler % HHThreadPool::Instance().m_nThreadNums;
             auto thread = HHThreadPool::Instance().m_threadPool.find(nSeq);
@@ -53,7 +52,7 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
                 vToStart.push_back(thread->second);
                 thread->second->PushTask(tsk);
             }
-            vDoEvents.pop();
+            m_qEvents.pop();
         }
 
         /// 开启线程（已经在运行的则跳过）

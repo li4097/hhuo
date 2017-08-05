@@ -42,7 +42,7 @@ namespace hhou
         /**
          * 禁用的构造函数
          */
-        //HHFDEvent() = delete;
+        HHFDEvent() = delete;
 
         /**
          * 默认只能引用构造
@@ -64,11 +64,6 @@ namespace hhou
          * 重载关闭事件
          * */
         void OnClosed();
-
-        /**
-         * 重载将关闭事件
-         */
-        void OnClosing();
 
         /**
          * 重载超时事件

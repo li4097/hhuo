@@ -16,6 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
+#include <memory>
 #include "HH_Common.h"
 #include "HH_ListenEvent.h"
 #include "HH_Poller.h"
@@ -134,7 +135,7 @@ void hhou::HHListenEvent::OnConneting()
         pNew->eventInfo.flags = HHQueue;
         pNew->eventInfo.nType = 1;
         pNew->NonBlock(true);
-        pNew->KeepAlive(false);
+        pNew->KeepAlive(true);
         pNew->SetIpAndPort(raddr.sin_addr.s_addr, raddr.sin_port);
 #ifdef HAVE_OPENSSL
         /// 基于ctx产生一个新的SSL
@@ -163,6 +164,5 @@ void hhou::HHListenEvent::OnConneting()
         }
 #endif
         m_pPoller->AddEvent(pNew);
-        m_pPoller->UpdateConnNums(1);
     }
 }

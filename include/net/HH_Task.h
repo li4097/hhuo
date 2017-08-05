@@ -70,18 +70,13 @@ namespace hhou
         /**
          * 带参数的构造函数
          */
-        HHTask(int nID, void *pVoid) : m_nID(nID), m_pData(pVoid) {}
+        HHTask(int &nID, void *pVoid) : m_nID(nID), m_pData(pVoid) {}
 
         /**
          * 执行任务
          */
         int Excute() const
         {
-            if (!m_pData)
-            {
-                LOG(INFO) << "Fd: " << m_nID << " has been closed";
-                return 1;
-            }
             HHEventBase *pEvent = static_cast<HHEventBase *>(m_pData);
             if (pEvent->eventInfo.status == In)
             {

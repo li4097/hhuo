@@ -16,10 +16,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-
 #include <vector>
 #include "net/HH_FDEvent.h"
-#include "utils/HH_MutexLockGuard.h"
 #include "utils/HH_ThreadPool.h"
 #include "HH_Poller.h"
 #include "HH_Task.h"
@@ -44,6 +42,7 @@ void hhou::HHPoller::AddEvent(HHEventBase *event)
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_ADD, event->handler, &ev);
     event->m_tLast = time(nullptr);
+    UpdateConnNums(1);
 }
 
 void hhou::HHPoller::ChangeEvent(HHEventBase *event)
@@ -64,31 +63,11 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
     struct epoll_event ev = {};
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
-    {
-        HHMutexLockGuard lock(m_mutex);
-        event->m_tLast = 0;
-        m_mClosing.insert(make_pair(event->handler, event));
-    }
+    UpdateConnNums(-1);
 }
 
 void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
 {
-    /// close closing socket
-    {
-        HHMutexLockGuard lock(m_mutex);
-        for (auto iter = m_mClosing.begin(); iter != m_mClosing.end();)
-        {
-            HHEventBase *pSocket = iter->second;
-            if (pSocket != nullptr)
-            {
-                pSocket->OnClosed();
-                delete pSocket;
-                pSocket = nullptr;
-            }
-            iter = m_mClosing.erase(iter);
-        }
-    }
-
     /// wait for events to happen
     int fds = epoll_wait(m_epollFd, m_events, Poller_MAX_EVENT, timeout);
     for(int i = 0; i < fds; i++)
@@ -102,26 +81,6 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
         else
         {
             qEvents.push(pEvent);
-        }
-    }
-
-    /// 打印客户端的流量信息
-    for (int n = 0; n < fds; n++)
-    {
-        ipaddr_t ip;
-        port_t port;
-        auto pEvent = static_cast<HHFDEvent *>(m_events[n].data.ptr);
-        pEvent->GetIpAndPort(ip, port);
-        LOG(INFO) << "IP: " << ip << ", port: " << port << ", recved: " << pEvent->m_nTotalRecv << ", sent: " << pEvent->m_nTotalSend;
-    }
-
-    /// 打印线程里的剩余任务数
-    if ((time(nullptr) - m_nStart) % 120 == 0)
-    {
-        for (auto it : HHThreadPool::Instance().m_threadPool)
-        {
-            auto th = it.second;
-            LOG(INFO) << "Thread ID: " << it.first << " task's num: " << th->m_qTasks.size();
         }
     }
 }
