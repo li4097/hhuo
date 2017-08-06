@@ -129,13 +129,17 @@ void hhou::HHListenEvent::OnConneting()
     while ((fd = accept4(handler, (struct sockaddr *) &raddr, &rsz, SOCK_CLOEXEC)) >= 0)
     {
         /// 有新的connection
-        HHFDEvent *pNew = new HHFDEvent(m_pPoller);
+        auto pNew = new HHFDEvent(m_pPoller);
         pNew->handler = (SOCKET)fd;
         pNew->eventInfo.status = In;
         pNew->eventInfo.flags = HHQueue;
         pNew->eventInfo.nType = 1;
         pNew->NonBlock(true);
+#ifdef SHORT_CONN
+        pNew->KeepAlive(false);
+#else
         pNew->KeepAlive(true);
+#endif
         pNew->SetIpAndPort(raddr.sin_addr.s_addr, raddr.sin_port);
 #ifdef HAVE_OPENSSL
         /// 基于ctx产生一个新的SSL

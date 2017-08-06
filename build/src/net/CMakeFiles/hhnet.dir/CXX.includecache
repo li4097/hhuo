@@ -181,6 +181,8 @@ HH_Config.h
 ../src/net/../../include/net/HH_Config.h
 
 ../src/net/../../include/net/HH_Poller.h
+memory
+-
 queue
 -
 map
@@ -259,8 +261,6 @@ vector
 -
 net/HH_FDEvent.h
 /home/hhou/CLionProjects/hhuo/src/net/net/HH_FDEvent.h
-utils/HH_MutexLockGuard.h
-/home/hhou/CLionProjects/hhuo/src/net/utils/HH_MutexLockGuard.h
 utils/HH_ThreadPool.h
 /home/hhou/CLionProjects/hhuo/src/net/utils/HH_ThreadPool.h
 HH_Poller.h

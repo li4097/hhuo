@@ -29,12 +29,6 @@ namespace hhou
     class HHEventBase
     {
     public:
-        virtual ~HHEventBase()
-        {
-            handler = INVALID_SOCKET;
-        }
-
-    public:
         /**读操作*/
         virtual void OnRead() {}
 

@@ -40,6 +40,13 @@ IF(HTTPSERVER)
     ADD_DEFINITIONS(-DBE_HTTP)
 ENDIF()
 
+# connection option
+OPTION(SHORTCONN "short connection?" OFF)
+IF(SHORTCONN)
+    MESSAGE(STATUS "Short Connection")
+    ADD_DEFINITIONS(-DSHORT_CONN)
+ENDIF()
+
 # add subdirs
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(tests)

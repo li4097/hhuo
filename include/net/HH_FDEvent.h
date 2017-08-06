@@ -61,6 +61,11 @@ namespace hhou
         void OnWrite();
 
         /**
+         * 正在关闭的
+         */
+        void OnClosing();
+
+        /**
          * 重载关闭事件
          * */
         void OnClosed();

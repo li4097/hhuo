@@ -70,7 +70,7 @@ namespace hhou
         /**
          * 带参数的构造函数
          */
-        HHTask(int &nID, void *pVoid) : m_nID(nID), m_pData(pVoid) {}
+        HHTask(int nID, void *pVoid) : m_nID(nID), m_pData(pVoid) {}
 
         /**
          * 执行任务
@@ -88,7 +88,8 @@ namespace hhou
             }
             else
             {
-                pEvent->OnClosed();
+                /// 将要关闭的socket
+                return -1;
             }
             return 0;
         }
