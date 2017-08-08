@@ -46,16 +46,13 @@ void hhou::HHFDEvent::OnRead()
 #ifdef HAVE_OPENSSL
         rSize = SSL_read(m_sSSL, bufIn, (n < TCP_BUFSIZE) ? n - 1 : TCP_BUFSIZE - 1);
         int nRet = SSL_get_error(m_sSSL, rSize);
-        if (rSize < 0)
+        if (rSize <= 0)
         {
             if (nRet == SSL_ERROR_WANT_READ)
             {
                 /// 需要继续读data
                 continue;
             }
-        }
-        else if (rSize == 0)
-        {
             OnClosed();
         }
         else
@@ -85,16 +82,13 @@ void hhou::HHFDEvent::OnRead()
         }
 #else
         rSize = recv(handler, bufIn, (n < TCP_BUFSIZE) ? n - 1 : TCP_BUFSIZE - 1, 0);
-        if (rSize < 0)
+        if (rSize <= 0)
         {
             if(errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR)
             {
                 /// 需要继续读data
                 continue;
             }
-        }
-        else if (rSize == 0)
-        {
             OnClosed();
         }
         else
@@ -131,16 +125,13 @@ void hhou::HHFDEvent::OnWrite()
 #ifdef HAVE_OPENSSL
         sLength = SSL_write(m_sSSL, m_bufOut.GetStart() + (m_bufOut.GetLength() - sLength), (size_t)sLength);
         int nRet = SSL_get_error(m_sSSL, sLength);
-        if (sLength < 0)
+        if (sLength <= 0)
         {
             if (nRet == SSL_ERROR_WANT_WRITE)
             {
                 /// 需要继续写data
                 continue;
             }
-        }
-        else if (sLength == 0)
-        {
             OnClosed();
         }
         else
@@ -153,16 +144,13 @@ void hhou::HHFDEvent::OnWrite()
         }
 #else
         sLength = send(handler, m_bufOut.GetStart() + (m_bufOut.GetLength() - sLength), (size_t)sLength, 0);
-        if (sLength < 0)
+        if (sLength <= 0)
         {
             if(errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR)
             {
                 /// 需要继续读data
                 continue;
             }
-        }
-        else if (sLength == 0)
-        {
             OnClosed();
         }
         else
