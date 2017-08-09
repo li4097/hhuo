@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/hhdata.dir/HH_Json.cpp.o"
   "CMakeFiles/hhdata.dir/HH_Mysql.cpp.o"
   "CMakeFiles/hhdata.dir/HH_Redis.cpp.o"
-  "CMakeFiles/hhdata.dir/HH_Json.cpp.o"
   "../../lib/libhhdata.pdb"
   "../../lib/libhhdata.a"
 )

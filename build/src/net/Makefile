@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hhou/CLionProjects/hhuo
+CMAKE_SOURCE_DIR = /mnt/hgfs/CPP/hhuo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hhou/CLionProjects/hhuo/build
+CMAKE_BINARY_DIR = /mnt/hgfs/CPP/hhuo/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles /home/hhou/CLionProjects/hhuo/build/src/net/CMakeFiles/progress.marks
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/net/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles /mnt/hgfs/CPP/hhuo/build/src/net/CMakeFiles/progress.marks
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/net/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/net/clean
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/net/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/net/preinstall
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/net/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/net/preinstall
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/net/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/net/CMakeFiles/hhnet.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/net/CMakeFiles/hhnet.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/net/CMakeFiles/hhnet.dir/rule
 .PHONY : src/net/CMakeFiles/hhnet.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ hhnet: src/net/CMakeFiles/hhnet.dir/rule
 
 # fast build rule for target.
 hhnet/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/build
 .PHONY : hhnet/fast
 
 HH_EventLoop.o: HH_EventLoop.cpp.o
@@ -131,7 +131,7 @@ HH_EventLoop.o: HH_EventLoop.cpp.o
 
 # target to build an object file
 HH_EventLoop.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o
 .PHONY : HH_EventLoop.cpp.o
 
 HH_EventLoop.i: HH_EventLoop.cpp.i
@@ -140,7 +140,7 @@ HH_EventLoop.i: HH_EventLoop.cpp.i
 
 # target to preprocess a source file
 HH_EventLoop.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.i
 .PHONY : HH_EventLoop.cpp.i
 
 HH_EventLoop.s: HH_EventLoop.cpp.s
@@ -149,7 +149,7 @@ HH_EventLoop.s: HH_EventLoop.cpp.s
 
 # target to generate assembly for a file
 HH_EventLoop.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.s
 .PHONY : HH_EventLoop.cpp.s
 
 HH_FDEvent.o: HH_FDEvent.cpp.o
@@ -158,7 +158,7 @@ HH_FDEvent.o: HH_FDEvent.cpp.o
 
 # target to build an object file
 HH_FDEvent.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_FDEvent.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_FDEvent.cpp.o
 .PHONY : HH_FDEvent.cpp.o
 
 HH_FDEvent.i: HH_FDEvent.cpp.i
@@ -167,7 +167,7 @@ HH_FDEvent.i: HH_FDEvent.cpp.i
 
 # target to preprocess a source file
 HH_FDEvent.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_FDEvent.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_FDEvent.cpp.i
 .PHONY : HH_FDEvent.cpp.i
 
 HH_FDEvent.s: HH_FDEvent.cpp.s
@@ -176,7 +176,7 @@ HH_FDEvent.s: HH_FDEvent.cpp.s
 
 # target to generate assembly for a file
 HH_FDEvent.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_FDEvent.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_FDEvent.cpp.s
 .PHONY : HH_FDEvent.cpp.s
 
 HH_ListenEvent.o: HH_ListenEvent.cpp.o
@@ -185,7 +185,7 @@ HH_ListenEvent.o: HH_ListenEvent.cpp.o
 
 # target to build an object file
 HH_ListenEvent.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_ListenEvent.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_ListenEvent.cpp.o
 .PHONY : HH_ListenEvent.cpp.o
 
 HH_ListenEvent.i: HH_ListenEvent.cpp.i
@@ -194,7 +194,7 @@ HH_ListenEvent.i: HH_ListenEvent.cpp.i
 
 # target to preprocess a source file
 HH_ListenEvent.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_ListenEvent.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_ListenEvent.cpp.i
 .PHONY : HH_ListenEvent.cpp.i
 
 HH_ListenEvent.s: HH_ListenEvent.cpp.s
@@ -203,7 +203,7 @@ HH_ListenEvent.s: HH_ListenEvent.cpp.s
 
 # target to generate assembly for a file
 HH_ListenEvent.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_ListenEvent.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_ListenEvent.cpp.s
 .PHONY : HH_ListenEvent.cpp.s
 
 HH_Poller.o: HH_Poller.cpp.o
@@ -212,7 +212,7 @@ HH_Poller.o: HH_Poller.cpp.o
 
 # target to build an object file
 HH_Poller.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o
 .PHONY : HH_Poller.cpp.o
 
 HH_Poller.i: HH_Poller.cpp.i
@@ -221,7 +221,7 @@ HH_Poller.i: HH_Poller.cpp.i
 
 # target to preprocess a source file
 HH_Poller.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.i
 .PHONY : HH_Poller.cpp.i
 
 HH_Poller.s: HH_Poller.cpp.s
@@ -230,7 +230,7 @@ HH_Poller.s: HH_Poller.cpp.s
 
 # target to generate assembly for a file
 HH_Poller.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.s
 .PHONY : HH_Poller.cpp.s
 
 # Help Target
@@ -265,6 +265,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

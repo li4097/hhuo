@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hhou/CLionProjects/hhuo
+CMAKE_SOURCE_DIR = /mnt/hgfs/CPP/hhuo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hhou/CLionProjects/hhuo/build
+CMAKE_BINARY_DIR = /mnt/hgfs/CPP/hhuo/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles /home/hhou/CLionProjects/hhuo/build/tests/CMakeFiles/progress.marks
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles /mnt/hgfs/CPP/hhuo/build/tests/CMakeFiles/progress.marks
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/clean
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/preinstall
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/preinstall
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 tests/CMakeFiles/test4thread.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4thread.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4thread.dir/rule
 .PHONY : tests/CMakeFiles/test4thread.dir/rule
 
 # Convenience name for target.
@@ -122,12 +122,12 @@ test4thread: tests/CMakeFiles/test4thread.dir/rule
 
 # fast build rule for target.
 test4thread/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4thread.dir/build.make tests/CMakeFiles/test4thread.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4thread.dir/build.make tests/CMakeFiles/test4thread.dir/build
 .PHONY : test4thread/fast
 
 # Convenience name for target.
 tests/CMakeFiles/test4mysql.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4mysql.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4mysql.dir/rule
 .PHONY : tests/CMakeFiles/test4mysql.dir/rule
 
 # Convenience name for target.
@@ -137,12 +137,12 @@ test4mysql: tests/CMakeFiles/test4mysql.dir/rule
 
 # fast build rule for target.
 test4mysql/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4mysql.dir/build.make tests/CMakeFiles/test4mysql.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4mysql.dir/build.make tests/CMakeFiles/test4mysql.dir/build
 .PHONY : test4mysql/fast
 
 # Convenience name for target.
 tests/CMakeFiles/test4task.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4task.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4task.dir/rule
 .PHONY : tests/CMakeFiles/test4task.dir/rule
 
 # Convenience name for target.
@@ -152,12 +152,12 @@ test4task: tests/CMakeFiles/test4task.dir/rule
 
 # fast build rule for target.
 test4task/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4task.dir/build.make tests/CMakeFiles/test4task.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4task.dir/build.make tests/CMakeFiles/test4task.dir/build
 .PHONY : test4task/fast
 
 # Convenience name for target.
 tests/CMakeFiles/test4server.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4server.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4server.dir/rule
 .PHONY : tests/CMakeFiles/test4server.dir/rule
 
 # Convenience name for target.
@@ -167,12 +167,12 @@ test4server: tests/CMakeFiles/test4server.dir/rule
 
 # fast build rule for target.
 test4server/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/build
 .PHONY : test4server/fast
 
 # Convenience name for target.
 tests/CMakeFiles/test4gzip.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4gzip.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4gzip.dir/rule
 .PHONY : tests/CMakeFiles/test4gzip.dir/rule
 
 # Convenience name for target.
@@ -182,12 +182,12 @@ test4gzip: tests/CMakeFiles/test4gzip.dir/rule
 
 # fast build rule for target.
 test4gzip/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4gzip.dir/build.make tests/CMakeFiles/test4gzip.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4gzip.dir/build.make tests/CMakeFiles/test4gzip.dir/build
 .PHONY : test4gzip/fast
 
 # Convenience name for target.
 tests/CMakeFiles/test4json.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4json.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4json.dir/rule
 .PHONY : tests/CMakeFiles/test4json.dir/rule
 
 # Convenience name for target.
@@ -197,12 +197,12 @@ test4json: tests/CMakeFiles/test4json.dir/rule
 
 # fast build rule for target.
 test4json/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4json.dir/build.make tests/CMakeFiles/test4json.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4json.dir/build.make tests/CMakeFiles/test4json.dir/build
 .PHONY : test4json/fast
 
 # Convenience name for target.
 tests/CMakeFiles/test4log.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4log.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4log.dir/rule
 .PHONY : tests/CMakeFiles/test4log.dir/rule
 
 # Convenience name for target.
@@ -212,12 +212,12 @@ test4log: tests/CMakeFiles/test4log.dir/rule
 
 # fast build rule for target.
 test4log/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4log.dir/build.make tests/CMakeFiles/test4log.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4log.dir/build.make tests/CMakeFiles/test4log.dir/build
 .PHONY : test4log/fast
 
 # Convenience name for target.
 tests/CMakeFiles/test4redis.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4redis.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4redis.dir/rule
 .PHONY : tests/CMakeFiles/test4redis.dir/rule
 
 # Convenience name for target.
@@ -227,12 +227,12 @@ test4redis: tests/CMakeFiles/test4redis.dir/rule
 
 # fast build rule for target.
 test4redis/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4redis.dir/build.make tests/CMakeFiles/test4redis.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4redis.dir/build.make tests/CMakeFiles/test4redis.dir/build
 .PHONY : test4redis/fast
 
 # Convenience name for target.
 tests/CMakeFiles/test4base64.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4base64.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4base64.dir/rule
 .PHONY : tests/CMakeFiles/test4base64.dir/rule
 
 # Convenience name for target.
@@ -242,7 +242,7 @@ test4base64: tests/CMakeFiles/test4base64.dir/rule
 
 # fast build rule for target.
 test4base64/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4base64.dir/build.make tests/CMakeFiles/test4base64.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4base64.dir/build.make tests/CMakeFiles/test4base64.dir/build
 .PHONY : test4base64/fast
 
 __/app/ImgProcessor.o: __/app/ImgProcessor.cpp.o
@@ -251,7 +251,7 @@ __/app/ImgProcessor.o: __/app/ImgProcessor.cpp.o
 
 # target to build an object file
 __/app/ImgProcessor.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.o
 .PHONY : __/app/ImgProcessor.cpp.o
 
 __/app/ImgProcessor.i: __/app/ImgProcessor.cpp.i
@@ -260,7 +260,7 @@ __/app/ImgProcessor.i: __/app/ImgProcessor.cpp.i
 
 # target to preprocess a source file
 __/app/ImgProcessor.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.i
 .PHONY : __/app/ImgProcessor.cpp.i
 
 __/app/ImgProcessor.s: __/app/ImgProcessor.cpp.s
@@ -269,7 +269,7 @@ __/app/ImgProcessor.s: __/app/ImgProcessor.cpp.s
 
 # target to generate assembly for a file
 __/app/ImgProcessor.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.s
 .PHONY : __/app/ImgProcessor.cpp.s
 
 test4base64.o: test4base64.cpp.o
@@ -278,7 +278,7 @@ test4base64.o: test4base64.cpp.o
 
 # target to build an object file
 test4base64.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4base64.dir/build.make tests/CMakeFiles/test4base64.dir/test4base64.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4base64.dir/build.make tests/CMakeFiles/test4base64.dir/test4base64.cpp.o
 .PHONY : test4base64.cpp.o
 
 test4base64.i: test4base64.cpp.i
@@ -287,7 +287,7 @@ test4base64.i: test4base64.cpp.i
 
 # target to preprocess a source file
 test4base64.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4base64.dir/build.make tests/CMakeFiles/test4base64.dir/test4base64.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4base64.dir/build.make tests/CMakeFiles/test4base64.dir/test4base64.cpp.i
 .PHONY : test4base64.cpp.i
 
 test4base64.s: test4base64.cpp.s
@@ -296,7 +296,7 @@ test4base64.s: test4base64.cpp.s
 
 # target to generate assembly for a file
 test4base64.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4base64.dir/build.make tests/CMakeFiles/test4base64.dir/test4base64.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4base64.dir/build.make tests/CMakeFiles/test4base64.dir/test4base64.cpp.s
 .PHONY : test4base64.cpp.s
 
 test4gzip.o: test4gzip.cpp.o
@@ -305,7 +305,7 @@ test4gzip.o: test4gzip.cpp.o
 
 # target to build an object file
 test4gzip.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4gzip.dir/build.make tests/CMakeFiles/test4gzip.dir/test4gzip.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4gzip.dir/build.make tests/CMakeFiles/test4gzip.dir/test4gzip.cpp.o
 .PHONY : test4gzip.cpp.o
 
 test4gzip.i: test4gzip.cpp.i
@@ -314,7 +314,7 @@ test4gzip.i: test4gzip.cpp.i
 
 # target to preprocess a source file
 test4gzip.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4gzip.dir/build.make tests/CMakeFiles/test4gzip.dir/test4gzip.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4gzip.dir/build.make tests/CMakeFiles/test4gzip.dir/test4gzip.cpp.i
 .PHONY : test4gzip.cpp.i
 
 test4gzip.s: test4gzip.cpp.s
@@ -323,7 +323,7 @@ test4gzip.s: test4gzip.cpp.s
 
 # target to generate assembly for a file
 test4gzip.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4gzip.dir/build.make tests/CMakeFiles/test4gzip.dir/test4gzip.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4gzip.dir/build.make tests/CMakeFiles/test4gzip.dir/test4gzip.cpp.s
 .PHONY : test4gzip.cpp.s
 
 test4json.o: test4json.cpp.o
@@ -332,7 +332,7 @@ test4json.o: test4json.cpp.o
 
 # target to build an object file
 test4json.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4json.dir/build.make tests/CMakeFiles/test4json.dir/test4json.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4json.dir/build.make tests/CMakeFiles/test4json.dir/test4json.cpp.o
 .PHONY : test4json.cpp.o
 
 test4json.i: test4json.cpp.i
@@ -341,7 +341,7 @@ test4json.i: test4json.cpp.i
 
 # target to preprocess a source file
 test4json.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4json.dir/build.make tests/CMakeFiles/test4json.dir/test4json.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4json.dir/build.make tests/CMakeFiles/test4json.dir/test4json.cpp.i
 .PHONY : test4json.cpp.i
 
 test4json.s: test4json.cpp.s
@@ -350,7 +350,7 @@ test4json.s: test4json.cpp.s
 
 # target to generate assembly for a file
 test4json.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4json.dir/build.make tests/CMakeFiles/test4json.dir/test4json.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4json.dir/build.make tests/CMakeFiles/test4json.dir/test4json.cpp.s
 .PHONY : test4json.cpp.s
 
 test4log.o: test4log.cpp.o
@@ -359,7 +359,7 @@ test4log.o: test4log.cpp.o
 
 # target to build an object file
 test4log.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4log.dir/build.make tests/CMakeFiles/test4log.dir/test4log.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4log.dir/build.make tests/CMakeFiles/test4log.dir/test4log.cpp.o
 .PHONY : test4log.cpp.o
 
 test4log.i: test4log.cpp.i
@@ -368,7 +368,7 @@ test4log.i: test4log.cpp.i
 
 # target to preprocess a source file
 test4log.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4log.dir/build.make tests/CMakeFiles/test4log.dir/test4log.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4log.dir/build.make tests/CMakeFiles/test4log.dir/test4log.cpp.i
 .PHONY : test4log.cpp.i
 
 test4log.s: test4log.cpp.s
@@ -377,7 +377,7 @@ test4log.s: test4log.cpp.s
 
 # target to generate assembly for a file
 test4log.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4log.dir/build.make tests/CMakeFiles/test4log.dir/test4log.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4log.dir/build.make tests/CMakeFiles/test4log.dir/test4log.cpp.s
 .PHONY : test4log.cpp.s
 
 test4mysql.o: test4mysql.cpp.o
@@ -386,7 +386,7 @@ test4mysql.o: test4mysql.cpp.o
 
 # target to build an object file
 test4mysql.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4mysql.dir/build.make tests/CMakeFiles/test4mysql.dir/test4mysql.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4mysql.dir/build.make tests/CMakeFiles/test4mysql.dir/test4mysql.cpp.o
 .PHONY : test4mysql.cpp.o
 
 test4mysql.i: test4mysql.cpp.i
@@ -395,7 +395,7 @@ test4mysql.i: test4mysql.cpp.i
 
 # target to preprocess a source file
 test4mysql.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4mysql.dir/build.make tests/CMakeFiles/test4mysql.dir/test4mysql.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4mysql.dir/build.make tests/CMakeFiles/test4mysql.dir/test4mysql.cpp.i
 .PHONY : test4mysql.cpp.i
 
 test4mysql.s: test4mysql.cpp.s
@@ -404,7 +404,7 @@ test4mysql.s: test4mysql.cpp.s
 
 # target to generate assembly for a file
 test4mysql.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4mysql.dir/build.make tests/CMakeFiles/test4mysql.dir/test4mysql.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4mysql.dir/build.make tests/CMakeFiles/test4mysql.dir/test4mysql.cpp.s
 .PHONY : test4mysql.cpp.s
 
 test4redis.o: test4redis.cpp.o
@@ -413,7 +413,7 @@ test4redis.o: test4redis.cpp.o
 
 # target to build an object file
 test4redis.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4redis.dir/build.make tests/CMakeFiles/test4redis.dir/test4redis.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4redis.dir/build.make tests/CMakeFiles/test4redis.dir/test4redis.cpp.o
 .PHONY : test4redis.cpp.o
 
 test4redis.i: test4redis.cpp.i
@@ -422,7 +422,7 @@ test4redis.i: test4redis.cpp.i
 
 # target to preprocess a source file
 test4redis.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4redis.dir/build.make tests/CMakeFiles/test4redis.dir/test4redis.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4redis.dir/build.make tests/CMakeFiles/test4redis.dir/test4redis.cpp.i
 .PHONY : test4redis.cpp.i
 
 test4redis.s: test4redis.cpp.s
@@ -431,7 +431,7 @@ test4redis.s: test4redis.cpp.s
 
 # target to generate assembly for a file
 test4redis.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4redis.dir/build.make tests/CMakeFiles/test4redis.dir/test4redis.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4redis.dir/build.make tests/CMakeFiles/test4redis.dir/test4redis.cpp.s
 .PHONY : test4redis.cpp.s
 
 test4server.o: test4server.cpp.o
@@ -440,7 +440,7 @@ test4server.o: test4server.cpp.o
 
 # target to build an object file
 test4server.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/test4server.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/test4server.cpp.o
 .PHONY : test4server.cpp.o
 
 test4server.i: test4server.cpp.i
@@ -449,7 +449,7 @@ test4server.i: test4server.cpp.i
 
 # target to preprocess a source file
 test4server.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/test4server.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/test4server.cpp.i
 .PHONY : test4server.cpp.i
 
 test4server.s: test4server.cpp.s
@@ -458,7 +458,7 @@ test4server.s: test4server.cpp.s
 
 # target to generate assembly for a file
 test4server.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/test4server.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/test4server.cpp.s
 .PHONY : test4server.cpp.s
 
 test4task.o: test4task.cpp.o
@@ -467,7 +467,7 @@ test4task.o: test4task.cpp.o
 
 # target to build an object file
 test4task.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4task.dir/build.make tests/CMakeFiles/test4task.dir/test4task.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4task.dir/build.make tests/CMakeFiles/test4task.dir/test4task.cpp.o
 .PHONY : test4task.cpp.o
 
 test4task.i: test4task.cpp.i
@@ -476,7 +476,7 @@ test4task.i: test4task.cpp.i
 
 # target to preprocess a source file
 test4task.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4task.dir/build.make tests/CMakeFiles/test4task.dir/test4task.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4task.dir/build.make tests/CMakeFiles/test4task.dir/test4task.cpp.i
 .PHONY : test4task.cpp.i
 
 test4task.s: test4task.cpp.s
@@ -485,7 +485,7 @@ test4task.s: test4task.cpp.s
 
 # target to generate assembly for a file
 test4task.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4task.dir/build.make tests/CMakeFiles/test4task.dir/test4task.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4task.dir/build.make tests/CMakeFiles/test4task.dir/test4task.cpp.s
 .PHONY : test4task.cpp.s
 
 test4thread.o: test4thread.cpp.o
@@ -494,7 +494,7 @@ test4thread.o: test4thread.cpp.o
 
 # target to build an object file
 test4thread.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4thread.dir/build.make tests/CMakeFiles/test4thread.dir/test4thread.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4thread.dir/build.make tests/CMakeFiles/test4thread.dir/test4thread.cpp.o
 .PHONY : test4thread.cpp.o
 
 test4thread.i: test4thread.cpp.i
@@ -503,7 +503,7 @@ test4thread.i: test4thread.cpp.i
 
 # target to preprocess a source file
 test4thread.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4thread.dir/build.make tests/CMakeFiles/test4thread.dir/test4thread.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4thread.dir/build.make tests/CMakeFiles/test4thread.dir/test4thread.cpp.i
 .PHONY : test4thread.cpp.i
 
 test4thread.s: test4thread.cpp.s
@@ -512,7 +512,7 @@ test4thread.s: test4thread.cpp.s
 
 # target to generate assembly for a file
 test4thread.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4thread.dir/build.make tests/CMakeFiles/test4thread.dir/test4thread.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f tests/CMakeFiles/test4thread.dir/build.make tests/CMakeFiles/test4thread.dir/test4thread.cpp.s
 .PHONY : test4thread.cpp.s
 
 # Help Target
@@ -573,6 +573,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

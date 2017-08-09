@@ -5,7 +5,7 @@ src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o
  ../include/HH_Common.h
  ../include/HH_Log.h
  ../src/utils/../../include/utils/HH_CircularBuffer.h
- /home/hhou/CLionProjects/hhuo/src/utils/HH_CircularBuffer.cpp
+ /mnt/hgfs/CPP/hhuo/src/utils/HH_CircularBuffer.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h
@@ -18,7 +18,7 @@ src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o
  ../src/utils/../../include/net/HH_EventBase.h
  ../src/utils/../../include/net/HH_Task.h
  ../src/utils/../../include/utils/HH_Thread.h
- /home/hhou/CLionProjects/hhuo/src/utils/HH_Thread.cpp
+ /mnt/hgfs/CPP/hhuo/src/utils/HH_Thread.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h
@@ -33,7 +33,7 @@ src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o
  ../src/utils/../../include/net/HH_Task.h
  ../src/utils/../../include/utils/HH_Thread.h
  ../src/utils/../../include/utils/HH_ThreadPool.h
- /home/hhou/CLionProjects/hhuo/src/utils/HH_ThreadPool.cpp
+ /mnt/hgfs/CPP/hhuo/src/utils/HH_ThreadPool.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h

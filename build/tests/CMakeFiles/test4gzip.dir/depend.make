@@ -8,6 +8,4 @@ tests/CMakeFiles/test4gzip.dir/test4gzip.cpp.o: ../tests/test4gzip.cpp
 tests/CMakeFiles/test4gzip.dir/test4gzip.cpp.o: /usr/local/include/glog/log_severity.h
 tests/CMakeFiles/test4gzip.dir/test4gzip.cpp.o: /usr/local/include/glog/logging.h
 tests/CMakeFiles/test4gzip.dir/test4gzip.cpp.o: /usr/local/include/glog/vlog_is_on.h
-tests/CMakeFiles/test4gzip.dir/test4gzip.cpp.o: /usr/local/include/zconf.h
-tests/CMakeFiles/test4gzip.dir/test4gzip.cpp.o: /usr/local/include/zlib.h
 

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hhou/CLionProjects/hhuo
+CMAKE_SOURCE_DIR = /mnt/hgfs/CPP/hhuo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hhou/CLionProjects/hhuo/build
+CMAKE_BINARY_DIR = /mnt/hgfs/CPP/hhuo/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles /home/hhou/CLionProjects/hhuo/build/src/utils/CMakeFiles/progress.marks
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/utils/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles /mnt/hgfs/CPP/hhuo/build/src/utils/CMakeFiles/progress.marks
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/utils/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/utils/clean
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/utils/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/utils/preinstall
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/utils/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/utils/preinstall
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/utils/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/utils/CMakeFiles/hhutils.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/utils/CMakeFiles/hhutils.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/utils/CMakeFiles/hhutils.dir/rule
 .PHONY : src/utils/CMakeFiles/hhutils.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ hhutils: src/utils/CMakeFiles/hhutils.dir/rule
 
 # fast build rule for target.
 hhutils/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/build
 .PHONY : hhutils/fast
 
 HH_CircularBuffer.o: HH_CircularBuffer.cpp.o
@@ -131,7 +131,7 @@ HH_CircularBuffer.o: HH_CircularBuffer.cpp.o
 
 # target to build an object file
 HH_CircularBuffer.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o
 .PHONY : HH_CircularBuffer.cpp.o
 
 HH_CircularBuffer.i: HH_CircularBuffer.cpp.i
@@ -140,7 +140,7 @@ HH_CircularBuffer.i: HH_CircularBuffer.cpp.i
 
 # target to preprocess a source file
 HH_CircularBuffer.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.i
 .PHONY : HH_CircularBuffer.cpp.i
 
 HH_CircularBuffer.s: HH_CircularBuffer.cpp.s
@@ -149,7 +149,7 @@ HH_CircularBuffer.s: HH_CircularBuffer.cpp.s
 
 # target to generate assembly for a file
 HH_CircularBuffer.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.s
 .PHONY : HH_CircularBuffer.cpp.s
 
 HH_Thread.o: HH_Thread.cpp.o
@@ -158,7 +158,7 @@ HH_Thread.o: HH_Thread.cpp.o
 
 # target to build an object file
 HH_Thread.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o
 .PHONY : HH_Thread.cpp.o
 
 HH_Thread.i: HH_Thread.cpp.i
@@ -167,7 +167,7 @@ HH_Thread.i: HH_Thread.cpp.i
 
 # target to preprocess a source file
 HH_Thread.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.i
 .PHONY : HH_Thread.cpp.i
 
 HH_Thread.s: HH_Thread.cpp.s
@@ -176,7 +176,7 @@ HH_Thread.s: HH_Thread.cpp.s
 
 # target to generate assembly for a file
 HH_Thread.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.s
 .PHONY : HH_Thread.cpp.s
 
 HH_ThreadPool.o: HH_ThreadPool.cpp.o
@@ -185,7 +185,7 @@ HH_ThreadPool.o: HH_ThreadPool.cpp.o
 
 # target to build an object file
 HH_ThreadPool.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o
 .PHONY : HH_ThreadPool.cpp.o
 
 HH_ThreadPool.i: HH_ThreadPool.cpp.i
@@ -194,7 +194,7 @@ HH_ThreadPool.i: HH_ThreadPool.cpp.i
 
 # target to preprocess a source file
 HH_ThreadPool.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.i
 .PHONY : HH_ThreadPool.cpp.i
 
 HH_ThreadPool.s: HH_ThreadPool.cpp.s
@@ -203,7 +203,7 @@ HH_ThreadPool.s: HH_ThreadPool.cpp.s
 
 # target to generate assembly for a file
 HH_ThreadPool.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.s
 .PHONY : HH_ThreadPool.cpp.s
 
 # Help Target
@@ -235,6 +235,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

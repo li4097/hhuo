@@ -6,14 +6,14 @@ src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o
  ../include/HH_Log.h
  ../include/utils/HH_Split.h
  ../src/parser/../../include/parser/HH_HttpRequest.h
- /home/hhou/CLionProjects/hhuo/src/parser/HH_HttpRequest.cpp
+ /mnt/hgfs/CPP/hhuo/src/parser/HH_HttpRequest.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h
 src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o
  ../include/HH_Common.h
  ../src/parser/../../include/parser/HH_HttpResponse.h
- /home/hhou/CLionProjects/hhuo/src/parser/HH_HttpResponse.cpp
+ /mnt/hgfs/CPP/hhuo/src/parser/HH_HttpResponse.cpp
 src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o
  ../include/HH_Common.h
  ../include/utils/HH_Mutex.h
@@ -22,4 +22,4 @@ src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o
  ../src/parser/../../include/parser/HH_Parse.h
  ../src/parser/../../include/utils/HH_Mutex.h
  ../src/parser/../../include/utils/HH_MutexLockGuard.h
- /home/hhou/CLionProjects/hhuo/src/parser/HH_Parse.cpp
+ /mnt/hgfs/CPP/hhuo/src/parser/HH_Parse.cpp

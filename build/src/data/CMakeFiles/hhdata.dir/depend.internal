@@ -5,7 +5,7 @@ src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o
  ../include/HH_Common.h
  ../include/HH_Log.h
  ../src/data/../../include/data/HH_Json.h
- /home/hhou/CLionProjects/hhuo/src/data/HH_Json.cpp
+ /mnt/hgfs/CPP/hhuo/src/data/HH_Json.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h
@@ -23,7 +23,7 @@ src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o
  ../include/HH_Common.h
  ../include/HH_Log.h
  ../src/data/../../include/data/HH_Mysql.h
- /home/hhou/CLionProjects/hhuo/src/data/HH_Mysql.cpp
+ /mnt/hgfs/CPP/hhuo/src/data/HH_Mysql.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h
@@ -31,10 +31,7 @@ src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o
  ../include/HH_Common.h
  ../include/HH_Log.h
  ../src/data/../../include/data/HH_Redis.h
- /home/hhou/CLionProjects/hhuo/src/data/HH_Redis.cpp
+ /mnt/hgfs/CPP/hhuo/src/data/HH_Redis.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h
- /usr/local/include/hiredis/hiredis.h
- /usr/local/include/hiredis/read.h
- /usr/local/include/hiredis/sds.h

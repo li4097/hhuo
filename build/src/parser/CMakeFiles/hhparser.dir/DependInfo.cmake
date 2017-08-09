@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/hhou/CLionProjects/hhuo/src/parser/HH_HttpRequest.cpp" "/home/hhou/CLionProjects/hhuo/build/src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o"
-  "/home/hhou/CLionProjects/hhuo/src/parser/HH_HttpResponse.cpp" "/home/hhou/CLionProjects/hhuo/build/src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o"
-  "/home/hhou/CLionProjects/hhuo/src/parser/HH_Parse.cpp" "/home/hhou/CLionProjects/hhuo/build/src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o"
+  "/mnt/hgfs/CPP/hhuo/src/parser/HH_HttpRequest.cpp" "/mnt/hgfs/CPP/hhuo/build/src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o"
+  "/mnt/hgfs/CPP/hhuo/src/parser/HH_HttpResponse.cpp" "/mnt/hgfs/CPP/hhuo/build/src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o"
+  "/mnt/hgfs/CPP/hhuo/src/parser/HH_Parse.cpp" "/mnt/hgfs/CPP/hhuo/build/src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

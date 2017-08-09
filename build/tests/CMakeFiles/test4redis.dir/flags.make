@@ -6,5 +6,5 @@ CXX_FLAGS =  -O0 -Wall -g2 -ggdb -pthread -std=c++11   -std=gnu++11
 
 CXX_DEFINES = -DBE_HTTP
 
-CXX_INCLUDES = -I/home/hhou/CLionProjects/hhuo/include -I/usr/local/include 
+CXX_INCLUDES = -I/mnt/hgfs/CPP/hhuo/include -I/usr/local/include 
 

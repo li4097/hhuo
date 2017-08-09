@@ -90,23 +90,23 @@ hiredis/hiredis.h
 HH_Common.h
 ../src/data/../../include/data/HH_Common.h
 
-/home/hhou/CLionProjects/hhuo/src/data/HH_Json.cpp
+/mnt/hgfs/CPP/hhuo/src/data/HH_Json.cpp
 HH_Json.h
-/home/hhou/CLionProjects/hhuo/src/data/HH_Json.h
+/mnt/hgfs/CPP/hhuo/src/data/HH_Json.h
 HH_Log.h
-/home/hhou/CLionProjects/hhuo/src/data/HH_Log.h
+/mnt/hgfs/CPP/hhuo/src/data/HH_Log.h
 
-/home/hhou/CLionProjects/hhuo/src/data/HH_Mysql.cpp
+/mnt/hgfs/CPP/hhuo/src/data/HH_Mysql.cpp
 HH_Mysql.h
-/home/hhou/CLionProjects/hhuo/src/data/HH_Mysql.h
+/mnt/hgfs/CPP/hhuo/src/data/HH_Mysql.h
 HH_Log.h
-/home/hhou/CLionProjects/hhuo/src/data/HH_Log.h
+/mnt/hgfs/CPP/hhuo/src/data/HH_Log.h
 
-/home/hhou/CLionProjects/hhuo/src/data/HH_Redis.cpp
+/mnt/hgfs/CPP/hhuo/src/data/HH_Redis.cpp
 HH_Redis.h
-/home/hhou/CLionProjects/hhuo/src/data/HH_Redis.h
+/mnt/hgfs/CPP/hhuo/src/data/HH_Redis.h
 HH_Log.h
-/home/hhou/CLionProjects/hhuo/src/data/HH_Log.h
+/mnt/hgfs/CPP/hhuo/src/data/HH_Log.h
 
 /usr/local/include/glog/log_severity.h
 
@@ -145,30 +145,6 @@ glog/vlog_is_on.h
 /usr/local/include/glog/vlog_is_on.h
 glog/log_severity.h
 /usr/local/include/glog/glog/log_severity.h
-
-/usr/local/include/hiredis/hiredis.h
-read.h
-/usr/local/include/hiredis/read.h
-stdarg.h
--
-sys/time.h
--
-stdint.h
--
-sds.h
-/usr/local/include/hiredis/sds.h
-
-/usr/local/include/hiredis/read.h
-stdio.h
--
-
-/usr/local/include/hiredis/sds.h
-sys/types.h
--
-stdarg.h
--
-stdint.h
--
 
 /usr/local/include/json/allocator.h
 cstring

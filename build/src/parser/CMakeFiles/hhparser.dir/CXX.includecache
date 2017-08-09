@@ -118,23 +118,23 @@ HH_Common.h
 HH_Mutex.h
 ../src/parser/../../include/utils/HH_Mutex.h
 
-/home/hhou/CLionProjects/hhuo/src/parser/HH_HttpRequest.cpp
+/mnt/hgfs/CPP/hhuo/src/parser/HH_HttpRequest.cpp
 HH_HttpRequest.h
-/home/hhou/CLionProjects/hhuo/src/parser/HH_HttpRequest.h
+/mnt/hgfs/CPP/hhuo/src/parser/HH_HttpRequest.h
 utils/HH_Split.h
-/home/hhou/CLionProjects/hhuo/src/parser/utils/HH_Split.h
+/mnt/hgfs/CPP/hhuo/src/parser/utils/HH_Split.h
 HH_Log.h
-/home/hhou/CLionProjects/hhuo/src/parser/HH_Log.h
+/mnt/hgfs/CPP/hhuo/src/parser/HH_Log.h
 
-/home/hhou/CLionProjects/hhuo/src/parser/HH_HttpResponse.cpp
+/mnt/hgfs/CPP/hhuo/src/parser/HH_HttpResponse.cpp
 HH_HttpResponse.h
-/home/hhou/CLionProjects/hhuo/src/parser/HH_HttpResponse.h
+/mnt/hgfs/CPP/hhuo/src/parser/HH_HttpResponse.h
 
-/home/hhou/CLionProjects/hhuo/src/parser/HH_Parse.cpp
+/mnt/hgfs/CPP/hhuo/src/parser/HH_Parse.cpp
 HH_Parse.h
-/home/hhou/CLionProjects/hhuo/src/parser/HH_Parse.h
+/mnt/hgfs/CPP/hhuo/src/parser/HH_Parse.h
 HH_MutexLockGuard.h
-/home/hhou/CLionProjects/hhuo/src/parser/HH_MutexLockGuard.h
+/mnt/hgfs/CPP/hhuo/src/parser/HH_MutexLockGuard.h
 
 /usr/local/include/glog/log_severity.h
 

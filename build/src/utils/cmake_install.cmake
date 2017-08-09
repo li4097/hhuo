@@ -1,4 +1,4 @@
-# Install script for directory: /home/hhou/CLionProjects/hhuo/src/utils
+# Install script for directory: /mnt/hgfs/CPP/hhuo/src/utils
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

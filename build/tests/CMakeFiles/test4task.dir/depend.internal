@@ -10,10 +10,10 @@ tests/CMakeFiles/test4task.dir/test4task.cpp.o
  ../include/utils/HH_MutexLockGuard.h
  ../include/utils/HH_Thread.h
  ../include/utils/HH_ThreadPool.h
- /home/hhou/CLionProjects/hhuo/include/HH_Log.h
- /home/hhou/CLionProjects/hhuo/include/net/HH_EventBase.h
- /home/hhou/CLionProjects/hhuo/include/net/HH_Task.h
- /home/hhou/CLionProjects/hhuo/tests/test4task.cpp
+ /mnt/hgfs/CPP/hhuo/include/HH_Log.h
+ /mnt/hgfs/CPP/hhuo/include/net/HH_EventBase.h
+ /mnt/hgfs/CPP/hhuo/include/net/HH_Task.h
+ /mnt/hgfs/CPP/hhuo/tests/test4task.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h

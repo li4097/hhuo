@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hhou/CLionProjects/hhuo
+CMAKE_SOURCE_DIR = /mnt/hgfs/CPP/hhuo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hhou/CLionProjects/hhuo/build
+CMAKE_BINARY_DIR = /mnt/hgfs/CPP/hhuo/build
 
 #=============================================================================
 # Directory level rules for directory src
@@ -111,7 +111,7 @@ src/net/preinstall:
 src/net/CMakeFiles/hhnet.dir/all:
 	$(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/depend
 	$(MAKE) -f src/net/CMakeFiles/hhnet.dir/build.make src/net/CMakeFiles/hhnet.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=5,6,7,8,9 "Built target hhnet"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=5,6,7,8,9 "Built target hhnet"
 .PHONY : src/net/CMakeFiles/hhnet.dir/all
 
 # Include target in all.
@@ -121,9 +121,9 @@ all: src/net/CMakeFiles/hhnet.dir/all
 
 # Build rule for subdir invocation for target.
 src/net/CMakeFiles/hhnet.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 src/net/CMakeFiles/hhnet.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : src/net/CMakeFiles/hhnet.dir/rule
 
 # Convenience name for target.
@@ -166,7 +166,7 @@ src/parser/preinstall:
 src/parser/CMakeFiles/hhparser.dir/all:
 	$(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/depend
 	$(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=10,11,12,13 "Built target hhparser"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=10,11,12,13 "Built target hhparser"
 .PHONY : src/parser/CMakeFiles/hhparser.dir/all
 
 # Include target in all.
@@ -176,9 +176,9 @@ all: src/parser/CMakeFiles/hhparser.dir/all
 
 # Build rule for subdir invocation for target.
 src/parser/CMakeFiles/hhparser.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 src/parser/CMakeFiles/hhparser.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : src/parser/CMakeFiles/hhparser.dir/rule
 
 # Convenience name for target.
@@ -221,7 +221,7 @@ src/utils/preinstall:
 src/utils/CMakeFiles/hhutils.dir/all:
 	$(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/depend
 	$(MAKE) -f src/utils/CMakeFiles/hhutils.dir/build.make src/utils/CMakeFiles/hhutils.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=14,15,16,17 "Built target hhutils"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=14,15,16,17 "Built target hhutils"
 .PHONY : src/utils/CMakeFiles/hhutils.dir/all
 
 # Include target in all.
@@ -231,9 +231,9 @@ all: src/utils/CMakeFiles/hhutils.dir/all
 
 # Build rule for subdir invocation for target.
 src/utils/CMakeFiles/hhutils.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 src/utils/CMakeFiles/hhutils.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : src/utils/CMakeFiles/hhutils.dir/rule
 
 # Convenience name for target.
@@ -276,7 +276,7 @@ src/data/preinstall:
 src/data/CMakeFiles/hhdata.dir/all:
 	$(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/depend
 	$(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=1,2,3,4 "Built target hhdata"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=1,2,3,4 "Built target hhdata"
 .PHONY : src/data/CMakeFiles/hhdata.dir/all
 
 # Include target in all.
@@ -286,9 +286,9 @@ all: src/data/CMakeFiles/hhdata.dir/all
 
 # Build rule for subdir invocation for target.
 src/data/CMakeFiles/hhdata.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 src/data/CMakeFiles/hhdata.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : src/data/CMakeFiles/hhdata.dir/rule
 
 # Convenience name for target.
@@ -349,7 +349,7 @@ tests/CMakeFiles/test4thread.dir/all: src/parser/CMakeFiles/hhparser.dir/all
 tests/CMakeFiles/test4thread.dir/all: src/utils/CMakeFiles/hhutils.dir/all
 	$(MAKE) -f tests/CMakeFiles/test4thread.dir/build.make tests/CMakeFiles/test4thread.dir/depend
 	$(MAKE) -f tests/CMakeFiles/test4thread.dir/build.make tests/CMakeFiles/test4thread.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=35,36 "Built target test4thread"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=35,36 "Built target test4thread"
 .PHONY : tests/CMakeFiles/test4thread.dir/all
 
 # Include target in all.
@@ -359,9 +359,9 @@ all: tests/CMakeFiles/test4thread.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test4thread.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4thread.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test4thread.dir/rule
 
 # Convenience name for target.
@@ -386,7 +386,7 @@ clean: tests/CMakeFiles/test4thread.dir/clean
 tests/CMakeFiles/test4mysql.dir/all: src/data/CMakeFiles/hhdata.dir/all
 	$(MAKE) -f tests/CMakeFiles/test4mysql.dir/build.make tests/CMakeFiles/test4mysql.dir/depend
 	$(MAKE) -f tests/CMakeFiles/test4mysql.dir/build.make tests/CMakeFiles/test4mysql.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=26,27 "Built target test4mysql"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=26,27 "Built target test4mysql"
 .PHONY : tests/CMakeFiles/test4mysql.dir/all
 
 # Include target in all.
@@ -396,9 +396,9 @@ all: tests/CMakeFiles/test4mysql.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test4mysql.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4mysql.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test4mysql.dir/rule
 
 # Convenience name for target.
@@ -425,7 +425,7 @@ tests/CMakeFiles/test4task.dir/all: src/parser/CMakeFiles/hhparser.dir/all
 tests/CMakeFiles/test4task.dir/all: src/utils/CMakeFiles/hhutils.dir/all
 	$(MAKE) -f tests/CMakeFiles/test4task.dir/build.make tests/CMakeFiles/test4task.dir/depend
 	$(MAKE) -f tests/CMakeFiles/test4task.dir/build.make tests/CMakeFiles/test4task.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=33,34 "Built target test4task"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=33,34 "Built target test4task"
 .PHONY : tests/CMakeFiles/test4task.dir/all
 
 # Include target in all.
@@ -435,9 +435,9 @@ all: tests/CMakeFiles/test4task.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test4task.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4task.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test4task.dir/rule
 
 # Convenience name for target.
@@ -464,7 +464,7 @@ tests/CMakeFiles/test4server.dir/all: src/parser/CMakeFiles/hhparser.dir/all
 tests/CMakeFiles/test4server.dir/all: src/utils/CMakeFiles/hhutils.dir/all
 	$(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/depend
 	$(MAKE) -f tests/CMakeFiles/test4server.dir/build.make tests/CMakeFiles/test4server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=30,31,32 "Built target test4server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=30,31,32 "Built target test4server"
 .PHONY : tests/CMakeFiles/test4server.dir/all
 
 # Include target in all.
@@ -474,9 +474,9 @@ all: tests/CMakeFiles/test4server.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test4server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4server.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test4server.dir/rule
 
 # Convenience name for target.
@@ -501,7 +501,7 @@ clean: tests/CMakeFiles/test4server.dir/clean
 tests/CMakeFiles/test4gzip.dir/all: src/utils/CMakeFiles/hhutils.dir/all
 	$(MAKE) -f tests/CMakeFiles/test4gzip.dir/build.make tests/CMakeFiles/test4gzip.dir/depend
 	$(MAKE) -f tests/CMakeFiles/test4gzip.dir/build.make tests/CMakeFiles/test4gzip.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=20,21 "Built target test4gzip"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=20,21 "Built target test4gzip"
 .PHONY : tests/CMakeFiles/test4gzip.dir/all
 
 # Include target in all.
@@ -511,9 +511,9 @@ all: tests/CMakeFiles/test4gzip.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test4gzip.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4gzip.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test4gzip.dir/rule
 
 # Convenience name for target.
@@ -541,7 +541,7 @@ tests/CMakeFiles/test4json.dir/all: src/utils/CMakeFiles/hhutils.dir/all
 tests/CMakeFiles/test4json.dir/all: src/data/CMakeFiles/hhdata.dir/all
 	$(MAKE) -f tests/CMakeFiles/test4json.dir/build.make tests/CMakeFiles/test4json.dir/depend
 	$(MAKE) -f tests/CMakeFiles/test4json.dir/build.make tests/CMakeFiles/test4json.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=22,23 "Built target test4json"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=22,23 "Built target test4json"
 .PHONY : tests/CMakeFiles/test4json.dir/all
 
 # Include target in all.
@@ -551,9 +551,9 @@ all: tests/CMakeFiles/test4json.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test4json.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 19
 	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4json.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test4json.dir/rule
 
 # Convenience name for target.
@@ -578,7 +578,7 @@ clean: tests/CMakeFiles/test4json.dir/clean
 tests/CMakeFiles/test4log.dir/all:
 	$(MAKE) -f tests/CMakeFiles/test4log.dir/build.make tests/CMakeFiles/test4log.dir/depend
 	$(MAKE) -f tests/CMakeFiles/test4log.dir/build.make tests/CMakeFiles/test4log.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=24,25 "Built target test4log"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=24,25 "Built target test4log"
 .PHONY : tests/CMakeFiles/test4log.dir/all
 
 # Include target in all.
@@ -588,9 +588,9 @@ all: tests/CMakeFiles/test4log.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test4log.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4log.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test4log.dir/rule
 
 # Convenience name for target.
@@ -615,7 +615,7 @@ clean: tests/CMakeFiles/test4log.dir/clean
 tests/CMakeFiles/test4redis.dir/all: src/data/CMakeFiles/hhdata.dir/all
 	$(MAKE) -f tests/CMakeFiles/test4redis.dir/build.make tests/CMakeFiles/test4redis.dir/depend
 	$(MAKE) -f tests/CMakeFiles/test4redis.dir/build.make tests/CMakeFiles/test4redis.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=28,29 "Built target test4redis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=28,29 "Built target test4redis"
 .PHONY : tests/CMakeFiles/test4redis.dir/all
 
 # Include target in all.
@@ -625,9 +625,9 @@ all: tests/CMakeFiles/test4redis.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test4redis.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4redis.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test4redis.dir/rule
 
 # Convenience name for target.
@@ -652,7 +652,7 @@ clean: tests/CMakeFiles/test4redis.dir/clean
 tests/CMakeFiles/test4base64.dir/all: src/utils/CMakeFiles/hhutils.dir/all
 	$(MAKE) -f tests/CMakeFiles/test4base64.dir/build.make tests/CMakeFiles/test4base64.dir/depend
 	$(MAKE) -f tests/CMakeFiles/test4base64.dir/build.make tests/CMakeFiles/test4base64.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=18,19 "Built target test4base64"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=18,19 "Built target test4base64"
 .PHONY : tests/CMakeFiles/test4base64.dir/all
 
 # Include target in all.
@@ -662,9 +662,9 @@ all: tests/CMakeFiles/test4base64.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test4base64.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/test4base64.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test4base64.dir/rule
 
 # Convenience name for target.

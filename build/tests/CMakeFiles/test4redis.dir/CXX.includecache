@@ -60,23 +60,23 @@ openssl/err.h
 openssl/bio.h
 -
 
-/home/hhou/CLionProjects/hhuo/include/HH_Log.h
+/mnt/hgfs/CPP/hhuo/include/HH_Log.h
 glog/logging.h
 -
 HH_Common.h
-/home/hhou/CLionProjects/hhuo/include/HH_Common.h
+/mnt/hgfs/CPP/hhuo/include/HH_Common.h
 
-/home/hhou/CLionProjects/hhuo/include/data/HH_Redis.h
+/mnt/hgfs/CPP/hhuo/include/data/HH_Redis.h
 hiredis/hiredis.h
 -
 HH_Common.h
-/home/hhou/CLionProjects/hhuo/include/data/HH_Common.h
+/mnt/hgfs/CPP/hhuo/include/data/HH_Common.h
 
-/home/hhou/CLionProjects/hhuo/tests/test4redis.cpp
+/mnt/hgfs/CPP/hhuo/tests/test4redis.cpp
 ../include/data/HH_Redis.h
-/home/hhou/CLionProjects/hhuo/include/data/HH_Redis.h
+/mnt/hgfs/CPP/hhuo/include/data/HH_Redis.h
 ../include/HH_Log.h
-/home/hhou/CLionProjects/hhuo/include/HH_Log.h
+/mnt/hgfs/CPP/hhuo/include/HH_Log.h
 
 /usr/local/include/glog/log_severity.h
 

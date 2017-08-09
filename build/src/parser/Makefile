@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hhou/CLionProjects/hhuo
+CMAKE_SOURCE_DIR = /mnt/hgfs/CPP/hhuo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hhou/CLionProjects/hhuo/build
+CMAKE_BINARY_DIR = /mnt/hgfs/CPP/hhuo/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles /home/hhou/CLionProjects/hhuo/build/src/parser/CMakeFiles/progress.marks
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/parser/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles /mnt/hgfs/CPP/hhuo/build/src/parser/CMakeFiles/progress.marks
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/parser/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/parser/clean
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/parser/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/parser/preinstall
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/parser/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/parser/preinstall
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/parser/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/parser/CMakeFiles/hhparser.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/parser/CMakeFiles/hhparser.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/parser/CMakeFiles/hhparser.dir/rule
 .PHONY : src/parser/CMakeFiles/hhparser.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ hhparser: src/parser/CMakeFiles/hhparser.dir/rule
 
 # fast build rule for target.
 hhparser/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/build
 .PHONY : hhparser/fast
 
 HH_HttpRequest.o: HH_HttpRequest.cpp.o
@@ -131,7 +131,7 @@ HH_HttpRequest.o: HH_HttpRequest.cpp.o
 
 # target to build an object file
 HH_HttpRequest.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.o
 .PHONY : HH_HttpRequest.cpp.o
 
 HH_HttpRequest.i: HH_HttpRequest.cpp.i
@@ -140,7 +140,7 @@ HH_HttpRequest.i: HH_HttpRequest.cpp.i
 
 # target to preprocess a source file
 HH_HttpRequest.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.i
 .PHONY : HH_HttpRequest.cpp.i
 
 HH_HttpRequest.s: HH_HttpRequest.cpp.s
@@ -149,7 +149,7 @@ HH_HttpRequest.s: HH_HttpRequest.cpp.s
 
 # target to generate assembly for a file
 HH_HttpRequest.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_HttpRequest.cpp.s
 .PHONY : HH_HttpRequest.cpp.s
 
 HH_HttpResponse.o: HH_HttpResponse.cpp.o
@@ -158,7 +158,7 @@ HH_HttpResponse.o: HH_HttpResponse.cpp.o
 
 # target to build an object file
 HH_HttpResponse.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.o
 .PHONY : HH_HttpResponse.cpp.o
 
 HH_HttpResponse.i: HH_HttpResponse.cpp.i
@@ -167,7 +167,7 @@ HH_HttpResponse.i: HH_HttpResponse.cpp.i
 
 # target to preprocess a source file
 HH_HttpResponse.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.i
 .PHONY : HH_HttpResponse.cpp.i
 
 HH_HttpResponse.s: HH_HttpResponse.cpp.s
@@ -176,7 +176,7 @@ HH_HttpResponse.s: HH_HttpResponse.cpp.s
 
 # target to generate assembly for a file
 HH_HttpResponse.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_HttpResponse.cpp.s
 .PHONY : HH_HttpResponse.cpp.s
 
 HH_Parse.o: HH_Parse.cpp.o
@@ -185,7 +185,7 @@ HH_Parse.o: HH_Parse.cpp.o
 
 # target to build an object file
 HH_Parse.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.o
 .PHONY : HH_Parse.cpp.o
 
 HH_Parse.i: HH_Parse.cpp.i
@@ -194,7 +194,7 @@ HH_Parse.i: HH_Parse.cpp.i
 
 # target to preprocess a source file
 HH_Parse.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.i
 .PHONY : HH_Parse.cpp.i
 
 HH_Parse.s: HH_Parse.cpp.s
@@ -203,7 +203,7 @@ HH_Parse.s: HH_Parse.cpp.s
 
 # target to generate assembly for a file
 HH_Parse.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/parser/CMakeFiles/hhparser.dir/build.make src/parser/CMakeFiles/hhparser.dir/HH_Parse.cpp.s
 .PHONY : HH_Parse.cpp.s
 
 # Help Target
@@ -235,6 +235,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -15,7 +15,7 @@ src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o
  ../src/net/../../include/net/HH_Task.h
  ../src/net/../../include/utils/HH_Thread.h
  ../src/net/../../include/utils/HH_ThreadPool.h
- /home/hhou/CLionProjects/hhuo/src/net/HH_EventLoop.cpp
+ /mnt/hgfs/CPP/hhuo/src/net/HH_EventLoop.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h
@@ -31,7 +31,7 @@ src/net/CMakeFiles/hhnet.dir/HH_FDEvent.cpp.o
  ../src/net/../../include/net/HH_EventBase.h
  ../src/net/../../include/net/HH_FDEvent.h
  ../src/net/../../include/net/HH_Poller.h
- /home/hhou/CLionProjects/hhuo/src/net/HH_FDEvent.cpp
+ /mnt/hgfs/CPP/hhuo/src/net/HH_FDEvent.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h
@@ -45,7 +45,7 @@ src/net/CMakeFiles/hhnet.dir/HH_ListenEvent.cpp.o
  ../src/net/../../include/net/HH_FDEvent.h
  ../src/net/../../include/net/HH_ListenEvent.h
  ../src/net/../../include/net/HH_Poller.h
- /home/hhou/CLionProjects/hhuo/src/net/HH_ListenEvent.cpp
+ /mnt/hgfs/CPP/hhuo/src/net/HH_ListenEvent.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h
@@ -63,7 +63,7 @@ src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o
  ../include/utils/HH_ThreadPool.h
  ../src/net/../../include/net/HH_Poller.h
  ../src/net/../../include/net/HH_Task.h
- /home/hhou/CLionProjects/hhuo/src/net/HH_Poller.cpp
+ /mnt/hgfs/CPP/hhuo/src/net/HH_Poller.cpp
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h

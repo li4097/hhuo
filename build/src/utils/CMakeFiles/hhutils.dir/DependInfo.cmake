@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/hhou/CLionProjects/hhuo/src/utils/HH_CircularBuffer.cpp" "/home/hhou/CLionProjects/hhuo/build/src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o"
-  "/home/hhou/CLionProjects/hhuo/src/utils/HH_Thread.cpp" "/home/hhou/CLionProjects/hhuo/build/src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o"
-  "/home/hhou/CLionProjects/hhuo/src/utils/HH_ThreadPool.cpp" "/home/hhou/CLionProjects/hhuo/build/src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o"
+  "/mnt/hgfs/CPP/hhuo/src/utils/HH_CircularBuffer.cpp" "/mnt/hgfs/CPP/hhuo/build/src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o"
+  "/mnt/hgfs/CPP/hhuo/src/utils/HH_Thread.cpp" "/mnt/hgfs/CPP/hhuo/build/src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o"
+  "/mnt/hgfs/CPP/hhuo/src/utils/HH_ThreadPool.cpp" "/mnt/hgfs/CPP/hhuo/build/src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

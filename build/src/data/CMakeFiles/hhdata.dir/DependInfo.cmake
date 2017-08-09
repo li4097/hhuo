@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/hhou/CLionProjects/hhuo/src/data/HH_Json.cpp" "/home/hhou/CLionProjects/hhuo/build/src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o"
-  "/home/hhou/CLionProjects/hhuo/src/data/HH_Mysql.cpp" "/home/hhou/CLionProjects/hhuo/build/src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o"
-  "/home/hhou/CLionProjects/hhuo/src/data/HH_Redis.cpp" "/home/hhou/CLionProjects/hhuo/build/src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o"
+  "/mnt/hgfs/CPP/hhuo/src/data/HH_Json.cpp" "/mnt/hgfs/CPP/hhuo/build/src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o"
+  "/mnt/hgfs/CPP/hhuo/src/data/HH_Mysql.cpp" "/mnt/hgfs/CPP/hhuo/build/src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o"
+  "/mnt/hgfs/CPP/hhuo/src/data/HH_Redis.cpp" "/mnt/hgfs/CPP/hhuo/build/src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

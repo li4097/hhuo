@@ -53,7 +53,10 @@ void hhou::HHFDEvent::OnRead()
                 /// 需要继续读data
                 continue;
             }
-            OnClosed();
+            else if (nRet == SSL_ERROR_ZERO_RETURN)
+            {
+                OnClosed();
+            } 
         }
         else
         {
@@ -82,13 +85,16 @@ void hhou::HHFDEvent::OnRead()
         }
 #else
         rSize = recv(handler, bufIn, (n < TCP_BUFSIZE) ? n - 1 : TCP_BUFSIZE - 1, 0);
-        if (rSize <= 0)
+        if (rSize < 0)
         {
             if(errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR)
             {
                 /// 需要继续读data
                 continue;
             }
+        }
+        else if (rSize == 0)
+        {
             OnClosed();
         }
         else
@@ -132,7 +138,10 @@ void hhou::HHFDEvent::OnWrite()
                 /// 需要继续写data
                 continue;
             }
-            OnClosed();
+            else if (nRet == SSL_ERROR_ZERO_RETURN)
+            {
+                OnClosed();
+            }
         }
         else
         {
@@ -151,7 +160,10 @@ void hhou::HHFDEvent::OnWrite()
                 /// 需要继续读data
                 continue;
             }
-            OnClosed();
+            else if (sLength == -1 && errno == ENOTCONN)
+            {
+                OnClosed();
+            }
         }
         else
         {

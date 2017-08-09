@@ -66,9 +66,9 @@ glog/logging.h
 HH_Common.h
 ../include/HH_Common.h
 
-/home/hhou/CLionProjects/hhuo/tests/test4log.cpp
+/mnt/hgfs/CPP/hhuo/tests/test4log.cpp
 HH_Log.h
-/home/hhou/CLionProjects/hhuo/tests/HH_Log.h
+/mnt/hgfs/CPP/hhuo/tests/HH_Log.h
 
 /usr/local/include/glog/log_severity.h
 

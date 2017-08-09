@@ -1,4 +1,4 @@
-# Install script for directory: /home/hhou/CLionProjects/hhuo/src/data
+# Install script for directory: /mnt/hgfs/CPP/hhuo/src/data
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

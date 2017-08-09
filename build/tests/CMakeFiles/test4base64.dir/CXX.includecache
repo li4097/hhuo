@@ -60,21 +60,21 @@ openssl/err.h
 openssl/bio.h
 -
 
-/home/hhou/CLionProjects/hhuo/include/HH_Log.h
+/mnt/hgfs/CPP/hhuo/include/HH_Log.h
 glog/logging.h
 -
 HH_Common.h
-/home/hhou/CLionProjects/hhuo/include/HH_Common.h
+/mnt/hgfs/CPP/hhuo/include/HH_Common.h
 
-/home/hhou/CLionProjects/hhuo/include/utils/HH_Base64.h
+/mnt/hgfs/CPP/hhuo/include/utils/HH_Base64.h
 HH_Common.h
-/home/hhou/CLionProjects/hhuo/include/utils/HH_Common.h
+/mnt/hgfs/CPP/hhuo/include/utils/HH_Common.h
 
-/home/hhou/CLionProjects/hhuo/tests/test4base64.cpp
+/mnt/hgfs/CPP/hhuo/tests/test4base64.cpp
 ../include/utils/HH_Base64.h
-/home/hhou/CLionProjects/hhuo/include/utils/HH_Base64.h
+/mnt/hgfs/CPP/hhuo/include/utils/HH_Base64.h
 ../include/HH_Log.h
-/home/hhou/CLionProjects/hhuo/include/HH_Log.h
+/mnt/hgfs/CPP/hhuo/include/HH_Log.h
 
 /usr/local/include/glog/log_severity.h
 

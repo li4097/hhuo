@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hhou/CLionProjects/hhuo
+CMAKE_SOURCE_DIR = /mnt/hgfs/CPP/hhuo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hhou/CLionProjects/hhuo/build
+CMAKE_BINARY_DIR = /mnt/hgfs/CPP/hhuo/build
 
 # Include any dependencies generated for this target.
 include tests/CMakeFiles/test4server.dir/depend.make
@@ -59,16 +59,16 @@ include tests/CMakeFiles/test4server.dir/flags.make
 
 tests/CMakeFiles/test4server.dir/test4server.cpp.o: tests/CMakeFiles/test4server.dir/flags.make
 tests/CMakeFiles/test4server.dir/test4server.cpp.o: ../tests/test4server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/test4server.dir/test4server.cpp.o"
-	cd /home/hhou/CLionProjects/hhuo/build/tests && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test4server.dir/test4server.cpp.o -c /home/hhou/CLionProjects/hhuo/tests/test4server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/test4server.dir/test4server.cpp.o"
+	cd /mnt/hgfs/CPP/hhuo/build/tests && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test4server.dir/test4server.cpp.o -c /mnt/hgfs/CPP/hhuo/tests/test4server.cpp
 
 tests/CMakeFiles/test4server.dir/test4server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test4server.dir/test4server.cpp.i"
-	cd /home/hhou/CLionProjects/hhuo/build/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hhou/CLionProjects/hhuo/tests/test4server.cpp > CMakeFiles/test4server.dir/test4server.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/hgfs/CPP/hhuo/tests/test4server.cpp > CMakeFiles/test4server.dir/test4server.cpp.i
 
 tests/CMakeFiles/test4server.dir/test4server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test4server.dir/test4server.cpp.s"
-	cd /home/hhou/CLionProjects/hhuo/build/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hhou/CLionProjects/hhuo/tests/test4server.cpp -o CMakeFiles/test4server.dir/test4server.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/hgfs/CPP/hhuo/tests/test4server.cpp -o CMakeFiles/test4server.dir/test4server.cpp.s
 
 tests/CMakeFiles/test4server.dir/test4server.cpp.o.requires:
 
@@ -83,16 +83,16 @@ tests/CMakeFiles/test4server.dir/test4server.cpp.o.provides.build: tests/CMakeFi
 
 tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.o: tests/CMakeFiles/test4server.dir/flags.make
 tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.o: ../app/ImgProcessor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.o"
-	cd /home/hhou/CLionProjects/hhuo/build/tests && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.o -c /home/hhou/CLionProjects/hhuo/app/ImgProcessor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.o"
+	cd /mnt/hgfs/CPP/hhuo/build/tests && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.o -c /mnt/hgfs/CPP/hhuo/app/ImgProcessor.cpp
 
 tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.i"
-	cd /home/hhou/CLionProjects/hhuo/build/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hhou/CLionProjects/hhuo/app/ImgProcessor.cpp > CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/hgfs/CPP/hhuo/app/ImgProcessor.cpp > CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.i
 
 tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.s"
-	cd /home/hhou/CLionProjects/hhuo/build/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hhou/CLionProjects/hhuo/app/ImgProcessor.cpp -o CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build/tests && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/hgfs/CPP/hhuo/app/ImgProcessor.cpp -o CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.s
 
 tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.o.requires:
 
@@ -120,8 +120,8 @@ bin/test4server: lib/libhhnet.a
 bin/test4server: lib/libhhparser.a
 bin/test4server: lib/libhhutils.a
 bin/test4server: tests/CMakeFiles/test4server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hhou/CLionProjects/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ../bin/test4server"
-	cd /home/hhou/CLionProjects/hhuo/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test4server.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/hgfs/CPP/hhuo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ../bin/test4server"
+	cd /mnt/hgfs/CPP/hhuo/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test4server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 tests/CMakeFiles/test4server.dir/build: bin/test4server
@@ -134,10 +134,10 @@ tests/CMakeFiles/test4server.dir/requires: tests/CMakeFiles/test4server.dir/__/a
 .PHONY : tests/CMakeFiles/test4server.dir/requires
 
 tests/CMakeFiles/test4server.dir/clean:
-	cd /home/hhou/CLionProjects/hhuo/build/tests && $(CMAKE_COMMAND) -P CMakeFiles/test4server.dir/cmake_clean.cmake
+	cd /mnt/hgfs/CPP/hhuo/build/tests && $(CMAKE_COMMAND) -P CMakeFiles/test4server.dir/cmake_clean.cmake
 .PHONY : tests/CMakeFiles/test4server.dir/clean
 
 tests/CMakeFiles/test4server.dir/depend:
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hhou/CLionProjects/hhuo /home/hhou/CLionProjects/hhuo/tests /home/hhou/CLionProjects/hhuo/build /home/hhou/CLionProjects/hhuo/build/tests /home/hhou/CLionProjects/hhuo/build/tests/CMakeFiles/test4server.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/hgfs/CPP/hhuo /mnt/hgfs/CPP/hhuo/tests /mnt/hgfs/CPP/hhuo/build /mnt/hgfs/CPP/hhuo/build/tests /mnt/hgfs/CPP/hhuo/build/tests/CMakeFiles/test4server.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : tests/CMakeFiles/test4server.dir/depend
 

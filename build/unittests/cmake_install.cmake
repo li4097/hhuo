@@ -1,4 +1,4 @@
-# Install script for directory: /home/hhou/CLionProjects/hhuo/unittests
+# Install script for directory: /mnt/hgfs/CPP/hhuo/unittests
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -1,2 +1,2 @@
-/usr/bin/ar qc ../../lib/libhhutils.a  CMakeFiles/hhutils.dir/HH_Thread.cpp.o CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o
+/usr/bin/ar qc ../../lib/libhhutils.a  CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o CMakeFiles/hhutils.dir/HH_Thread.cpp.o CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o
 /usr/bin/ranlib ../../lib/libhhutils.a

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hhou/CLionProjects/hhuo
+CMAKE_SOURCE_DIR = /mnt/hgfs/CPP/hhuo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hhou/CLionProjects/hhuo/build
+CMAKE_BINARY_DIR = /mnt/hgfs/CPP/hhuo/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles /home/hhou/CLionProjects/hhuo/build/src/data/CMakeFiles/progress.marks
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/data/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hhou/CLionProjects/hhuo/build/CMakeFiles 0
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles /mnt/hgfs/CPP/hhuo/build/src/data/CMakeFiles/progress.marks
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/data/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/hgfs/CPP/hhuo/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/data/clean
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/data/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/data/preinstall
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/data/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/data/preinstall
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/data/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/data/CMakeFiles/hhdata.dir/rule:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/data/CMakeFiles/hhdata.dir/rule
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f CMakeFiles/Makefile2 src/data/CMakeFiles/hhdata.dir/rule
 .PHONY : src/data/CMakeFiles/hhdata.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ hhdata: src/data/CMakeFiles/hhdata.dir/rule
 
 # fast build rule for target.
 hhdata/fast:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/build
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/build
 .PHONY : hhdata/fast
 
 HH_Json.o: HH_Json.cpp.o
@@ -131,7 +131,7 @@ HH_Json.o: HH_Json.cpp.o
 
 # target to build an object file
 HH_Json.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.o
 .PHONY : HH_Json.cpp.o
 
 HH_Json.i: HH_Json.cpp.i
@@ -140,7 +140,7 @@ HH_Json.i: HH_Json.cpp.i
 
 # target to preprocess a source file
 HH_Json.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.i
 .PHONY : HH_Json.cpp.i
 
 HH_Json.s: HH_Json.cpp.s
@@ -149,7 +149,7 @@ HH_Json.s: HH_Json.cpp.s
 
 # target to generate assembly for a file
 HH_Json.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Json.cpp.s
 .PHONY : HH_Json.cpp.s
 
 HH_Mysql.o: HH_Mysql.cpp.o
@@ -158,7 +158,7 @@ HH_Mysql.o: HH_Mysql.cpp.o
 
 # target to build an object file
 HH_Mysql.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.o
 .PHONY : HH_Mysql.cpp.o
 
 HH_Mysql.i: HH_Mysql.cpp.i
@@ -167,7 +167,7 @@ HH_Mysql.i: HH_Mysql.cpp.i
 
 # target to preprocess a source file
 HH_Mysql.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.i
 .PHONY : HH_Mysql.cpp.i
 
 HH_Mysql.s: HH_Mysql.cpp.s
@@ -176,7 +176,7 @@ HH_Mysql.s: HH_Mysql.cpp.s
 
 # target to generate assembly for a file
 HH_Mysql.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Mysql.cpp.s
 .PHONY : HH_Mysql.cpp.s
 
 HH_Redis.o: HH_Redis.cpp.o
@@ -185,7 +185,7 @@ HH_Redis.o: HH_Redis.cpp.o
 
 # target to build an object file
 HH_Redis.cpp.o:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o
 .PHONY : HH_Redis.cpp.o
 
 HH_Redis.i: HH_Redis.cpp.i
@@ -194,7 +194,7 @@ HH_Redis.i: HH_Redis.cpp.i
 
 # target to preprocess a source file
 HH_Redis.cpp.i:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.i
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.i
 .PHONY : HH_Redis.cpp.i
 
 HH_Redis.s: HH_Redis.cpp.s
@@ -203,7 +203,7 @@ HH_Redis.s: HH_Redis.cpp.s
 
 # target to generate assembly for a file
 HH_Redis.cpp.s:
-	cd /home/hhou/CLionProjects/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.s
+	cd /mnt/hgfs/CPP/hhuo/build && $(MAKE) -f src/data/CMakeFiles/hhdata.dir/build.make src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.s
 .PHONY : HH_Redis.cpp.s
 
 # Help Target
@@ -235,6 +235,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/hhou/CLionProjects/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /mnt/hgfs/CPP/hhuo/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -34,7 +34,4 @@ src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o: ../src/data/HH_Redis.cpp
 src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o: /usr/local/include/glog/log_severity.h
 src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o: /usr/local/include/glog/logging.h
 src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o: /usr/local/include/glog/vlog_is_on.h
-src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o: /usr/local/include/hiredis/hiredis.h
-src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o: /usr/local/include/hiredis/read.h
-src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o: /usr/local/include/hiredis/sds.h
 

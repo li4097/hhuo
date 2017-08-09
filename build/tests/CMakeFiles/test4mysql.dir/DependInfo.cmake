@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/hhou/CLionProjects/hhuo/tests/test4mysql.cpp" "/home/hhou/CLionProjects/hhuo/build/tests/CMakeFiles/test4mysql.dir/test4mysql.cpp.o"
+  "/mnt/hgfs/CPP/hhuo/tests/test4mysql.cpp" "/mnt/hgfs/CPP/hhuo/build/tests/CMakeFiles/test4mysql.dir/test4mysql.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -21,7 +21,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/hhou/CLionProjects/hhuo/build/src/data/CMakeFiles/hhdata.dir/DependInfo.cmake"
+  "/mnt/hgfs/CPP/hhuo/build/src/data/CMakeFiles/hhdata.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

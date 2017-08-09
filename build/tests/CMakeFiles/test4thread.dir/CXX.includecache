@@ -84,17 +84,17 @@ utils/HH_Condition.h
 utils/HH_MutexLockGuard.h
 ../include/utils/utils/HH_MutexLockGuard.h
 
-/home/hhou/CLionProjects/hhuo/include/HH_Log.h
+/mnt/hgfs/CPP/hhuo/include/HH_Log.h
 glog/logging.h
 -
 HH_Common.h
-/home/hhou/CLionProjects/hhuo/include/HH_Common.h
+/mnt/hgfs/CPP/hhuo/include/HH_Common.h
 
-/home/hhou/CLionProjects/hhuo/tests/test4thread.cpp
+/mnt/hgfs/CPP/hhuo/tests/test4thread.cpp
 utils/HH_Thread.h
-/home/hhou/CLionProjects/hhuo/tests/utils/HH_Thread.h
+/mnt/hgfs/CPP/hhuo/tests/utils/HH_Thread.h
 ../include/HH_Log.h
-/home/hhou/CLionProjects/hhuo/include/HH_Log.h
+/mnt/hgfs/CPP/hhuo/include/HH_Log.h
 
 /usr/local/include/glog/log_severity.h
 

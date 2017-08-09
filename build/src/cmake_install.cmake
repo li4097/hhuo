@@ -1,4 +1,4 @@
-# Install script for directory: /home/hhou/CLionProjects/hhuo/src
+# Install script for directory: /mnt/hgfs/CPP/hhuo/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,10 +34,10 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/hhou/CLionProjects/hhuo/build/src/net/cmake_install.cmake")
-  include("/home/hhou/CLionProjects/hhuo/build/src/parser/cmake_install.cmake")
-  include("/home/hhou/CLionProjects/hhuo/build/src/utils/cmake_install.cmake")
-  include("/home/hhou/CLionProjects/hhuo/build/src/data/cmake_install.cmake")
+  include("/mnt/hgfs/CPP/hhuo/build/src/net/cmake_install.cmake")
+  include("/mnt/hgfs/CPP/hhuo/build/src/parser/cmake_install.cmake")
+  include("/mnt/hgfs/CPP/hhuo/build/src/utils/cmake_install.cmake")
+  include("/mnt/hgfs/CPP/hhuo/build/src/data/cmake_install.cmake")
 
 endif()
 

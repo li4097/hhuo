@@ -3,8 +3,8 @@
 
 tests/CMakeFiles/test4json.dir/test4json.cpp.o
  ../include/HH_Common.h
- /home/hhou/CLionProjects/hhuo/include/data/HH_Json.h
- /home/hhou/CLionProjects/hhuo/tests/test4json.cpp
+ /mnt/hgfs/CPP/hhuo/include/data/HH_Json.h
+ /mnt/hgfs/CPP/hhuo/tests/test4json.cpp
  /usr/local/include/json/allocator.h
  /usr/local/include/json/autolink.h
  /usr/local/include/json/config.h
