@@ -37,7 +37,7 @@ hhou::HHThread::~HHThread()
 
 void hhou::HHThread::PushTask(HHTask &tsk)
 {
-    m_qTasks.Put(tsk);
+    m_qTasks.PutBack(tsk);
 }
 
 void hhou::HHThread::Run(void *pParm)
@@ -57,7 +57,7 @@ void hhou::HHThread::Run(void *pParm)
             while (!pclThread->m_qTasks.Empty())
             {
                 HHTask tsk;
-                pclThread->m_qTasks.Take(tsk);
+                pclThread->m_qTasks.TakeFront(tsk);
                 tsk.Excute();
             }
         }

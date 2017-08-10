@@ -16,54 +16,16 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#ifndef HH_SYNQUEUE_H
-#define HH_SYNQUEUE_H
+#ifndef HH_ORDERQUEUE_H
+#define HH_ORDERQUEUE_H
 
-#include <list>
 #include "HH_common.h"
 
 namespace hhou
 {
 	template<typename T>
-	class HHSynQueue
+	class HHOrderQueue
 	{
-	public:
-		/// 构造函数
-		HHSynQueue() {}
-		virtual ~HHSynQueue() {}
-
-		/// 将T类型对象放入队列
-		void PutBack(T &x)
-		{
-			lock_guard<mutex> locker(m_mutex);
-			m_queue.push_back(x);
-		}
-
-		/// 将T类型对象从队列取出
-		void TakeFront(T &x)
-		{
-			lock_guard<mutex> locker(m_mutex);
-			x = m_queue.front();
-			m_queue.pop_front();
-		}
-
-		/// 判断队列是否为空
-		bool Empty()
-		{
-			lock_guard<mutex> locker(m_mutex);
-			return m_queue.empty();
-		}
-
-		/// 返回队列大小
-		size_t Size()
-		{
-			lock_guard<mutex> locker(m_mutex);
-			return m_queue.size();
-		}
-
-	private:
-		list<T> m_queue; /// 队列
-		mutex m_mutex; /// 互斥锁
 	};
 }
-#endif // HH_SYNQUEUE_H
+#endif // HH_ORDERQUEUE_H

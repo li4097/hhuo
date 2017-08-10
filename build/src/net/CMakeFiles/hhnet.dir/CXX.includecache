@@ -23,6 +23,8 @@ memory
 -
 thread
 -
+functional
+-
 condition_variable
 -
 unistd.h
@@ -98,6 +100,8 @@ mutex
 memory
 -
 thread
+-
+functional
 -
 condition_variable
 -
@@ -185,12 +189,12 @@ HH_HttpResponse.h
 ../include/utils/HH_CircularBuffer.h
 
 ../include/utils/HH_SynQueue.h
+list
+-
 HH_common.h
 ../include/utils/HH_common.h
 
 ../include/utils/HH_Thread.h
-queue
--
 HH_Common.h
 ../include/utils/HH_Common.h
 HH_SynQueue.h
@@ -233,11 +237,9 @@ HH_Config.h
 ../src/net/../../include/net/HH_Config.h
 
 ../src/net/../../include/net/HH_Poller.h
-memory
+map
 -
 queue
--
-map
 -
 HH_EventBase.h
 ../src/net/../../include/net/HH_EventBase.h
@@ -251,12 +253,12 @@ HH_Log.h
 ../src/net/../../include/net/HH_Log.h
 
 ../src/net/../../include/utils/HH_SynQueue.h
+list
+-
 HH_common.h
 ../src/net/../../include/utils/HH_common.h
 
 ../src/net/../../include/utils/HH_Thread.h
-queue
--
 HH_Common.h
 ../src/net/../../include/utils/HH_Common.h
 HH_SynQueue.h

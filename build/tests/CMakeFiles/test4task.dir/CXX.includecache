@@ -23,6 +23,8 @@ memory
 -
 thread
 -
+functional
+-
 condition_variable
 -
 unistd.h
@@ -99,6 +101,8 @@ memory
 -
 thread
 -
+functional
+-
 condition_variable
 -
 unistd.h
@@ -143,12 +147,12 @@ openssl/bio.h
 -
 
 ../include/utils/HH_SynQueue.h
+list
+-
 HH_common.h
 ../include/utils/HH_common.h
 
 ../include/utils/HH_Thread.h
-queue
--
 HH_Common.h
 ../include/utils/HH_Common.h
 HH_SynQueue.h

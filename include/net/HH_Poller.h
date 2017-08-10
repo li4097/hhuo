@@ -19,9 +19,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef HH_POLLER_H
 #define HH_POLLER_H
 
-#include <memory>
-#include <queue>
 #include <map>
+#include <queue>
 #include "HH_EventBase.h"
 #include "HH_Config.h"
 
