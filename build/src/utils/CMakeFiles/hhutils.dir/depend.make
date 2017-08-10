@@ -11,9 +11,6 @@ src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o: /usr/local/include/glo
 
 src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o: ../include/HH_Common.h
 src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o: ../include/HH_Log.h
-src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o: ../include/utils/HH_Condition.h
-src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o: ../include/utils/HH_Mutex.h
-src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o: ../include/utils/HH_MutexLockGuard.h
 src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o: ../src/utils/../../include/net/HH_EventBase.h
 src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o: ../src/utils/../../include/net/HH_Task.h
 src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o: ../src/utils/../../include/utils/HH_Thread.h
@@ -25,9 +22,6 @@ src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o: /usr/local/include/glog/vlog_i
 src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o: ../include/HH_Common.h
 src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o: ../include/HH_Config.h
 src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o: ../include/HH_Log.h
-src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o: ../include/utils/HH_Condition.h
-src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o: ../include/utils/HH_Mutex.h
-src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o: ../include/utils/HH_MutexLockGuard.h
 src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o: ../src/utils/../../include/net/HH_EventBase.h
 src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o: ../src/utils/../../include/net/HH_Task.h
 src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o: ../src/utils/../../include/utils/HH_Thread.h

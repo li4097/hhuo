@@ -17,6 +17,14 @@ time.h
 -
 iostream
 -
+mutex
+-
+memory
+-
+thread
+-
+condition_variable
+-
 unistd.h
 -
 sys/time.h
@@ -39,11 +47,7 @@ netdb.h
 -
 string.h
 -
-pthread.h
--
 errno.h
--
-stdio.h
 -
 netinet/in.h
 -
@@ -65,10 +69,6 @@ glog/logging.h
 -
 HH_Common.h
 ../include/HH_Common.h
-
-../include/utils/HH_Mutex.h
-HH_Common.h
-../include/utils/HH_Common.h
 
 ../include/utils/HH_Split.h
 vector
@@ -103,20 +103,10 @@ HH_Common.h
 ../src/parser/../../include/parser/HH_Parse.h
 HH_Common.h
 ../src/parser/../../include/parser/HH_Common.h
-utils/HH_Mutex.h
-../src/parser/../../include/parser/utils/HH_Mutex.h
 HH_HttpRequest.h
 ../src/parser/../../include/parser/HH_HttpRequest.h
 HH_HttpResponse.h
 ../src/parser/../../include/parser/HH_HttpResponse.h
-
-../src/parser/../../include/utils/HH_Mutex.h
-HH_Common.h
-../src/parser/../../include/utils/HH_Common.h
-
-../src/parser/../../include/utils/HH_MutexLockGuard.h
-HH_Mutex.h
-../src/parser/../../include/utils/HH_Mutex.h
 
 /mnt/hgfs/CPP/hhuo/src/parser/HH_HttpRequest.cpp
 HH_HttpRequest.h
@@ -133,8 +123,6 @@ HH_HttpResponse.h
 /mnt/hgfs/CPP/hhuo/src/parser/HH_Parse.cpp
 HH_Parse.h
 /mnt/hgfs/CPP/hhuo/src/parser/HH_Parse.h
-HH_MutexLockGuard.h
-/mnt/hgfs/CPP/hhuo/src/parser/HH_MutexLockGuard.h
 
 /usr/local/include/glog/log_severity.h
 

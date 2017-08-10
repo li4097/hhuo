@@ -17,6 +17,14 @@ time.h
 -
 iostream
 -
+mutex
+-
+memory
+-
+thread
+-
+condition_variable
+-
 unistd.h
 -
 sys/time.h
@@ -39,11 +47,7 @@ netdb.h
 -
 string.h
 -
-pthread.h
--
 errno.h
--
-stdio.h
 -
 netinet/in.h
 -
@@ -69,10 +73,6 @@ fstream
 -
 map
 -
-
-../include/utils/HH_Mutex.h
-HH_Common.h
-../include/utils/HH_Common.h
 
 /mnt/hgfs/CPP/hhuo/app/ImgProcessor.cpp
 ImgProcessor.h
@@ -101,6 +101,14 @@ time.h
 -
 iostream
 -
+mutex
+-
+memory
+-
+thread
+-
+condition_variable
+-
 unistd.h
 -
 sys/time.h
@@ -123,11 +131,7 @@ netdb.h
 -
 string.h
 -
-pthread.h
--
 errno.h
--
-stdio.h
 -
 netinet/in.h
 -
@@ -177,8 +181,6 @@ HH_EventBase.h
 /mnt/hgfs/CPP/hhuo/include/net/HH_EventBase.h
 HH_Config.h
 /mnt/hgfs/CPP/hhuo/include/net/HH_Config.h
-utils/HH_Mutex.h
-/mnt/hgfs/CPP/hhuo/include/net/utils/HH_Mutex.h
 
 /mnt/hgfs/CPP/hhuo/include/net/HH_ServerBase.h
 
@@ -203,8 +205,6 @@ HH_Common.h
 /mnt/hgfs/CPP/hhuo/include/parser/HH_Parse.h
 HH_Common.h
 /mnt/hgfs/CPP/hhuo/include/parser/HH_Common.h
-utils/HH_Mutex.h
-/mnt/hgfs/CPP/hhuo/include/parser/utils/HH_Mutex.h
 HH_HttpRequest.h
 /mnt/hgfs/CPP/hhuo/include/parser/HH_HttpRequest.h
 HH_HttpResponse.h

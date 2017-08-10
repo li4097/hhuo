@@ -3,9 +3,6 @@
 
 tests/CMakeFiles/test4thread.dir/test4thread.cpp.o
  ../include/HH_Common.h
- ../include/utils/HH_Condition.h
- ../include/utils/HH_Mutex.h
- ../include/utils/HH_MutexLockGuard.h
  ../include/utils/HH_Thread.h
  /mnt/hgfs/CPP/hhuo/include/HH_Log.h
  /mnt/hgfs/CPP/hhuo/tests/test4thread.cpp

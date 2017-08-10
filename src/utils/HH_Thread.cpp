@@ -17,7 +17,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include <map>
-#include "utils/HH_MutexLockGuard.h"
 #include "HH_Thread.h"
 #include "HH_Task.h"
 #include "HH_Log.h"
@@ -48,31 +47,30 @@ void hhou::HHThread::PushTask(HHTask &tsk)
     m_qTasks.push(tsk);
 }
 
-void hhou::HHThread::PopTask(HHTask &tsk)
+void hhou::HHThread::PopTask()
 {
-    tsk = m_qTasks.front();
+    auto tsk = m_qTasks.front();
+    tsk.Excute();
     m_qTasks.pop();
 }
 
-void* hhou::HHThread::Run(void *pParm)
+void *hhou::HHThread::Run(void *pParm)
 {
     auto pclThread = (HHThread *)pParm;
     while (pclThread->m_bStatus > 0)
     {
-        HHMutexLockGuard lock(pclThread->m_mutex);  /// 先锁
+        lock_guard<mutex> lock(pclThread->m_mutex);  /// 先锁
         if (pclThread->m_qTasks.empty())
         {
             pclThread->m_bStatus = 1; /// 空闲中
-            pclThread->m_cond.Wait(pclThread->m_mutex); /// 等待条件触发
+            pclThread->m_cond.wait(pclThread->m_mutex); /// 等待条件触发
         }
         else
         {
             pclThread->m_bStatus = 2; /// 忙碌中
             while (!pclThread->m_qTasks.empty())
             {
-                HHTask tsk;
-                pclThread->PopTask(tsk);
-                tsk.Excute();
+                pclThread->PopTask();
             }
         }
     }
@@ -81,7 +79,7 @@ void* hhou::HHThread::Run(void *pParm)
 
 void hhou::HHThread::StartThread()
 {
-    HHMutexLockGuard lock(m_mutex);
-    m_cond.Notify();
+    lock_guard<mutex> lock(m_mutex);
+    m_cond.notify_one();
 }
 

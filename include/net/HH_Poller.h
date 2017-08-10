@@ -24,7 +24,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <map>
 #include "HH_EventBase.h"
 #include "HH_Config.h"
-#include "utils/HH_Mutex.h"
 
 namespace hhou
 {
@@ -69,7 +68,6 @@ namespace hhou
     private:
         SOCKET m_epollFd; ///poller的fd
         struct epoll_event m_events[Poller_MAX_EVENT]; ///关注事件的最大数量
-        multimap<time_t, HHEventBase *> m_mHandlers; /// 保存的socket句柄(用于超时操作)
         int m_connectionNum; /// 连接的总数
         time_t m_nStart; /// 启动的开始时间
     };

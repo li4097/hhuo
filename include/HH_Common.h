@@ -29,6 +29,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
+#include <mutex>
+#include <memory>
+#include <thread>
+#include <condition_variable>
 using namespace std;
 
 #ifndef _WIN32
@@ -45,9 +49,7 @@ using namespace std;
 #include <fcntl.h>
 #include <netdb.h>
 #include <string.h>
-#include <pthread.h>
 #include <errno.h>
-#include <stdio.h>
 #define Errno errno
 
 // 统一成WIN32的用法

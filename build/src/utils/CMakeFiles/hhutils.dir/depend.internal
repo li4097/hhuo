@@ -12,9 +12,6 @@ src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o
 src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o
  ../include/HH_Common.h
  ../include/HH_Log.h
- ../include/utils/HH_Condition.h
- ../include/utils/HH_Mutex.h
- ../include/utils/HH_MutexLockGuard.h
  ../src/utils/../../include/net/HH_EventBase.h
  ../src/utils/../../include/net/HH_Task.h
  ../src/utils/../../include/utils/HH_Thread.h
@@ -26,9 +23,6 @@ src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o
  ../include/HH_Common.h
  ../include/HH_Config.h
  ../include/HH_Log.h
- ../include/utils/HH_Condition.h
- ../include/utils/HH_Mutex.h
- ../include/utils/HH_MutexLockGuard.h
  ../src/utils/../../include/net/HH_EventBase.h
  ../src/utils/../../include/net/HH_Task.h
  ../src/utils/../../include/utils/HH_Thread.h

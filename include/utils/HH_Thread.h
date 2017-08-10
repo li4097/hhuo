@@ -21,8 +21,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <queue>
 #include "HH_Common.h"
-#include "utils/HH_Condition.h"
-#include "utils/HH_MutexLockGuard.h"
 
 namespace hhou
 {
@@ -47,7 +45,7 @@ namespace hhou
         void PushTask(HHTask &tsk);
 
         /**pop任务*/
-        void PopTask(HHTask &tsk);
+        void PopTask();
 
     public:
         queue<HHTask> m_qTasks; /// 要处理的任务
@@ -56,8 +54,8 @@ namespace hhou
     private:
         int m_nThreadID; /// 线程的ID
         pthread_t m_thread; /// 线程
-        HHCond m_cond; /// 条件
-        HHMutex m_mutex; /// 锁
+        condition_variable_any m_cond; /// 条件
+        mutex m_mutex; /// 锁
     };
 }
 

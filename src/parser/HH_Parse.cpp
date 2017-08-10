@@ -17,7 +17,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "HH_Parse.h"
-#include "HH_MutexLockGuard.h"
 
 ///////////////////////////////
 /// 库和功能代码分开
@@ -63,7 +62,7 @@ hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)
     }
     else
     {
-        HHMutexLockGuard lock(m_mutex);
+        lock_guard<mutex> lock(m_mutex);
         pParse = new hhou::HHParse;
         m_mParsers.insert(make_pair(fd, pParse));
     }

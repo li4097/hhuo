@@ -35,3 +35,6 @@ src/data/CMakeFiles/hhdata.dir/HH_Redis.cpp.o
  /usr/local/include/glog/log_severity.h
  /usr/local/include/glog/logging.h
  /usr/local/include/glog/vlog_is_on.h
+ /usr/local/include/hiredis/hiredis.h
+ /usr/local/include/hiredis/read.h
+ /usr/local/include/hiredis/sds.h

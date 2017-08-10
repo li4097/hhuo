@@ -4,9 +4,6 @@
 tests/CMakeFiles/test4task.dir/test4task.cpp.o: ../include/HH_Common.h
 tests/CMakeFiles/test4task.dir/test4task.cpp.o: ../include/HH_Config.h
 tests/CMakeFiles/test4task.dir/test4task.cpp.o: ../include/HH_Log.h
-tests/CMakeFiles/test4task.dir/test4task.cpp.o: ../include/utils/HH_Condition.h
-tests/CMakeFiles/test4task.dir/test4task.cpp.o: ../include/utils/HH_Mutex.h
-tests/CMakeFiles/test4task.dir/test4task.cpp.o: ../include/utils/HH_MutexLockGuard.h
 tests/CMakeFiles/test4task.dir/test4task.cpp.o: ../include/utils/HH_Thread.h
 tests/CMakeFiles/test4task.dir/test4task.cpp.o: ../include/utils/HH_ThreadPool.h
 tests/CMakeFiles/test4task.dir/test4task.cpp.o: ../include/HH_Log.h

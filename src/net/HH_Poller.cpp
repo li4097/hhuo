@@ -42,10 +42,6 @@ void hhou::HHPoller::AddEvent(HHEventBase *event)
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_ADD, event->handler, &ev);
     event->m_tLast = time(nullptr);
-    if (event->eventInfo.nType != 0)  /// listen不加入监控
-    {
-        m_mHandlers.insert(make_pair(event->m_tLast, event));
-    }
     UpdateConnNums(1);
 }
 
@@ -63,7 +59,6 @@ void hhou::HHPoller::ChangeEvent(HHEventBase *event)
 
 void hhou::HHPoller::DelEvent(HHEventBase *event)
 {
-    event->eventInfo.status = Close;
     struct epoll_event ev = {};
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
@@ -72,16 +67,6 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
 
 void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
 {
-    /// checkout timeout
-    time_t expireTime = time(nullptr) - HHConfig::Instance().ReadInt("connection", "timeout", 60);
-    pair<multiMapItor, multiMapItor> pos = m_mHandlers.equal_range(expireTime);
-    for (auto it = pos.first; it != pos.second;)
-    {
-        HHEventBase *pEvent = it->second;
-        it = m_mHandlers.erase(it);
-        pEvent->OnTimeout(); /// 作超时处理
-    }
-
     /// wait for events to happen
     int fds = epoll_wait(m_epollFd, m_events, Poller_MAX_EVENT, timeout);
     for(int i = 0; i < fds; i++)
@@ -102,5 +87,4 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
 void hhou::HHPoller::UpdateConnNums(int nNum)
 {
     m_connectionNum += nNum;
-    LOG(INFO) << "Current connection num: " << m_connectionNum;
 }

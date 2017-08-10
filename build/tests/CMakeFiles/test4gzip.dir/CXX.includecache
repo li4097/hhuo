@@ -17,6 +17,14 @@ time.h
 -
 iostream
 -
+mutex
+-
+memory
+-
+thread
+-
+condition_variable
+-
 unistd.h
 -
 sys/time.h
@@ -39,11 +47,7 @@ netdb.h
 -
 string.h
 -
-pthread.h
--
 errno.h
--
-stdio.h
 -
 netinet/in.h
 -

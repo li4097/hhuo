@@ -13,7 +13,6 @@ tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.o: /usr/local/include/g
 
 tests/CMakeFiles/test4server.dir/test4server.cpp.o: ../include/HH_Common.h
 tests/CMakeFiles/test4server.dir/test4server.cpp.o: ../include/HH_Config.h
-tests/CMakeFiles/test4server.dir/test4server.cpp.o: ../include/utils/HH_Mutex.h
 tests/CMakeFiles/test4server.dir/test4server.cpp.o: ../app/ImgProcessor.h
 tests/CMakeFiles/test4server.dir/test4server.cpp.o: ../include/HH_Log.h
 tests/CMakeFiles/test4server.dir/test4server.cpp.o: ../include/net/HH_EventBase.h
