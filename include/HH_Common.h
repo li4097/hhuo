@@ -48,6 +48,7 @@ using namespace std;
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <netdb.h>
+#include <pthread.h>
 #include <string.h>
 #include <errno.h>
 #define Errno errno

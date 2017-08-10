@@ -45,6 +45,8 @@ fcntl.h
 -
 netdb.h
 -
+pthread.h
+-
 string.h
 -
 errno.h
@@ -128,6 +130,8 @@ arpa/inet.h
 fcntl.h
 -
 netdb.h
+-
+pthread.h
 -
 string.h
 -

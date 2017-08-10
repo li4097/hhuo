@@ -25,42 +25,28 @@ hhou::HHThread::HHThread(int nThreadID)
         : m_bStatus(0),
           m_nThreadID(nThreadID)
 {
-    pthread_attr_t attr = {};
-    pthread_attr_init(&attr);
-    pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-    if (pthread_create(&m_thread, &attr, Run, this) == -1)
-    {
-        LOG(ERROR) << "pthread_create errno: " << errno;
-    }
-    pthread_attr_destroy(&attr);
+    m_thread = thread(Run, this);
     m_bStatus = 1;
 }
 
 hhou::HHThread::~HHThread()
 {
+    m_thread.join();
     m_bStatus = 0;
-    pthread_join(m_thread, nullptr);
 }
 
 void hhou::HHThread::PushTask(HHTask &tsk)
 {
-    m_qTasks.push(tsk);
+    m_qTasks.Put(tsk);
 }
 
-void hhou::HHThread::PopTask()
-{
-    auto tsk = m_qTasks.front();
-    tsk.Excute();
-    m_qTasks.pop();
-}
-
-void *hhou::HHThread::Run(void *pParm)
+void hhou::HHThread::Run(void *pParm)
 {
     auto pclThread = (HHThread *)pParm;
     while (pclThread->m_bStatus > 0)
     {
         lock_guard<mutex> lock(pclThread->m_mutex);  /// 先锁
-        if (pclThread->m_qTasks.empty())
+        if (pclThread->m_qTasks.Empty())
         {
             pclThread->m_bStatus = 1; /// 空闲中
             pclThread->m_cond.wait(pclThread->m_mutex); /// 等待条件触发
@@ -68,13 +54,14 @@ void *hhou::HHThread::Run(void *pParm)
         else
         {
             pclThread->m_bStatus = 2; /// 忙碌中
-            while (!pclThread->m_qTasks.empty())
+            while (!pclThread->m_qTasks.Empty())
             {
-                pclThread->PopTask();
+                HHTask tsk;
+                pclThread->m_qTasks.Take(tsk);
+                tsk.Excute();
             }
         }
     }
-    return pParm;
 }
 
 void hhou::HHThread::StartThread()

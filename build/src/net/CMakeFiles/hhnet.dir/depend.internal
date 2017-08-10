@@ -5,11 +5,13 @@ src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o
  ../include/HH_Common.h
  ../include/HH_Config.h
  ../include/HH_Log.h
+ ../include/HH_common.h
  ../src/net/../../include/net/HH_EventBase.h
  ../src/net/../../include/net/HH_EventLoop.h
  ../src/net/../../include/net/HH_ListenEvent.h
  ../src/net/../../include/net/HH_Poller.h
  ../src/net/../../include/net/HH_Task.h
+ ../src/net/../../include/utils/HH_SynQueue.h
  ../src/net/../../include/utils/HH_Thread.h
  ../src/net/../../include/utils/HH_ThreadPool.h
  /mnt/hgfs/CPP/hhuo/src/net/HH_EventLoop.cpp
@@ -48,9 +50,11 @@ src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o
  ../include/HH_Common.h
  ../include/HH_Config.h
  ../include/HH_Log.h
+ ../include/HH_common.h
  ../include/net/HH_EventBase.h
  ../include/net/HH_FDEvent.h
  ../include/utils/HH_CircularBuffer.h
+ ../include/utils/HH_SynQueue.h
  ../include/utils/HH_Thread.h
  ../include/utils/HH_ThreadPool.h
  ../src/net/../../include/net/HH_Poller.h

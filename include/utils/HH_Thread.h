@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <queue>
 #include "HH_Common.h"
+#include "HH_SynQueue.h"
 
 namespace hhou
 {
@@ -36,7 +37,7 @@ namespace hhou
         virtual ~HHThread();
 
         /**线程执行的函数*/
-        static void *Run(void *pParm);
+        static void Run(void *pParm);
 
         /**开启线程处理任务*/
         void StartThread();
@@ -44,16 +45,13 @@ namespace hhou
         /**push任务*/
         void PushTask(HHTask &tsk);
 
-        /**pop任务*/
-        void PopTask();
-
     public:
-        queue<HHTask> m_qTasks; /// 要处理的任务
+        HHSynQueue<HHTask> m_qTasks; /// 要处理的任务
         int m_bStatus; /// 线程状态(0---未启动，1---空闲，2---忙碌)
 
     private:
         int m_nThreadID; /// 线程的ID
-        pthread_t m_thread; /// 线程
+        thread m_thread; /// 线程
         condition_variable_any m_cond; /// 条件
         mutex m_mutex; /// 锁
     };
