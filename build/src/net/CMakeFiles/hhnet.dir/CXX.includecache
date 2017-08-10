@@ -189,7 +189,7 @@ HH_HttpResponse.h
 ../include/utils/HH_CircularBuffer.h
 
 ../include/utils/HH_SynQueue.h
-list
+deque
 -
 HH_common.h
 ../include/utils/HH_common.h
@@ -253,7 +253,7 @@ HH_Log.h
 ../src/net/../../include/net/HH_Log.h
 
 ../src/net/../../include/utils/HH_SynQueue.h
-list
+deque
 -
 HH_common.h
 ../src/net/../../include/utils/HH_common.h

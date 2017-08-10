@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef HH_SYNQUEUE_H
 #define HH_SYNQUEUE_H
 
-#include <list>
+#include <deque>
 #include "HH_common.h"
 
 namespace hhou
@@ -62,7 +62,7 @@ namespace hhou
 		}
 
 	private:
-		list<T> m_queue; /// 队列
+        deque<T> m_queue; /// 队列
 		mutex m_mutex; /// 互斥锁
 	};
 }
