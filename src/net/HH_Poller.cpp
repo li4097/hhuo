@@ -41,9 +41,9 @@ void hhou::HHPoller::AddEvent(HHEventBase *event)
     ev.events = EPOLLIN | EPOLLET;
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_ADD, event->handler, &ev);
-    event->m_tLast = time(nullptr);
-    if (event->eventInfo.nType)
+    if (event->eventInfo.nType != 0)
     {
+        event->m_tLast = time(nullptr);
         m_AllSockets.Push(event);
         UpdateConnNums(1);
     }
@@ -80,7 +80,7 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
         auto it = m_AllSockets.Front();
         if (it->m_tLast < expireTime)
         {
-            m_AllSockets.PopFront();
+            LOG(INFO) << "socket: " << it->handler << " timeout.";
             it->OnTimeout();
         }
         else
@@ -109,5 +109,5 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
 void hhou::HHPoller::UpdateConnNums(int nNum)
 {
     m_connectionNum += nNum;
-    LOG(INFO) << "Current socket num: " << nNum;
+    LOG(INFO) << "Current socket num: " << m_connectionNum;
 }
