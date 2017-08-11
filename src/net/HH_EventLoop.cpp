@@ -44,10 +44,10 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
         {
             /// 准备任务，将作分发处理
             auto iter = m_qEvents.front();
-            HHTask tsk(iter->handler, static_cast<void *>(iter));
-            int nSeq = iter->handler % HHThreadPool::Instance().m_nThreadNums;
-            auto thread = HHThreadPool::Instance().m_threadPool.find(nSeq);
-            if (thread != HHThreadPool::Instance().m_threadPool.end())
+            HHTask *tsk = new HHTask(iter->handler, static_cast<void *>(iter));
+            int nSeq = iter->handler % HHThreadPool::Instance()->m_nThreadNums;
+            auto thread = HHThreadPool::Instance()->m_threadPool.find(nSeq);
+            if (thread != HHThreadPool::Instance()->m_threadPool.end())
             {
                 vToStart.push_back(thread->second);
                 thread->second->PushTask(tsk);

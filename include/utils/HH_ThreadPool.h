@@ -36,7 +36,14 @@ namespace hhou
           * 线程池的构造函数
           */
          HHThreadPool();
-         virtual ~HHThreadPool() {}
+         virtual ~HHThreadPool() 
+         {
+            if (g_threadPoolObj != nullptr)
+            {
+                delete g_threadPoolObj;
+                g_threadPoolObj = nullptr;
+            }
+         }
 
          /**
           * 初始化
@@ -46,15 +53,21 @@ namespace hhou
          /**
           * 线程池的单例模式
           */
-         static HHThreadPool &Instance()
+         static HHThreadPool *Instance()
          {
-             static HHThreadPool threadPool;
-             return threadPool;
+            if (g_threadPoolObj == nullptr)
+            {
+               g_threadPoolObj = new HHThreadPool();
+            }
+            return g_threadPoolObj;
          }
 
      public:
          int m_nThreadNums; /// 线程的个数
          map<int, HHThread *> m_threadPool; /// 线程存放map中
+
+    private:
+        static HHThreadPool *g_threadPoolObj;
      };
 }
 #endif //HH_THREADPOOL_H

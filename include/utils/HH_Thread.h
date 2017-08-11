@@ -42,10 +42,10 @@ namespace hhou
         void StartThread();
 
         /**push任务*/
-        void PushTask(HHTask &tsk);
+        void PushTask(HHTask *tsk);
 
     public:
-        HHSynQueue<HHTask> m_qTasks; /// 要处理的任务
+        HHSynQueue<HHTask *> m_qTasks; /// 要处理的任务
         int m_bStatus; /// 线程状态(0---未启动，1---空闲，2---忙碌)
 
     private:

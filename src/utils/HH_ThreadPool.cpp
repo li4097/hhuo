@@ -20,9 +20,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_Task.h"
 #include "HH_ThreadPool.h"
 
+hhou::HHThreadPool *hhou::HHThreadPool::g_threadPoolObj = nullptr;
 hhou::HHThreadPool::HHThreadPool()
 {
-    Init(); /// 初始化
+    
 }
 
 bool hhou::HHThreadPool::Init(int nThreadNum)

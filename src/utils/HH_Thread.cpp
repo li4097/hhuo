@@ -35,7 +35,7 @@ hhou::HHThread::~HHThread()
     m_bStatus = 0;
 }
 
-void hhou::HHThread::PushTask(HHTask &tsk)
+void hhou::HHThread::PushTask(HHTask *tsk)
 {
     m_qTasks.PutBack(tsk);
 }
@@ -56,9 +56,11 @@ void hhou::HHThread::Run(void *pParm)
             pclThread->m_bStatus = 2; /// 忙碌中
             while (!pclThread->m_qTasks.Empty())
             {
-                HHTask tsk;
+                HHTask *tsk;
                 pclThread->m_qTasks.TakeFront(tsk);
-                tsk.Excute();
+                tsk->Excute();
+                delete tsk;
+                tsk = nullptr;
             }
         }
     }
