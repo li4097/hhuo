@@ -4,14 +4,12 @@
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../include/HH_Common.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../include/HH_Config.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../include/HH_Log.h
-src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../include/HH_common.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../include/utils/HH_OrderQueue.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/net/HH_EventBase.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/net/HH_EventLoop.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/net/HH_ListenEvent.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/net/HH_Poller.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/net/HH_Task.h
-src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/utils/HH_SynQueue.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/utils/HH_Thread.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/../../include/utils/HH_ThreadPool.h
 src/net/CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o: ../src/net/HH_EventLoop.cpp
@@ -52,12 +50,10 @@ src/net/CMakeFiles/hhnet.dir/HH_ListenEvent.cpp.o: /usr/local/include/glog/vlog_
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/HH_Common.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/HH_Config.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/HH_Log.h
-src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/HH_common.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/net/HH_EventBase.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/net/HH_FDEvent.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/utils/HH_CircularBuffer.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/utils/HH_OrderQueue.h
-src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/utils/HH_SynQueue.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/utils/HH_Thread.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../include/utils/HH_ThreadPool.h
 src/net/CMakeFiles/hhnet.dir/HH_Poller.cpp.o: ../src/net/../../include/net/HH_Poller.h

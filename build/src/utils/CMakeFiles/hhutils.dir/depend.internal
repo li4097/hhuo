@@ -12,10 +12,8 @@ src/utils/CMakeFiles/hhutils.dir/HH_CircularBuffer.cpp.o
 src/utils/CMakeFiles/hhutils.dir/HH_Thread.cpp.o
  ../include/HH_Common.h
  ../include/HH_Log.h
- ../include/HH_common.h
  ../src/utils/../../include/net/HH_EventBase.h
  ../src/utils/../../include/net/HH_Task.h
- ../src/utils/../../include/utils/HH_SynQueue.h
  ../src/utils/../../include/utils/HH_Thread.h
  /mnt/hgfs/CPP/hhuo/src/utils/HH_Thread.cpp
  /usr/local/include/glog/log_severity.h
@@ -25,10 +23,8 @@ src/utils/CMakeFiles/hhutils.dir/HH_ThreadPool.cpp.o
  ../include/HH_Common.h
  ../include/HH_Config.h
  ../include/HH_Log.h
- ../include/HH_common.h
  ../src/utils/../../include/net/HH_EventBase.h
  ../src/utils/../../include/net/HH_Task.h
- ../src/utils/../../include/utils/HH_SynQueue.h
  ../src/utils/../../include/utils/HH_Thread.h
  ../src/utils/../../include/utils/HH_ThreadPool.h
  /mnt/hgfs/CPP/hhuo/src/utils/HH_ThreadPool.cpp

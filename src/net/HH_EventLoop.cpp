@@ -39,7 +39,6 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
     while (!m_bQuit)
     {
         m_pPoller->ProcessEvents(timeout, m_qEvents);
-        vector<HHThread *> vToStart;  /// 需要工作的线程
         while (!m_qEvents.empty())
         {
             /// 准备任务，将作分发处理
@@ -49,19 +48,9 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
             auto thread = HHThreadPool::Instance()->m_threadPool.find(nSeq);
             if (thread != HHThreadPool::Instance()->m_threadPool.end())
             {
-                vToStart.push_back(thread->second);
                 thread->second->PushTask(tsk);
             }
             m_qEvents.pop();
-        }
-
-        /// 开启线程（已经在运行的则跳过）
-        for (auto item = vToStart.begin(); item != vToStart.end(); item++)
-        {
-            if ((*item)->m_bStatus == 1)  /// 空闲中
-            {
-                (*item)->StartThread();
-            }
         }
     }
     return true;

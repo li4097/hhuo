@@ -22,53 +22,42 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_Log.h"
 
 hhou::HHThread::HHThread(int nThreadID)
-        : m_bStatus(0),
-          m_nThreadID(nThreadID)
+        : m_nThreadID(nThreadID),
+		  m_bRun(true)
 {
-    m_thread = thread(Run, this);
-    m_bStatus = 1;
+    m_thread = thread(&HHThread::Run, this);
 }
 
 hhou::HHThread::~HHThread()
 {
     m_thread.join();
-    m_bStatus = 0;
 }
 
 void hhou::HHThread::PushTask(HHTask *tsk)
 {
-    m_qTasks.PutBack(tsk);
+	unique_lock<mutex> lock(m_mutex);
+    m_qTasks.push(tsk);
+	m_cond.notify_one();
 }
 
-void hhou::HHThread::Run(void *pParm)
+void hhou::HHThread::Run()
 {
-    auto pclThread = (HHThread *)pParm;
-    while (pclThread->m_bStatus > 0)
-    {
-        lock_guard<mutex> lock(pclThread->m_mutex);  /// 先锁
-        if (pclThread->m_qTasks.Empty())
-        {
-            pclThread->m_bStatus = 1; /// 空闲中
-            pclThread->m_cond.wait(pclThread->m_mutex); /// 等待条件触发
-        }
-        else
-        {
-            pclThread->m_bStatus = 2; /// 忙碌中
-            while (!pclThread->m_qTasks.Empty())
-            {
-                HHTask *tsk;
-                pclThread->m_qTasks.TakeFront(tsk);
-                tsk->Excute();
-                delete tsk;
-                tsk = nullptr;
-            }
-        }
-    }
-}
-
-void hhou::HHThread::StartThread()
-{
-    lock_guard<mutex> lock(m_mutex);
-    m_cond.notify_one();
+	unique_lock<mutex> lock(m_mutex);  /// 先锁
+	while (m_bRun)
+	{
+		while (m_bRun && m_qTasks.empty())
+		{
+		    m_cond.wait(lock);
+		}
+		if (!m_bRun)
+			break;
+		HHTask *tsk = m_qTasks.front();
+		m_qTasks.pop();
+		lock.unlock();
+		tsk->Excute();
+		delete tsk;
+		tsk = nullptr;
+		lock.lock();
+	}
 }
 
