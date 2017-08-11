@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <map>
 #include <queue>
+#include "utils/HH_OrderQueue.h"
 #include "HH_EventBase.h"
 #include "HH_Config.h"
 
@@ -69,6 +70,8 @@ namespace hhou
         struct epoll_event m_events[Poller_MAX_EVENT]; ///关注事件的最大数量
         int m_connectionNum; /// 连接的总数
         time_t m_nStart; /// 启动的开始时间
+        HHOrderQueue<HHEventBase *> m_AllSockets; /// 所有的socket对象
+        
     };
 }
 

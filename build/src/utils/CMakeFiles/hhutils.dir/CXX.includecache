@@ -25,6 +25,8 @@ thread
 -
 functional
 -
+algorithm
+-
 condition_variable
 -
 unistd.h
@@ -103,6 +105,8 @@ thread
 -
 functional
 -
+algorithm
+-
 condition_variable
 -
 unistd.h
@@ -159,7 +163,7 @@ HH_Log.h
 ../src/utils/../../include/utils/HH_CircularBuffer.h
 
 ../src/utils/../../include/utils/HH_SynQueue.h
-list
+deque
 -
 HH_common.h
 ../src/utils/../../include/utils/HH_common.h

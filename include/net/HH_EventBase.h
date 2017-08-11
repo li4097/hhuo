@@ -85,6 +85,16 @@ namespace hhou
                 return true;
         }
 
+        bool operator==(const HHEventBase &other) const
+        {
+            return handler == other.handler;
+        }
+
+        bool operator<(const HHEventBase &other) const
+        {
+            return m_tLast < other.m_tLast;
+        }
+
         /**句柄对象*/
         SOCKET handler;
 

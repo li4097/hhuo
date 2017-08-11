@@ -25,6 +25,8 @@ thread
 -
 functional
 -
+algorithm
+-
 condition_variable
 -
 unistd.h
@@ -102,6 +104,8 @@ memory
 thread
 -
 functional
+-
+algorithm
 -
 condition_variable
 -
@@ -188,6 +192,12 @@ HH_HttpResponse.h
 
 ../include/utils/HH_CircularBuffer.h
 
+../include/utils/HH_OrderQueue.h
+deque
+-
+HH_Common.h
+../include/utils/HH_Common.h
+
 ../include/utils/HH_SynQueue.h
 deque
 -
@@ -241,6 +251,8 @@ map
 -
 queue
 -
+utils/HH_OrderQueue.h
+../src/net/../../include/net/utils/HH_OrderQueue.h
 HH_EventBase.h
 ../src/net/../../include/net/HH_EventBase.h
 HH_Config.h

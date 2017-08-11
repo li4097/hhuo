@@ -25,6 +25,8 @@ thread
 -
 functional
 -
+algorithm
+-
 condition_variable
 -
 unistd.h
@@ -87,6 +89,8 @@ thread
 -
 functional
 -
+algorithm
+-
 condition_variable
 -
 unistd.h
@@ -131,7 +135,7 @@ openssl/bio.h
 -
 
 ../include/utils/HH_SynQueue.h
-list
+deque
 -
 HH_common.h
 ../include/utils/HH_common.h
