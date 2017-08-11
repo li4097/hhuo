@@ -3,8 +3,6 @@
 
 tests/CMakeFiles/test4thread.dir/test4thread.cpp.o
  ../include/HH_Common.h
- ../include/HH_common.h
- ../include/utils/HH_SynQueue.h
  ../include/utils/HH_Thread.h
  /mnt/hgfs/CPP/hhuo/include/HH_Log.h
  /mnt/hgfs/CPP/hhuo/tests/test4thread.cpp

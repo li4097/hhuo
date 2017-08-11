@@ -14,7 +14,6 @@ tests/CMakeFiles/test4server.dir/__/app/ImgProcessor.cpp.o
 tests/CMakeFiles/test4server.dir/test4server.cpp.o
  ../include/HH_Common.h
  ../include/HH_Config.h
- ../include/HH_common.h
  ../include/utils/HH_OrderQueue.h
  /mnt/hgfs/CPP/hhuo/app/ImgProcessor.h
  /mnt/hgfs/CPP/hhuo/include/HH_Log.h
@@ -26,7 +25,6 @@ tests/CMakeFiles/test4server.dir/test4server.cpp.o
  /mnt/hgfs/CPP/hhuo/include/parser/HH_HttpRequest.h
  /mnt/hgfs/CPP/hhuo/include/parser/HH_HttpResponse.h
  /mnt/hgfs/CPP/hhuo/include/parser/HH_Parse.h
- /mnt/hgfs/CPP/hhuo/include/utils/HH_SynQueue.h
  /mnt/hgfs/CPP/hhuo/include/utils/HH_Thread.h
  /mnt/hgfs/CPP/hhuo/include/utils/HH_ThreadPool.h
  /mnt/hgfs/CPP/hhuo/tests/test4server.cpp

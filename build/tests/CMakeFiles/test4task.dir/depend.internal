@@ -5,8 +5,6 @@ tests/CMakeFiles/test4task.dir/test4task.cpp.o
  ../include/HH_Common.h
  ../include/HH_Config.h
  ../include/HH_Log.h
- ../include/HH_common.h
- ../include/utils/HH_SynQueue.h
  ../include/utils/HH_Thread.h
  ../include/utils/HH_ThreadPool.h
  /mnt/hgfs/CPP/hhuo/include/HH_Log.h
