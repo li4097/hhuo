@@ -1,1 +1,0 @@
-/usr/bin/c++    -O0 -Wall -g2 -ggdb -pthread -std=c++11   CMakeFiles/test4json.dir/test4json.cpp.o  -o ../bin/test4json  -L/mnt/hgfs/CPP/hhuo/build/lib  -L/usr/local/lib -rdynamic ../lib/libhhnet.a ../lib/libhhparser.a ../lib/libhhutils.a ../lib/libhhdata.a -lz -ljsoncpp -lmysqlclient -lhiredis -lglog -Wl,-rpath,/mnt/hgfs/CPP/hhuo/build/lib:/usr/local/lib 

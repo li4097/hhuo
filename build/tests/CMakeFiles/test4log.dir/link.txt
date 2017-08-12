@@ -1,1 +1,0 @@
-/usr/bin/c++    -O0 -Wall -g2 -ggdb -pthread -std=c++11   CMakeFiles/test4log.dir/test4log.cpp.o  -o ../bin/test4log  -L/mnt/hgfs/CPP/hhuo/build/lib  -L/usr/local/lib -rdynamic -lglog -Wl,-rpath,/mnt/hgfs/CPP/hhuo/build/lib:/usr/local/lib 

@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../lib/libhhnet.a  CMakeFiles/hhnet.dir/HH_EventLoop.cpp.o CMakeFiles/hhnet.dir/HH_FDEvent.cpp.o CMakeFiles/hhnet.dir/HH_ListenEvent.cpp.o CMakeFiles/hhnet.dir/HH_Poller.cpp.o
-/usr/bin/ranlib ../../lib/libhhnet.a

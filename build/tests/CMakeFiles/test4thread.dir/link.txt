@@ -1,1 +1,0 @@
-/usr/bin/c++    -O0 -Wall -g2 -ggdb -pthread -std=c++11   CMakeFiles/test4thread.dir/test4thread.cpp.o  -o ../bin/test4thread  -L/mnt/hgfs/CPP/hhuo/build/lib  -L/usr/local/lib -rdynamic ../lib/libhhnet.a ../lib/libhhparser.a ../lib/libhhutils.a -lglog -lz -Wl,-rpath,/mnt/hgfs/CPP/hhuo/build/lib:/usr/local/lib 
