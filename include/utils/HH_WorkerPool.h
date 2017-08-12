@@ -101,7 +101,6 @@ namespace hhou
         bool m_bActive;
         vector<thread *> m_vThreads;
         WorkerProc m_pProc;
-
     };
 }
 
