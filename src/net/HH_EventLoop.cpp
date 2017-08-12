@@ -19,14 +19,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <set>
 #include "HH_ListenEvent.h"
 #include "HH_EventLoop.h"
-#include "HH_Task.h"
-#include "utils/HH_DataDeal.h"
 
 hhou::HHEventLoop::HHEventLoop()
         : m_bQuit(false),
           m_pPoller(new HHPoller)
 {
-
+    m_pDataDeal.Start(bind(&HHDataDeal::DoWork, &m_pDataDeal, placeholders::_1), HHConfig::Instance().ReadInt("thread", "num", 10));
 }
 
 hhou::HHEventLoop::~HHEventLoop()
@@ -44,6 +42,7 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
             /// 准备任务，将作分发处理
             auto iter = m_qEvents.front();
             HHTask tsk(iter->handler, static_cast<void *>(iter));
+            m_pDataDeal.Push(&tsk);
             m_qEvents.pop();
         }
     }

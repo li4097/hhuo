@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "net/HH_Task.h"
 #include "HH_WorkerPool.h"
 
+
 namespace hhou
 {
     class HHDataDeal : public HHWorkerPool<HHTask>

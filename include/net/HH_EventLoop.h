@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <queue>
 #include "HH_Poller.h"
+#include "utils/HH_DataDeal.h"
 
 namespace hhou
 {
@@ -46,6 +47,7 @@ namespace hhou
         bool m_bQuit; /// loop的中止标志
         HHPoller *m_pPoller; /// poller对象
         queue<HHEventBase *>  m_qEvents; ///触发的socket
+        HHDataDeal m_pDataDeal; /// 数据处理的任务队列
     };
 }
 
