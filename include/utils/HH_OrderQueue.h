@@ -87,7 +87,7 @@ namespace hhou
 			{
 				m_queue.erase(it);
 			}
-			m_queue.insert(lower_bound(Begin(), End(), x), x);
+			m_queue.insert(upper_bound(Begin(), End(), x), x);
 		}
 
 		/*
