@@ -15,41 +15,53 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#ifndef HH_TASK_H
-#define HH_TASK_H
 
-#include "HH_EventBase.h"
-#include "HH_Log.h"
+#ifndef HH_SINGLETON_H
+#define HH_SINGLETON_H
 
 namespace hhou
 {
     /**
-     * 线程的执行任务类
+     * 单例的模板模式
      */
-    struct HHTask
+    template <class T>
+    class HHSingleTon
     {
-        HHTask(int nID, void *pVoid) : m_nID(nID), m_pData(pVoid) {}
-        int Excute() const
+    public:
+        static T *Instance()
         {
-            HHEventBase *pEvent = static_cast<HHEventBase *>(m_pData);
-            if (pEvent->eventInfo.status == In)
+            if (m_pInstance == nullptr)
             {
-                pEvent->OnRead();
+                m_pInstance = new T;
+                atexit(Destory);
             }
-            else if (pEvent->eventInfo.status == Out)
-            {
-                pEvent->OnWrite();
-            }
-            else
-            {
-                /// 将要关闭的socket
-                return -1;
-            }
-            return 0;
+            return m_pInstance;
         }
-        int m_nID; /// 任务编号
-        void *m_pData; /// 任务的数据
+
+    private:
+        /**
+         * 禁止拷贝和复制
+         */
+        HHSingleTon(const HHSingleTon &) {}
+        HHSingleTon &operator=(const HHSingleTon &) {}
+
+        /**
+         * 释放资源
+         */
+        static void Destory()
+        {
+            if (m_pInstance)
+            {
+                delete m_pInstance;
+                m_pInstance = nullptr;
+            }
+        }
+
+    private:
+        static T *m_pInstance;
     };
+
+    template<class T> T* HHSingleTon<T>::m_pInstance = nullptr;
 }
 
-#endif //HH_TASK_H
+#endif // HH_SINGLETON_H

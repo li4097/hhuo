@@ -18,9 +18,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <set>
 #include "HH_ListenEvent.h"
-#include "HH_ThreadPool.h"
 #include "HH_EventLoop.h"
 #include "HH_Task.h"
+#include "utils/HH_DataDeal.h"
 
 hhou::HHEventLoop::HHEventLoop()
         : m_bQuit(false),
@@ -43,13 +43,7 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
         {
             /// 准备任务，将作分发处理
             auto iter = m_qEvents.front();
-            HHTask *tsk = new HHTask(iter->handler, static_cast<void *>(iter));
-            int nSeq = iter->handler % HHThreadPool::Instance()->m_nThreadNums;
-            auto thread = HHThreadPool::Instance()->m_threadPool.find(nSeq);
-            if (thread != HHThreadPool::Instance()->m_threadPool.end())
-            {
-                thread->second->PushTask(tsk);
-            }
+            HHTask tsk(iter->handler, static_cast<void *>(iter));
             m_qEvents.pop();
         }
     }

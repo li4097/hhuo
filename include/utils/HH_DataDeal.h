@@ -16,48 +16,25 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include <map>
-#include "HH_Thread.h"
-#include "HH_Task.h"
-#include "HH_Log.h"
+#ifndef HH_DATADEAL_H
+#define HH_DATADEAL_H
 
-hhou::HHThread::HHThread(int nThreadID)
-        : m_nThreadID(nThreadID),
-		  m_bRun(true)
+#include "net/HH_Task.h"
+#include "HH_WorkerPool.h"
+
+namespace hhou
 {
-    m_thread = thread(&HHThread::Run, this);
+    class HHDataDeal : public HHWorkerPool<HHTask>
+    {
+    public:
+        HHDataDeal() {}
+        virtual ~HHDataDeal() {}
+
+        void DoWork(HHTask *tsk)
+        {
+            tsk->Excute();
+        }
+    };
 }
 
-hhou::HHThread::~HHThread()
-{
-    m_thread.join();
-}
-
-void hhou::HHThread::PushTask(HHTask *tsk)
-{
-	unique_lock<mutex> lock(m_mutex);
-    m_qTasks.push(tsk);
-	m_cond.notify_one();
-}
-
-void hhou::HHThread::Run()
-{
-	unique_lock<mutex> lock(m_mutex);  /// 先锁
-	while (m_bRun)
-	{
-		while (m_bRun && m_qTasks.empty())
-		{
-		    m_cond.wait(lock);
-		}
-		if (!m_bRun)
-			break;
-		HHTask *tsk = m_qTasks.front();
-		m_qTasks.pop();
-		lock.unlock();
-		tsk->Excute();
-		delete tsk;
-		tsk = nullptr;
-		lock.lock();
-	}
-}
-
+#endif // HH_DATADEAL_H

@@ -16,9 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include <vector>
 #include "net/HH_FDEvent.h"
-#include "utils/HH_ThreadPool.h"
 #include "HH_Poller.h"
 #include "HH_Task.h"
 #include "HH_Log.h"

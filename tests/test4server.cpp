@@ -1,11 +1,10 @@
 #include "../include/net/HH_ListenEvent.h"
 #include "../include/net/HH_EventLoop.h"
 #include "../include/net/HH_ServerBase.h"
-#include "../include/utils/HH_ThreadPool.h"
+#include "../include/utils/HH_DataDeal.h"
 #include "../include/parser/HH_Parse.h"
-#include "../include/HH_Log.h"
 #include "../app/ImgProcessor.h"
-#include <memory>
+#include "../include/HH_Log.h"
 
 int DealData(void *first, int nFisrtLen, void *second)
 {
@@ -23,7 +22,6 @@ public:
 
     ~Test4Server()
     {
-
     }
 
     bool Init()
@@ -33,7 +31,6 @@ public:
 
     void Run()
     {
-        hhou::HHThreadPool::Instance()->Init();
         std::shared_ptr<hhou::HHEventLoop> pLoop(new hhou::HHEventLoop());
         std::shared_ptr<hhou::HHListenEvent> pListen(new hhou::HHListenEvent(pLoop->Poller()));
         string strCert, strKey;
