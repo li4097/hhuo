@@ -2,6 +2,7 @@
 #include "../include/net/HH_EventLoop.h"
 #include "../include/net/HH_ServerBase.h"
 #include "../include/utils/HH_DataDeal.h"
+#include "../include/HH_SingleTon.h"
 #include "../include/parser/HH_Parse.h"
 #include "../app/ImgProcessor.h"
 #include "../include/HH_Log.h"
