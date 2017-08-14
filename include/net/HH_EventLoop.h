@@ -47,7 +47,6 @@ namespace hhou
         bool m_bQuit; /// loop的中止标志
         HHPoller *m_pPoller; /// poller对象
         queue<HHEventBase *>  m_qEvents; ///触发的socket
-        HHDataDeal m_pDataDeal; /// 数据处理的任务队列
     };
 }
 
