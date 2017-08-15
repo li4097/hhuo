@@ -55,8 +55,7 @@ bool ImgProcessor::DoPost(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
     else if (method == "/uploadimg")
     {
         /// 上传图片的不设置参数
-        string strContent;
-        req->GetContent(strContent);
+        req->GetContent(strRet);
     }
     return true;
 }
