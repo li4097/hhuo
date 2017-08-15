@@ -86,8 +86,8 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
             break;
         }
     }
-    LOG(INFO, m_AllSockets.Size()) << "There are " << m_AllSockets.Size() << " connections.";
-    
+    LOG_IF_EVERY_N(INFO, m_AllSockets.Size(), 100) << "There are " << m_AllSockets.Size() << " connections.";
+
     /// wait for events to happen
     int fds = epoll_wait(m_epollFd, m_events, Poller_MAX_EVENT, timeout);
     for(int i = 0; i < fds; i++)
