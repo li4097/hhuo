@@ -26,12 +26,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 namespace hhou
 {
-    /// jsoncpp对象的重命名
-    typedef Json::Value HHJVal;
-    typedef Json::Value::Members HHJMembs;
-    typedef Json::Reader HHJReader;
-    typedef Json::FastWriter HHJWriter;
-
     /**
      * 封装json的数据处理
      */

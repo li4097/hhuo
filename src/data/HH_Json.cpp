@@ -21,8 +21,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 bool hhou::HHJson::ExistK(const string &strContent, const string &strK)
 {
-    HHJReader reader;
-    HHJVal val;
+    Json::Reader reader;
+    Json::Value val;
     if (reader.parse(strContent, val))
     {
         if (val[strK].isNull())
@@ -40,15 +40,15 @@ bool hhou::HHJson::ExistK(const string &strContent, const string &strK)
 
 bool hhou::HHJson::Read(vector<map<string, string> > &vKV, const string &strContent)
 {
-    HHJReader reader;
-    HHJVal val;
+    Json::Reader reader;
+    Json::Value val;
     if (reader.parse(strContent, val))
     {
         for (int n = 0; n < (int)val.size(); n++)
         {
             map<string, string> mVal;
-            HHJMembs keys = val[n].getMemberNames();
-            for (HHJMembs::iterator it = keys.begin(); it != keys.end(); it++)
+            Json::Value::Members keys = val[n].getMemberNames();
+            for (Json::Value::Members::iterator it = keys.begin(); it != keys.end(); it++)
             {
                 mVal.insert(make_pair(*it, val[n][*it].asString()));
             }
@@ -64,11 +64,11 @@ bool hhou::HHJson::Read(vector<map<string, string> > &vKV, const string &strCont
 
 bool hhou::HHJson::Write(vector<map<string, string> > &vContent, string &strRet)
 {
-    HHJVal root, array;
-    HHJWriter writer;
+    Json::Value root, array;
+    Json::FastWriter writer;
     for (vector<map<string, string> >::iterator it = vContent.begin(); it != vContent.end(); it++)
     {
-        HHJVal val;
+        Json::Value val;
         map<string, string> each = (*it);
         for (map<string, string>::iterator iter = each.begin(); iter != each.end(); iter++)
         {

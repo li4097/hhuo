@@ -70,26 +70,28 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
 }
 
 void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
-{
-    /// check timeout
-    time_t expireTime = time(nullptr) - HHConfig::Instance().ReadInt("connection", "timeout", 60);
-    while (!m_AllSockets.Empty())
-    {
-        auto it = m_AllSockets.Front();
-        if (it->m_tLast < expireTime)
-        {
-            LOG(INFO) << "socket: " << it->handler << " timeout.";
-            it->OnTimeout();
-        }
-        else
-        {
-            break;
-        }
-    }
-    LOG_IF_EVERY_N(INFO, m_AllSockets.Size(), 100) << UpdateBytes();
-
+{   
     /// wait for events to happen
     int fds = epoll_wait(m_epollFd, m_events, Poller_MAX_EVENT, timeout);
+    if (fds <= 0)
+    {
+        /// check timeout
+        time_t expireTime = time(nullptr) - HHConfig::Instance().ReadInt("connection", "timeout", 60);
+        while (!m_AllSockets.Empty())
+        {
+            auto it = m_AllSockets.Front();
+            if (it->m_tLast < expireTime)
+            {
+                LOG(INFO) << "socket: " << it->handler << " timeout.";
+                it->OnTimeout();
+            }
+            else
+            {
+                break;
+            }
+        }
+        LOG_IF_EVERY_N(INFO, m_AllSockets.Size(), 100) << UpdateBytes();
+    }
     for(int i = 0; i < fds; i++)
     {
         auto pEvent = static_cast<HHEventBase *>(m_events[i].data.ptr);
@@ -123,13 +125,11 @@ string hhou::HHPoller::UpdateBytes()
         ipaddr_t ip;
         port_t port;
         pEvent->GetIpAndPort(ip, port);
-        os << "Connection ";
-        os << ip;
-        os << " received: ";
-        os << pEvent->m_nTotalRecv;
-        os << ", sent: ";
-        os << pEvent->m_nTotalSend;
-        os << ".\n";
+        struct in_addr addr;
+        addr.s_addr = ip;
+        os << "Connection " << inet_ntoa(addr) << " " << ntohs(port);
+        os << " received: " << pEvent->m_nTotalRecv;
+        os << ", sent: " << pEvent->m_nTotalSend << ".\n";
     }
     return os.str();
 }
