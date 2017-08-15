@@ -81,7 +81,7 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
         {
             auto it = m_AllSockets.Front();
             if (it->m_tLast < expireTime)
-            {
+            {  
                 LOG(INFO) << "socket: " << it->handler << " timeout.";
                 it->OnTimeout();
             }
