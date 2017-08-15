@@ -55,7 +55,18 @@ namespace hhou
 		/*
 		 ** 大小
 		 */
-		bool Empty() const { return m_queue.empty(); }
+		bool Empty() 
+		{ 
+			bool bRet = false;
+			lock_guard<mutex> lock(m_mutex);
+			{
+				if (m_queue.empty())
+				{
+					bRet = true;
+				}
+			}			
+			return bRet;
+		}
 		size_type Size() const { return m_queue.size(); }
 
 		/*

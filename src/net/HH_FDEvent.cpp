@@ -79,7 +79,7 @@ void hhou::HHFDEvent::OnRead()
 #endif
         if (eventInfo.status == Close)
         {            
-            OnClosed();
+            OnClosing();
             break;
         }
         m_nTotalRecv += rSize;
@@ -144,7 +144,7 @@ void hhou::HHFDEvent::OnWrite()
 #endif
         if (eventInfo.status == Close)
         {
-            OnClosed();
+            OnClosing();
             break;
         }
         m_nTotalSend += sLength;
@@ -155,7 +155,7 @@ void hhou::HHFDEvent::OnWrite()
             /// 是否是短连接
             if (eventInfo.once)
             {
-                OnClosed();
+                OnClosing();
             }
             else
             {
@@ -171,21 +171,24 @@ void hhou::HHFDEvent::OnWrite()
 
 void hhou::HHFDEvent::OnTimeout()
 {
+    if (eventInfo.status != Close)
+    {  
+        OnClosing();
+    }
     OnClosed();
 }
 
 void hhou::HHFDEvent::OnClosing()
 {
-
-}
-
-void hhou::HHFDEvent::OnClosed()
-{
+    m_pPoller->DelEvent(this);
 #ifdef HAVE_OPENSSL
     SSL_shutdown(m_sSSL);
     SSL_free(m_sSSL);
 #endif
-    m_pPoller->DelEvent(this);
     closesocket(handler);
+}
+
+void hhou::HHFDEvent::OnClosed()
+{
     delete this;
 }

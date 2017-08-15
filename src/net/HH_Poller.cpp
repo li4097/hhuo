@@ -65,33 +65,33 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
     struct epoll_event ev = {};
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
-    m_AllSockets.Remove(event);
+    event->m_tLast = 0;
+    m_AllSockets.Push(event);
     UpdateConnNums(-1);
 }
 
 void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
 {   
+    /// check timeout
+    time_t expireTime = time(nullptr) - HHConfig::Instance().ReadInt("connection", "timeout", 60);
+    while (!m_AllSockets.Empty())
+    {
+        auto it = m_AllSockets.Front();
+        if (it->m_tLast < expireTime)
+        {  
+            LOG(INFO) << "socket: " << it->handler << " timeout.";
+            it->OnTimeout();
+            m_AllSockets.PopFront();
+        }
+        else
+        {
+            break;
+        }  
+    }
+    LOG_IF_EVERY_N(INFO, m_AllSockets.Size(), 100) << UpdateBytes();
+
     /// wait for events to happen
     int fds = epoll_wait(m_epollFd, m_events, Poller_MAX_EVENT, timeout);
-    if (fds <= 0)
-    {
-        /// check timeout
-        time_t expireTime = time(nullptr) - HHConfig::Instance().ReadInt("connection", "timeout", 60);
-        while (!m_AllSockets.Empty())
-        {
-            auto it = m_AllSockets.Front();
-            if (it->m_tLast < expireTime)
-            {  
-                LOG(INFO) << "socket: " << it->handler << " timeout.";
-                it->OnTimeout();
-            }
-            else
-            {
-                break;
-            }
-        }
-        LOG_IF_EVERY_N(INFO, m_AllSockets.Size(), 100) << UpdateBytes();
-    }
     for(int i = 0; i < fds; i++)
     {
         auto pEvent = static_cast<HHEventBase *>(m_events[i].data.ptr);
