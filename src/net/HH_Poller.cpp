@@ -86,7 +86,7 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
             break;
         }
     }
-    LOG_IF_EVERY_N(INFO, m_AllSockets.Size(), 100) << "There are " << m_AllSockets.Size() << " connections.";
+    LOG_IF_EVERY_N(INFO, m_AllSockets.Size(), 100) << UpdateBytes();
 
     /// wait for events to happen
     int fds = epoll_wait(m_epollFd, m_events, Poller_MAX_EVENT, timeout);
@@ -109,4 +109,27 @@ void hhou::HHPoller::UpdateConnNums(int nNum)
 {
     m_connectionNum += nNum;
     LOG(INFO) << "Current socket num: " << m_connectionNum;
+}
+
+string hhou::HHPoller::UpdateBytes()
+{
+    ostringstream os;
+    os << "There are ";
+    os << m_AllSockets.Size();
+    os << " connections.\n";
+    for (size_t i = 0; i < m_AllSockets.Size(); ++i)
+    {
+        auto pEvent = (HHFDEvent *)m_AllSockets[i];
+        ipaddr_t ip;
+        port_t port;
+        pEvent->GetIpAndPort(ip, port);
+        os << "Connection ";
+        os << ip;
+        os << " received: ";
+        os << pEvent->m_nTotalRecv;
+        os << ", sent: ";
+        os << pEvent->m_nTotalSend;
+        os << ".\n";
+    }
+    return os.str();
 }

@@ -65,6 +65,11 @@ namespace hhou
          */
         void UpdateConnNums(int nNum);
 
+        /**
+         * 更新每天连接的收和发的bytes
+         */
+        string UpdateBytes();
+
     private:
         SOCKET m_epollFd; ///poller的fd
         struct epoll_event m_events[Poller_MAX_EVENT]; ///关注事件的最大数量
