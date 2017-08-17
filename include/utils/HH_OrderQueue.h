@@ -101,6 +101,19 @@ namespace hhou
 			m_queue.insert(lower_bound(Begin(), End(), x), x);
 		}
 
+		/**
+		 * Update
+		 */
+		void Update(const value_type &x)
+		{
+			lock_guard<mutex> lock(m_mutex);
+			auto it = find(Begin(), End(), x);
+			if (it == End())
+			{
+				m_queue.insert(lower_bound(Begin(), End(), x), x);
+			}
+		}
+
 		/*
 		 ** 删除所有值为 x 的元素
 		 */

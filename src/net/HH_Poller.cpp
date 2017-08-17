@@ -66,7 +66,7 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
     event->m_tLast = 0;
-    m_AllSockets.Push(event);
+    m_AllSockets.Update(event);
     UpdateConnNums(-1);
 }
 
@@ -78,8 +78,15 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
     {
         auto it = m_AllSockets.Front();
         if (it->m_tLast < expireTime)
-        {  
-            LOG(INFO) << "socket: " << it->handler << " timeout.";
+        {
+            if (it->m_tLast == 0)
+            {
+                LOG(INFO) << "socket: " << it->handler << " closed.";
+            }
+            else
+            {
+                LOG(INFO) << "socket: " << it->handler << " timeout.";
+            }
             it->OnTimeout();
             m_AllSockets.PopFront();
         }
@@ -110,13 +117,13 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
 void hhou::HHPoller::UpdateConnNums(int nNum)
 {
     m_connectionNum += nNum;
-    LOG(INFO) << "Current socket num: " << m_connectionNum;
+    LOG(INFO) << "Current socket num: " << m_connectionNum << ".";
 }
 
 string hhou::HHPoller::UpdateBytes()
 {
     ostringstream os;
-    os << "There are ";
+    os << "\n\nThere are ";
     os << m_AllSockets.Size();
     os << " connections.\n";
     for (size_t i = 0; i < m_AllSockets.Size(); ++i)
