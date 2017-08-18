@@ -35,8 +35,6 @@ namespace hhou
 		HHWorkerPool() : m_bActive(false) {}
 		virtual ~HHWorkerPool()
 		{
-			for (ThreadVec::iterator it = m_vThreads.begin(); it != m_vThreads.end(); ++it)
-				delete *it;
 			m_vThreads.clear();
 		}
 
@@ -74,6 +72,7 @@ namespace hhou
 			for (ThreadVec::iterator it = m_vThreads.begin(); it != m_vThreads.end(); ++it)
 			{
 				(*it)->join();
+				delete (*it);
 			}
 		}
 	private:
