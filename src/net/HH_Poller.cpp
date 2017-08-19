@@ -117,7 +117,10 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
 void hhou::HHPoller::UpdateConnNums(int nNum)
 {
     m_connectionNum += nNum;
-    m_connectionNum <= 0 ? 0 : m_connectionNum;
+    if (m_connectionNum < 0)
+    {
+        m_connectionNum = 0;
+    }
     LOG(INFO) << "Current socket num: " << m_connectionNum << ".";
 }
 
