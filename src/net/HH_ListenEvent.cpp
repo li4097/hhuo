@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_ListenEvent.h"
 #include "HH_Poller.h"
 #include "HH_FDEvent.h"
+#include "parser/HH_Parse.h"
 #include "HH_Log.h"
 
 hhou::HHListenEvent::HHListenEvent(HHPoller *poller)
@@ -39,10 +40,12 @@ hhou::HHListenEvent::~HHListenEvent()
 #endif
 }
 
-bool hhou::HHListenEvent::Init(const string &strCert, const string &strKey)
+bool hhou::HHListenEvent::Init()
 {
     bool bRet = true;
 #ifdef HAVE_OPENSSL
+    string strCert = hhou::HHConfig::Instance().ReadStr("ssl", "cert", "../certificate/cacert.pem");
+    string strKey = hhou::HHConfig::Instance().ReadStr("ssl", "key", "../certificate/privkey.pem");
     if (strCert.empty() || strKey.empty())
     {
         LOG(ERROR) << "SSL certificate is empty";
@@ -135,6 +138,9 @@ void hhou::HHListenEvent::OnConneting()
         pNew->eventInfo.flags = HHQueue;
         pNew->eventInfo.nType = 1;
         pNew->NonBlock(true);
+        /// 设置解析器
+        auto parser = HHParserMgr::Instance().GetParser(fd);
+        pNew->SetCallBack(bind(&HHParse::ParseData, parser, _1, _2, _3));
 #ifdef SHORT_CONN
         pNew->KeepAlive(false);
 #else

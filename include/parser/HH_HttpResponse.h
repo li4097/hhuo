@@ -46,7 +46,7 @@ namespace hhou
         /**
          * 生成的函数(失败0，正确返回1)
          */
-        int MakeRes(char *strRet, int nSize, const string &strResContentType = HTTP_CONTENT_TYPE_TXT);
+        int MakeRes(string &strRes, const string &strResContentType = HTTP_CONTENT_TYPE_TXT);
 
         /**
          * 设置response

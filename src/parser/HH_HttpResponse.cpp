@@ -18,13 +18,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_HttpResponse.h"
 
-int hhou::HH_HttpResponse::MakeRes(char *strResp, int nSize, const string &strResContentType)
+int hhou::HH_HttpResponse::MakeRes(string &strRes, const string &strResContentType)
 {
-    int nPos = snprintf(strResp, nSize, "HTTP/1.1 200 OK\r\nContent-Length: %d\r\nContent-Type: %s\r\n",
-            (int)m_strContent.size(), strResContentType.c_str());
+    ostringstream os;
+    os << "HTTP/1.1 200 OK\r\nContent-Length: " << m_strContent.size()
+       << "\r\nContent-Type: " << strResContentType << "\r\n";
     for (auto it = m_mHeaders.begin(); it != m_mHeaders.end(); it++)
-        nPos += snprintf(strResp + nPos, nSize - nPos, "%s: %s\r\n",
-                         it->first.c_str(), it->second.c_str());
-    snprintf(strResp + nPos, nSize - nPos, "\r\n%s", m_strContent.c_str());
+    {
+        os << it->first << ": " << it->second << "\r\n";
+    }
+    os << "\r\n" << m_strContent;
+    strRes = os.str();
     return 1;
 }
