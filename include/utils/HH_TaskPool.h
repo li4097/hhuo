@@ -27,15 +27,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 namespace hhou
 {	
-	class ExcWorkerPool : public HHWorkerPool<HHTask>
+	class HHExcWorkerPool : public HHWorkerPool<HHTask>
 	{
 	public:
-		ExcWorkerPool(int nTaskThread = 1/**有序执行，必须设置为1*/)
+		HHExcWorkerPool(int nTaskThread = 1/**有序执行，必须设置为1*/)
 		{
-			Start(bind(&ExcWorkerPool::DoWork, this, placeholders::_1), nTaskThread);
+			Start(bind(&HHExcWorkerPool::DoWork, this, placeholders::_1), nTaskThread);
 		}
 
-		virtual ~ExcWorkerPool()
+		virtual ~HHExcWorkerPool()
 		{
 			Stop();
 		}
@@ -48,14 +48,14 @@ namespace hhou
 	
 	class HHTaskPool
 	{
-		typedef vector<hhou::ExcWorkerPool *>::const_iterator CTIter;
+		typedef vector<hhou::HHExcWorkerPool *>::const_iterator CTIter;
 	public:
 		HHTaskPool(int nNum = HHConfig::Instance().ReadInt("thread", "num", 10)) : m_nNum(nNum)
 		{
 			m_taskPool.resize(nNum);
 			for (int j = 0; j < m_nNum; j++)
 			{
-				m_taskPool[j] = new hhou::ExcWorkerPool;
+				m_taskPool[j] = new hhou::HHExcWorkerPool;
 			}
 		}
 
@@ -68,7 +68,7 @@ namespace hhou
 			}
 		}
 
-		hhou::ExcWorkerPool *GetWorkPool(int nSeq)
+		hhou::HHExcWorkerPool *GetWorkPool(int nSeq)
 		{
 			return m_taskPool[nSeq % m_nNum];
 		}
@@ -81,7 +81,7 @@ namespace hhou
 
 	private:
 		int m_nNum;
-		vector<hhou::ExcWorkerPool *> m_taskPool;
+		vector<hhou::HHExcWorkerPool *> m_taskPool;
 	};
 }
 
