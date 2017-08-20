@@ -25,14 +25,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #else
 #endif
 
-///////////////////////////////
-/// 库和功能代码分开
-typedef int (*CommitObject)(void *, int, void *);
-bool SetCallBack(CommitObject obj);
-///////////////////////////////
-
 namespace hhou
 {
+    /**
+     * 应用层的处理回调
+     * void *待处理包
+     * int 待处理包的长度
+     * void *相应包
+     * */
+    typedef function<int(void *, int, void *)> appDeal;
+
     /**
      * 解析数据的基础类
      */
@@ -40,16 +42,17 @@ namespace hhou
     {
     public:
         /**默认构造函数*/
-        HHParse() {}
+        HHParse(appDeal appProc) : m_pDataDeal(appProc) {}
         virtual ~HHParse() {}
 
         /**先进行必要信息的解析(错误数据返回-1，数据不完整返回0，接收完全返回>0)*/
-        virtual int ParseData(bool bOnce, char *buf, int nLen, char *strRet, int nSize);
+        string ParseData(bool bOnce, void *buf, int nLen);
 
         /**获取req的状态*/
         bool CanResponse() { return request.AllDone(); }
 
     private:
+        appDeal m_pDataDeal;
 #ifdef BE_HTTP
         hhou::HH_HttpRequest request;  /// 加入解析的状态标志
         hhou::HH_HttpResponse response; /// 回包的对象
@@ -70,6 +73,9 @@ namespace hhou
         hhou::HHParse *GetParser(const int fd);
         bool RmParser(const int fd);
 
+        /**设置回调*/
+        void AppCallback(appDeal appProc) {m_pDataDeal = appProc;}
+
         /**单例模式*/
         static HHParserMgr &Instance()
         {
@@ -78,6 +84,7 @@ namespace hhou
         }
 
     private:
+        appDeal m_pDataDeal;
         mutex m_mutex; /// 锁
         map<int, HHParse *> m_mParsers;   /// fd对应的解析器
     };

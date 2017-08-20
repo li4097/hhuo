@@ -18,37 +18,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_Parse.h"
 
-///////////////////////////////
-/// 库和功能代码分开
-CommitObject DealObject;
-bool SetCallBack(CommitObject obj)
+string hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
 {
-    DealObject = obj;
-    return true;
-}
-///////////////////////////////
-
-int hhou::HHParse::ParseData(bool bOnce, char *buf, int nLen, char *strRet, int nSize)
-{
-    void *first = (void *)buf;
-    void *second = (void *)strRet;
+    string strRet;
 #ifdef BE_HTTP
-    request.Parse(buf, nLen);
+    request.Parse((char *)buf, nLen);
     if (request.AllDone())
     {
-        first = (void *)&request;
-        second = (void *)&response;
-        (*DealObject)(first, nLen, second);
+        m_pDataDeal((void *)&request, nLen, (void *)&response);
         if (bOnce)
             response.AddHeader("Connection", "Close");
         else
             response.AddHeader("Connection", "Keep-Alive");
-        response.MakeRes(strRet, nSize);
+        response.MakeRes(strRet);
     }
 #else
-    (*DealObject)(first, nLen, second);
+    m_pDataDeal((void *)&request, nLen, (void *)&response);
 #endif
-    return 1;
+    return strRet;
 }
 
 hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)
@@ -63,7 +50,7 @@ hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)
     else
     {
         lock_guard<mutex> lock(m_mutex);
-        pParse = new hhou::HHParse;
+        pParse = new hhou::HHParse(m_pDataDeal);
         m_mParsers.insert(make_pair(fd, pParse));
     }
     return pParse;

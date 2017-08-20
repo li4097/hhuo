@@ -18,7 +18,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_FDEvent.h"
 #include "HH_Poller.h"
-#include "parser/HH_Parse.h"
 #include "HH_Log.h"
 
 hhou::HHFDEvent::HHFDEvent(HHPoller *poller, size_t bufSize)
@@ -26,7 +25,8 @@ hhou::HHFDEvent::HHFDEvent(HHPoller *poller, size_t bufSize)
           m_nTotalSend(0),
           m_pPoller(poller),
           m_bufIn(bufSize),
-          m_bufOut(bufSize)
+          m_bufOut(bufSize),
+          m_recvProc(nullptr)
 {
     
 }
@@ -84,19 +84,14 @@ void hhou::HHFDEvent::OnRead()
         }
         m_nTotalRecv += rSize;
         m_bufIn.Write(bufIn, (size_t)rSize);
-        hhou::HHParse *parse = hhou::HHParserMgr::Instance().GetParser(handler);
-        if (parse != nullptr)
+        if (m_recvProc != nullptr)
         {
-            char bufOut[TCP_BUFSIZE];
-            parse->ParseData(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength(), bufOut, TCP_BUFSIZE);
-            if (parse->CanResponse())
+            string strRet = m_recvProc(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength());
+            if (!strRet.empty())
             {
-                m_bufOut.Write(bufOut, strlen(bufOut));
-                if (m_bufOut.GetStart() > 0)
-                {
-                    eventInfo.status = Out;
-                    m_pPoller->ChangeEvent(this);
-                }
+                m_bufOut.Write(strRet.c_str(), strRet.length());
+                eventInfo.status = Out;
+                m_pPoller->ChangeEvent(this);
             }
         }
         m_bufIn.Remove((size_t)rSize);

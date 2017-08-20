@@ -10,9 +10,8 @@ bool ImgProcessor::Processor(void *Request, int nLen, void *Reponse)
     auto req = static_cast<hhou::HH_HttpRequest *>(Request);
     auto res = static_cast<hhou::HH_HttpResponse *>(Reponse);
 
-    hhou::HttpMethodType type = req->GetMethodType();
-
     /// 判断是get还是post
+    hhou::HttpMethodType type = req->GetMethodType();
     if (type == hhou::HTTP_METHOD_GET)
         DoGet(req, res);
     else
@@ -22,10 +21,9 @@ bool ImgProcessor::Processor(void *Request, int nLen, void *Reponse)
 
 bool ImgProcessor::DoGet(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
 {
-    string method = req->GetMethod();
-
     /// get img url: xxxxx/getimg?id=xxxx&w=20&h=30
     string strRet = "OK";
+    string method = req->GetMethod();
     if (method == "/")  /// test?
     {
         res->SetContent(strRet);
@@ -44,10 +42,9 @@ bool ImgProcessor::DoGet(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
 
 bool ImgProcessor::DoPost(hhou::HH_HttpRequest *req, hhou::HH_HttpResponse *res)
 {
-    string method = req->GetMethod();
-
     /// opst img url: xxxxx/uploadimg
     string strRet = "OK";
+    string method = req->GetMethod();
     if (method == "/")  /// test?
     {
         res->SetContent(strRet);

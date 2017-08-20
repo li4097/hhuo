@@ -5,22 +5,17 @@
 #include "../app/ImgProcessor.h"
 #include "../include/HH_Log.h"
 
-int DealData(void *first, int nFisrtLen, void *second)
-{
-    ImgProcessor processor;
-    return (int)processor.Processor(first, nFisrtLen, second);
-}
-
 class Test4Server : public hhou::HHServerBase
 {
 public:
     Test4Server()
     {
-        SetCallBack(DealData);
+        hhou::HHParserMgr::Instance().AppCallback(bind(&Test4Server::DealData, this, _1, _2, _3));
     }
 
     ~Test4Server()
     {
+
     }
 
     bool Init()
@@ -28,14 +23,17 @@ public:
         return true;
     }
 
+    int DealData(void *first, int nFisrtLen, void *second)
+    {
+        ImgProcessor processor;
+        return (int)processor.Processor(first, nFisrtLen, second);
+    }
+
     void Run()
     {
         std::shared_ptr<hhou::HHEventLoop> pLoop(new hhou::HHEventLoop());
         std::shared_ptr<hhou::HHListenEvent> pListen(new hhou::HHListenEvent(pLoop->Poller()));
-        string strCert, strKey;
-        strCert = hhou::HHConfig::Instance().ReadStr("ssl", "cert", "../certificate/cacert.pem");
-        strKey = hhou::HHConfig::Instance().ReadStr("ssl", "key", "../certificate/privkey.pem");
-        if (!pListen->Init(strCert, strKey))
+        if (!pListen->Init())
             return;
 
         string strHost = hhou::HHConfig::Instance().ReadStr("listener", "host", "0.0.0.0");

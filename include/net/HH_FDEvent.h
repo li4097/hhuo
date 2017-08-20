@@ -29,15 +29,23 @@ namespace hhou
     /**每个fd给的缓存大小*/
     #define TCP_BUFSIZE 8096
 
-    /*net的loop对象*/
+    /**net的loop对象*/
     class HHPoller;
 
-    /*
+    /**
     * HH_FDEvent是一个fd的封装类，封装了fd的处理
     * */
     class HHFDEvent : public HHEventBase
     {
         friend class HHPoller;
+
+        /**
+         * ret: string 处理完的数据
+         * bool : 是否需要keepalive
+         * void * : 接受到的数据的指针
+         * int : 上述数据的大小
+         * */
+        typedef function<string(bool, void *, int)> RecvProc;
     public:
         /**
          * 禁用的构造函数
@@ -84,11 +92,21 @@ namespace hhou
             m_remotePort = port;
         }
 
-        /**获取ip和端口*/
+        /**
+         * 获取ip和端口
+         */
         void GetIpAndPort(ipaddr_t &ip, port_t &port)
         {
             ip = m_remoteAddr;
             port = m_remotePort;
+        }
+
+        /**
+         * 设置回调函数
+         */
+        void SetCallBack(RecvProc pRecvProc)
+        {
+            m_recvProc = pRecvProc;
         }
 
     public:
@@ -104,6 +122,7 @@ namespace hhou
         port_t m_remotePort; /// 对端的port端口
         HHCircularBuffer m_bufIn; /// 接受的data
         HHCircularBuffer m_bufOut; /// 发送的data
+        RecvProc m_recvProc; ///解析层的回调函数
 
     public:
 #ifdef HAVE_OPENSSL
