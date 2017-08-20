@@ -1,7 +1,6 @@
 #include "../include/net/HH_ListenEvent.h"
 #include "../include/net/HH_EventLoop.h"
 #include "../include/net/HH_ServerBase.h"
-#include "../include/parser/HH_Parse.h"
 #include "../app/ImgProcessor.h"
 #include "../include/HH_Log.h"
 
@@ -10,7 +9,7 @@ class Test4Server : public hhou::HHServerBase
 public:
     Test4Server()
     {
-        hhou::HHParserMgr::Instance().AppCallback(bind(&Test4Server::DealData, this, _1, _2, _3));
+
     }
 
     ~Test4Server()

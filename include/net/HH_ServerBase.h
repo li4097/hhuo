@@ -19,6 +19,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef HH_SERVERBASE_H
 #define HH_SERVERBASE_H
 
+#include "parser/HH_Parse.h"
+
 namespace hhou
 {
     /**
@@ -28,8 +30,11 @@ namespace hhou
     class HHServerBase
     {
     public:
-        HHServerBase() {}
+        HHServerBase() { HHParserMgr::Instance().AppCallback(bind(&HHServerBase::DealData, this, _1, _2, _3)); }
         virtual ~HHServerBase() {}
+
+        /**app的注册回调*/
+        virtual int DealData(void *first, int nFisrtLen, void *second) { return 0; }
 
         /**初始化本服务（读取配置文件等等）*/
         virtual bool Init() { return true;}
