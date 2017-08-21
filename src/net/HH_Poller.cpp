@@ -66,7 +66,7 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
     event->m_tLast = 0;
-    m_AllSockets.Update(event);
+    m_AllSockets.Push(event);
     UpdateConnNums(-1);
 }
 
