@@ -154,23 +154,14 @@ void hhou::HHListenEvent::OnConneting()
         SSL_set_fd(pNew->m_sSSL, pNew->handler);
 
         /// 建立SSL连接
-        while(true)
+        while(SSL_accept(pNew->m_sSSL) != 1)
         {
-            if(SSL_accept(pNew->m_sSSL) != 1)
+            if (SSL_get_error(pNew->m_sSSL, 0) == SSL_ERROR_WANT_READ)
             {
-                int nCode = -1;
-                int nRet = SSL_get_error(pNew->m_sSSL, nCode);
-                if (nRet == SSL_ERROR_WANT_READ)
-                {
-                    continue;
-                }
-                LOG(ERROR) << "Create ssl connection with " << pNew->handler << " fail code: " << nCode;
-                break;
+                continue;
             }
-            else
-            {
-                break;
-            }
+            LOG(ERROR) << "Create ssl connection with " << pNew->handler;
+            break;
         }
 #endif
         m_pPoller->AddEvent(pNew);
