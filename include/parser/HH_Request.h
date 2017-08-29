@@ -55,6 +55,24 @@ namespace hhou
         HTTP_BODY_DONE     /// body解析完成
     };
 
+    enum WSStatus
+    {
+        WS_STATUS_CONNECT = 0,
+        WS_STATUS_UNCONNECT = 1
+    };
+
+    enum WSFrameType
+    {
+        WS_EMPTY_FRAME = 0xF0,
+        WS_ERROR_FRAME = 0xF1,
+        WS_TEXT_FRAME   = 0x01,
+        WS_BINARY_FRAME = 0x02,
+        WS_PING_FRAME = 0x09,
+        WS_PONG_FRAME = 0x0A,
+        WS_OPENING_FRAME = 0xF3,
+        WS_CLOSING_FRAME = 0x08
+    };
+
     /**
      * http的request解析
      */
@@ -75,6 +93,21 @@ namespace hhou
         hhou::HttpError Parse(const char *szHttpReq, int nDataLen);
 
         /**
+         * websocket握手
+         */
+        bool WSHandShake();
+
+        /**
+         * websocket帧编码
+         */
+        bool WSEncodeFrame();
+
+        /**
+         * websocket帧解码
+         */
+        bool WSDecodeFrame();
+
+        /**
          * 外部调用的获取接口
          */
         HttpMethodType &GetMethodType() { return m_nMethod;}
@@ -84,6 +117,7 @@ namespace hhou
         void GetParam(const string &strKey, string &strVal);
         void GetFieldInt(const string &strKey, int &nVal);
         void GetFieldStr(const string &strKey, string &strVal);
+        char *GetMagicKey() { return m_strMagicKey; }
         bool AllDone() { return m_nParseWhere == HTTP_BODY_DONE; }
 
     private:
@@ -94,6 +128,8 @@ namespace hhou
         map<string, string> m_mField; /// 存放域值
         map<string, string> m_mParam; /// 存放参数
         HttpParse m_nParseWhere;  /// 解析到哪里了
+        WSStatus m_nWSStatus;   /// websocket是否建立
+        char m_strMagicKey[1024];   /// 服务器的key
 
     };
 }

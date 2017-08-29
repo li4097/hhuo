@@ -26,11 +26,19 @@ string hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
     if (request.AllDone())
     {
         m_pDataDeal((void *)&request, nLen, (void *)&response);
-        if (bOnce)
-            response.AddHeader("Connection", "Close");
+        if (request.WSHandShake())
+        {
+            response.AddHeader("Sec-WebSocket-Accept", request.GetMagicKey());
+            response.MakeWBRes(strRet);
+        }
         else
-            response.AddHeader("Connection", "Keep-Alive");
-        response.MakeRes(strRet);
+        {
+            if (bOnce)
+                response.AddHeader("Connection", "Close");
+            else
+                response.AddHeader("Connection", "Keep-Alive");
+            response.MakeRes(strRet);
+        }
     }
 #else
     m_pDataDeal((void *)&request, nLen, (void *)&response);

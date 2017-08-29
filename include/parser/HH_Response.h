@@ -50,6 +50,11 @@ namespace hhou
         int MakeRes(string &strRes, const string &strResContentType = HTTP_CONTENT_TYPE_TXT);
 
         /**
+         * 生成websocket的函数(失败0，正确返回1)
+         */
+        int MakeWBRes(string &strRes, const string &strResContentType = HTTP_CONTENT_TYPE_TXT);
+
+        /**
          * 设置response
          */
         void SetContent(const string &strContent) { m_strContent = strContent; }

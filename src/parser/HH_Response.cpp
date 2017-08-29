@@ -31,3 +31,18 @@ int hhou::HHResponse::MakeRes(string &strRes, const string &strResContentType)
     strRes = os.str();
     return 1;
 }
+
+int hhou::HHResponse::MakeWBRes(string &strRes, const string &strResContentType)
+{
+    ostringstream os;
+    os << "HTTP/1.1 101 Switching Protocols\r\nContent-Length: " << m_strContent.size()
+       << "\r\nContent-Type: " << strResContentType
+       << "\r\nConnection: upgrade\r\nUpgrade: websocket\r\n";
+    for (auto it = m_mHeaders.begin(); it != m_mHeaders.end(); it++)
+    {
+        os << it->first << ": " << it->second << "\r\n";
+    }
+    os << "\r\n" << m_strContent;
+    strRes = os.str();
+    return 1;
+}

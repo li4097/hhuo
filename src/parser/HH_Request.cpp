@@ -15,16 +15,20 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
+
 #include "HH_Request.h"
+#include "HH_Config.h"
 #include "utils/HH_Split.h"
-#include "HH_Log.h"
+#include "utils/HH_Base64.h"
+#include "utils/HH_Sha1.h"
 
 hhou::HHRequest::HHRequest(HttpParamType paramType)
         : m_nParamType(paramType),
           m_nMethod(HTTP_METHOD_NONE),
           m_strMethod(""),
           m_strContent(""),
-          m_nParseWhere(HTTP_NONE_DONE)
+          m_nParseWhere(HTTP_NONE_DONE),
+          m_nWSStatus(WS_STATUS_UNCONNECT)
 {
 
 }
@@ -52,6 +56,40 @@ void hhou::HHRequest::GetFieldStr(const string &strKey, string &strVal)
     {
         strVal = it->second;
     }
+}
+
+bool hhou::HHRequest::WSHandShake()
+{
+    string strKey;
+    GetFieldStr("Sec-WebSocket-Key", strKey);
+    if (strKey.empty())
+    {
+        return false;
+    }
+    string strMagicKey;
+    hhou::HHConfig::Instance().ReadStr("websocket", "magickey", "");
+    if (strMagicKey.empty())
+    {
+        LOG(ERROR) << "No magickey";
+        return false;
+    }
+    strMagicKey += strKey;
+    char shaHash[32];
+    memset(shaHash, 0, sizeof(shaHash));
+    hhou::Sha1(strMagicKey.c_str(), shaHash);
+    hhou::Base64Encode(shaHash, strlen(shaHash), m_strMagicKey);
+    m_nWSStatus = WS_STATUS_CONNECT;
+    return true;
+}
+
+bool hhou::HHRequest::WSEncodeFrame()
+{
+    return true;
+}
+
+bool hhou::HHRequest::WSDecodeFrame()
+{
+    return true;
 }
 
 hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)

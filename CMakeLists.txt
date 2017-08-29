@@ -35,14 +35,14 @@ IF(USESSL)
 ENDIF()
 
 # http option
-OPTION(HTTPSERVER "Is http server?" ON)
+OPTION(HTTPSERVER "Is http server" ON)
 IF(HTTPSERVER)
     MESSAGE(STATUS "HttpServer ON")
     ADD_DEFINITIONS(-DBE_HTTP)
 ENDIF()
 
 # connection option
-OPTION(SHORTCONN "short connection?" OFF)
+OPTION(SHORTCONN "short connection" OFF)
 IF(SHORTCONN)
     MESSAGE(STATUS "Short Connection")
     ADD_DEFINITIONS(-DSHORT_CONN)
