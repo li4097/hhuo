@@ -16,9 +16,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include "HH_HttpResponse.h"
+#include "HH_Response.h"
 
-int hhou::HH_HttpResponse::MakeRes(string &strRes, const string &strResContentType)
+int hhou::HHResponse::MakeRes(string &strRes, const string &strResContentType)
 {
     ostringstream os;
     os << "HTTP/1.1 200 OK\r\nContent-Length: " << m_strContent.size()

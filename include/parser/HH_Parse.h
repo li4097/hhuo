@@ -20,8 +20,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_Common.h"
 #ifdef BE_HTTP
-#include "HH_HttpRequest.h"
-#include "HH_HttpResponse.h"
+#include "HH_Request.h"
+#include "HH_Response.h"
 #else
 #endif
 
@@ -54,8 +54,9 @@ namespace hhou
     private:
         appDeal m_pDataDeal;
 #ifdef BE_HTTP
-        hhou::HH_HttpRequest request;  /// 加入解析的状态标志
-        hhou::HH_HttpResponse response; /// 回包的对象
+        hhou::HHRequest request;  /// 加入解析的状态标志
+        hhou::HHResponse response; /// 回包的对象
+#else
 #endif
     };
 
