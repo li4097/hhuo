@@ -23,7 +23,7 @@ SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
 # openssl option
-OPTION(USESSL "Enable use openssl" ON)
+OPTION(USESSL "Enable use openssl" OFF)
 IF(USESSL)
     FIND_PACKAGE(OpenSSL REQUIRED)
     MESSAGE(STATUS "OpenSSL ON")
@@ -35,14 +35,14 @@ IF(USESSL)
 ENDIF()
 
 # http option
-OPTION(HTTPSERVER "Is http server?" ON)
+OPTION(HTTPSERVER "Is http server" ON)
 IF(HTTPSERVER)
     MESSAGE(STATUS "HttpServer ON")
     ADD_DEFINITIONS(-DBE_HTTP)
 ENDIF()
 
 # connection option
-OPTION(SHORTCONN "short connection?" OFF)
+OPTION(SHORTCONN "short connection" OFF)
 IF(SHORTCONN)
     MESSAGE(STATUS "Short Connection")
     ADD_DEFINITIONS(-DSHORT_CONN)

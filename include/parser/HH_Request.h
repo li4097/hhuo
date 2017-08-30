@@ -15,13 +15,14 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#ifndef HHUO_HH_HTTPREQUEST_H
-#define HHUO_HH_HTTPREQUEST_H
+#ifndef HHUO_HH_REQUEST_H
+#define HHUO_HH_REQUEST_H
 
 #include <map>
 #include <vector>
 #include <sstream>
 #include "HH_Common.h"
+#include "HH_Log.h"
 
 namespace hhou
 {
@@ -40,6 +41,13 @@ namespace hhou
         HTTP_PARAM_CONTENT            /// 只获取CONTENT
     };
 
+    enum HttpError
+    {
+        HTTP_OK,                /// 无错误
+        HTTP_HEAD_ERROR,      /// 头部错误（GET /getxxx HTTP1.x）
+        HTTP_BODY_INCOMPLTED    /// 数据不完整
+    };
+
     enum HttpParse
     {
         HTTP_NONE_DONE,    /// 还未进行解析
@@ -47,10 +55,28 @@ namespace hhou
         HTTP_BODY_DONE     /// body解析完成
     };
 
+    enum WSStatus
+    {
+        WS_STATUS_CONNECT = 0,
+        WS_STATUS_UNCONNECT = 1
+    };
+
+    enum WSFrameType
+    {
+        WS_EMPTY_FRAME = 0xF0,
+        WS_ERROR_FRAME = 0xF1,
+        WS_TEXT_FRAME   = 0x01,
+        WS_BINARY_FRAME = 0x02,
+        WS_PING_FRAME = 0x09,
+        WS_PONG_FRAME = 0x0A,
+        WS_OPENING_FRAME = 0xF3,
+        WS_CLOSING_FRAME = 0x08
+    };
+
     /**
      * http的request解析
      */
-    class HH_HttpRequest
+    class HHRequest
     {
         typedef map<string, string>::iterator ReqIter;
         typedef map<string, string>::const_iterator ReqCIter;
@@ -58,13 +84,28 @@ namespace hhou
         /**
          * 构造函数
          */
-        HH_HttpRequest(HttpParamType paramType = HTTP_PARAM_ALL);
-        virtual ~HH_HttpRequest() {}
+        HHRequest(HttpParamType paramType = HTTP_PARAM_ALL);
+        virtual ~HHRequest() {}
 
         /**
-         * 解析的函数(错误数据返回-1，数据不完整返回0，接收完全返回>0)
+         * 解析的函数
          */
-        int Parse(const char *szHttpReq, int nDataLen);
+        hhou::HttpError Parse(const char *szHttpReq, int nDataLen);
+
+        /**
+         * websocket握手
+         */
+        bool WSHandShake();
+
+        /**
+         * websocket帧编码
+         */
+        bool WSEncodeFrame();
+
+        /**
+         * websocket帧解码
+         */
+        bool WSDecodeFrame();
 
         /**
          * 外部调用的获取接口
@@ -73,32 +114,11 @@ namespace hhou
         string &GetMethod() { return m_strMethod;}
         void GetContent(string &content) { content = m_strContent.str(); }
         void ClearContent() {m_strContent.str("");}
-        void GetParam(const string &strKey, string &strVal)
-        {
-            ReqIter it = m_mParam.find(strKey);
-            if (it != m_mParam.end())
-                strVal = it->second;
-        }
-        void GetField(const string &strKey, string &strVal)
-        {
-            ReqIter it = m_mField.find(strKey);
-            if (it != m_mField.end())
-                strVal = it->second;
-        }
+        void GetParam(const string &strKey, string &strVal);
+        void GetFieldInt(const string &strKey, int &nVal);
+        void GetFieldStr(const string &strKey, string &strVal);
+        string GetMagicKey() { return m_strMagicKey; }
         bool AllDone() { return m_nParseWhere == HTTP_BODY_DONE; }
-
-    private:
-        /**解析第一行参数*/
-        bool ParseFirstLine(const char *buf, int &nLen);
-
-        /**解析请求参数*/
-        bool ParseParam(const char *buf);
-
-        /**解析域的键值对*/
-        bool ParseFields(const char *buf, int &nLen);
-
-        /**检测是否合法*/
-        bool CheckSecurity(const char *buf, int nLen) { return true; }
 
     private:
         HttpParamType m_nParamType; /// 需要解析的参数
@@ -108,8 +128,10 @@ namespace hhou
         map<string, string> m_mField; /// 存放域值
         map<string, string> m_mParam; /// 存放参数
         HttpParse m_nParseWhere;  /// 解析到哪里了
+        WSStatus m_nWSStatus;   /// websocket是否建立
+        string m_strMagicKey;   /// 服务器的key
 
     };
 }
 
-#endif //HHUO_HH_HTTPREQUEST_H
+#endif //HHUO_HH_REQUEST_H

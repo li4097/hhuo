@@ -16,12 +16,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#ifndef HHUO_HH_HTTPRESPONSE_H
-#define HHUO_HH_HTTPRESPONSE_H
+#ifndef HHUO_HH_RESPONSE_H
+#define HHUO_HH_RESPONSE_H
 
 #include <map>
 #include <vector>
 #include "HH_Common.h"
+#include "HH_Log.h"
 
 namespace hhou
 {
@@ -32,7 +33,7 @@ namespace hhou
     /**
      * http的response生成
      */
-    class HH_HttpResponse
+    class HHResponse
     {
         typedef map<string, string>::iterator ResIter;
         typedef map<string, string>::const_iterator ResCIter;
@@ -40,13 +41,18 @@ namespace hhou
         /**
          * 构造函数
          */
-        HH_HttpResponse() {}
-        virtual ~HH_HttpResponse() {}
+        HHResponse() {}
+        virtual ~HHResponse() {}
 
         /**
          * 生成的函数(失败0，正确返回1)
          */
         int MakeRes(string &strRes, const string &strResContentType = HTTP_CONTENT_TYPE_TXT);
+
+        /**
+         * 生成websocket的函数(失败0，正确返回1)
+         */
+        int MakeWBRes(string &strRes, const string &strResContentType = HTTP_CONTENT_TYPE_TXT);
 
         /**
          * 设置response
@@ -68,4 +74,4 @@ namespace hhou
     };
 }
 
-#endif //HHUO_HH_HTTPRESPONSE_H
+#endif //HHUO_HH_RESPONSE_H

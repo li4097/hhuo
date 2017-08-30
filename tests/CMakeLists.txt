@@ -18,3 +18,6 @@ TARGET_LINK_LIBRARIES(test4base64 hhutils glog)
 
 ADD_EXECUTABLE(test4gzip test4gzip.cpp)
 TARGET_LINK_LIBRARIES(test4gzip hhutils glog)
+
+ADD_EXECUTABLE(test4sha1 test4sha1.cpp)
+TARGET_LINK_LIBRARIES(test4sha1 hhutils glog)
