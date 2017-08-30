@@ -4,11 +4,11 @@
 int main(int argc, char *argv[])
 {
     string input = "shit";
-    char decode[13];
-    char output[13];
-    hhou::Base64Encode(input.c_str(), input.size(), output);
+    string decode;
+    string output;
+    output = hhou::Base64Encode((unsigned char *)input.c_str(), input.size());
     LOG(INFO) << "ret: " << output;
-    hhou::Base64Decode(output, strlen(output), decode);
+    decode = hhou::Base64Decode(output);
     LOG(INFO) << "ret: " << decode;
     return 0;
 }

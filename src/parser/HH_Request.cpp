@@ -77,7 +77,7 @@ bool hhou::HHRequest::WSHandShake()
     char shaHash[32];
     memset(shaHash, 0, sizeof(shaHash));
     hhou::Sha1(strMagicKey.c_str(), shaHash);
-    hhou::Base64Encode(shaHash, strlen(shaHash), m_strMagicKey);
+    m_strMagicKey = hhou::Base64Encode((const unsigned char *)shaHash, strlen(shaHash));
     m_nWSStatus = WS_STATUS_CONNECT;
     return true;
 }

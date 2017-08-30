@@ -117,7 +117,7 @@ namespace hhou
         void GetParam(const string &strKey, string &strVal);
         void GetFieldInt(const string &strKey, int &nVal);
         void GetFieldStr(const string &strKey, string &strVal);
-        char *GetMagicKey() { return m_strMagicKey; }
+        string GetMagicKey() { return m_strMagicKey; }
         bool AllDone() { return m_nParseWhere == HTTP_BODY_DONE; }
 
     private:
@@ -129,7 +129,7 @@ namespace hhou
         map<string, string> m_mParam; /// 存放参数
         HttpParse m_nParseWhere;  /// 解析到哪里了
         WSStatus m_nWSStatus;   /// websocket是否建立
-        char m_strMagicKey[1024];   /// 服务器的key
+        string m_strMagicKey;   /// 服务器的key
 
     };
 }
