@@ -26,10 +26,17 @@ string hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
     if (request.AllDone())
     {
         m_pDataDeal((void *)&request, nLen, (void *)&response);
-        if (request.WSHandShake())
+        int nRet = request.WSHandShake();
+        if (nRet == 1)
         {
             response.AddHeader("Sec-WebSocket-Accept", request.GetMagicKey());
             response.MakeWBRes(strRet);
+        }
+        else if (nRet == 2)
+        {
+            LOG(INFO) << "Connection's WebSocket has build.";
+            /// TODO
+            /// 已经是连接成功的
         }
         else
         {

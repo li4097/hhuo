@@ -58,7 +58,8 @@ namespace hhou
     enum WSStatus
     {
         WS_STATUS_CONNECT = 0,
-        WS_STATUS_UNCONNECT = 1
+        WS_STATUS_UNCONNECT = 1,
+        WS_STATUS_HASCONNECT = 2
     };
 
     enum WSFrameType
@@ -95,7 +96,7 @@ namespace hhou
         /**
          * websocket握手
          */
-        bool WSHandShake();
+        int WSHandShake();
 
         /**
          * websocket帧编码
