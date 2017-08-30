@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[])
 {
-    string input = "shit";
+    string input = "shitaaaaaa";
     string decode;
     string output;
     output = hhou::Base64Encode((unsigned char *)input.c_str(), input.size());
