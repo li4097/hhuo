@@ -58,20 +58,24 @@ void hhou::HHRequest::GetFieldStr(const string &strKey, string &strVal)
     }
 }
 
-bool hhou::HHRequest::WSHandShake()
+int hhou::HHRequest::WSHandShake()
 {
+    if (m_nWSStatus == WS_STATUS_CONNECT)
+    {
+        return 2;
+    }
     string strKey;
-    GetFieldStr("Sec-WebSocket-Key", strKey);
+    GetFieldStr("sec-websocket-key", strKey);
     if (strKey.empty())
     {
-        return false;
+        return -1;
     }
-    string strMagicKey;
-    hhou::HHConfig::Instance().ReadStr("websocket", "magickey", "");
+    LOG(INFO) << "Client Key::" << strKey;
+    string strMagicKey = hhou::HHConfig::Instance().ReadStr("websocket", "magickey", "");
     if (strMagicKey.empty())
     {
         LOG(ERROR) << "No magickey";
-        return false;
+        return -1;
     }
     strMagicKey += strKey;
     char shaHash[32];
@@ -79,7 +83,8 @@ bool hhou::HHRequest::WSHandShake()
     hhou::Sha1(strMagicKey.c_str(), shaHash);
     m_strMagicKey = hhou::Base64Encode((const unsigned char *)shaHash, strlen(shaHash));
     m_nWSStatus = WS_STATUS_CONNECT;
-    return true;
+    LOG(INFO) << "Sec Key:: " << m_strMagicKey;
+    return 1;
 }
 
 bool hhou::HHRequest::WSEncodeFrame()

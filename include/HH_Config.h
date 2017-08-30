@@ -71,7 +71,11 @@ namespace hhou
                 else if (tmp.find("=") < tmp.length())
                 {
                     if (section.length())
-                        m_mKV[section][tmp.substr(0, tmp.find("="))] = tmp.substr(tmp.find("=") + 1);
+                    {
+                        string strKey = tmp.substr(0, tmp.find("="));
+                        string strValue = tmp.substr(tmp.find("=") + 1);
+                        m_mKV[section][strKey] = strValue;
+                    }
                     else
                         throw 1;
                 }
@@ -96,6 +100,10 @@ namespace hhou
             {
                 GetInfo();
                 m_file.close();
+            }
+            else
+            {
+                cerr << "Open cfg file " << pName << " error." << endl;
             }
         }
 
