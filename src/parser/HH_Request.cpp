@@ -89,6 +89,7 @@ int hhou::HHRequest::WSHandShake()
 
 bool hhou::HHRequest::WSEncodeFrame()
 {
+    
     return true;
 }
 
@@ -99,6 +100,21 @@ bool hhou::HHRequest::WSDecodeFrame()
 
 hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
 {
+    /// 判断是否已经建立了websocket
+    if (m_nWSStatus == WS_STATUS_CONNECT)
+    {
+        /// 新包
+       if (m_nParseWhere == HTTP_BODY_DONE) 
+       {
+            
+       }
+       else if (m_nParseWhere == HTTP_BODY_DONE)
+       {
+           
+       }
+       return HTTP_OK;
+    }
+
     /// 判断body是否完整
     int nSize = 0;
     GetFieldInt("content-length", nSize);

@@ -86,12 +86,17 @@ void hhou::HHFDEvent::OnRead()
         m_bufIn.Write(bufIn, (size_t)rSize);
         if (m_recvProc != nullptr)
         {
-            string strRet = m_recvProc(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength());
-            if (!strRet.empty())
+            string strRet;
+            int nRet = m_recvProc(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength(), strRet);
+            if (!nRet && !strRet.empty())
             {
                 m_bufOut.Write(strRet.c_str(), strRet.length());
                 eventInfo.status = Out;
                 m_pPoller->ChangeEvent(this);
+            }
+            else
+            {
+                OnClosing();
             }
         }
         m_bufIn.Remove((size_t)rSize);
