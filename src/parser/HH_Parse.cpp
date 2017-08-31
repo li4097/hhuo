@@ -22,22 +22,19 @@ int hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen, string &strRet)
 {
     int nResult = 0;
 #ifdef BE_HTTP
-    int nRet = request.Parse((char *)buf, nLen);
-    if (nRet != HTTP_OK)
-    {
-        nRet = 1;
-    }
-    else if (request.AllDone())
+    nResult = request.Parse((char *)buf, nLen);
+    if (nResult == HTTP_OK && request.AllDone())
     {
         m_pDataDeal((void *)&request, nLen, (void *)&response);
-        nRet = request.WSHandShake();
-        if (nRet == 1)
+        nResult = request.WSHandShake();
+        if (nResult == 1)
         {
             response.AddHeader("Sec-WebSocket-Accept", request.GetMagicKey());
             response.MakeWBRes(strRet);
         }
-        else if (nRet == 2)
+        else if (nResult == 2)
         {
+            response.WSEncodeFrame();
             LOG(INFO) << "Connection's WebSocket has build.";
         }
         else

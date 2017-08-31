@@ -62,18 +62,6 @@ namespace hhou
         WS_STATUS_HASCONNECT = 2
     };
 
-    enum WSFrameType
-    {
-        WS_EMPTY_FRAME = 0xF0,
-        WS_ERROR_FRAME = 0xF1,
-        WS_TEXT_FRAME   = 0x01,
-        WS_BINARY_FRAME = 0x02,
-        WS_PING_FRAME = 0x09,
-        WS_PONG_FRAME = 0x0A,
-        WS_OPENING_FRAME = 0xF3,
-        WS_CLOSING_FRAME = 0x08
-    };
-
     /**
      * http的request解析
      */
@@ -99,14 +87,9 @@ namespace hhou
         int WSHandShake();
 
         /**
-         * websocket帧编码
-         */
-        bool WSEncodeFrame();
-
-        /**
          * websocket帧解码
          */
-        bool WSDecodeFrame();
+        bool WSDecodeFrame(const char *buf, int nSize);
 
         /**
          * 外部调用的获取接口
@@ -130,6 +113,7 @@ namespace hhou
         map<string, string> m_mParam; /// 存放参数
         HttpParse m_nParseWhere;  /// 解析到哪里了
         WSStatus m_nWSStatus;   /// websocket是否建立
+        int m_nMsgType;         /// websocket的消息类型
         string m_strMagicKey;   /// 服务器的key
 
     };

@@ -28,7 +28,8 @@ hhou::HHRequest::HHRequest(HttpParamType paramType)
           m_strMethod(""),
           m_strContent(""),
           m_nParseWhere(HTTP_NONE_DONE),
-          m_nWSStatus(WS_STATUS_UNCONNECT)
+          m_nWSStatus(WS_STATUS_UNCONNECT),
+          m_nMsgType(0)
 {
 
 }
@@ -77,7 +78,7 @@ int hhou::HHRequest::WSHandShake()
         LOG(ERROR) << "No magickey";
         return -1;
     }
-    strMagicKey += strKey;
+    strMagicKey = strKey + strMagicKey;
     char shaHash[32];
     memset(shaHash, 0, sizeof(shaHash));
     hhou::Sha1(strMagicKey.c_str(), shaHash);
@@ -87,14 +88,53 @@ int hhou::HHRequest::WSHandShake()
     return 1;
 }
 
-bool hhou::HHRequest::WSEncodeFrame()
+bool hhou::HHRequest::WSDecodeFrame(const char *buf, int nSize)
 {
-    
-    return true;
-}
+    /// pos 
+    int nPos = 0;
+    while (nSize > nPos)
+    {
+        if ((nSize - nPos) < 2)
+        {
+            return false;
+        }
 
-bool hhou::HHRequest::WSDecodeFrame()
-{
+        /// 检查扩展位并忽略
+        if ((buf[nPos] & 0x70) != 0x00)
+        {
+            return false;
+        }
+
+        /// 检查fin标志
+        if ((buf[nPos] & 0x80) != 0x80)
+        {
+            m_nParseWhere = HTTP_HEAD_DONE;
+        }
+
+        /// 获取消息类型
+        m_nMsgType = (buf[nPos] & 0x0f);
+        nPos++;
+
+        /// client发来的数据必须包含mask位
+        if ((buf[nPos] & 0x80) != 0x80)
+        {
+            return false;
+        }
+
+        /// 获取消息体的长度
+        int nContentLen = buf[nPos] & 0x7f;
+        if (nContentLen == 126)
+        {
+            /// 将接下来的2个字节转化为long
+            nPos += 2;
+        }
+        else if (nContentLen == 127)
+        {
+            /// 将接下来的8个字节转化为long
+            nPos += 8;        
+        }
+    }
+    m_nParseWhere = HTTP_BODY_DONE;
     return true;
 }
 
@@ -103,16 +143,8 @@ hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
     /// 判断是否已经建立了websocket
     if (m_nWSStatus == WS_STATUS_CONNECT)
     {
-        /// 新包
-       if (m_nParseWhere == HTTP_BODY_DONE) 
-       {
-            
-       }
-       else if (m_nParseWhere == HTTP_BODY_DONE)
-       {
-           
-       }
-       return HTTP_OK;
+        WSDecodeFrame(szHttpReq, nDataLen);
+        return HTTP_OK;
     }
 
     /// 判断body是否完整

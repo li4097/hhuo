@@ -18,6 +18,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_Response.h"
 
+bool hhou::HHResponse::WSEncodeFrame()
+{
+    return true;
+}
+
 int hhou::HHResponse::MakeRes(string &strRes, const string &strResContentType)
 {
     ostringstream os;

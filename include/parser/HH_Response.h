@@ -45,6 +45,11 @@ namespace hhou
         virtual ~HHResponse() {}
 
         /**
+         * websocket帧编码
+         */
+        bool WSEncodeFrame();
+
+        /**
          * 生成的函数(失败0，正确返回1)
          */
         int MakeRes(string &strRes, const string &strResContentType = HTTP_CONTENT_TYPE_TXT);
