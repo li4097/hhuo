@@ -97,6 +97,7 @@ void hhou::HHFDEvent::OnRead()
             else
             {
                 OnClosing();
+                break;
             }
         }
         m_bufIn.Remove((size_t)rSize);
