@@ -46,7 +46,7 @@ namespace hhou
         virtual ~HHParse() {}
 
         /**先进行必要信息的解析(错误数据返回-1，数据不完整返回0，接收完全返回>0)*/
-        string ParseData(bool bOnce, void *buf, int nLen);
+        int ParseData(bool bOnce, void *buf, int nLen, string &strRet);
 
         /**获取req的状态*/
         bool CanResponse() { return request.AllDone(); }

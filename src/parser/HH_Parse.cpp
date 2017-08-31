@@ -18,15 +18,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_Parse.h"
 
-string hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
+int hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen, string &strRet)
 {
-    string strRet;
+    int nResult = 0;
 #ifdef BE_HTTP
-    request.Parse((char *)buf, nLen);
-    if (request.AllDone())
+    int nRet = request.Parse((char *)buf, nLen);
+    if (nRet != HTTP_OK)
+    {
+        nRet = 1;
+    }
+    else if (request.AllDone())
     {
         m_pDataDeal((void *)&request, nLen, (void *)&response);
-        int nRet = request.WSHandShake();
+        nRet = request.WSHandShake();
         if (nRet == 1)
         {
             response.AddHeader("Sec-WebSocket-Accept", request.GetMagicKey());
@@ -35,8 +39,6 @@ string hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
         else if (nRet == 2)
         {
             LOG(INFO) << "Connection's WebSocket has build.";
-            /// TODO
-            /// 已经是连接成功的
         }
         else
         {
@@ -50,7 +52,7 @@ string hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
 #else
     m_pDataDeal((void *)&request, nLen, (void *)&response);
 #endif
-    return strRet;
+    return nResult;
 }
 
 hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)

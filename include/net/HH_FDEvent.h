@@ -40,12 +40,13 @@ namespace hhou
         friend class HHPoller;
 
         /**
-         * ret: string 处理完的数据
+         * int: 返回值（0:处理无错误，1:处理出错，需要关闭socket）
+         * string &: 处理完的数据
          * bool : 是否需要keepalive
          * void * : 接受到的数据的指针
          * int : 上述数据的大小
          * */
-        typedef function<string(bool, void *, int)> RecvProc;
+        typedef function<int(bool, void *, int, string &)> RecvProc;
     public:
         /**
          * 禁用的构造函数
