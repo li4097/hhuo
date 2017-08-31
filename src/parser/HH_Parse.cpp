@@ -34,7 +34,7 @@ int hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen, string &strRet)
         }
         else if (nResult == 2)
         {
-            response.WSEncodeFrame();
+            response.WSEncodeFrame(strRet);
             LOG(INFO) << "Connection's WebSocket has build.";
         }
         else

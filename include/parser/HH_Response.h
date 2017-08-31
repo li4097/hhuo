@@ -47,7 +47,7 @@ namespace hhou
         /**
          * websocket帧编码
          */
-        bool WSEncodeFrame();
+        bool WSEncodeFrame(const string &strRet);
 
         /**
          * 生成的函数(失败0，正确返回1)
