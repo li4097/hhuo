@@ -33,7 +33,7 @@ namespace hhou
     {
     public:
         HHMsg(int &nID, int &nOp, const string &strMsg) 
-            : m_nID(nID), m_nOp(nOp), m_strMsg(move(strMsg))
+            : m_nID(nID), m_nOp(nOp), m_bCompleted(false), m_strMsg(move(strMsg))
         {}
         virtual ~HHMsg() {}
 
@@ -57,8 +57,9 @@ namespace hhou
     private:
         int m_nID;  /// 消息的ID
         int m_nOp;  /// 消息的类型
+        bool m_bCompleted;  /// 是否是完整包
         string m_strMsg;    /// 消息体
-        string m_strRet;    /// 等着返回的消息体
+        string m_strRet;    /// 发送给对方的消息体
     };
 }
 
