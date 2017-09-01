@@ -26,7 +26,7 @@ void hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen, string &strRet)
     }
 }
 
-void hhou::HHParse::SendData(string &strRet)
+void hhou::HHParse::SendData(string &strRet, int nSize)
 {
 
 }

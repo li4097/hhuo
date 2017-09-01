@@ -67,10 +67,7 @@ void hhou::HHFDEvent::OnRead()
                 /// 需要继续读data
                 continue;
             }
-            else
-            {
-                eventInfo.status = Close;
-            }
+            eventInfo.status = Close;
         }
         else if (rSize == 0)
         {
@@ -93,17 +90,11 @@ void hhou::HHFDEvent::OnRead()
             OnClosing();
             break;
         }
-        else
-        {
-            m_bufOut.Write(strRet.c_str(), strRet.length());
-            eventInfo.status = Out;
-            m_pPoller->ChangeEvent(this);
-        }
+        m_bufOut.Write(strRet.c_str(), strRet.length());
+        eventInfo.status = Out;
+        m_pPoller->ChangeEvent(this);
         m_bufIn.Remove((size_t)rSize);
-        if (rSize == TCP_BUFSIZE - 1)
-            continue;
-        else
-            break;
+        if (rSize != TCP_BUFSIZE - 1) break;
     }
 }
 
@@ -136,10 +127,7 @@ void hhou::HHFDEvent::OnWrite()
                 /// 需要继续读data
                 continue;
             }
-            else
-            {
-                eventInfo.status = Close;
-            }
+            eventInfo.status = Close;
         }
 #endif
         if (eventInfo.status == Close)
@@ -154,27 +142,25 @@ void hhou::HHFDEvent::OnWrite()
 
         /// 是否还有数据发送
         string strRet;
-        m_sendProc(strRet);
+        m_sendProc(strRet, (int)m_bufOut.Space());
         if (!strRet.empty())
         {
             m_bufOut.Write(strRet.c_str(), strRet.length());
+            continue;
+        }
+
+        /// 是否是短连接
+        if (eventInfo.once)
+        {
+            OnClosing();
         }
         else
         {
-            /// 是否是短连接
-            if (eventInfo.once)
-            {
-                OnClosing();
-            }
-            else
-            {
-                /// 将data拷贝到发送缓冲区
-                m_bufOut.Remove(m_bufOut.GetLength());
-                eventInfo.status = In;
-                m_pPoller->ChangeEvent(this);
-            }
-            break;
+            /// 将data拷贝到发送缓冲区
+            eventInfo.status = In;
+            m_pPoller->ChangeEvent(this);
         }
+        break;
     }
 }
 

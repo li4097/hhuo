@@ -50,7 +50,7 @@ namespace hhou
         /**
          * string &: 处理完的数据，为空则关闭socket
          * */
-        typedef function<void (string &)> SendProc;
+        typedef function<void (string &, int)> SendProc;
     public:
         /**
          * 禁用的构造函数
