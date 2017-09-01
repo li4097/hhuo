@@ -30,11 +30,16 @@ namespace hhou
     class HHServerBase
     {
     public:
-        HHServerBase() { HHParserMgr::Instance().AppCallback(bind(&HHServerBase::DealData, this, _1, _2, _3)); }
+        HHServerBase()
+        {
+            HHParserMgr::Instance().AppCallback(bind(&HHServerBase::AppData, this, _1, _2, _3, _4));
+            HHParserMgr::Instance().HttpCallback(bind(&HHServerBase::HttpData, this, _1, _2, _3));
+        }
         virtual ~HHServerBase() {}
 
         /**app的注册回调*/
-        virtual int DealData(void *first, int nFisrtLen, void *second) { return 0; }
+        virtual int AppData(int nOp, void *first, int nFisrtLen, string &second) { return 0; }
+        virtual int HttpData(void *first, int nFisrtLen, void *second) { return 0; }
 
         /**初始化本服务（读取配置文件等等）*/
         virtual bool Init() { return true;}

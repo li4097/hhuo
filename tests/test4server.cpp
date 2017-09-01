@@ -22,10 +22,15 @@ public:
         return true;
     }
 
-    int DealData(void *first, int nFisrtLen, void *second)
+    int HttpData(void *first, int nFisrtLen, void *second)
     {
         ImgProcessor processor;
         return (int)processor.Processor(first, nFisrtLen, second);
+    }
+
+    int AppData(int nOp, void *first, int nFisrtLen, string &second)
+    {
+        return 1;
     }
 
     void Run()

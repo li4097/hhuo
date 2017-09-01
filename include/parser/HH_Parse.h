@@ -30,7 +30,16 @@ namespace hhou
      * int 待处理包的长度
      * void *相应包
      * */
-    typedef function<int(void *, int, void *)> appDeal;
+    typedef function<int(void *, int, void *)> HttpDeal;
+
+    /**
+     * 应用层的处理回调
+     * int 命令号
+     * void *待处理包
+     * int 待处理包的长度
+     * string &相应包
+     * */
+    typedef function<int(int, void *, int, string &)> AppDeal;
 
     /**
      * 解析数据的基础类
@@ -39,7 +48,7 @@ namespace hhou
     {
     public:
         /**默认构造函数*/
-        HHParse(appDeal appProc) : m_pDataDeal(appProc) {}
+        HHParse(HttpDeal httpProc, AppDeal appProc) : m_pHttpDeal(httpProc), m_pAppDeal(appProc) {}
         virtual ~HHParse() {}
 
         /**先进行必要信息的解析(错误数据返回-1，数据不完整返回0，接收完全返回>0)*/
@@ -48,11 +57,9 @@ namespace hhou
         /**发送回调函数*/
         void SendData(string &strRet, int nSize);
 
-        /**获取req的状态*/
-        bool CanResponse() { return request.AllDone(); }
-
     private:
-        appDeal m_pDataDeal;
+        HttpDeal m_pHttpDeal;
+        AppDeal m_pAppDeal;
         hhou::HHRequest request;  /// 加入解析的状态标志
         hhou::HHResponse response; /// 回包的对象
 
@@ -73,7 +80,8 @@ namespace hhou
         bool RmParser(const int fd);
 
         /**设置回调*/
-        void AppCallback(appDeal appProc) {m_pDataDeal = appProc;}
+        void AppCallback(AppDeal appProc) {m_pAppDeal = appProc;}
+        void HttpCallback(HttpDeal HttpProc) {m_pHttpDeal = HttpProc;}
 
         /**单例模式*/
         static HHParserMgr &Instance()
@@ -83,7 +91,8 @@ namespace hhou
         }
 
     private:
-        appDeal m_pDataDeal;
+        AppDeal m_pAppDeal;
+        HttpDeal m_pHttpDeal;
         mutex m_mutex; /// 锁
         map<int, HHParse *> m_mParsers;   /// fd对应的解析器
     };

@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define HHUO_HH_REQUEST_H
 
 #include <map>
+#include <queue>
 #include <vector>
 #include <sstream>
 #include "HH_Common.h"
@@ -84,18 +85,17 @@ namespace hhou
          */
         HttpMethodType &GetMethodType() { return m_nMethod;}
         string &GetMethod() { return m_strMethod;}
-        void GetContent(string &content) { content = m_strContent.str(); }
-        void ClearContent() {m_strContent.str("");}
+        int GetOp() {return m_nOp;}
         void GetParam(const string &strKey, string &strVal);
         void GetFieldInt(const string &strKey, int &nVal);
         void GetFieldStr(const string &strKey, string &strVal);
         string GetMagicKey() { return m_strMagicKey; }
-        bool AllDone() { return m_nParseWhere == HTTP_BODY_DONE; }
 
     private:
         HttpMethodType m_nMethod; /// 请求类型
         string m_strMethod;  /// 方法名（以此作路由）
-        ostringstream m_strContent;  /// content
+        int m_nOp;  /// 操作类型（http:-1,websocket:opcode）
+        ostringstream m_strContent; /// content
         map<string, string> m_mField; /// 存放域值
         map<string, string> m_mParam; /// 存放参数
         HttpParse m_nParseWhere;  /// 解析到哪里了

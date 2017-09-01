@@ -23,6 +23,17 @@ void hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen, string &strRet)
     if (request.Parse((char *)buf, nLen) > 1)
     {
         LOG(ERROR) << "Connection error, will close.";
+        return;
+    }
+    if (request.GetOp() == -1)
+    {
+        m_pHttpDeal((void *) &request, nLen, (void *) &response);
+        bOnce ? response.AddHeader("Connection", "Close") : response.AddHeader("Connection", "Keep-Alive");
+        response.MakeRes(strRet);
+    }
+    else
+    {
+        m_pAppDeal(request.GetOp(), buf, nLen, strRet);
     }
 }
 
@@ -43,7 +54,7 @@ hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)
     else
     {
         lock_guard<mutex> lock(m_mutex);
-        pParse = new hhou::HHParse(m_pDataDeal);
+        pParse = new hhou::HHParse(m_pHttpDeal, m_pAppDeal);
         m_mParsers.insert(make_pair(fd, pParse));
     }
     return pParse;
