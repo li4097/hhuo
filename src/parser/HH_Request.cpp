@@ -22,14 +22,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "utils/HH_Base64.h"
 #include "utils/HH_Sha1.h"
 
-hhou::HHRequest::HHRequest(HttpParamType paramType)
-        : m_nParamType(paramType),
-          m_nMethod(HTTP_METHOD_NONE),
+hhou::HHRequest::HHRequest()
+        : m_nMethod(HTTP_METHOD_NONE),
           m_strMethod(""),
           m_strContent(""),
           m_nParseWhere(HTTP_NONE_DONE),
-          m_nWSStatus(WS_STATUS_UNCONNECT),
-          m_nMsgType(0)
+          m_nError(HTTP_OK)
 {
 
 }
@@ -59,33 +57,26 @@ void hhou::HHRequest::GetFieldStr(const string &strKey, string &strVal)
     }
 }
 
-int hhou::HHRequest::WSHandShake()
+void hhou::HHRequest::WSHandShake()
 {
-    if (m_nWSStatus == WS_STATUS_CONNECT)
-    {
-        return 2;
-    }
+    if (m_nError == HTTP_WSCONNECTED) return;
     string strKey;
     GetFieldStr("sec-websocket-key", strKey);
-    if (strKey.empty())
-    {
-        return -1;
-    }
+    if (strKey.empty()) return;
     LOG(INFO) << "Client Key::" << strKey;
     string strMagicKey = hhou::HHConfig::Instance().ReadStr("websocket", "magickey", "");
     if (strMagicKey.empty())
     {
         LOG(ERROR) << "No magickey";
-        return -1;
+        return;
     }
     strMagicKey = strKey + strMagicKey;
     char shaHash[32];
     memset(shaHash, 0, sizeof(shaHash));
     hhou::Sha1(strMagicKey.c_str(), shaHash);
     m_strMagicKey = hhou::Base64Encode((const unsigned char *)shaHash, strlen(shaHash));
-    m_nWSStatus = WS_STATUS_CONNECT;
+    m_nError = HTTP_WSCONNECTED;
     LOG(INFO) << "Sec Key:: " << m_strMagicKey;
-    return 1;
 }
 
 bool hhou::HHRequest::WSDecodeFrame(const char *buf, int nSize)
@@ -112,7 +103,7 @@ bool hhou::HHRequest::WSDecodeFrame(const char *buf, int nSize)
         }
 
         /// 获取消息类型
-        m_nMsgType = (buf[nPos] & 0x0f);
+        //m_nMsgType = (buf[nPos] & 0x0f);
         nPos++;
 
         /// client发来的数据必须包含mask位
@@ -140,32 +131,36 @@ bool hhou::HHRequest::WSDecodeFrame(const char *buf, int nSize)
 
 hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
 {
-    /// 判断是否已经建立了websocket
-    if (m_nWSStatus == WS_STATUS_CONNECT)
-    {
-        WSDecodeFrame(szHttpReq, nDataLen);
-        return HTTP_OK;
-    }
+    /// 判断是否需要建立websocket
+    WSHandShake();
 
-    /// 判断body是否完整
-    int nSize = 0;
-    GetFieldInt("content-length", nSize);
-    if (m_nParseWhere == HTTP_HEAD_DONE)
+    /// 判断是否已经建立了websocket
+    if (m_nError == HTTP_WSCONNECTED && !WSDecodeFrame(szHttpReq, nDataLen))
     {
-        /// 判断是否接受完全
-        if (nSize > (int)m_strContent.str().size())
-            m_strContent << string(szHttpReq, 0, nDataLen);
-        else
-            m_nParseWhere = HTTP_BODY_DONE;
-        return HTTP_OK;
+        return HTTP_WOULDCLOSE;
     }
 
     /// 读取request的对象
     istringstream in(szHttpReq);
-    string strLine;
-    getline(in, strLine);
+
+    /// 判断body是否完整
+    int nSize = 0;
+    string strBody;
+    GetFieldInt("content-length", nSize);
+    if (nSize > (int) m_strContent.str().size())
+    {
+        in >> strBody;
+        m_strContent << strBody;
+    }
+    if (nSize <= (int) m_strContent.str().size())
+    {
+        m_nParseWhere = HTTP_BODY_DONE;
+        return HTTP_OK;
+    }
 
     /**********************判断是否合法****************/
+    string strLine;
+    getline(in, strLine);
     if (strLine.size() < 10) /// 第一行不能小于10个字符
         return HTTP_HEAD_ERROR;
     vector<string> vLine;
@@ -205,13 +200,10 @@ hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
     }
 
     /**********************解析content（如果有的话）****************/
-    string strBody;
     in >> strBody;
     m_strContent << strBody;
-
-    /// 判断是否接受完全
     GetFieldInt("content-length", nSize);
-    if (nSize <= (int)m_strContent.str().size())
+    if (nSize <= (int) m_strContent.str().size())
     {
         m_nParseWhere = HTTP_BODY_DONE;
     }

@@ -28,23 +28,18 @@ namespace hhou
 {
     enum HttpMethodType
     {
-        HTTP_METHOD_NONE,  /// 错误的请求
-        HTTP_METHOD_GET,  /// get请求
-        HTTP_METHOD_POST,  /// post请求
-        HTTP_METHOD_RESP  /// response请求
-    };
-
-    enum HttpParamType
-    {
-        HTTP_PARAM_ALL,            /// 所有类型的参数
-        HTTP_PARAM_HEADPARAM,        /// 只获取HEADPARAM
-        HTTP_PARAM_CONTENT            /// 只获取CONTENT
+        HTTP_METHOD_NONE,   /// 错误的请求
+        HTTP_METHOD_GET,    /// get请求
+        HTTP_METHOD_POST,   /// post请求
+        HTTP_METHOD_RESP    /// response请求
     };
 
     enum HttpError
     {
-        HTTP_OK,                /// 无错误
-        HTTP_HEAD_ERROR,      /// 头部错误（GET /getxxx HTTP1.x）
+        HTTP_OK = 0,                /// 无错误
+        HTTP_WSCONNECTED,       /// http的websocket的连接标志
+        HTTP_HEAD_ERROR,        /// 头部错误（GET /getxxx HTTP1.x）
+        HTTP_WOULDCLOSE,        /// 需要关闭的socket
         HTTP_BODY_INCOMPLTED    /// 数据不完整
     };
 
@@ -53,13 +48,6 @@ namespace hhou
         HTTP_NONE_DONE,    /// 还未进行解析
         HTTP_HEAD_DONE,    /// 头解析完成
         HTTP_BODY_DONE     /// body解析完成
-    };
-
-    enum WSStatus
-    {
-        WS_STATUS_CONNECT = 0,
-        WS_STATUS_UNCONNECT = 1,
-        WS_STATUS_HASCONNECT = 2
     };
 
     /**
@@ -73,7 +61,7 @@ namespace hhou
         /**
          * 构造函数
          */
-        HHRequest(HttpParamType paramType = HTTP_PARAM_ALL);
+        HHRequest();
         virtual ~HHRequest() {}
 
         /**
@@ -84,7 +72,7 @@ namespace hhou
         /**
          * websocket握手
          */
-        int WSHandShake();
+        void WSHandShake();
 
         /**
          * websocket帧解码
@@ -105,16 +93,14 @@ namespace hhou
         bool AllDone() { return m_nParseWhere == HTTP_BODY_DONE; }
 
     private:
-        HttpParamType m_nParamType; /// 需要解析的参数
         HttpMethodType m_nMethod; /// 请求类型
         string m_strMethod;  /// 方法名（以此作路由）
         ostringstream m_strContent;  /// content
         map<string, string> m_mField; /// 存放域值
         map<string, string> m_mParam; /// 存放参数
         HttpParse m_nParseWhere;  /// 解析到哪里了
-        WSStatus m_nWSStatus;   /// websocket是否建立
-        int m_nMsgType;         /// websocket的消息类型
         string m_strMagicKey;   /// 服务器的key
+        HttpError m_nError;   /// 状态信息
 
     };
 }

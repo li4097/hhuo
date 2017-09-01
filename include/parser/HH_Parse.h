@@ -19,11 +19,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define HH_PARSE_H
 
 #include "HH_Common.h"
-#ifdef BE_HTTP
 #include "HH_Request.h"
 #include "HH_Response.h"
-#else
-#endif
 
 namespace hhou
 {
@@ -46,18 +43,16 @@ namespace hhou
         virtual ~HHParse() {}
 
         /**先进行必要信息的解析(错误数据返回-1，数据不完整返回0，接收完全返回>0)*/
-        int ParseData(bool bOnce, void *buf, int nLen, string &strRet);
+        void ParseData(bool bOnce, void *buf, int nLen,string &strRet);
 
         /**获取req的状态*/
         bool CanResponse() { return request.AllDone(); }
 
     private:
         appDeal m_pDataDeal;
-#ifdef BE_HTTP
         hhou::HHRequest request;  /// 加入解析的状态标志
         hhou::HHResponse response; /// 回包的对象
-#else
-#endif
+
     };
 
     /**

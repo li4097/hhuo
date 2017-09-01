@@ -34,13 +34,6 @@ IF(USESSL)
     ADD_DEFINITIONS(-DHAVE_OPENSSL)
 ENDIF()
 
-# http option
-OPTION(HTTPSERVER "Is http server" ON)
-IF(HTTPSERVER)
-    MESSAGE(STATUS "HttpServer ON")
-    ADD_DEFINITIONS(-DBE_HTTP)
-ENDIF()
-
 # connection option
 OPTION(SHORTCONN "short connection" OFF)
 IF(SHORTCONN)

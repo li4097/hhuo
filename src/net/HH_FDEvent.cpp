@@ -87,14 +87,13 @@ void hhou::HHFDEvent::OnRead()
         if (m_recvProc != nullptr)
         {
             string strRet;
-            int nRet = m_recvProc(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength(), strRet);
-            if (nRet)
+            m_recvProc(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength(), strRet);
+            if (strRet.empty())
             {
                 OnClosing();
                 break;
-                
             }
-            else if (!strRet.empty())
+            else
             {
                 m_bufOut.Write(strRet.c_str(), strRet.length());
                 eventInfo.status = Out;
