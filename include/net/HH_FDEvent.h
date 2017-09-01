@@ -46,6 +46,11 @@ namespace hhou
          * int : 上述数据的大小
          * */
         typedef function<void (bool, void *, int, string &)> RecvProc;
+
+        /**
+         * string &: 处理完的数据，为空则关闭socket
+         * */
+        typedef function<void (string &)> SendProc;
     public:
         /**
          * 禁用的构造函数
@@ -102,11 +107,19 @@ namespace hhou
         }
 
         /**
-         * 设置回调函数
+         * 设置解析回调函数
          */
-        void SetCallBack(RecvProc pRecvProc)
+        void SetRecvCallBack(RecvProc pRecvProc)
         {
             m_recvProc = pRecvProc;
+        }
+
+        /**
+         * 设置发送回调函数
+         */
+        void SetSendCallBack(SendProc pSendProc)
+        {
+            m_sendProc = pSendProc;
         }
 
     public:
@@ -123,6 +136,7 @@ namespace hhou
         HHCircularBuffer m_bufIn; /// 接受的data
         HHCircularBuffer m_bufOut; /// 发送的data
         RecvProc m_recvProc; ///解析层的回调函数
+        SendProc m_sendProc; ///发送完数据的回调函数
 
     public:
 #ifdef HAVE_OPENSSL

@@ -36,7 +36,7 @@ namespace hhou
 
     enum HttpError
     {
-        HTTP_OK = 0,                /// 无错误
+        HTTP_OK = 0,            /// 无错误
         HTTP_WSCONNECTED,       /// http的websocket的连接标志
         HTTP_HEAD_ERROR,        /// 头部错误（GET /getxxx HTTP1.x）
         HTTP_WOULDCLOSE,        /// 需要关闭的socket

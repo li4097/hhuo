@@ -45,6 +45,9 @@ namespace hhou
         /**先进行必要信息的解析(错误数据返回-1，数据不完整返回0，接收完全返回>0)*/
         void ParseData(bool bOnce, void *buf, int nLen,string &strRet);
 
+        /**发送回调函数*/
+        void SendData(string &strRet);
+
         /**获取req的状态*/
         bool CanResponse() { return request.AllDone(); }
 

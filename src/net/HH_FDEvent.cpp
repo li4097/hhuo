@@ -84,21 +84,20 @@ void hhou::HHFDEvent::OnRead()
         }
         m_nTotalRecv += rSize;
         m_bufIn.Write(bufIn, (size_t)rSize);
-        if (m_recvProc != nullptr)
+
+        /// 解析数据
+        string strRet;
+        m_recvProc(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength(), strRet);
+        if (strRet.empty())
         {
-            string strRet;
-            m_recvProc(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength(), strRet);
-            if (strRet.empty())
-            {
-                OnClosing();
-                break;
-            }
-            else
-            {
-                m_bufOut.Write(strRet.c_str(), strRet.length());
-                eventInfo.status = Out;
-                m_pPoller->ChangeEvent(this);
-            }
+            OnClosing();
+            break;
+        }
+        else
+        {
+            m_bufOut.Write(strRet.c_str(), strRet.length());
+            eventInfo.status = Out;
+            m_pPoller->ChangeEvent(this);
         }
         m_bufIn.Remove((size_t)rSize);
         if (rSize == TCP_BUFSIZE - 1)
@@ -151,7 +150,16 @@ void hhou::HHFDEvent::OnWrite()
         m_nTotalSend += sLength;
         m_bufOut.Remove((size_t)sLength);
         sLength = m_bufOut.GetLength() - sLength;
-        if (sLength <= 0)
+        if (sLength > 0) continue;
+
+        /// 是否还有数据发送
+        string strRet;
+        m_sendProc(strRet);
+        if (!strRet.empty())
+        {
+            m_bufOut.Write(strRet.c_str(), strRet.length());
+        }
+        else
         {
             /// 是否是短连接
             if (eventInfo.once)
@@ -163,7 +171,7 @@ void hhou::HHFDEvent::OnWrite()
                 /// 将data拷贝到发送缓冲区
                 m_bufOut.Remove(m_bufOut.GetLength());
                 eventInfo.status = In;
-                m_pPoller->ChangeEvent(this);   
+                m_pPoller->ChangeEvent(this);
             }
             break;
         }

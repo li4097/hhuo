@@ -26,6 +26,11 @@ void hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen, string &strRet)
     }
 }
 
+void hhou::HHParse::SendData(string &strRet)
+{
+
+}
+
 hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)
 {
     /// 先去空闲的里面找，没有则new
