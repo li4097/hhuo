@@ -92,9 +92,11 @@ bool hhou::HHRequest::WSDecodeFrame(const char *buf, int nSize)
         {
             return false;
         }
+
+        int nCompleted = true;
         if ((buf[nPos] & 0x80) != 0x80)
         {
-            m_nParseWhere = HTTP_HEAD_DONE;
+            nCompleted = false;
         }
         int nType = (buf[nPos] & 0x0f);
         nPos++;
@@ -113,7 +115,6 @@ bool hhou::HHRequest::WSDecodeFrame(const char *buf, int nSize)
             nPos += 8;        
         }
     }
-    m_nParseWhere = HTTP_BODY_DONE;
     return true;
 }
 
@@ -126,80 +127,80 @@ hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
     if (m_nError == HTTP_WSCONNECTED)
     {
         if (!WSDecodeFrame(szHttpReq, nDataLen)) return HTTP_WOULDCLOSE;
+        return HTTP_WSCONNECTED;
+    }
+
+    /// 读取request的对象
+    int nSize = 0;
+    string strBody;
+    istringstream in(szHttpReq);
+
+    /// 判断body是否完整
+    if (m_nParseWhere == HTTP_HEAD_DONE)
+    {
+        GetFieldInt("content-length", nSize);
+        if (nSize > m_qMsg.back()->GetMsgLength())
+        {
+            in >> strBody;
+            m_qMsg.back()->Append(strBody);
+        }
+        if (nSize <= m_qMsg.back()->GetMsgLength())
+        {
+            m_nParseWhere = HTTP_BODY_DONE;
+            return HTTP_OK;
+        }
+        return HTTP_BODY_INCOMPLTED;
+    }
+
+    /**********************判断是否合法****************/
+    string strLine;
+    getline(in, strLine);
+    if (strLine.size() < 10) /// 第一行不能小于10个字符
+        return HTTP_HEAD_ERROR;
+    vector<string> vLine;
+    SplitString(strLine, vLine, " ");
+    if (vLine.size() < 3)  /// 第一行肯定是三块元素
+        return HTTP_HEAD_ERROR;
+
+    /**********************解析第一行****************/
+    if (vLine[0] == "GET")
+        m_nMethod = HTTP_METHOD_GET;
+    else if (vLine[0] == "POST")
+        m_nMethod = HTTP_METHOD_POST;
+
+    /// 参数?xxx=111&yyy=222
+    vector<string> vMethod;
+    SplitString(vLine[1], vMethod, "?");
+    if (vMethod.size() < 2)
+    {
+        m_strMethod = vLine[1];
     }
     else
     {
-        /// 读取request的对象
-        int nSize = 0;
-        string strBody;
-        istringstream in(szHttpReq);
-
-        /// 判断body是否完整
-        if (m_nParseWhere == HTTP_HEAD_DONE)
+        m_strMethod = vMethod[0]; /// 保存请求方法字符串
+        vector<string> vParam;
+        SplitString(vMethod[1], vParam, "&");
+        for (auto it = vParam.begin(); it != vParam.end(); it++)
         {
-            GetFieldInt("content-length", nSize);
-            if (nSize > m_qMsg.back()->GetMsgLength())
-            {
-                in >> strBody;
-                m_qMsg.back()->Append(strBody);
-            }
-            if (nSize <= m_qMsg.back()->GetMsgLength())
-            {
-                m_nParseWhere = HTTP_BODY_DONE;
-                return HTTP_OK;
-            }
+            SplitKV(*it, m_mParam, "=");
         }
+    }
 
-        /**********************判断是否合法****************/
-        string strLine;
-        getline(in, strLine);
-        if (strLine.size() < 10) /// 第一行不能小于10个字符
-            return HTTP_HEAD_ERROR;
-        vector<string> vLine;
-        SplitString(strLine, vLine, " ");
-        if (vLine.size() < 3)  /// 第一行肯定是三块元素
-            return HTTP_HEAD_ERROR;
+    /**********************解析域****************/
+    while (getline(in, strLine) && strLine != "\r")
+    {
+        strLine.erase(strLine.end() - 1);
+        SplitKV(strLine, m_mField, ":");
+    }
+    m_nParseWhere = HTTP_HEAD_DONE;
 
-        /**********************解析第一行****************/
-        if (vLine[0] == "GET")
-            m_nMethod = HTTP_METHOD_GET;
-        else if (vLine[0] == "POST")
-            m_nMethod = HTTP_METHOD_POST;
-
-        /// 参数?xxx=111&yyy=222
-        vector<string> vMethod;
-        SplitString(vLine[1], vMethod, "?");
-        if (vMethod.size() < 2)
-        {
-            m_strMethod = vLine[1];
-        }
-        else
-        {
-            m_strMethod = vMethod[0]; /// 保存请求方法字符串
-            vector<string> vParam;
-            SplitString(vMethod[1], vParam, "&");
-            for (auto it = vParam.begin(); it != vParam.end(); it++)
-            {
-                SplitKV(*it, m_mParam, "=");
-            }
-        }
-
-        /**********************解析域****************/
-        while (getline(in, strLine) && strLine != "\r")
-        {
-            strLine.erase(strLine.end() - 1);
-            SplitKV(strLine, m_mField, ":");
-        }
-        m_nParseWhere = HTTP_HEAD_DONE;
-
-        /**********************解析content（如果有的话）****************/
-        in >> strBody;
-        m_qMsg.push(make_shared<HHMsg>(HHMsg(GetMsgID(), -1, strBody)));
-        GetFieldInt("content-length", nSize);
-        if (nSize <= (int) strBody.length())
-        {
-            m_nParseWhere = HTTP_BODY_DONE;
-        }
+    /**********************解析content（如果有的话）****************/
+    in >> strBody;
+    m_qMsg.push(make_shared<HHMsg>(HHMsg(GetMsgID(), -1, strBody)));
+    GetFieldInt("content-length", nSize);
+    if (nSize <= (int) strBody.length())
+    {
+        m_nParseWhere = HTTP_BODY_DONE;
     }
     return HTTP_OK;
 }
