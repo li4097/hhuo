@@ -32,9 +32,8 @@ namespace hhou
     class HHMsg
     {
     public:
-        HHMsg(int &nID, int &nOp, const string &strMsg) 
-            : m_nID(nID), m_nOp(nOp), m_bCompleted(false), m_strMsg(move(strMsg))
-        {}
+        HHMsg(int nID, int nOp, const string &strMsg)
+                : m_nID(nID), m_nOp(nOp), m_bCompleted(false), m_strMsg(move(strMsg)) {}
         virtual ~HHMsg() {}
 
         /**
@@ -46,6 +45,13 @@ namespace hhou
          * 执行处理
          */
         int Process();
+
+        /**
+         * 获取消息体的长度
+         */
+        int GetMsgLength() { return m_strMsg.length(); }
+        int GetMsgID() { return m_nID; }
+        int GetMsgOp() { return m_nOp; }
 
     private:
         /**websocket的处理*/

@@ -25,7 +25,13 @@ void hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen, string &strRet)
         LOG(ERROR) << "Connection error, will close.";
         return;
     }
-    if (request.GetOp() == -1)
+    shared_ptr<HHMsg> msg(request.TakeMsg());
+    if (msg == nullptr)
+    {
+        LOG(ERROR) << "Something is wrong after request.parse";
+        return;
+    }
+    if (msg->GetMsgOp() == -1)
     {
         m_pHttpDeal((void *) &request, nLen, (void *) &response);
         bOnce ? response.AddHeader("Connection", "Close") : response.AddHeader("Connection", "Keep-Alive");
@@ -33,8 +39,9 @@ void hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen, string &strRet)
     }
     else
     {
-        m_pAppDeal(request.GetOp(), buf, nLen, strRet);
+        m_pAppDeal(msg->GetMsgOp(), buf, nLen, strRet);
     }
+    request.PopMsg();
 }
 
 void hhou::HHParse::SendData(string &strRet, int nSize)

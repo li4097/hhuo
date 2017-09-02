@@ -25,8 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 hhou::HHRequest::HHRequest()
         : m_nMethod(HTTP_METHOD_NONE),
           m_strMethod(""),
-          m_nOp(-1),
-          m_strContent(""),
+          m_nMsgId(0),
           m_nParseWhere(HTTP_NONE_DONE),
           m_nError(HTTP_OK)
 {
@@ -97,7 +96,7 @@ bool hhou::HHRequest::WSDecodeFrame(const char *buf, int nSize)
         {
             m_nParseWhere = HTTP_HEAD_DONE;
         }
-        m_nOp = (buf[nPos] & 0x0f);
+        int nType = (buf[nPos] & 0x0f);
         nPos++;
 
         if ((buf[nPos] & 0x80) != 0x80)
@@ -139,12 +138,12 @@ hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
         if (m_nParseWhere == HTTP_HEAD_DONE)
         {
             GetFieldInt("content-length", nSize);
-            if (nSize > (int) m_strContent.str().length())
+            if (nSize > m_qMsg.back()->GetMsgLength())
             {
                 in >> strBody;
-                m_strContent << strBody;
+                m_qMsg.back()->Append(strBody);
             }
-            if (nSize <= (int) m_strContent.str().length())
+            if (nSize <= m_qMsg.back()->GetMsgLength())
             {
                 m_nParseWhere = HTTP_BODY_DONE;
                 return HTTP_OK;
@@ -195,9 +194,9 @@ hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
 
         /**********************解析content（如果有的话）****************/
         in >> strBody;
-        m_strContent << strBody;
+        m_qMsg.push(make_shared<HHMsg>(HHMsg(GetMsgID(), -1, strBody)));
         GetFieldInt("content-length", nSize);
-        if (nSize <= (int) m_strContent.str().length())
+        if (nSize <= (int) strBody.length())
         {
             m_nParseWhere = HTTP_BODY_DONE;
         }
