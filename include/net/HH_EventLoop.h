@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <queue>
 #include "HH_Poller.h"
+#include "HH_ListenEvent.h"
 #include "utils/HH_DataDeal.h"
 
 namespace hhou
@@ -32,21 +33,34 @@ namespace hhou
     public:
         HHEventLoop();
         virtual ~HHEventLoop();
-
-        /**
+		
+		/**
+         * 初始化
+         */
+        bool Init();
+		
+		/**
+         * 开启服务
+         */
+        void Start();
+		
+		/**
+         * 关闭服务
+         */
+        void Stop();
+		
+	private:
+		/**
          * 循环事件处理
          */
         bool Loop(const int &timeout);
 
-        /**
-         * 获取poller对象
-         */
-        HHPoller *Poller() { return m_pPoller;}
-
     private:
         bool m_bQuit; /// loop的中止标志
-        HHPoller *m_pPoller; /// poller对象
+        shared_ptr<HHPoller> m_Poller; /// poller对象
+		shared_ptr<HHListenEvent> m_Listener; /// listener的对象
         queue<HHEventBase *>  m_qEvents; ///触发的socket
+		shared_ptr<thread> m_Thread; /// 线程执行
     };
 }
 

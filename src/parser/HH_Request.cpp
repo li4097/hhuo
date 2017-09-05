@@ -196,7 +196,7 @@ hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
 
     /**********************解析content（如果有的话）****************/
     in >> strBody;
-    m_qMsg.push(make_shared<HHMsg>(HHMsg(GetMsgID(), -1, strBody)));
+    m_qMsg.push(make_shared<HHMsg>(GetMsgID(), -1, strBody));
     GetFieldInt("content-length", nSize);
     if (nSize <= (int) strBody.length())
     {

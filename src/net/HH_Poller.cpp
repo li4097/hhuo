@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_Log.h"
 
 hhou::HHPoller::HHPoller()
-        : m_connectionNum(0),
+		: m_connectionNum(0),
           m_nStart(time(nullptr))
 {
     m_epollFd = epoll_create(8096); // 新建epoll对象

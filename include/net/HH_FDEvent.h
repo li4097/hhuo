@@ -60,7 +60,7 @@ namespace hhou
         /**
          * 默认只能引用构造
          */
-        HHFDEvent(HHPoller *poller, size_t bufSize = HHConfig::Instance().ReadInt("connection", "circular", 8096));
+        HHFDEvent(shared_ptr<HHPoller> poller, size_t bufSize = HHConfig::Instance().ReadInt("connection", "circular", 8096));
         virtual ~HHFDEvent();
 
         /**
@@ -127,7 +127,7 @@ namespace hhou
         unsigned long m_nTotalSend; /// 次socket发送的总字节数
 
     private:
-        HHPoller *m_pPoller; /// poller对象
+        shared_ptr<HHPoller> m_Poller; /// poller对象
         time_t m_tCreate; /// 创建时间
         int m_tTimeout; /// 超时时间（心跳机制，应用层进行管理）
         size_t m_count; /// 接收的字节数

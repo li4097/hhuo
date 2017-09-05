@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef HH_SERVERBASE_H
 #define HH_SERVERBASE_H
 
+#include "HH_Common.h"
 #include "parser/HH_Parse.h"
 
 namespace hhou
@@ -46,6 +47,7 @@ namespace hhou
 
         /**开始服务*/
         virtual void Run() {}
+		
     };
 }
 #endif //HH_SERVERBASE_H

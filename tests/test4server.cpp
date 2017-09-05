@@ -14,13 +14,20 @@ public:
 
     ~Test4Server()
     {
-
+		m_Loop->Stop();
     }
 
     bool Init()
     {
+		m_Loop = make_shared<hhou::HHEventLoop>();
+		m_Loop->Init();
         return true;
     }
+	
+	void Run()
+	{
+		m_Loop->Start();
+	}
 
     int HttpData(void *first, int nFisrtLen, void *second)
     {
@@ -32,28 +39,16 @@ public:
     {
         return 1;
     }
-
-    void Run()
-    {
-        std::shared_ptr<hhou::HHEventLoop> pLoop(new hhou::HHEventLoop());
-        std::shared_ptr<hhou::HHListenEvent> pListen(new hhou::HHListenEvent(pLoop->Poller()));
-        if (!pListen->Init())
-            return;
-
-        string strHost = hhou::HHConfig::Instance().ReadStr("listener", "host", "0.0.0.0");
-        int port = hhou::HHConfig::Instance().ReadInt("listener", "port", 9999);
-        if (pListen->Listen(strHost, port))
-        {
-            LOG(INFO) << "Server Listen Addr: " << strHost <<" , port: " << port;
-        }
-        pLoop->Loop(hhou::HHConfig::Instance().ReadInt("loop", "timeout", 60));
-    }
+	
+	std::shared_ptr<hhou::HHEventLoop> m_Loop;
 };
 
 int main(int argc, char *argv[])
 {
     hhou::HHLog log(hhou::HHConfig::Instance().ReadStr("log", "path", "../log"), hhou::HHConfig::Instance().ReadInt("log", "tostderror", 1) == 1);
     Test4Server test;
+	test.Init();
     test.Run();
+	while(true) {sleep(1000);}
     return 0;
 }

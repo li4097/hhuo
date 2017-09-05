@@ -24,8 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "parser/HH_Parse.h"
 #include "HH_Log.h"
 
-hhou::HHListenEvent::HHListenEvent(HHPoller *poller)
-        : m_pPoller(poller)
+hhou::HHListenEvent::HHListenEvent(shared_ptr<HHPoller> poller)
+        : m_Poller(poller)
 {
     eventInfo.flags = HHFast;
     LOG(INFO) << "Init ListenEvent";
@@ -119,7 +119,7 @@ bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, int lis
         eventInfo.status = In;
         eventInfo.flags = HHFast;
         eventInfo.nType = 0;
-        m_pPoller->AddEvent(this);
+        m_Poller->AddEvent(this);
     }
     return true;
 }
@@ -132,7 +132,7 @@ void hhou::HHListenEvent::OnConneting()
     while ((fd = accept4(handler, (struct sockaddr *) &raddr, &rsz, SOCK_CLOEXEC)) >= 0)
     {
         /// 有新的connection
-        auto pNew = new HHFDEvent(m_pPoller);
+        auto pNew = new HHFDEvent(m_Poller);
         pNew->handler = (SOCKET)fd;
         pNew->eventInfo.status = In;
         pNew->eventInfo.flags = HHQueue;
@@ -165,6 +165,6 @@ void hhou::HHListenEvent::OnConneting()
             break;
         }
 #endif
-        m_pPoller->AddEvent(pNew);
+        m_Poller->AddEvent(pNew);
     }
 }

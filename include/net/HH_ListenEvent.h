@@ -36,7 +36,7 @@ namespace hhou
     {
         friend class HHPoller;
     public:
-        HHListenEvent(HHPoller *poller);
+        HHListenEvent(shared_ptr<HHPoller> poller);
         virtual ~HHListenEvent();
 
         /**初始化*/
@@ -50,13 +50,8 @@ namespace hhou
          */
         void OnConneting();
 
-        /**
-         * poller获取
-         */
-        HHPoller *GetPoller() { return m_pPoller; }
-
     private:
-        HHPoller *m_pPoller; /// poller对象
+        shared_ptr<HHPoller> m_Poller; /// poller对象
 #ifdef HAVE_OPENSSL
         SSL_CTX *m_sCtx;
         BIO* m_errBio;

@@ -19,13 +19,44 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <set>
 #include "HH_ListenEvent.h"
 #include "HH_EventLoop.h"
+#include "HH_Config.h"
 #include "utils/HH_TaskPool.h"
 
 hhou::HHEventLoop::HHEventLoop()
-        : m_bQuit(false),
-          m_pPoller(new HHPoller)
+        : m_bQuit(true),
+		  m_Poller(make_shared<HHPoller>())
 {
     
+}
+
+void hhou::HHEventLoop::Start()
+{
+	m_bQuit = false;
+	m_Thread = make_shared<thread>(bind(&HHEventLoop::Loop, this, HHConfig::Instance().ReadInt("loop", "timeout", 60)));
+}
+
+void hhou::HHEventLoop::Stop()
+{
+	m_bQuit = true;
+}
+
+bool hhou::HHEventLoop::Init()
+{
+	m_Listener = make_shared<HHListenEvent>(m_Poller);
+	if (!m_Listener->Init())
+	{
+		LOG(ERROR) << "Listener Init error.";
+		return false;
+	}
+	string strHost = HHConfig::Instance().ReadStr("listener", "host", "0.0.0.0");
+	int port = HHConfig::Instance().ReadInt("listener", "port", 9999);
+	if (!m_Listener->Listen(strHost, port))
+	{
+		LOG(ERROR) << "Server Listen Addr: " << strHost <<" , port: " << port << " error.";
+		return false;
+	}
+	LOG(INFO) << "Server Listen Addr: " << strHost <<" , port: " << port;
+	return true;
 }
 
 hhou::HHEventLoop::~HHEventLoop()
@@ -37,7 +68,7 @@ bool hhou::HHEventLoop::Loop(const int &timeout)
 {
     while (!m_bQuit)
     {
-        m_pPoller->ProcessEvents(timeout, m_qEvents);
+        m_Poller->ProcessEvents(timeout, m_qEvents);
         while (!m_qEvents.empty())
         {
             /// 准备任务，将作分发处理

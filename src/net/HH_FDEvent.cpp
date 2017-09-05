@@ -20,10 +20,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_Poller.h"
 #include "HH_Log.h"
 
-hhou::HHFDEvent::HHFDEvent(HHPoller *poller, size_t bufSize)
+hhou::HHFDEvent::HHFDEvent(shared_ptr<HHPoller> poller, size_t bufSize)
         : m_nTotalRecv(0),
           m_nTotalSend(0),
-          m_pPoller(poller),
+          m_Poller(poller),
           m_bufIn(bufSize),
           m_bufOut(bufSize),
           m_recvProc(nullptr)
@@ -92,7 +92,7 @@ void hhou::HHFDEvent::OnRead()
         }
         m_bufOut.Write(strRet.c_str(), strRet.length());
         eventInfo.status = Out;
-        m_pPoller->ChangeEvent(this);
+        m_Poller->ChangeEvent(this);
         m_bufIn.Remove((size_t)rSize);
         if (rSize != TCP_BUFSIZE - 1) break;
     }
@@ -158,7 +158,7 @@ void hhou::HHFDEvent::OnWrite()
         {
             /// 将data拷贝到发送缓冲区
             eventInfo.status = In;
-            m_pPoller->ChangeEvent(this);
+            m_Poller->ChangeEvent(this);
         }
         break;
     }
@@ -175,7 +175,7 @@ void hhou::HHFDEvent::OnTimeout()
 
 void hhou::HHFDEvent::OnClosing()
 {
-    m_pPoller->DelEvent(this);
+    m_Poller->DelEvent(this);
 #ifdef HAVE_OPENSSL
     SSL_shutdown(m_sSSL);
     SSL_free(m_sSSL);
