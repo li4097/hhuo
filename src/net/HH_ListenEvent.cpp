@@ -100,6 +100,11 @@ bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, int lis
         LOG(ERROR) << "Reuse error, errno:" << errno;
         return false;
     }
+	if (!ReusePort(true))
+    {
+        LOG(ERROR) << "ReusePort error, errno:" << errno;
+        return false;
+    }
     listenAddr.sin_family = AF_INET;
     listenAddr.sin_addr.s_addr = inet_addr(addr.c_str());
     listenAddr.sin_port = htons(port);

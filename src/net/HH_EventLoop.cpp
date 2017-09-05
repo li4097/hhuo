@@ -40,7 +40,7 @@ void hhou::HHEventLoop::Stop()
 	m_bQuit = true;
 }
 
-bool hhou::HHEventLoop::Init()
+bool hhou::HHEventLoop::Init(const string &strHost, const int port)
 {
 	m_Listener = make_shared<HHListenEvent>(m_Poller);
 	if (!m_Listener->Init())
@@ -48,8 +48,6 @@ bool hhou::HHEventLoop::Init()
 		LOG(ERROR) << "Listener Init error.";
 		return false;
 	}
-	string strHost = HHConfig::Instance().ReadStr("listener", "host", "0.0.0.0");
-	int port = HHConfig::Instance().ReadInt("listener", "port", 9999);
 	if (!m_Listener->Listen(strHost, port))
 	{
 		LOG(ERROR) << "Server Listen Addr: " << strHost <<" , port: " << port << " error.";

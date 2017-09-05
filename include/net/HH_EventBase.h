@@ -73,13 +73,23 @@ namespace hhou
             else
                 return true;
         }
+		
+		/**reuseport?*/
+        bool ReusePort(bool yes)
+        {
+            int on = (yes? 1:0);
+            if (setsockopt(handler, SOL_SOCKET, SO_REUSEPORT, &on, sizeof(on)) == -1)
+                return false;
+            else
+                return true;
+        }
 
         /**keepalive?*/
         bool KeepAlive(bool yes)
         {
             eventInfo.once = !yes;
             int on = (yes? 1:0);
-            if (setsockopt(handler, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) == -1)
+            if (setsockopt(handler, SOL_SOCKET, SO_KEEPALIVE, &on, sizeof(on)) == -1)
                 return false;
             else
                 return true;

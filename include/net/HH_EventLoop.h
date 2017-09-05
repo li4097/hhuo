@@ -37,7 +37,7 @@ namespace hhou
 		/**
          * 初始化
          */
-        bool Init();
+        bool Init(const string &strHost, const int port);
 		
 		/**
          * 开启服务

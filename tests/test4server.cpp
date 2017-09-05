@@ -20,7 +20,7 @@ public:
     bool Init()
     {
 		m_Loop = make_shared<hhou::HHEventLoop>();
-		m_Loop->Init();
+		m_Loop->Init(hhou::HHConfig::Instance().ReadStr("listener", "host", "0.0.0.0"), hhou::HHConfig::Instance().ReadInt("listener", "port", 9999));
         return true;
     }
 	
@@ -49,6 +49,10 @@ int main(int argc, char *argv[])
     Test4Server test;
 	test.Init();
     test.Run();
+	
+	Test4Server test1;
+	test1.Init();
+    test1.Run();
 	while(true) {sleep(1000);}
     return 0;
 }
