@@ -23,7 +23,7 @@ bool hhou::HHResponse::WSEncodeFrame(const string &strRet)
     return true;
 }
 
-int hhou::HHResponse::MakeRes(string &strRes, const string &strResContentType)
+int hhou::HHResponse::MakeRes(const string &strResContentType)
 {
     ostringstream os;
     os << "HTTP/1.1 200 OK\r\nContent-Length: " << m_strContent.size()
@@ -33,11 +33,11 @@ int hhou::HHResponse::MakeRes(string &strRes, const string &strResContentType)
         os << it->first << ": " << it->second << "\r\n";
     }
     os << "\r\n" << m_strContent;
-    strRes = os.str();
+    m_strResult = os.str();
     return 1;
 }
 
-int hhou::HHResponse::MakeWBRes(string &strRes, const string &strResContentType)
+int hhou::HHResponse::MakeWBRes(const string &strResContentType)
 {
     ostringstream os;
     os << "HTTP/1.1 101 Switching Protocols\r\nContent-Length: " << m_strContent.size()
@@ -48,6 +48,6 @@ int hhou::HHResponse::MakeWBRes(string &strRes, const string &strResContentType)
         os << it->first << ": " << it->second << "\r\n";
     }
     os << "\r\n" << m_strContent;
-    strRes = os.str();
+    m_strResult = os.str();
     return 1;
 }

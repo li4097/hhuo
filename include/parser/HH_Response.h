@@ -52,12 +52,12 @@ namespace hhou
         /**
          * 生成的函数(失败0，正确返回1)
          */
-        int MakeRes(string &strRes, const string &strResContentType = HTTP_CONTENT_TYPE_TXT);
+        int MakeRes(const string &strResContentType = HTTP_CONTENT_TYPE_TXT);
 
         /**
          * 生成websocket的函数(失败0，正确返回1)
          */
-        int MakeWBRes(string &strRes, const string &strResContentType = HTTP_CONTENT_TYPE_TXT);
+        int MakeWBRes(const string &strResContentType = HTTP_CONTENT_TYPE_TXT);
 
         /**
          * 设置response
@@ -72,9 +72,19 @@ namespace hhou
             m_mHeaders.insert(make_pair(strKey, strVal));
         }
 
+        /**
+         * 获取处理完的数据
+         */
+        void GetResult(string &strRet, int nSize) 
+        { 
+            strRet.assign(m_strResult, 0, nSize);
+            m_strResult.erase(0, nSize); 
+        }
+
     private:
         string m_strContent; /// 回应包
         map<string, string> m_mHeaders; /// 头部的键值对
+        string m_strResult; /// 处理完的存放
 
     };
 }

@@ -18,47 +18,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_Parse.h"
 
-void hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen, string &strRet)
+void hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
 {
-    switch ((int)request.Parse((char *)buf, nLen))
+    int nRet = (int)request.Parse((char *)buf, nLen);
+    switch(nRet)
     {
-        case 0:
+        case 0: /// 正常的http
         {
-            shared_ptr<HHMsg> msg(request.TakeMsg());
-            if (msg == nullptr)
+            if (m_pHttpDeal((void *) &request, nLen, (void *) &response))
             {
-                LOG(ERROR) << "Something is wrong after request.parse";
-                return;
-            }
-            if (msg->GetMsgOp() == -1)
-            {
-                m_pHttpDeal((void *) &request, nLen, (void *) &response);
                 bOnce ? response.AddHeader("Connection", "Close") : response.AddHeader("Connection", "Keep-Alive");
-                response.MakeRes(strRet);
+                response.MakeRes();
             }
-            else
-            {
-                m_pAppDeal(msg->GetMsgOp(), buf, nLen, strRet);
-            }
-            request.PopMsg();
         }
-            break;
-        case 1:
-        {
-            LOG(ERROR) << "WSConnection has build.";
-        }
-            break;
-        case 2:
-        {
-            LOG(ERROR) << "Head error, will close.";
-        }
-            return;
-        case 3:
-        {
-            LOG(ERROR) << "WS error, will close.";
-        }
-            return;
-        case 4:
             break;
         default:
             break;
@@ -67,7 +39,7 @@ void hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen, string &strRet)
 
 void hhou::HHParse::SendData(string &strRet, int nSize)
 {
-
+    response.GetResult(strRet, nSize);
 }
 
 hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)

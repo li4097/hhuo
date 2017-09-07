@@ -80,21 +80,29 @@ void hhou::HHFDEvent::OnRead()
             break;
         }
         m_nTotalRecv += rSize;
-        m_bufIn.Write(bufIn, (size_t)rSize);
 
-        /// 解析数据
-        string strRet;
-        m_recvProc(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength(), strRet);
-        if (strRet.empty())
+        /// 是否还有空间接收data(解析数据)
+        if ((size_t)rSize > m_bufIn.Space())
         {
-            OnClosing();
-            break;
+            m_recvProc(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength());
+            m_bufIn.Remove(m_bufIn.GetLength());
         }
+        m_bufIn.Write(bufIn, (size_t)rSize);
+        if (rSize != TCP_BUFSIZE - 1) break;
+    }
+
+    /// 最后一块的data解析
+    m_recvProc(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength());
+    m_bufIn.Remove(m_bufIn.GetLength());
+    
+    /// 是否有数据发送
+    string strRet;
+    m_sendProc(strRet, (int)m_bufOut.Space());
+    if (!strRet.empty())
+    {
         m_bufOut.Write(strRet.c_str(), strRet.length());
         eventInfo.status = Out;
         m_Poller->ChangeEvent(this);
-        m_bufIn.Remove((size_t)rSize);
-        if (rSize != TCP_BUFSIZE - 1) break;
     }
 }
 

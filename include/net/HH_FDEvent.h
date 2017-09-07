@@ -45,7 +45,7 @@ namespace hhou
          * void * : 接受到的数据的指针
          * int : 上述数据的大小
          * */
-        typedef function<void (bool, void *, int, string &)> RecvProc;
+        typedef function<void (bool, void *, int)> RecvProc;
 
         /**
          * string &: 处理完的数据，为空则关闭socket

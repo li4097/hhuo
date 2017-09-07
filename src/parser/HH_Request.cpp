@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 hhou::HHRequest::HHRequest()
         : m_nMethod(HTTP_METHOD_NONE),
           m_strMethod(""),
-          m_nMsgId(0),
+          m_strContent(""),
           m_nParseWhere(HTTP_NONE_DONE),
           m_nError(HTTP_OK)
 {
@@ -130,21 +130,23 @@ hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
         return HTTP_WSCONNECTED;
     }
 
-    /// 读取request的对象
+    /// 长度
     int nSize = 0;
+    GetFieldInt("content-length", nSize);
+    
+    /// 读取request的对象
     string strBody;
     istringstream in(szHttpReq);
 
     /// 判断body是否完整
     if (m_nParseWhere == HTTP_HEAD_DONE)
     {
-        GetFieldInt("content-length", nSize);
-        if (nSize > m_qMsg.back()->GetMsgLength())
+        if (nSize > m_strContent.length())
         {
             in >> strBody;
-            m_qMsg.back()->Append(strBody);
+            m_strContent.append(strBody);
         }
-        if (nSize <= m_qMsg.back()->GetMsgLength())
+        if (nSize <= m_strContent.length())
         {
             m_nParseWhere = HTTP_BODY_DONE;
             return HTTP_OK;
@@ -196,8 +198,7 @@ hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
 
     /**********************解析content（如果有的话）****************/
     in >> strBody;
-    m_qMsg.push(make_shared<HHMsg>(GetMsgID(), -1, strBody));
-    GetFieldInt("content-length", nSize);
+    m_strContent.append(strBody);
     if (nSize <= (int) strBody.length())
     {
         m_nParseWhere = HTTP_BODY_DONE;

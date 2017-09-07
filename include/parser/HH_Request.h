@@ -23,7 +23,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <vector>
 #include <sstream>
 #include "HH_Common.h"
-#include "HH_Msg.h"
 #include "HH_Log.h"
 
 namespace hhou
@@ -82,13 +81,6 @@ namespace hhou
         bool WSDecodeFrame(const char *buf, int nSize);
 
         /**
-         * shared_ptr<HHMsg> : 是否还有msg处理
-         * 取一个msg处理
-         */
-        shared_ptr<HHMsg> TakeMsg() { return m_qMsg.front();}
-        void PopMsg() {m_qMsg.pop();}
-
-        /**
          * 外部调用的获取接口
          */
         HttpMethodType &GetMethodType() { return m_nMethod;}
@@ -97,13 +89,11 @@ namespace hhou
         void GetFieldInt(const string &strKey, int &nVal);
         void GetFieldStr(const string &strKey, string &strVal);
         string GetMagicKey() { return m_strMagicKey; }
-        int GetMsgID() { return m_nMsgId++; }
 
     private:
         HttpMethodType m_nMethod; /// 请求类型
         string m_strMethod;  /// 方法名（以此作路由）
-        int m_nMsgId;   /// 消息的ID
-        queue<shared_ptr<HHMsg>> m_qMsg; /// message
+        string m_strContent; /// 消息的body
         map<string, string> m_mField; /// 存放域值
         map<string, string> m_mParam; /// 存放参数
         HttpParse m_nParseWhere;  /// 解析到哪里了
