@@ -1,0 +1,178 @@
+        if (strRet.empty())
+        {
+            OnClosing();
+            break;
+        }
+		
+		
+		switch ((int)request.Parse((char *)buf, nLen))
+    {
+        case 0:
+        {
+            shared_ptr<HHMsg> msg(request.TakeMsg());
+            if (msg == nullptr)
+            {
+                LOG(ERROR) << "Something is wrong after request.parse";
+                return;
+            }
+            if (msg->GetMsgOp() == -1)
+            {
+                m_pHttpDeal((void *) &request, nLen, (void *) &response);
+                bOnce ? response.AddHeader("Connection", "Close") : response.AddHeader("Connection", "Keep-Alive");
+                response.MakeRes(strRet);
+            }
+            else
+            {
+                m_pAppDeal(msg->GetMsgOp(), buf, nLen, strRet);
+            }
+            request.PopMsg();
+        }
+            break;
+        case 1:
+        {
+            LOG(ERROR) << "WSConnection has build.";
+        }
+            break;
+        case 2:
+        {
+            LOG(ERROR) << "Head error, will close.";
+        }
+            return;
+        case 3:
+        {
+            LOG(ERROR) << "WS error, will close.";
+        }
+            return;
+        case 4:
+            break;
+        default:
+            break;
+    }
+	
+	if (strRet.length())
+            {
+                m_bufOut.Write(strRet.c_str(), strRet.length());
+                m_bufIn.Write(bufIn, (size_t)rSize);
+                eventInfo.status = Out;
+                m_Poller->ChangeEvent(this);
+            }
+			
+			
+			
+
+        /**
+         * websocket帧解码
+         */
+        bool WSDecodeFrame(const char *buf, int nSize);
+		
+		
+		bool hhou::HHRequest::WSDecodeFrame(const char *buf, int nSize)
+{
+    int nPos = 0;
+    while (nSize > nPos)
+    {
+        if ((nSize - nPos) < 2)
+        {
+            return false;
+        }
+        if ((buf[nPos] & 0x70) != 0x00)
+        {
+            return false;
+        }
+
+        int nCompleted = true;
+        if ((buf[nPos] & 0x80) != 0x80)
+        {
+            nCompleted = false;
+        }
+        int nType = (buf[nPos] & 0x0f);
+        nPos++;
+
+        if ((buf[nPos] & 0x80) != 0x80)
+        {
+            return false;
+        }
+        int nContentLen = buf[nPos] & 0x7f;
+        if (nContentLen == 126)
+        {
+            nPos += 2;
+        }
+        else if (nContentLen == 127)
+        {
+            nPos += 8;        
+        }
+    }
+    return true;
+}
+
+
+        if (!WSDecodeFrame(szHttpReq, nDataLen)) return HTTP_WOULDCLOSE;
+		
+		
+		/**
+         * websocket握手
+         */
+        void WSHandShake();
+		
+		
+        string GetMagicKey() { return m_strMagicKey; }
+		
+		
+        HTTP_WSCONNECTED,       /// http的websocket的连接标志
+		
+        HTTP_WOULDCLOSE,        /// 需要关闭的socket
+		
+		
+        string m_strMagicKey;   /// 服务器的key
+        HttpError m_nError;   /// 状态信息
+		
+		void hhou::HHRequest::WSHandShake()
+{
+    if (m_nError == HTTP_WSCONNECTED) return;
+    string strKey;
+    GetFieldStr("sec-websocket-key", strKey);
+    if (strKey.empty()) return;
+    LOG(INFO) << "Client Key::" << strKey;
+    string strMagicKey = hhou::HHConfig::Instance().ReadStr("websocket", "magickey", "");
+    if (strMagicKey.empty())
+    {
+        LOG(ERROR) << "No magickey";
+        return;
+    }
+    strMagicKey = strKey + strMagicKey;
+    char shaHash[32];
+    memset(shaHash, 0, sizeof(shaHash));
+    hhou::Sha1(strMagicKey.c_str(), shaHash);
+    m_strMagicKey = hhou::Base64Encode((const unsigned char *)shaHash, strlen(shaHash));
+    m_nError = HTTP_WSCONNECTED;
+    LOG(INFO) << "Sec Key:: " << m_strMagicKey;
+}
+
+int nRet = (int)request.Parse((char *)buf, nLen);
+    switch(nRet)
+    {
+        case 0: /// 正常的http
+        {
+            if (m_pHttpDeal((void *) &request, nLen, (void *) &response))
+            {
+                bOnce ? response.AddHeader("Connection", "Close") : response.AddHeader("Connection", "Keep-Alive");
+                response.MakeRes();
+            }
+        }
+            break;
+        case 1: /// websocket
+        {
+            m_pAppDeal(buf, nLen, strRet);
+        }
+            break;
+        default:
+            break;
+    }
+	
+	
+	
+
+        /**
+         * websocket帧编码
+         */
+        bool WSEncodeFrame(const string &strRet);

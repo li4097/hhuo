@@ -34,7 +34,28 @@ IF(USESSL)
     ADD_DEFINITIONS(-DHAVE_OPENSSL)
 ENDIF()
 
-# connection option
+# http option
+OPTION(HTTP "Enable http" OFF)
+IF(HTTP)
+    MESSAGE(STATUS "Http ON")
+    ADD_DEFINITIONS(-DHTTP)
+ENDIF()
+
+# websocket option
+OPTION(WEBSOCKET "Enable websocket" ON)
+IF(WEBSOCKET)
+    MESSAGE(STATUS "Websocket ON")
+    ADD_DEFINITIONS(-DWEBSOCKET)
+ENDIF()
+
+# tcpconnection option
+OPTION(TCPCONN "Enable tcpconnection" OFF)
+IF(TCPCONN)
+    MESSAGE(STATUS "Tcpconnection ON")
+    ADD_DEFINITIONS(-DTCPCONN)
+ENDIF()
+
+# shortconnection option
 OPTION(SHORTCONN "short connection" OFF)
 IF(SHORTCONN)
     MESSAGE(STATUS "Short Connection")

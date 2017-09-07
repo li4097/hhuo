@@ -29,7 +29,7 @@ namespace hhou
     /**
      * 定义一些常用的轮子
      */
-    void SplitString(const string &s, vector<string> &v, const string &c)
+    static void SplitString(const string &s, vector<string> &v, const string &c)
     {
         size_t pos1, pos2;
         pos2 = s.find(c);
@@ -46,7 +46,7 @@ namespace hhou
             v.push_back(s.substr(pos1));
     }
 
-    void SplitKV(const string &s, map<string, string> &mKV, const string &c)
+    static void SplitKV(const string &s, map<string, string> &mKV, const string &c)
     {
         size_t pos = s.find(c);
         if ((int)pos == -1)

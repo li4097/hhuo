@@ -38,9 +38,7 @@ namespace hhou
     enum HttpError
     {
         HTTP_OK = 0,            /// 无错误
-        HTTP_WSCONNECTED,       /// http的websocket的连接标志
         HTTP_HEAD_ERROR,        /// 头部错误（GET /getxxx HTTP1.x）
-        HTTP_WOULDCLOSE,        /// 需要关闭的socket
         HTTP_BODY_INCOMPLTED    /// 数据不完整
     };
 
@@ -71,16 +69,6 @@ namespace hhou
         hhou::HttpError Parse(const char *szHttpReq, int nDataLen);
 
         /**
-         * websocket握手
-         */
-        void WSHandShake();
-
-        /**
-         * websocket帧解码
-         */
-        bool WSDecodeFrame(const char *buf, int nSize);
-
-        /**
          * 外部调用的获取接口
          */
         HttpMethodType &GetMethodType() { return m_nMethod;}
@@ -88,7 +76,6 @@ namespace hhou
         void GetParam(const string &strKey, string &strVal);
         void GetFieldInt(const string &strKey, int &nVal);
         void GetFieldStr(const string &strKey, string &strVal);
-        string GetMagicKey() { return m_strMagicKey; }
 
     private:
         HttpMethodType m_nMethod; /// 请求类型
@@ -97,8 +84,6 @@ namespace hhou
         map<string, string> m_mField; /// 存放域值
         map<string, string> m_mParam; /// 存放参数
         HttpParse m_nParseWhere;  /// 解析到哪里了
-        string m_strMagicKey;   /// 服务器的key
-        HttpError m_nError;   /// 状态信息
 
     };
 }

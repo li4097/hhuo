@@ -30,7 +30,7 @@ namespace hhou
         return (isalnum(c) || (c == '+') || (c == '/'));
     }
 
-    string Base64Encode(unsigned char const *bytes_to_encode, unsigned int in_len)
+    static string Base64Encode(unsigned char const *bytes_to_encode, unsigned int in_len)
     {
         std::string ret;
         int i = 0;
@@ -76,7 +76,7 @@ namespace hhou
 
     }
 
-    string Base64Decode(std::string const &encoded_string)
+    static string Base64Decode(std::string const &encoded_string)
     {
         int in_len = encoded_string.size();
         int i = 0;

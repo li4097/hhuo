@@ -40,10 +40,10 @@ namespace hhou
         int Corrupted;
     } SHA1Context;
 
-    void SHA1ProcessMessageBlock(SHA1Context *);
-    void SHA1PadMessage(SHA1Context *);
+    static void SHA1ProcessMessageBlock(SHA1Context *);
+    static void SHA1PadMessage(SHA1Context *);
 
-    void SHA1Reset(SHA1Context *context)
+    static void SHA1Reset(SHA1Context *context)
     {
         context->Length_Low = 0;
         context->Length_High = 0;
@@ -57,7 +57,7 @@ namespace hhou
         context->Corrupted = 0;
     }
 
-    int SHA1Result(SHA1Context *context)
+    static int SHA1Result(SHA1Context *context)
     {// 成功返回1，失败返回0
         if (context->Corrupted)
         {
@@ -71,8 +71,7 @@ namespace hhou
         return 1;
     }
 
-
-    void SHA1Input(SHA1Context *context, const char *message_array, unsigned length)
+    static void SHA1Input(SHA1Context *context, const char *message_array, unsigned length)
     {
         if (!length) return;
         if (context->Computed || context->Corrupted)
@@ -101,7 +100,7 @@ namespace hhou
         }
     }
 
-    void SHA1ProcessMessageBlock(SHA1Context *context)
+    static void SHA1ProcessMessageBlock(SHA1Context *context)
     {
         const unsigned K[] = {0x5A827999, 0x6ED9EBA1, 0x8F1BBCDC, 0xCA62C1D6};
         int t;
@@ -173,7 +172,7 @@ namespace hhou
         context->Message_Block_Index = 0;
     }
 
-    void SHA1PadMessage(SHA1Context *context)
+    static void SHA1PadMessage(SHA1Context *context)
     {
         if (context->Message_Block_Index > 55)
         {
@@ -199,7 +198,7 @@ namespace hhou
         SHA1ProcessMessageBlock(context);
     }
 
-    int Sha1(const char *source, char *buf)
+    static int Sha1(const char *source, char *buf)
     {
         SHA1Context sha;
         SHA1Reset(&sha);

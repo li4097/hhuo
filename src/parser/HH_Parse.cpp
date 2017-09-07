@@ -18,28 +18,39 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_Parse.h"
 
-void hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
+bool hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
 {
-    int nRet = (int)request.Parse((char *)buf, nLen);
-    switch(nRet)
-    {
-        case 0: /// 正常的http
-        {
-            if (m_pHttpDeal((void *) &request, nLen, (void *) &response))
-            {
-                bOnce ? response.AddHeader("Connection", "Close") : response.AddHeader("Connection", "Keep-Alive");
-                response.MakeRes();
-            }
-        }
-            break;
-        default:
-            break;
-    }
+	LOG(INFO) << "client request: \n" << (char *)buf;
+#ifdef HTTP
+	int nRet = (int)request.Parse((char *)buf, nLen);
+	if (!nRet && m_pDataDeal(Http, (void *) &request, nLen, (void *) &response))
+	{
+		bOnce ? response.AddHeader("Connection", "Close") : response.AddHeader("Connection", "Keep-Alive");
+		response.MakeRes();
+	}
+#elif WEBSOCKET
+	int nRet = (int)websocket.WSParse((char *)buf, nLen);
+	if (nRet == 2)
+	{
+		websocket.MakeWBRes();
+	}
+	else if (!nRet)
+	{
+		return false;
+	}
+#endif
+	return true;
 }
 
-void hhou::HHParse::SendData(string &strRet, int nSize)
+bool hhou::HHParse::SendData(string &strRet, int nSize)
 {
+#ifdef HTTP
     response.GetResult(strRet, nSize);
+#elif WEBSOCKET
+	websocket.GetResult(strRet, nSize);
+#endif
+	LOG(INFO) << "send to client: \n" << strRet;
+	return true;
 }
 
 hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)
@@ -54,7 +65,7 @@ hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)
     else
     {
         lock_guard<mutex> lock(m_mutex);
-        pParse = new hhou::HHParse(m_pHttpDeal, m_pAppDeal);
+        pParse = new hhou::HHParse(m_pDataDeal);
         m_mParsers.insert(make_pair(fd, pParse));
     }
     return pParse;

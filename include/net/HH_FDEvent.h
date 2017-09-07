@@ -40,17 +40,19 @@ namespace hhou
         friend class HHPoller;
 
         /**
-         * string &: 处理完的数据，为空则关闭socket
+         * bool: 为false则关闭socket
          * bool : 是否需要keepalive
          * void * : 接受到的数据的指针
          * int : 上述数据的大小
          * */
-        typedef function<void (bool, void *, int)> RecvProc;
+        typedef function<bool(bool, void *, int)> RecvProc;
 
         /**
-         * string &: 处理完的数据，为空则关闭socket
+		 * bool: 为false则关闭socket
+         * string &: 处理完的数据
+		 * int : 最大的数据长度
          * */
-        typedef function<void (string &, int)> SendProc;
+        typedef function<bool(string &, int)> SendProc;
     public:
         /**
          * 禁用的构造函数

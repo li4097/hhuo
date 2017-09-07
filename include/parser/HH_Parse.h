@@ -21,25 +21,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_Common.h"
 #include "HH_Request.h"
 #include "HH_Response.h"
+#include "HH_Websocket.h"
 
 namespace hhou
 {
+    /**
+     * 连接的类型
+     */
+    enum LinkType
+    {
+        Http = 0, /// http
+        Websocket, /// websocket
+        Tcp /// 普通tcp
+    };
+    
     /**
      * 应用层的处理回调
      * void *待处理包
      * int 待处理包的长度
      * void *相应包
      * */
-    typedef function<int(void *, int, void *)> HttpDeal;
-
-    /**
-     * 应用层的处理回调
-     * int 命令号
-     * void *待处理包
-     * int 待处理包的长度
-     * string &相应包
-     * */
-    typedef function<int(int, void *, int, string &)> AppDeal;
+    typedef function<int(LinkType, void *, int, void *)> DataDeal;
 
     /**
      * 解析数据的基础类
@@ -48,20 +50,23 @@ namespace hhou
     {
     public:
         /**默认构造函数*/
-        HHParse(HttpDeal httpProc, AppDeal appProc) : m_pHttpDeal(httpProc), m_pAppDeal(appProc) {}
+        HHParse(DataDeal dataProc) : m_pDataDeal(dataProc) {}
         virtual ~HHParse() {}
 
-        /**先进行必要信息的解析(错误数据返回-1，数据不完整返回0，接收完全返回>0)*/
-        void ParseData(bool bOnce, void *buf, int nLen);
+        /**先进行必要信息的解析*/
+        bool ParseData(bool bOnce, void *buf, int nLen);
 
         /**发送回调函数*/
-        void SendData(string &strRet, int nSize);
+        bool SendData(string &strRet, int nSize);
 
     private:
-        HttpDeal m_pHttpDeal;
-        AppDeal m_pAppDeal;
+        DataDeal m_pDataDeal;
+    #ifdef HTTP
         hhou::HHRequest request;  /// 加入解析的状态标志
         hhou::HHResponse response; /// 回包的对象
+	#elif WEBSOCKET
+		hhou::HHWebsocket websocket; /// websocket对象
+    #endif
 
     };
 
@@ -80,8 +85,7 @@ namespace hhou
         bool RmParser(const int fd);
 
         /**设置回调*/
-        void AppCallback(AppDeal appProc) {m_pAppDeal = appProc;}
-        void HttpCallback(HttpDeal HttpProc) {m_pHttpDeal = HttpProc;}
+        void Callback(DataDeal dataProc) {m_pDataDeal = dataProc;}
 
         /**单例模式*/
         static HHParserMgr &Instance()
@@ -91,8 +95,7 @@ namespace hhou
         }
 
     private:
-        AppDeal m_pAppDeal;
-        HttpDeal m_pHttpDeal;
+        DataDeal m_pDataDeal;
         mutex m_mutex; /// 锁
         map<int, HHParse *> m_mParsers;   /// fd对应的解析器
     };

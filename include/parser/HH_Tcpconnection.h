@@ -16,18 +16,3 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include "HH_Response.h"
-
-int hhou::HHResponse::MakeRes(const string &strResContentType)
-{
-    ostringstream os;
-    os << "HTTP/1.1 200 OK\r\nContent-Length: " << m_strContent.size()
-       << "\r\nContent-Type: " << strResContentType << "\r\n";
-    for (auto it = m_mHeaders.begin(); it != m_mHeaders.end(); it++)
-    {
-        os << it->first << ": " << it->second << "\r\n";
-    }
-    os << "\r\n" << m_strContent;
-    m_strResult = os.str();
-    return 1;
-}

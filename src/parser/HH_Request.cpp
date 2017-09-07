@@ -26,8 +26,7 @@ hhou::HHRequest::HHRequest()
         : m_nMethod(HTTP_METHOD_NONE),
           m_strMethod(""),
           m_strContent(""),
-          m_nParseWhere(HTTP_NONE_DONE),
-          m_nError(HTTP_OK)
+          m_nParseWhere(HTTP_NONE_DONE)
 {
 
 }
@@ -57,79 +56,8 @@ void hhou::HHRequest::GetFieldStr(const string &strKey, string &strVal)
     }
 }
 
-void hhou::HHRequest::WSHandShake()
-{
-    if (m_nError == HTTP_WSCONNECTED) return;
-    string strKey;
-    GetFieldStr("sec-websocket-key", strKey);
-    if (strKey.empty()) return;
-    LOG(INFO) << "Client Key::" << strKey;
-    string strMagicKey = hhou::HHConfig::Instance().ReadStr("websocket", "magickey", "");
-    if (strMagicKey.empty())
-    {
-        LOG(ERROR) << "No magickey";
-        return;
-    }
-    strMagicKey = strKey + strMagicKey;
-    char shaHash[32];
-    memset(shaHash, 0, sizeof(shaHash));
-    hhou::Sha1(strMagicKey.c_str(), shaHash);
-    m_strMagicKey = hhou::Base64Encode((const unsigned char *)shaHash, strlen(shaHash));
-    m_nError = HTTP_WSCONNECTED;
-    LOG(INFO) << "Sec Key:: " << m_strMagicKey;
-}
-
-bool hhou::HHRequest::WSDecodeFrame(const char *buf, int nSize)
-{
-    int nPos = 0;
-    while (nSize > nPos)
-    {
-        if ((nSize - nPos) < 2)
-        {
-            return false;
-        }
-        if ((buf[nPos] & 0x70) != 0x00)
-        {
-            return false;
-        }
-
-        int nCompleted = true;
-        if ((buf[nPos] & 0x80) != 0x80)
-        {
-            nCompleted = false;
-        }
-        int nType = (buf[nPos] & 0x0f);
-        nPos++;
-
-        if ((buf[nPos] & 0x80) != 0x80)
-        {
-            return false;
-        }
-        int nContentLen = buf[nPos] & 0x7f;
-        if (nContentLen == 126)
-        {
-            nPos += 2;
-        }
-        else if (nContentLen == 127)
-        {
-            nPos += 8;        
-        }
-    }
-    return true;
-}
-
 hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
 {
-    /// 判断是否需要建立websocket
-    WSHandShake();
-
-    /// 判断是否已经建立了websocket
-    if (m_nError == HTTP_WSCONNECTED)
-    {
-        if (!WSDecodeFrame(szHttpReq, nDataLen)) return HTTP_WOULDCLOSE;
-        return HTTP_WSCONNECTED;
-    }
-
     /// 长度
     int nSize = 0;
     GetFieldInt("content-length", nSize);
@@ -199,9 +127,11 @@ hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
     /**********************解析content（如果有的话）****************/
     in >> strBody;
     m_strContent.append(strBody);
+    GetFieldInt("content-length", nSize);
     if (nSize <= (int) strBody.length())
     {
         m_nParseWhere = HTTP_BODY_DONE;
+        return HTTP_OK;
     }
-    return HTTP_OK;
+    return HTTP_BODY_INCOMPLTED;
 }
