@@ -26,7 +26,7 @@ hhou::HHWebsocket::HHWebsocket()
         : m_nStatus(UnConnected),
 		  m_strResult("")
 {
-
+	m_qMsg.push_back(make_shared<HHMsg>(GetMsgID(), 0, ""));
 }
 
 int hhou::HHWebsocket::MakeWBRes()
@@ -43,9 +43,76 @@ int hhou::HHWebsocket::MakeWBRes()
     return 1;
 }
 
+bool hhou::HHWebsocket::WSDecodeFrame(const char *buf, int nSize)
+{
+    int nPos = 0;
+    while (nSize > nPos)
+    {
+		/// 判断是否合法
+        if ((nSize - nPos) < 2) return false;
+        if ((buf[nPos] & 0x70) != 0x00) return false;
+		
+		/// 判断是否完整
+        int nCompleted = true;
+        if ((buf[nPos] & 0x80) != 0x80) nCompleted = false;
+        int nType = (buf[nPos++] & 0x0f);
+		
+		/// 必须要有mask
+        if ((buf[nPos] & 0x80) != 0x80) return false;
+		char mask[4] = {0};
+		for(int i = 0; i < 4; i++) mask[i] = buf[nPos + i];
+		nPos += 4;
+		
+		/// 解析body的长度
+        int nContentLen = buf[nPos] & 0x7f;
+        if (nContentLen == 126)
+        {
+			short length = 0;
+			memcpy(&length, buf + nPos, 2);
+            nPos += 2;
+			nContentLen = ntohs(length);
+        }
+        else if (nContentLen == 127)
+        {
+			int length = 0;
+			memcpy(&length, buf + nPos, 4);
+            nPos += 4;        
+			nContentLen = ntohl(length);
+        }
+		
+		/// 解析body		
+		char body[nContentLen + 1] = {0};
+		for(int i = 0; i < nContentLen; i++)
+		{
+            int j = i % 4;
+            body[i] = (buf[nPos + i] ^ mask[j]);
+        }
+		nPos += nContentLen;
+		
+		/// 获取最前的msg进行数据填充
+		shared_ptr<HHMsg> msg = m_qMsg.back();
+		msg->m_nOp = nType;
+		msg->Append(body);
+		LOG(INFO) << "op: " << nType << " nCompleted: " << nCompleted;
+		
+		/// 判断完整，完整则需要提前准备一个空的msg
+		if (nCompleted)
+		{
+			LOG(INFO) << "Msg: " << msg->m_strMsg << " size: " << msg->m_strMsg.length();
+			msg->m_bCompleted = nCompleted;
+			m_qMsg.push_back(make_shared<HHMsg>(GetMsgID(), 0, ""));
+		}
+	}
+	return true;
+}
+
 int hhou::HHWebsocket::WSParse(const char *szHttpReq, int nDataLen)
 {
-    if (m_nStatus == Connected) return Connected;
+    if (m_nStatus == Connected)
+	{
+		WSDecodeFrame(szHttpReq, nDataLen);
+		return Connected;
+	}
 	
 	/// 读取request的对象
     string strBody;

@@ -46,13 +46,6 @@ namespace hhou
          */
         int Process();
 
-        /**
-         * 获取消息体的长度
-         */
-        int GetMsgLength() { return m_strMsg.length(); }
-        int GetMsgID() { return m_nID; }
-        int GetMsgOp() { return m_nOp; }
-
     private:
         /**websocket的处理*/
         int WSProcess();
@@ -60,7 +53,7 @@ namespace hhou
         /**自定义协议的处理*/
         int CMProcess();
 
-    private:
+    public:
         int m_nID;  /// 消息的ID
         int m_nOp;  /// 消息的类型
         bool m_bCompleted;  /// 是否是完整包

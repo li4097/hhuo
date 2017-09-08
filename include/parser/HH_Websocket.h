@@ -19,10 +19,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define HHUO_HH_WEBSOCKET_H
 
 #include <map>
-#include <queue>
+#include <deque>
 #include <vector>
 #include <sstream>
 #include "HH_Common.h"
+#include "HH_Msg.h"
 #include "HH_Log.h"
 
 namespace hhou
@@ -88,10 +89,17 @@ namespace hhou
             m_strResult.erase(0, nSize); 
         }
 		
+		/**
+		 * 获取ID
+		 */
+		int GetMsgID() {return m_nID++;}
+		
     private:
 		WS_STATUS m_nStatus;	/// ws的状态
         string m_strResult; /// 处理完的存放
         map<string, string> m_mHeaders; /// 头部的键值对
+		int m_nID;	/// 消息的ID
+		deque<shared_ptr<HHMsg>> m_qMsg; /// 消息队列
 		
     };
 }
