@@ -59,9 +59,6 @@ bool hhou::HHWebsocket::WSDecodeFrame(const char *buf, int nSize)
 		
 		/// 必须要有mask
         if ((buf[nPos] & 0x80) != 0x80) return false;
-		char mask[4] = {0};
-		for(int i = 0; i < 4; i++) mask[i] = buf[nPos + i];
-		nPos += 4;
 		
 		/// 解析body的长度
         int nContentLen = buf[nPos] & 0x7f;
@@ -80,6 +77,11 @@ bool hhou::HHWebsocket::WSDecodeFrame(const char *buf, int nSize)
 			nContentLen = ntohl(length);
         }
 		
+		/// 获取mask
+		char mask[4] = {0};
+		for(int i = 0; i < 4; i++) mask[i] = buf[nPos + i];
+		nPos += 4;
+		
 		/// 解析body		
 		char body[nContentLen + 1] = {0};
 		for(int i = 0; i < nContentLen; i++)
@@ -93,7 +95,7 @@ bool hhou::HHWebsocket::WSDecodeFrame(const char *buf, int nSize)
 		shared_ptr<HHMsg> msg = m_qMsg.back();
 		msg->m_nOp = nType;
 		msg->Append(body);
-		LOG(INFO) << "op: " << nType << " nCompleted: " << nCompleted;
+		LOG(INFO) << "op: " << nType << " nCompleted: " << nCompleted << " length: " << nContentLen;
 		
 		/// 判断完整，完整则需要提前准备一个空的msg
 		if (nCompleted)
