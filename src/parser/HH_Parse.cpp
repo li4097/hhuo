@@ -20,7 +20,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 bool hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
 {
-	LOG(INFO) << "client request: \n" << (char *)buf;
 #ifdef HTTP
 	int nRet = (int)request.Parse((char *)buf, nLen);
 	if (!nRet && m_pDataDeal(Http, (void *) &request, nLen, (void *) &response))
@@ -49,7 +48,6 @@ bool hhou::HHParse::SendData(string &strRet, int nSize)
 #elif WEBSOCKET
 	websocket.GetResult(strRet, nSize);
 #endif
-	LOG(INFO) << "send to client: \n" << strRet;
 	return true;
 }
 
@@ -73,6 +71,7 @@ hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)
 
 bool hhou::HHParserMgr::RmParser(const int fd)
 {
+    lock_guard<mutex> lock(m_mutex);
     auto it = m_mParsers.find(fd);
     if (it != m_mParsers.end())
     {

@@ -45,9 +45,6 @@ int main(int argc, char *argv[])
 	test.Init();
     test.Run();
 	
-	Test4Server test1;
-	test1.Init();
-    test1.Run();
 	while(true) {sleep(1000);}
     return 0;
 }

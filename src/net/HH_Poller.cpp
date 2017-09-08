@@ -98,7 +98,7 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
         }  
     }
     LOG_IF_EVERY_N(INFO, m_AllSockets.Size(), 100) << UpdateBytes();
-
+	
     /// wait for events to happen
     int fds = epoll_wait(m_epollFd, m_events, Poller_MAX_EVENT, timeout);
     for(int i = 0; i < fds; i++)
@@ -141,6 +141,7 @@ string hhou::HHPoller::UpdateBytes()
         struct in_addr addr;
         addr.s_addr = ip;
         os << "Connection " << inet_ntoa(addr) << " " << ntohs(port);
+		os << " lastTime: " << pEvent->m_tLast;
         os << " received: " << pEvent->m_nTotalRecv;
         os << ", sent: " << pEvent->m_nTotalSend << ".\n";
     }

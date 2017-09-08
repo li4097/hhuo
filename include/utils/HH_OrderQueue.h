@@ -100,7 +100,7 @@ namespace hhou
 			}
 			m_queue.insert(lower_bound(Begin(), End(), x), x);
 		}
-
+		
 		/*
 		 ** 删除所有值为 x 的元素
 		 */
