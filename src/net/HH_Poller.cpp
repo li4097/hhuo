@@ -43,7 +43,7 @@ void hhou::HHPoller::AddEvent(HHEventBase *event)
     if (event->eventInfo.nType != 0)
     {
         event->m_tLast = time(nullptr);
-        m_AllSockets.Push(event);
+        m_AllSockets.PushBack(event);
         UpdateConnNums(1);
     }
 }
@@ -58,7 +58,7 @@ void hhou::HHPoller::ChangeEvent(HHEventBase *event)
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_MOD, event->handler, &ev);
     event->m_tLast = time(nullptr);
-    m_AllSockets.Push(event);
+    m_AllSockets.PushBack(event);
 }
 
 void hhou::HHPoller::DelEvent(HHEventBase *event)
@@ -67,7 +67,7 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
     ev.data.ptr = event;
     epoll_ctl(m_epollFd, EPOLL_CTL_DEL, event->handler, &ev);
     event->m_tLast = 0;
-    m_AllSockets.Push(event); 
+    m_AllSockets.PushFront(event); 
     UpdateConnNums(-1);
 }
 
@@ -140,6 +140,7 @@ string hhou::HHPoller::UpdateBytes()
         struct in_addr addr;
         addr.s_addr = ip;
         os << "Connection " << inet_ntoa(addr) << " " << ntohs(port);
+		os << " lastTime: " << pEvent->m_tLast;
         os << " received: " << pEvent->m_nTotalRecv;
         os << ", sent: " << pEvent->m_nTotalSend << ".\n";
     }

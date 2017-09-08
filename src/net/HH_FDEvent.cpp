@@ -101,7 +101,7 @@ void hhou::HHFDEvent::OnRead()
 			OnClosing();
 			break;
 		}
-		m_bufIn.Remove(m_bufIn.GetLength());
+		m_bufIn.Remove((size_t)rSize);
         if (rSize != TCP_BUFSIZE - 1) break;
     }
 }

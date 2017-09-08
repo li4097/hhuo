@@ -102,7 +102,12 @@ namespace hhou
 
         bool operator<(const HHEventBase &other) const
         {
-            return m_tLast < other.m_tLast;
+            return m_tLast <= other.m_tLast;
+        }
+		
+		bool operator>(const HHEventBase &other) const
+        {
+            return m_tLast >= other.m_tLast;
         }
 
         /**句柄对象*/

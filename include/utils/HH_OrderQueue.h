@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <deque>   
 #include "HH_Common.h"
+#include "HH_Log.h"
 
 namespace hhou
 {
@@ -88,9 +89,9 @@ namespace hhou
 		}
 
 		/*
-		 ** 更新操作
+		 ** 插到到最前面
 		 */
-		void Push(const value_type &x)
+		void PushFront(const value_type &x)
 		{
 			lock_guard<mutex> lock(m_mutex);
 			auto it = find(Begin(), End(), x);
@@ -98,7 +99,21 @@ namespace hhou
 			{
 				m_queue.erase(it);
 			}
-			m_queue.insert(lower_bound(Begin(), End(), x), x);
+			m_queue.push_front(x);
+		}
+		
+		/*
+		 ** 插到到最后面
+		 */
+		void PushBack(const value_type &x)
+		{
+			lock_guard<mutex> lock(m_mutex);
+			auto it = find(Begin(), End(), x);
+			if (it != End())
+			{
+				m_queue.erase(it);
+			}
+			m_queue.push_back(x);
 		}
 		
 		/*
