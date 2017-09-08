@@ -88,7 +88,6 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
             {
                 LOG(INFO) << "socket: " << it->handler << " timeout.";
             }
-            HHParserMgr::Instance().RmParser(it->handler);
             it->OnTimeout();
             m_AllSockets.PopFront();
         }
@@ -141,7 +140,6 @@ string hhou::HHPoller::UpdateBytes()
         struct in_addr addr;
         addr.s_addr = ip;
         os << "Connection " << inet_ntoa(addr) << " " << ntohs(port);
-		os << " lastTime: " << pEvent->m_tLast;
         os << " received: " << pEvent->m_nTotalRecv;
         os << ", sent: " << pEvent->m_nTotalSend << ".\n";
     }
