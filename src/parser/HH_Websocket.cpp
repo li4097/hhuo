@@ -89,12 +89,16 @@ int hhou::HHWebsocket::WSParse(const char *szHttpReq, int nDataLen)
         return Error;
     }
     strMagicKey = strKey + strMagicKey;
-    char shaHash[128];
+	char shaHash[128];
     memset(shaHash, 0, sizeof(shaHash));
-    hhou::Sha1(strMagicKey.c_str(), shaHash);
-    string strMKey = hhou::Base64Encode((const unsigned char *)shaHash, strlen(shaHash));
+    hhou::Sha1(strMagicKey, shaHash);
+	
+	char base64[128];
+    memset(base64, 0, sizeof(base64));
+	string strBase = string(shaHash);
+    hhou::Base64Encode(strBase, base64);	
     m_nStatus = Connected;
-	AddHeader("Sec-WebSocket-Accept", strMKey);
-    LOG(INFO) << "Sec Key:: " << strMKey;
+	AddHeader("Sec-WebSocket-Accept", base64);
+    LOG(INFO) << "Sec Key:: " << base64;
 	return Connected;
 }

@@ -15,4 +15,4 @@ SET_TARGET_PROPERTIES(hhutils PROPERTIES OUTPUT_NAME "hhutils")
 set_target_properties(hhutils PROPERTIES LINKER_LANGUAGE CXX)
 
 #add zlib
-TARGET_LINK_LIBRARIES(hhutils z)
+TARGET_LINK_LIBRARIES(hhutils z ssl crypto)

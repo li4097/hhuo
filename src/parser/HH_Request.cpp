@@ -19,8 +19,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_Request.h"
 #include "HH_Config.h"
 #include "utils/HH_Split.h"
-#include "utils/HH_Base64.h"
-#include "utils/HH_Sha1.h"
 
 hhou::HHRequest::HHRequest()
         : m_nMethod(HTTP_METHOD_NONE),

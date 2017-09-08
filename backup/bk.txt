@@ -176,3 +176,28 @@ int nRet = (int)request.Parse((char *)buf, nLen);
          * websocket帧编码
          */
         bool WSEncodeFrame(const string &strRet);
+		
+		
+		
+    char shaHash[128];
+    memset(shaHash, 0, sizeof(shaHash));
+    hhou::Sha1(strMagicKey.c_str(), shaHash);
+    string strMKey = hhou::Base64Encode((const unsigned char *)shaHash, strlen(shaHash));
+    m_nStatus = Connected;
+	AddHeader("Sec-WebSocket-Accept", strMKey);
+    LOG(INFO) << "Sec Key:: " << strMKey;
+	return Connected;
+	
+	
+	# add ssl
+IF (USESSL)
+    TARGET_LINK_LIBRARIES(hhnet ssl crypto)
+ENDIF()
+
+string input = "shitaaaaaasssss";
+    string decode;
+    string output;
+    output = hhou::Base64Encode((unsigned char *)input.c_str(), input.size());
+    LOG(INFO) << "ret: " << output;
+    decode = hhou::Base64Decode(output);
+    LOG(INFO) << "ret: " << decode;
