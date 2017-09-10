@@ -33,6 +33,10 @@ bool hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
 	{
 		websocket.MakeWBRes();
 	}
+	else if (nRet == 3)
+	{
+		m_pDataDeal(Websocket, (void *) &websocket, nLen, nullptr);
+	}
 	else if (!nRet)
 	{
 		return false;

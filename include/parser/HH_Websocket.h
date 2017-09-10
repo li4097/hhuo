@@ -35,7 +35,8 @@ namespace hhou
 	{
 		Error = 0,   /// 需要关闭socket
 		UnConnected, /// 还未建立
-		Connected /// 已经建立
+		Connected, /// 已经建立
+		Chat	/// 开始正常的收发信息
 	};
 	
     /**
@@ -83,11 +84,7 @@ namespace hhou
 		/**
          * 获取处理完的数据
          */
-        void GetResult(string &strRet, int nSize) 
-        { 
-            strRet.assign(m_strResult, 0, nSize);
-            m_strResult.erase(0, nSize); 
-        }
+        void GetResult(string &strRet, int nSize);
 		
 		/**
 		 * 获取ID
@@ -96,10 +93,10 @@ namespace hhou
 		
     private:
 		WS_STATUS m_nStatus;	/// ws的状态
-        string m_strResult; /// 处理完的存放
+        shared_ptr<HHMsg> m_ReadMsg; /// 处理完的存放
         map<string, string> m_mHeaders; /// 头部的键值对
 		int m_nID;	/// 消息的ID
-		deque<shared_ptr<HHMsg>> m_qMsg; /// 消息队列
+		deque<shared_ptr<HHMsg>> m_SendMsg; /// 消息队列
 		
     };
 }

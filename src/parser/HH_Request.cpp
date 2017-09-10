@@ -67,12 +67,12 @@ hhou::HttpError hhou::HHRequest::Parse(const char *szHttpReq, int nDataLen)
     /// 判断body是否完整
     if (m_nParseWhere == HTTP_HEAD_DONE)
     {
-        if (nSize > m_strContent.length())
+        if (nSize > (int)m_strContent.length())
         {
             in >> strBody;
             m_strContent.append(strBody);
         }
-        if (nSize <= m_strContent.length())
+        if (nSize <= (int)m_strContent.length())
         {
             m_nParseWhere = HTTP_BODY_DONE;
             return HTTP_OK;

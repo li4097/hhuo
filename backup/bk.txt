@@ -201,3 +201,13 @@ string input = "shitaaaaaasssss";
     LOG(INFO) << "ret: " << output;
     decode = hhou::Base64Decode(output);
     LOG(INFO) << "ret: " << decode;
+	
+	
+	 
+        { 
+            strRet.assign(m_strResult, 0, nSize);
+            m_strResult.erase(0, nSize); 
+        }
+		
+	
+			m_qMsg.push_back(make_shared<HHMsg>(GetMsgID(), 0, ""));

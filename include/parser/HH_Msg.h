@@ -40,25 +40,17 @@ namespace hhou
          * 追加消息体（每块接收）
          */
         void Append(const string &strMsg) { m_strMsg.append(move(strMsg)); }
-
-        /**
-         * 执行处理
-         */
-        int Process();
-
-    private:
-        /**websocket的处理*/
-        int WSProcess();
-
-        /**自定义协议的处理*/
-        int CMProcess();
+		
+		/**
+		 * 长度
+		 */
+		int MsgLength() {return (int)m_strMsg.length();} 
 
     public:
         int m_nID;  /// 消息的ID
         int m_nOp;  /// 消息的类型
         bool m_bCompleted;  /// 是否是完整包
         string m_strMsg;    /// 消息体
-        string m_strRet;    /// 发送给对方的消息体
     };
 }
 

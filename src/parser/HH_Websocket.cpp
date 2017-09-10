@@ -24,9 +24,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 hhou::HHWebsocket::HHWebsocket()
         : m_nStatus(UnConnected),
-		  m_strResult("")
+		m_ReadMsg(make_shared<HHMsg>(0, 0, ""))
 {
-	m_qMsg.push_back(make_shared<HHMsg>(GetMsgID(), 0, ""));
+	/// 提前准备一个回应包
+	m_SendMsg.push_back(make_shared<HHMsg>(GetMsgID(), 0, ""));
 }
 
 int hhou::HHWebsocket::MakeWBRes()
@@ -39,8 +40,20 @@ int hhou::HHWebsocket::MakeWBRes()
         os << it->first << ": " << it->second << "\r\n";
     }
     os << "\r\n";
-    m_strResult = os.str();
+	m_SendMsg.front()->m_strMsg = os.str();
     return 1;
+}
+
+void hhou::HHWebsocket::GetResult(string &strRet, int nSize)
+{
+	if (m_SendMsg.size() <= 0) return;
+	strRet.assign(m_SendMsg.front()->m_strMsg, 0, nSize);
+	m_SendMsg.pop_front();
+}
+
+bool hhou::HHWebsocket::WSEncodeFrame(const string &strRet)
+{
+	return true;
 }
 
 bool hhou::HHWebsocket::WSDecodeFrame(const char *buf, int nSize)
@@ -91,18 +104,16 @@ bool hhou::HHWebsocket::WSDecodeFrame(const char *buf, int nSize)
         }
 		nPos += nContentLen;
 		
-		/// 获取最前的msg进行数据填充
-		shared_ptr<HHMsg> msg = m_qMsg.back();
-		msg->m_nOp = nType;
-		msg->Append(body);
+		/// 进行数据填充
+		m_ReadMsg->m_nOp = nType;
+		m_ReadMsg->Append(body);
 		LOG(INFO) << "op: " << nType << " nCompleted: " << nCompleted << " length: " << nContentLen;
 		
 		/// 判断完整，完整则需要提前准备一个空的msg
 		if (nCompleted)
 		{
-			LOG(INFO) << "Msg: " << msg->m_strMsg << " size: " << msg->m_strMsg.length();
-			msg->m_bCompleted = nCompleted;
-			m_qMsg.push_back(make_shared<HHMsg>(GetMsgID(), 0, ""));
+			LOG(INFO) << "Msg: " << m_ReadMsg->m_strMsg << " size: " << m_ReadMsg->m_strMsg.length();
+			m_ReadMsg->m_bCompleted = nCompleted;
 		}
 	}
 	return true;
@@ -113,7 +124,7 @@ int hhou::HHWebsocket::WSParse(const char *szHttpReq, int nDataLen)
     if (m_nStatus == Connected)
 	{
 		WSDecodeFrame(szHttpReq, nDataLen);
-		return Connected;
+		return Chat;
 	}
 	
 	/// 读取request的对象
@@ -158,14 +169,12 @@ int hhou::HHWebsocket::WSParse(const char *szHttpReq, int nDataLen)
         return Error;
     }
     strMagicKey = strKey + strMagicKey;
-	char shaHash[128];
-    memset(shaHash, 0, sizeof(shaHash));
+	char shaHash[128] = {0};
     hhou::Sha1(strMagicKey, shaHash);
 	
-	char base64[128];
-    memset(base64, 0, sizeof(base64));
+	char base64[128] = {0};
 	string strBase = string(shaHash);
-    hhou::Base64Encode(strBase, base64);	
+	hhou::Base64Encode(strBase, base64);	
     m_nStatus = Connected;
 	AddHeader("Sec-WebSocket-Accept", base64);
     LOG(INFO) << "Sec Key:: " << base64;

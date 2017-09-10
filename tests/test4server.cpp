@@ -2,6 +2,7 @@
 #include "../include/net/HH_EventLoop.h"
 #include "../include/net/HH_ServerBase.h"
 #include "../app/ImgProcessor.h"
+#include "../app/WsProcessor.h"
 #include "../include/HH_Log.h"
 
 class Test4Server : public hhou::HHServerBase
@@ -31,8 +32,28 @@ public:
 
     int DataDeal(hhou::LinkType nType, void *first, int nFisrtLen, void *second)
     {
-        ImgProcessor processor;
-        return (int)processor.Processor(first, nFisrtLen, second);
+		switch (nType)
+		{
+			case 0:
+			{
+				ImgProcessor processor;
+				return (int)processor.Process(first, nFisrtLen, second);				
+			}
+				break;
+			case 1:
+			{
+				WsProcessor processor;
+				return (int)processor.Process(first, nFisrtLen, second);
+			}
+				break;
+			case 2:
+			{
+				
+			}
+				break;
+			default:
+				break;
+		}
     }
 	
 	std::shared_ptr<hhou::HHEventLoop> m_Loop;
