@@ -50,7 +50,7 @@ bool hhou::HHParse::ParseData(void *buf, int nLen)
             while (!m_req.m_ReadMsg.empty())
             {
                 auto iter = m_req.m_ReadMsg.front();
-                HHMsg msg(0, 0, "");
+                HHMsg msg(0, 0);
                 m_pDataDeal(Websocket, (void *) iter.get(), (void *) &msg);
                 m_res.WSEncodeFrame(msg);
                 m_req.m_ReadMsg.pop_front();

@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 hhou::HHWsRequest::HHWsRequest()
         : m_bConntected(false)
 {
-	
+
 }
 
 bool hhou::HHWsRequest::WSDecodeFrame(const char *buf, int nSize)
@@ -41,6 +41,7 @@ bool hhou::HHWsRequest::WSDecodeFrame(const char *buf, int nSize)
         int nCompleted = true;
         if ((buf[nPos] & 0x80) != 0x80) nCompleted = false;
         int nType = (buf[nPos++] & 0x0f);
+        if (nType == 8) return false;
 		
 		/// 必须要有mask
         if ((buf[nPos] & 0x80) != 0x80) return false;
@@ -77,12 +78,15 @@ bool hhou::HHWsRequest::WSDecodeFrame(const char *buf, int nSize)
 		nPos += nContentLen;
 		
 		/// 进行数据填充
-		if (!m_ReadMsg.empty() && !m_ReadMsg.front()->m_bCompleted)
-			m_ReadMsg.front()->m_strMsg.append(body);
+		string strBody = string(body);
+		if (m_ReadMsg.empty() || m_ReadMsg.front()->m_bCompleted)			
+			m_ReadMsg.push_back(make_shared<HHMsg>(0, nType, nCompleted, strBody));
 		else
-			m_ReadMsg.push_back(make_shared<HHMsg>(0, 0, ""));	
-		m_ReadMsg.front()->m_nOp = nType;		
-		m_ReadMsg.front()->m_bCompleted = nCompleted;
+		{
+			m_ReadMsg.front()->m_nOp = nType;		
+			m_ReadMsg.front()->m_bCompleted = nCompleted;	
+			m_ReadMsg.front()->m_strMsg.append(body);		
+		}
 		LOG(INFO) << "op: " << nType << " nCompleted: " << nCompleted << " length: " << nContentLen;
 	}
 	return true;

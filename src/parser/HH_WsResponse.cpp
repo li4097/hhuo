@@ -24,7 +24,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 hhou::HHWsResponse::HHWsResponse()
 {
-    
+
 }
 
 int hhou::HHWsResponse::MakeRes()
@@ -37,6 +37,7 @@ int hhou::HHWsResponse::MakeRes()
         os << it->first << ": " << it->second << "\r\n";
     }
     os << "\r\n";
+    m_SendMsg.push_back(make_shared<HHMsg>(0, 0));
 	m_SendMsg.front()->m_strMsg = os.str();
     return 1;
 }
@@ -51,7 +52,7 @@ void hhou::HHWsResponse::GetResult(string &strRet, int nSize)
 bool hhou::HHWsResponse::WSEncodeFrame(const HHMsg &msg)
 {
     ostringstream os;
-    m_SendMsg.push_back(make_shared<HHMsg>(0, 0, ""));
+    m_SendMsg.push_back(make_shared<HHMsg>(0, 0));
     int dataSize = msg.m_strMsg.length();
     uint8_t payloadFieldExtraBytes = (dataSize <= 0x7d) ? 0 : 2; 
     os << static_cast<uint8_t>(0x80 | msg.m_nOp);

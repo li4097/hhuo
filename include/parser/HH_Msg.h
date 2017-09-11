@@ -32,14 +32,9 @@ namespace hhou
     class HHMsg
     {
     public:
-        HHMsg(int nID, int nOp, const string &strMsg)
-                : m_nID(nID), m_nOp(nOp), m_bCompleted(false), m_strMsg(move(strMsg)) {}
+        HHMsg(int nID, int nOp, bool bCompleted = false, const string &strMsg = "")
+                : m_nID(nID), m_nOp(nOp), m_bCompleted(bCompleted), m_strMsg(move(strMsg)) {}
         virtual ~HHMsg() {}
-
-        /**
-         * 追加消息体（每块接收）
-         */
-        void Append(const string &strMsg) { m_strMsg.append(move(strMsg)); }
 
     public:
         int m_nID;  /// 消息的ID
