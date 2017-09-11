@@ -7,7 +7,8 @@
 
 #include <set>
 #include <string>
-#include "parser/HH_Websocket.h"
+#include "parser/HH_WsRequest.h"
+#include "parser/HH_WsResponse.h"
 using namespace std;
 
 class WsProcessor

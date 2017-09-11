@@ -11,8 +11,7 @@ int main(int argc, char *argv[])
     LOG(INFO) << "6666: " << shaHash;
 	
 	char result[1000] = {0};  
-	string strShit = string(shaHash);
-    hhou::Base64Encode(strShit, result);   
+    hhou::Base64Encode(shaHash, strlen(shaHash), result);   
     LOG(INFO) << result;  
     return 0;
 }

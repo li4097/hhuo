@@ -7,8 +7,8 @@
 
 bool ImgProcessor::Process(void *Request, int nLen, void *Reponse)
 {
-    auto req = static_cast<hhou::HHRequest *>(Request);
-    auto res = static_cast<hhou::HHResponse *>(Reponse);
+    auto req = static_cast<hhou::HHThRequest *>(Request);
+    auto res = static_cast<hhou::HHThResponse *>(Reponse);
 
     /// 判断是get还是post
     hhou::HttpMethodType type = req->GetMethodType();
@@ -19,7 +19,7 @@ bool ImgProcessor::Process(void *Request, int nLen, void *Reponse)
     return true;
 }
 
-bool ImgProcessor::DoGet(hhou::HHRequest *req, hhou::HHResponse *res)
+bool ImgProcessor::DoGet(hhou::HHThRequest *req, hhou::HHThResponse *res)
 {
     /// get img url: xxxxx/getimg?id=xxxx&w=20&h=30
     string strRet = "OK";
@@ -40,7 +40,7 @@ bool ImgProcessor::DoGet(hhou::HHRequest *req, hhou::HHResponse *res)
     return true;
 }
 
-bool ImgProcessor::DoPost(hhou::HHRequest *req, hhou::HHResponse *res)
+bool ImgProcessor::DoPost(hhou::HHThRequest *req, hhou::HHThResponse *res)
 {
     /// opst img url: xxxxx/uploadimg
     string strRet = "OK";

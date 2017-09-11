@@ -7,8 +7,8 @@
 
 #include <set>
 #include <string>
-#include "parser/HH_Request.h"
-#include "parser/HH_Response.h"
+#include "parser/HH_ThRequest.h"
+#include "parser/HH_ThResponse.h"
 using namespace std;
 
 class ImgProcessor
@@ -17,8 +17,8 @@ public:
     bool Process(void *Request, int nLen, void *Reponse);
 
 private:
-    bool DoPost(hhou::HHRequest *req, hhou::HHResponse *res);
-    bool DoGet(hhou::HHRequest *req, hhou::HHResponse *res);
+    bool DoPost(hhou::HHThRequest *req, hhou::HHThResponse *res);
+    bool DoGet(hhou::HHThRequest *req, hhou::HHThResponse *res);
 };
 
 #endif //HHUO_IMGPROCESSOR_H
