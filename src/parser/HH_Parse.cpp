@@ -18,29 +18,49 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "HH_Parse.h"
 
-bool hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
+bool hhou::HHParse::ParseData(void *buf, int nLen)
 {
-    int nRet = (int)m_req.Parse((char *)buf, nLen);
 #ifdef HTTP
-	if (!nRet && m_pDataDeal(Http, (void *) &m_req, nLen, (void *) &m_res))
+    int nRet = (int)m_req.Parse((char *)buf, nLen);
+	if (!nRet && m_pDataDeal(Http, (void *) &m_req, (void *) &m_res))
 	{
-		bOnce ? m_res.AddHeader("Connection", "Close") : m_res.AddHeader("Connection", "Keep-Alive");
+		m_res.AddHeader("Connection", "Keep-Alive");
 		m_res.MakeRes();
 	}
+    else
+    {
+        return false;
+    }
 #elif WEBSOCKET
-	if (nRet == 2)
-	{
-        m_res.AddHeader("Sec-WebSocket-Accept", m_req.GetServerKey());
-		m_res.MakeRes();
-	}
-	else if (nRet == 3)
-	{
-		m_pDataDeal(Websocket, (void *) &m_req, nLen, (void *) &m_res);
-	}
-	else if (!nRet)
-	{
-		return false;
-	}
+	if (!m_req.WsStatus())
+    {
+        if (!m_req.Parse((char *)buf, nLen))
+        {
+            m_res.AddHeader("Connection", "Keep-Alive");
+            m_res.AddHeader("Sec-WebSocket-Accept", m_req.GetServerKey());
+            m_res.MakeRes();            
+        }
+        else
+            return false;
+    }
+    else 
+    {
+        if (m_req.WSDecodeFrame((char *)buf, nLen))
+        {
+            while (!m_req.m_ReadMsg.empty())
+            {
+                auto iter = m_req.m_ReadMsg.front();
+                HHMsg msg(0, 0, "");
+                m_pDataDeal(Websocket, (void *) iter.get(), (void *) &msg);
+                m_res.WSEncodeFrame(msg);
+                m_req.m_ReadMsg.pop_front();
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
 #endif
 	return true;
 }

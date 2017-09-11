@@ -42,7 +42,7 @@ namespace hhou
      * int 待处理包的长度
      * void *相应包
      * */
-    typedef function<int(LinkType, void *, int, void *)> DataDeal;
+    typedef function<int(LinkType, void *, void *)> DataDeal;
 
     /**
      * 解析数据的基础类
@@ -55,7 +55,7 @@ namespace hhou
         virtual ~HHParse() {}
 
         /**先进行必要信息的解析*/
-        bool ParseData(bool bOnce, void *buf, int nLen);
+        bool ParseData(void *buf, int nLen);
 
         /**发送回调函数*/
         bool SendData(string &strRet, int nSize);

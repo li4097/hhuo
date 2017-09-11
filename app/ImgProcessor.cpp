@@ -5,7 +5,7 @@
 #include "ImgProcessor.h"
 #include "../include/HH_Log.h"
 
-bool ImgProcessor::Process(void *Request, int nLen, void *Reponse)
+bool ImgProcessor::Process(void *Request, void *Reponse)
 {
     auto req = static_cast<hhou::HHThRequest *>(Request);
     auto res = static_cast<hhou::HHThResponse *>(Reponse);

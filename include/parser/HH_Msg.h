@@ -40,11 +40,6 @@ namespace hhou
          * 追加消息体（每块接收）
          */
         void Append(const string &strMsg) { m_strMsg.append(move(strMsg)); }
-		
-		/**
-		 * 长度
-		 */
-		int MsgLength() {return (int)m_strMsg.length();} 
 
     public:
         int m_nID;  /// 消息的ID

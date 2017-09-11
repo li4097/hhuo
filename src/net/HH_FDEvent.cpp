@@ -83,7 +83,7 @@ void hhou::HHFDEvent::OnRead()
         m_bufIn.Write(bufIn, (size_t)rSize);
 		
         /// 是否还有空间接收data(解析数据)
-        if (m_recvProc(eventInfo.once, m_bufIn.GetStart(), (int)m_bufIn.GetLength()))
+        if (m_recvProc(m_bufIn.GetStart(), (int)m_bufIn.GetLength()))
 		{
 			/// 是否有数据发送
 			string strRet;
@@ -101,7 +101,7 @@ void hhou::HHFDEvent::OnRead()
 			OnClosing();
 			break;
 		}
-		m_bufIn.Remove((size_t)rSize);
+		m_bufIn.Remove(m_bufIn.GetLength());
         if (rSize != TCP_BUFSIZE - 1) break;
     }
 }

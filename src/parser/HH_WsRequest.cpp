@@ -23,19 +23,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "utils/HH_Sha1.h"
 
 hhou::HHWsRequest::HHWsRequest()
-        : m_nStatus(UnConnected),
-		m_ReadMsg(make_shared<HHMsg>(0, 0, ""))
+        : m_bConntected(false)
 {
-
+	
 }
 
 bool hhou::HHWsRequest::WSDecodeFrame(const char *buf, int nSize)
 {
     int nPos = 0;
+    if ((nSize - nPos) < 2) return false;
     while (nSize > nPos)
     {
 		/// 判断是否合法
-        if ((nSize - nPos) < 2) return false;
         if ((buf[nPos] & 0x70) != 0x00) return false;
 		
 		/// 判断是否完整
@@ -47,7 +46,7 @@ bool hhou::HHWsRequest::WSDecodeFrame(const char *buf, int nSize)
         if ((buf[nPos] & 0x80) != 0x80) return false;
 		
 		/// 解析body的长度
-        int nContentLen = buf[nPos] & 0x7f;
+        int nContentLen = buf[nPos++] & 0x7f;
         if (nContentLen == 126)
         {
 			short length = 0;
@@ -58,8 +57,8 @@ bool hhou::HHWsRequest::WSDecodeFrame(const char *buf, int nSize)
         else if (nContentLen == 127)
         {
 			int length = 0;
-			memcpy(&length, buf + nPos, 4);
-            nPos += 4;        
+			memcpy(&length, buf + nPos, 8);
+            nPos += 8;        
 			nContentLen = ntohl(length);
         }
 		
@@ -78,28 +77,19 @@ bool hhou::HHWsRequest::WSDecodeFrame(const char *buf, int nSize)
 		nPos += nContentLen;
 		
 		/// 进行数据填充
-		m_ReadMsg->m_nOp = nType;
-		m_ReadMsg->Append(body);
+		if (!m_ReadMsg.empty() && !m_ReadMsg.front()->m_bCompleted)
+			m_ReadMsg.front()->m_strMsg.append(body);
+		else
+			m_ReadMsg.push_back(make_shared<HHMsg>(0, 0, ""));	
+		m_ReadMsg.front()->m_nOp = nType;		
+		m_ReadMsg.front()->m_bCompleted = nCompleted;
 		LOG(INFO) << "op: " << nType << " nCompleted: " << nCompleted << " length: " << nContentLen;
-		
-		/// 判断完整，完整则需要提前准备一个空的msg
-		if (nCompleted)
-		{
-			LOG(INFO) << "Msg: " << m_ReadMsg->m_strMsg << " size: " << m_ReadMsg->m_strMsg.length();
-			m_ReadMsg->m_bCompleted = nCompleted;
-		}
 	}
 	return true;
 }
 
 int hhou::HHWsRequest::Parse(const char *szHttpReq, int nDataLen)
 {
-    if (m_nStatus == Connected)
-	{
-		WSDecodeFrame(szHttpReq, nDataLen);
-		return Chat;
-	}
-	
 	/// 读取request的对象
     string strBody;
     istringstream in(szHttpReq);
@@ -108,15 +98,15 @@ int hhou::HHWsRequest::Parse(const char *szHttpReq, int nDataLen)
     string strLine;
     getline(in, strLine);
     if (strLine.size() < 10) /// 第一行不能小于10个字符
-        return Error;
+        return WS_HEAD_ERROR;
     vector<string> vLine;
     SplitString(strLine, vLine, " ");
     if (vLine.size() < 3)  /// 第一行肯定是三块元素
-        return Error;
+        return WS_HEAD_ERROR;
 		
 	/**********************解析第一行****************/
     if (vLine[0] != "GET")
-        return Error;
+        return WS_HEAD_ERROR;
 	
 	/**********************解析域****************/
 	map<string, string> mField;
@@ -131,7 +121,7 @@ int hhou::HHWsRequest::Parse(const char *szHttpReq, int nDataLen)
 	if (iter == mField.end())
 	{
 		LOG(ERROR) << "No seckey";
-		return Error;
+		return WS_HEAD_ERROR;
 	}
 	string strKey = iter->second;
     LOG(INFO) << "Client Key::" << strKey;
@@ -139,13 +129,13 @@ int hhou::HHWsRequest::Parse(const char *szHttpReq, int nDataLen)
     if (strMagicKey.empty())
     {
         LOG(ERROR) << "No magickey";
-        return Error;
+        return WS_HEAD_ERROR;
     }
     strMagicKey = strKey + strMagicKey;
 	char shaHash[128] = {0};
     hhou::Sha1(strMagicKey, shaHash);
 	hhou::Base64Encode(shaHash, strlen(shaHash), m_cServerKey);	
-    m_nStatus = Connected;
+    m_bConntected = true;
     LOG(INFO) << "Sec Key:: " << m_cServerKey;
-	return Connected;
+	return WS_OK;
 }

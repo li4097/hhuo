@@ -14,7 +14,7 @@ using namespace std;
 class WsProcessor
 {
 public:
-    bool Process(void *Request, int nLen, void *Reponse);
+    bool Process(void *Request, void *Reponse);
 	
 };
 

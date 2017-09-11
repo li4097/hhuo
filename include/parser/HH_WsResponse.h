@@ -58,21 +58,15 @@ namespace hhou
 		/**
          * websocket帧编码
          */
-        bool WSEncodeFrame(const string &strRet);
+        bool WSEncodeFrame(const HHMsg &msg);
 		
 		/**
          * 获取处理完的数据
          */
         void GetResult(string &strRet, int nSize);
 		
-		/**
-		 * 获取ID
-		 */
-		int GetMsgID() {return m_nID++;}
-		
     private:
         map<string, string> m_mHeaders; /// 头部的键值对
-		int m_nID;	/// 消息的ID
 		deque<shared_ptr<HHMsg>> m_SendMsg; /// 消息队列
 		
     };

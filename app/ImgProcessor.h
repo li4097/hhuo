@@ -14,7 +14,7 @@ using namespace std;
 class ImgProcessor
 {
 public:
-    bool Process(void *Request, int nLen, void *Reponse);
+    bool Process(void *Request, void *Reponse);
 
 private:
     bool DoPost(hhou::HHThRequest *req, hhou::HHThResponse *res);

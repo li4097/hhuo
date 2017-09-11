@@ -30,20 +30,20 @@ public:
 		m_Loop->Start();
 	}
 
-    int DataDeal(hhou::LinkType nType, void *first, int nFisrtLen, void *second)
+    int DataDeal(hhou::LinkType nType, void *first, void *second)
     {
 		switch (nType)
 		{
 			case 0:
 			{
 				ImgProcessor processor;
-				return (int)processor.Process(first, nFisrtLen, second);				
+				return (int)processor.Process(first, second);				
 			}
 				break;
 			case 1:
 			{
 				WsProcessor processor;
-				return (int)processor.Process(first, nFisrtLen, second);
+				return (int)processor.Process(first, second);
 			}
 				break;
 			case 2:

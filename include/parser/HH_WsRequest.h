@@ -23,8 +23,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <vector>
 #include <sstream>
 #include "HH_Common.h"
-#include "HH_Msg.h"
 #include "HH_Log.h"
+#include "HH_Msg.h"
 
 namespace hhou
 {	
@@ -33,10 +33,9 @@ namespace hhou
 	 */
 	enum WS_STATUS
 	{
-		Error = 0,   /// 需要关闭socket
-		UnConnected, /// 还未建立
-		Connected, /// 已经建立
-		Chat	/// 开始正常的收发信息
+        WS_OK,   /// 接收完整 
+        WS_HEAD_ERROR,        /// 头部错误（GET /getxxx HTTP1.x）
+        WS_BODY_INCOMPLTED    /// 数据不完整
 	};
 	
     /**
@@ -44,6 +43,8 @@ namespace hhou
      */
     class HHWsRequest
     {
+        friend class HHParse;
+        
         typedef map<string, string>::iterator ReqIter;
         typedef map<string, string>::const_iterator ReqCIter;
     public:
@@ -67,11 +68,16 @@ namespace hhou
          * 获取serverkey
          */
         char *GetServerKey() {return m_cServerKey;}
+        
+        /**
+         * 建立状态
+         */
+        bool WsStatus() {return m_bConntected;}
 		
     private:
-		WS_STATUS m_nStatus;	/// ws的状态
+		bool m_bConntected;	/// ws的状态
         char m_cServerKey[128];  /// 服务器的key
-        shared_ptr<HHMsg> m_ReadMsg; /// 处理的对象
+        deque<shared_ptr<HHMsg>> m_ReadMsg; /// 消息队列
 		
     };
 }
