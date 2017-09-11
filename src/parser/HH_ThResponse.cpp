@@ -16,26 +16,18 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
+#include "HH_ThResponse.h"
 
-#ifndef HH_BASE64_H
-#define HH_BASE64_H
-
-#include <openssl/evp.h>  
-#include "HH_Common.h"
-
-namespace hhou
+int hhou::HHThResponse::MakeRes(const string &strResContentType)
 {
-    /// base64编码  
-	static int Base64Encode(const char *encoded, int encodedLength, char *decoded)  
-	{      
-	    return EVP_EncodeBlock((unsigned char*)decoded, (const unsigned char*)encoded, encodedLength);  
-	}  
-	  
-	/// base解码  
-	static int Base64Decode(const char *encoded, int encodedLength, char *decoded)   
-	{      
-	    return EVP_DecodeBlock((unsigned char*)decoded, (const unsigned char*)encoded, encodedLength);  
-	}
+    ostringstream os;
+    os << "HTTP/1.1 200 OK\r\nContent-Length: " << m_strContent.size()
+       << "\r\nContent-Type: " << strResContentType << "\r\n";
+    for (auto it = m_mHeaders.begin(); it != m_mHeaders.end(); it++)
+    {
+        os << it->first << ": " << it->second << "\r\n";
+    }
+    os << "\r\n" << m_strContent;
+    m_strResult = os.str();
+    return 1;
 }
-
-#endif // HH_BASE64_H

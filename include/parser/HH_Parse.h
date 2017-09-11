@@ -19,9 +19,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define HH_PARSE_H
 
 #include "HH_Common.h"
-#include "HH_Request.h"
-#include "HH_Response.h"
-#include "HH_Websocket.h"
+#include "HH_ThRequest.h"
+#include "HH_ThResponse.h"
+#include "HH_WsRequest.h"
+#include "HH_WsResponse.h"
 
 namespace hhou
 {
@@ -62,10 +63,11 @@ namespace hhou
     private:
         DataDeal m_pDataDeal;
     #ifdef HTTP
-        hhou::HHRequest request;  /// 加入解析的状态标志
-        hhou::HHResponse response; /// 回包的对象
+        hhou::HHThRequest m_req;  /// 请求包对象
+        hhou::HHThResponse m_res; /// 回应包对象
 	#elif WEBSOCKET
-		hhou::HHWebsocket websocket; /// websocket对象
+		hhou::HHWsRequest m_req; /// 请求包对象
+        hhou::HHWsResponse m_res; /// 回应包对象
     #endif
 
     };

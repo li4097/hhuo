@@ -20,22 +20,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 bool hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
 {
+    int nRet = (int)m_req.Parse((char *)buf, nLen);
 #ifdef HTTP
-	int nRet = (int)request.Parse((char *)buf, nLen);
-	if (!nRet && m_pDataDeal(Http, (void *) &request, nLen, (void *) &response))
+	if (!nRet && m_pDataDeal(Http, (void *) &m_req, nLen, (void *) &m_res))
 	{
-		bOnce ? response.AddHeader("Connection", "Close") : response.AddHeader("Connection", "Keep-Alive");
-		response.MakeRes();
+		bOnce ? m_res.AddHeader("Connection", "Close") : m_res.AddHeader("Connection", "Keep-Alive");
+		m_res.MakeRes();
 	}
 #elif WEBSOCKET
-	int nRet = (int)websocket.WSParse((char *)buf, nLen);
 	if (nRet == 2)
 	{
-		websocket.MakeWBRes();
+        m_res.AddHeader("Sec-WebSocket-Accept", m_req.GetServerKey());
+		m_res.MakeRes();
 	}
 	else if (nRet == 3)
 	{
-		m_pDataDeal(Websocket, (void *) &websocket, nLen, nullptr);
+		m_pDataDeal(Websocket, (void *) &m_req, nLen, (void *) &m_res);
 	}
 	else if (!nRet)
 	{
@@ -47,11 +47,7 @@ bool hhou::HHParse::ParseData(bool bOnce, void *buf, int nLen)
 
 bool hhou::HHParse::SendData(string &strRet, int nSize)
 {
-#ifdef HTTP
-    response.GetResult(strRet, nSize);
-#elif WEBSOCKET
-	websocket.GetResult(strRet, nSize);
-#endif
+    m_res.GetResult(strRet, nSize);
 	return true;
 }
 
