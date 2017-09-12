@@ -73,6 +73,11 @@ namespace hhou
          * 建立状态
          */
         bool WsStatus() {return m_bConntected;}
+
+        /**
+         * 设置状态
+         */
+        void SetWsStatus(bool bStatus);
 		
     private:
 		bool m_bConntected;	/// ws的状态

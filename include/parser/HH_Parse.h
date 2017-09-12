@@ -83,7 +83,7 @@ namespace hhou
         virtual ~HHParserMgr() {}
 
         /**获取解析器，没有的话就给个新的*/
-        hhou::HHParse *GetParser(const int fd);
+        shared_ptr<hhou::HHParse> GetParser(const int fd);
         bool RmParser(const int fd);
 
         /**设置回调*/
@@ -99,7 +99,7 @@ namespace hhou
     private:
         DataDeal m_pDataDeal;
         mutex m_mutex; /// 锁
-        map<int, HHParse *> m_mParsers;   /// fd对应的解析器
+        map<int, shared_ptr<hhou::HHParse>> m_mParsers;   /// fd对应的解析器
     };
 }
 

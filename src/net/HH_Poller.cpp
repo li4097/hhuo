@@ -80,6 +80,7 @@ void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
         auto it = m_AllSockets.Front();
         if (it->m_tLast < expireTime)
         {
+            HHParserMgr::Instance().RmParser(it->handler);
             if (it->m_tLast == 0)
             {
                 LOG(INFO) << "socket: " << it->handler << " closed.";

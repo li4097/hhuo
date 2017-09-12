@@ -27,6 +27,12 @@ hhou::HHWsResponse::HHWsResponse()
 
 }
 
+void hhou::HHWsResponse::Reset()
+{
+    m_mHeaders.clear();
+    m_SendMsg.clear();
+}
+
 int hhou::HHWsResponse::MakeRes()
 {
     ostringstream os;

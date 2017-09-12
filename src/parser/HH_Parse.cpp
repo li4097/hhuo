@@ -41,7 +41,11 @@ bool hhou::HHParse::ParseData(void *buf, int nLen)
             m_res.MakeRes();            
         }
         else
+        {
+            m_req.SetWsStatus(false);
+            m_res.Reset();
             return false;
+        }
     }
     else 
     {
@@ -58,6 +62,8 @@ bool hhou::HHParse::ParseData(void *buf, int nLen)
         }
         else
         {
+            m_req.SetWsStatus(false);
+            m_res.Reset();
             return false;
         }
     }
@@ -71,10 +77,10 @@ bool hhou::HHParse::SendData(string &strRet, int nSize)
 	return true;
 }
 
-hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)
+shared_ptr<hhou::HHParse> hhou::HHParserMgr::GetParser(const int fd)
 {
     /// 先去空闲的里面找，没有则new
-    HHParse *pParse;
+    shared_ptr<hhou::HHParse> pParse;
     auto it = m_mParsers.find(fd);
     if (it != m_mParsers.end())
     {
@@ -83,7 +89,7 @@ hhou::HHParse *hhou::HHParserMgr::GetParser(const int fd)
     else
     {
         lock_guard<mutex> lock(m_mutex);
-        pParse = new hhou::HHParse(m_pDataDeal);
+        pParse = make_shared<HHParse>(m_pDataDeal);
         m_mParsers.insert(make_pair(fd, pParse));
     }
     return pParse;
@@ -95,8 +101,6 @@ bool hhou::HHParserMgr::RmParser(const int fd)
     auto it = m_mParsers.find(fd);
     if (it != m_mParsers.end())
     {
-        delete it->second;
-        it->second = NULL;
         m_mParsers.erase(it);
     }
     return true;

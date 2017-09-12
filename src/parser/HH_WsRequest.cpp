@@ -28,6 +28,15 @@ hhou::HHWsRequest::HHWsRequest()
 
 }
 
+void hhou::HHWsRequest::SetWsStatus(bool bStatus) 
+{
+	if (!bStatus)
+	{
+		m_ReadMsg.clear();
+	}
+	m_bConntected = bStatus;
+}
+
 bool hhou::HHWsRequest::WSDecodeFrame(const char *buf, int nSize)
 {
     int nPos = 0;

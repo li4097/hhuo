@@ -64,7 +64,12 @@ namespace hhou
          * 获取处理完的数据
          */
         void GetResult(string &strRet, int nSize);
-		
+
+		/**
+         * 重置
+         */
+        void Reset();
+
     private:
         map<string, string> m_mHeaders; /// 头部的键值对
 		deque<shared_ptr<HHMsg>> m_SendMsg; /// 消息队列

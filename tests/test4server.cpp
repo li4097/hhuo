@@ -54,6 +54,7 @@ public:
 			default:
 				break;
 		}
+		return 0;
     }
 	
 	std::shared_ptr<hhou::HHEventLoop> m_Loop;
