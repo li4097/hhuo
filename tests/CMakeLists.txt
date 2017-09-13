@@ -2,7 +2,7 @@ ADD_EXECUTABLE(test4server test4server.cpp ../app/ImgProcessor.cpp ../app/WsProc
 TARGET_LINK_LIBRARIES(test4server hhnet hhparser hhutils)
 
 ADD_EXECUTABLE(test4json test4json.cpp)
-TARGET_LINK_LIBRARIES(test4json hhnet hhparser hhutils hhdata)
+TARGET_LINK_LIBRARIES(test4json hhparser hhutils hhdata)
 
 ADD_EXECUTABLE(test4mysql test4mysql.cpp)
 TARGET_LINK_LIBRARIES(test4mysql hhdata)
