@@ -27,7 +27,7 @@ network for fun! hhuo is a sample network, and you can use for anything base tcp
 	(5): install hiredis
 	git clone https://github.com/liumao/hiredis.git
 	cd hiredis
-	make & sudo make install
+	make & sudo make install 
 
 	(6): install glog
 	git clone https://github.com/liumao/glog.git
