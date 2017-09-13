@@ -3,7 +3,7 @@ network for fun! hhuo is a sample network, and you can use for anything base tcp
 
 1. things to start this network.
 	(1): install jsoncpp 
-	git clone https://github.com/liumao/jsoncpp.git
+	git clone https://github.com/liumao/jsoncpp.git 
 	cd jsoncpp
 	cmake ./
 	make & sudo make install 
