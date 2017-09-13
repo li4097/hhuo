@@ -95,6 +95,7 @@ void hhou::HHFDEvent::OnRead()
 		{
 			/// 解析出错需要关闭socket
 			OnClosing();
+            eventInfo.status = Close;
 			break;
 		}
 		m_bufIn.Remove(m_bufIn.GetLength());
@@ -153,6 +154,8 @@ void hhou::HHFDEvent::OnWrite()
         if (eventInfo.once)
         {
             OnClosing();
+            eventInfo.status = Close;
+            break;
         }
         else
         {
@@ -177,7 +180,6 @@ void hhou::HHFDEvent::OnClosing()
 {
     m_Poller->DelEvent(this);
 #ifdef HAVE_OPENSSL
-    eventInfo.status = Close;
     SSL_shutdown(m_sSSL);
     SSL_free(m_sSSL);
 #endif
