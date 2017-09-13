@@ -45,17 +45,13 @@ void hhou::HHFDEvent::OnRead()
         char bufIn[TCP_BUFSIZE] = {0};
 #ifdef HAVE_OPENSSL
         rSize = SSL_read(m_sSSL, bufIn, (n < TCP_BUFSIZE) ? n - 1 : TCP_BUFSIZE - 1);
-        int nRet = SSL_get_error(m_sSSL, rSize);
-        if (nRet == SSL_ERROR_NONE)
+        if (rSize <= 0)
         {
-            /// 接受成功
-        }
-        else if (nRet == SSL_ERROR_WANT_READ)
-        {
-            continue;
-        }
-        else
-        {
+            int nRet = SSL_get_error(m_sSSL, rSize);
+            if (nRet == SSL_ERROR_WANT_READ)
+            {
+                continue;
+            }
             eventInfo.status = Close;
         }
 #else
@@ -113,17 +109,13 @@ void hhou::HHFDEvent::OnWrite()
     {
 #ifdef HAVE_OPENSSL
         sLength = SSL_write(m_sSSL, m_bufOut.GetStart() + (m_bufOut.GetLength() - sLength), (size_t)sLength);
-        int nRet = SSL_get_error(m_sSSL, sLength);
-        if(nRet == SSL_ERROR_NONE)
+        if (sLength <= 0)
         {
-            /// 发送成功
-        }
-        else if (nRet == SSL_ERROR_WANT_WRITE)
-        {
-            continue;
-        }
-        else
-        {
+            int nRet = SSL_get_error(m_sSSL, sLength);
+            if (nRet == SSL_ERROR_WANT_WRITE)
+            {
+                continue;
+            }
             eventInfo.status = Close;
         }
 #else
@@ -185,6 +177,7 @@ void hhou::HHFDEvent::OnClosing()
 {
     m_Poller->DelEvent(this);
 #ifdef HAVE_OPENSSL
+    eventInfo.status = Close;
     SSL_shutdown(m_sSSL);
     SSL_free(m_sSSL);
 #endif
