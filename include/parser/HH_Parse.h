@@ -23,6 +23,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_ThResponse.h"
 #include "HH_WsRequest.h"
 #include "HH_WsResponse.h"
+#include "HH_TpRequest.h"
+#include "HH_TpResponse.h"
 
 namespace hhou
 {
@@ -68,6 +70,9 @@ namespace hhou
 	#elif WEBSOCKET
 		hhou::HHWsRequest m_req; /// 请求包对象
         hhou::HHWsResponse m_res; /// 回应包对象
+    #elif TCPCONN
+        hhou::HHTpRequest m_req; /// 请求包对象
+        hhou::HHTpResponse m_res; /// 回应包对象
     #endif
 
     };

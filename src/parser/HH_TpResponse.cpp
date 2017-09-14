@@ -15,3 +15,49 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
+
+#include "HH_TpResponse.h"
+#include "HH_Config.h"
+#include "utils/HH_Split.h"
+#include "utils/HH_Base64.h"
+#include "utils/HH_Sha1.h"
+
+hhou::HHTpResponse::HHTpResponse()
+{
+
+}
+
+void hhou::HHTpResponse::Reset()
+{
+    m_SendMsg.clear();
+}
+
+int hhou::HHTpResponse::MakeRes(const HHMsg &msg)
+{
+    ostringstream os;
+    m_SendMsg.push_back(make_shared<HHMsg>(0, 0));
+    int dataSize = msg.m_strMsg.length();
+    uint8_t payloadFieldExtraBytes = (dataSize <= 0xfd) ? 0 : 2; 
+    os << static_cast<uint8_t>(0x80 | msg.m_nOp);
+    os << static_cast<uint8_t>(msg.m_nID);
+    if (dataSize <= 0xfd) 
+    {
+        os << static_cast<uint8_t>(dataSize);
+    }
+    else
+    {
+        os << 0xfe;
+        short len = htons(dataSize); 
+        os << len;
+    }
+    os << msg.m_strMsg;
+    m_SendMsg.front()->m_strMsg = os.str();
+	return 1; 
+}
+
+void hhou::HHTpResponse::GetResult(string &strRet, int nSize)
+{
+	if (m_SendMsg.size() <= 0) return;
+	strRet.assign(m_SendMsg.front()->m_strMsg, 0, nSize);
+	m_SendMsg.pop_front();
+}

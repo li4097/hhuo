@@ -49,7 +49,7 @@ bool hhou::HHParse::ParseData(void *buf, int nLen)
     }
     else 
     {
-        if (m_req.WSDecodeFrame((char *)buf, nLen))
+        if (m_req.DecodeFrame((char *)buf, nLen))
         {
             while (!m_req.m_ReadMsg.empty())
             {
@@ -66,6 +66,23 @@ bool hhou::HHParse::ParseData(void *buf, int nLen)
             m_res.Reset();
             return false;
         }
+    }
+#elif TCPCONN
+    int nRet = (int)m_req.Parse((char *)buf, nLen);
+    if (!nRet)
+	{
+		while (!m_req.m_ReadMsg.empty())
+        {
+            auto iter = m_req.m_ReadMsg.front();
+            HHMsg msg(0, 0);
+            m_pDataDeal(Tcp, (void *) iter.get(), (void *) &msg);
+            m_res.MakeRes(msg);
+            m_req.m_ReadMsg.pop_front();
+        }
+	}
+    else
+    {
+        return false;
     }
 #endif
 	return true;

@@ -16,3 +16,52 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
+#ifndef HHUO_HH_TPRESPONSE_H
+#define HHUO_HH_TPRESPONSE_H
+
+#include <map>
+#include <deque>
+#include <vector>
+#include <sstream>
+#include "HH_Common.h"
+#include "HH_Msg.h"
+#include "HH_Log.h"
+
+namespace hhou
+{
+    /**
+     * tcp回应
+     */
+    class HHTpResponse
+    {
+        typedef map<string, string>::iterator ReqIter;
+        typedef map<string, string>::const_iterator ReqCIter;
+    public:
+        /**
+         * 构造函数
+         */
+        HHTpResponse();
+        virtual ~HHTpResponse() {}
+		
+		/**
+         * 生成tcp的函数(失败0，正确返回1)
+         */
+        int MakeRes(const HHMsg &msg);
+		
+		/**
+         * 获取处理完的数据
+         */
+        void GetResult(string &strRet, int nSize);
+
+		/**
+         * 重置
+         */
+        void Reset();
+
+    private:
+		deque<shared_ptr<HHMsg>> m_SendMsg; /// 消息队列
+		
+    };
+}
+
+#endif //HHUO_HH_TPRESPONSE_H

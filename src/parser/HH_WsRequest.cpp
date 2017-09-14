@@ -37,7 +37,7 @@ void hhou::HHWsRequest::SetWsStatus(bool bStatus)
 	m_bConntected = bStatus;
 }
 
-bool hhou::HHWsRequest::WSDecodeFrame(const char *buf, int nSize)
+bool hhou::HHWsRequest::DecodeFrame(const char *buf, int nSize)
 {
     int nPos = 0;
     if ((nSize - nPos) < 2) return false;
