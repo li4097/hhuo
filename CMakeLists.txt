@@ -32,7 +32,7 @@ OPTION(USESSL "Enable use openssl" OFF)
 IF(USESSL)
     MESSAGE(STATUS "OpenSSL ON")
     ADD_DEFINITIONS(-DHAVE_OPENSSL)
-ENDIF()
+ENDIF() 
 
 # http option
 OPTION(HTTP "Enable http" OFF)

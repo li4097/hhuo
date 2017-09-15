@@ -3,7 +3,7 @@ network for fun! hhuo is a sample network, and you can use for anything base tcp
 
 1. things to start this network.
 	(1): install jsoncpp 
-	git clone https://github.com/liumao/jsoncpp.git
+	git clone https://github.com/liumao/jsoncpp.git 
 	cd jsoncpp
 	cmake ./
 	make & sudo make install 
@@ -38,7 +38,7 @@ network for fun! hhuo is a sample network, and you can use for anything base tcp
 	(7): install mysql
 	for ubuntu or debian
 	sudo apt-get install mysql-server
-	apt-get isntall mysql-client
+	sudo apt-get install mysql-client
 	sudo apt-get install libmysqlclient-dev
 
 	for centos
