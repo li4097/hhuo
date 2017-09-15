@@ -37,7 +37,6 @@ int hhou::HHTpResponse::MakeRes(const HHMsg &msg)
     ostringstream os;
     m_SendMsg.push_back(make_shared<HHMsg>(0, 0));
     int dataSize = msg.m_strMsg.length();
-    uint8_t payloadFieldExtraBytes = (dataSize <= 0xfd) ? 0 : 2; 
     os << static_cast<uint8_t>(0x80 | msg.m_nOp);
     os << static_cast<uint8_t>(msg.m_nID);
     if (dataSize <= 0xfd) 

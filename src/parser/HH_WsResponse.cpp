@@ -59,8 +59,7 @@ bool hhou::HHWsResponse::WSEncodeFrame(const HHMsg &msg)
 {
     ostringstream os;
     m_SendMsg.push_back(make_shared<HHMsg>(0, 0));
-    int dataSize = msg.m_strMsg.length();
-    uint8_t payloadFieldExtraBytes = (dataSize <= 0x7d) ? 0 : 2; 
+    int dataSize = msg.m_strMsg.length(); 
     os << static_cast<uint8_t>(0x80 | msg.m_nOp);
     if (dataSize <= 0x7d) 
     {
