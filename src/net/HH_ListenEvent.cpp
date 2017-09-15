@@ -160,14 +160,23 @@ void hhou::HHListenEvent::OnConneting()
         SSL_set_fd(pNew->m_sSSL, pNew->handler);
 
         /// 建立SSL连接
+        bool bConnected = true;
+        int nError = -1;
         while(SSL_accept(pNew->m_sSSL) != 1)
         {
-            if (SSL_get_error(pNew->m_sSSL, 0) == SSL_ERROR_WANT_READ)
+            if (SSL_get_error(pNew->m_sSSL, nError) != SSL_ERROR_WANT_READ)
             {
-                continue;
+                bConnected = false;
+                break;
             }
-            LOG(ERROR) << "Create ssl connection with " << pNew->handler;
-            break;
+        }
+        if (!bConnected)
+        {
+            LOG(ERROR) << "Create ssl connection with " << pNew->handler << " ,error: " << nError;
+            SSL_CTX_free(m_sCtx);
+            m_sCtx = nullptr;
+            delete pNew;
+            pNew = nullptr;
         }
 #endif
         m_Poller->AddEvent(pNew);
