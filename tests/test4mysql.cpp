@@ -3,28 +3,28 @@
 int main(int argc, char *argv[])
 {
     string strHost = "127.0.0.1";
-    string strUse = "test";
-    string strPass = "1234";
-    string strDBName = "test";
-
+    string strUse = "hhou1";
+    string strPass = "hhou-1";
+    string strDBName = "im";
+    
     hhou::HHMysql mysql;
     /////////connect////////
     if (mysql.ConnectDB(strHost, strUse, strPass, strDBName, 3306))
     {
         ///////////excute sql////////////////
-        if (mysql.SelectAll("tb_test"))
+        if (mysql.SelectAll("t_user"))
         {
             cout << "SelectAll ok" << endl;
-            cout << "Rows: " << mysql.GetRowNum() << endl;
 
             /// 获取某一个值
-            auto row = mysql.GetRecord();
-            cout << "one: " << row[0] << endl;
-            cout << "two: " << row[1] << endl;
-
-            row = mysql.GetRecord();
-            cout << "one: " << row[0] << endl;
-            cout << "two: " << row[1] << endl;
+            MYSQL_ROW row;
+            while ((row = mysql.GetRecord()))
+            {
+                for (auto i = 0 ; i < mysql.GetFieldNum(); i++)
+                {
+                    cout << "key: " << mysql.GetFieldName(i) << ", value:" << row[i] << endl;
+                }
+            }            
         }
     }
     return 0;

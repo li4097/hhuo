@@ -1,7 +1,11 @@
 # hhuo
 network for fun! hhuo is a sample network, and you can use for anything base tcp or http. Just have fun!
 
-1. things to start this network.
+1. plans.
+	(1): add protobuf.
+	(2): add im's server code.
+
+2. things to start this network.
 	(1): install jsoncpp 
 	git clone https://github.com/liumao/jsoncpp.git 
 	cd jsoncpp
@@ -44,7 +48,7 @@ network for fun! hhuo is a sample network, and you can use for anything base tcp
 	for centos
 	sudo yum install -y mysql-server mysql mysql-deve
 
-2. now, let us have fun.
+3. now, let us have fun.
 	sudo mkdir build
 	cd build
 	cmake ../

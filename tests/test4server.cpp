@@ -1,7 +1,7 @@
 #include "../include/net/HH_ListenEvent.h"
 #include "../include/net/HH_EventLoop.h"
 #include "../include/net/HH_ServerBase.h"
-#include "../app/ImgProcessor.h"
+#include "../app/HtProcessor.h"
 #include "../app/WsProcessor.h"
 #include "../include/HH_Log.h"
 
@@ -36,7 +36,7 @@ public:
 		{
 			case 0:
 			{
-				ImgProcessor processor;
+				HtProcessor processor;
 				return (int)processor.Process(first, second);				
 			}
 				break;

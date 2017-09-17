@@ -128,6 +128,11 @@ bool hhou::HHMysql::IsEnd()
 
 my_ulonglong hhou::HHMysql::GetRowNum()
 {
+    return (mysql_num_rows(m_pQuery));
+}
+
+unsigned int hhou::HHMysql::GetFieldNum()
+{
     return (mysql_num_fields(m_pQuery));
 }
 
