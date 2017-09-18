@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef HH_DATADEAL_H
 #define HH_DATADEAL_H
 
-#include "net/HH_Task.h"
+#include "../net/HH_Task.h"
 #include "HH_WorkerPool.h"
 
 

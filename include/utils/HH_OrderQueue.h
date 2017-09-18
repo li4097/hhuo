@@ -20,8 +20,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define HH_ORDERQUEUE_H
 
 #include <deque>   
-#include "HH_Common.h"
-#include "HH_Log.h"
+#include "../HH_Common.h"
+#include "../HH_Log.h"
 
 namespace hhou
 {

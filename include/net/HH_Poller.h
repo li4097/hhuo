@@ -21,9 +21,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <map>
 #include <queue>
-#include "utils/HH_OrderQueue.h"
+#include "../utils/HH_OrderQueue.h"
 #include "HH_EventBase.h"
-#include "HH_Config.h"
+#include "../HH_Config.h"
 
 namespace hhou
 {

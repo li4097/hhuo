@@ -21,8 +21,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <map>
 #include <vector>
-#include "HH_Common.h"
-#include "HH_Log.h"
+#include "../HH_Common.h"
+#include "../HH_Log.h"
 
 namespace hhou
 {

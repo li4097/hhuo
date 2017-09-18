@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define HHUO_HHLISTENEVENT_H
 
 #include "HH_EventBase.h"
-#include "HH_Config.h"
+#include "../HH_Config.h"
 
 namespace hhou
 {

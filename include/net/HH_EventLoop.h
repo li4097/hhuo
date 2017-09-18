@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <queue>
 #include "HH_Poller.h"
 #include "HH_ListenEvent.h"
-#include "utils/HH_DataDeal.h"
+#include "../utils/HH_DataDeal.h"
 
 namespace hhou
 {

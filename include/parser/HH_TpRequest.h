@@ -23,8 +23,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <deque>
 #include <vector>
 #include <sstream>
-#include "HH_Common.h"
-#include "HH_Log.h"
+#include "../HH_Common.h"
+#include "../HH_Log.h"
 #include "HH_Msg.h"
 
 namespace hhou

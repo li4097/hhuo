@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <mysql/mysql.h>
 #include <sstream>
-#include "HH_Common.h"
+#include "../HH_Common.h"
 
 namespace hhou
 {
