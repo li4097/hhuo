@@ -7,8 +7,8 @@
 
 #include <set>
 #include <string>
-#include "parser/HH_ThRequest.h"
-#include "parser/HH_ThResponse.h"
+#include "HH_ThRequest.h"
+#include "HH_ThResponse.h"
 using namespace std;
 
 class HtProcessor

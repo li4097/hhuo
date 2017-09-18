@@ -104,8 +104,9 @@ namespace hhou
         */
         bool SelectAll(const string &strTableName);
 
-    private:
-        /**执行sql语句*/
+        /**
+         * 执行sql语句
+         */
         bool ExcuteSql(const string &str);
 
     private:

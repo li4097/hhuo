@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
         string strRet;
         redis.Excute("SET shit fuck", strRet);
         if (strRet == "OK")
-            LOG(INFO) << "Ret: " << strRet;
+            LOG(INFO) << "Set: " << strRet;
         redis.Excute("GET shit", strRet);
         LOG(INFO) << "Ret: " << strRet;
     }

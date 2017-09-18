@@ -5,8 +5,9 @@
 #ifndef HHUO_IM_H
 #define HHUO_IM_H
 
-#include <string>
-using namespace std;
+#include "HH_Config.h"
+#include "HH_Common.h"
+#include "HH_Mysql.h"
 
 /**
  * Im相关的代码
@@ -15,6 +16,12 @@ using namespace std;
  class Im 
  {
  public:
+    Im();
+    virtual ~Im() {}
+
+    /**注册*/
+    bool Register(const string &strUser, const string &strNickName, const string &strPass, const string &strDesc);
+
     /**登录的操作（返回用户的一些基本信息）*/
     bool Login(const string &strUser, const string &strPass, string &strResult);
 
@@ -26,6 +33,7 @@ using namespace std;
 
  private:
     bool m_bLogin; /// 是否登录成功
+    hhou::HHMysql m_mysql; /// mysql对象
 
  };
 

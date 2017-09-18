@@ -1,4 +1,4 @@
-ADD_EXECUTABLE(test4server test4server.cpp ../app/HtProcessor.cpp ../app/WsProcessor ../app/Im.cpp)
+ADD_EXECUTABLE(test4server test4server.cpp)
 TARGET_LINK_LIBRARIES(test4server hhnet hhparser hhutils)
 
 ADD_EXECUTABLE(test4json test4json.cpp)

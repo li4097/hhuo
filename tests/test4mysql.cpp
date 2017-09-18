@@ -4,7 +4,7 @@ int main(int argc, char *argv[])
 {
     string strHost = "127.0.0.1";
     string strUse = "hhou1";
-    string strPass = "hhou-1";
+    string strPass = "hhou1-1";
     string strDBName = "im";
     
     hhou::HHMysql mysql;
