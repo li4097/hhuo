@@ -16,8 +16,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include "HH_Mysql.h"
-#include "HH_Log.h"
+#include "../../include/data/HH_Mysql.h"
+#include "../../include/HH_Log.h"
 
 hhou::HHMysql::HHMysql()
 {

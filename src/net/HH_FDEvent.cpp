@@ -16,9 +16,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include "HH_FDEvent.h"
-#include "HH_Poller.h"
-#include "HH_Log.h"
+#include "../../include/net/HH_FDEvent.h"
+#include "../../include/net/HH_Poller.h"
+#include "../../include/HH_Log.h"
 
 hhou::HHFDEvent::HHFDEvent(shared_ptr<HHPoller> poller, size_t bufSize)
         : m_nTotalRecv(0),

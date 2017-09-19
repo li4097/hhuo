@@ -16,8 +16,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include <string.h>
-#include "HH_Log.h"
-#include "HH_CircularBuffer.h"
+#include "../../include/HH_Log.h"
+#include "../../include/utils/HH_CircularBuffer.h"
 
 hhou::HHCircularBuffer::HHCircularBuffer(size_t size)
         : m_max(size), m_q(0), m_b(0), m_t(0), m_count(0)

@@ -16,8 +16,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include "HH_Redis.h"
-#include "HH_Log.h"
+#include "../../include/data/HH_Redis.h"
+#include "../../include/HH_Log.h"
 
 hhou::HHRedis::HHRedis()
         : m_pRedisConn(nullptr),

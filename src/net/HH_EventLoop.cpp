@@ -17,10 +17,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include <set>
-#include "HH_ListenEvent.h"
-#include "HH_EventLoop.h"
-#include "HH_Config.h"
-#include "utils/HH_TaskPool.h"
+#include "../../include/net/HH_ListenEvent.h"
+#include "../../include/net/HH_EventLoop.h"
+#include "../../include/HH_Config.h"
+#include "../../include/utils/HH_TaskPool.h"
 
 hhou::HHEventLoop::HHEventLoop()
         : m_bQuit(true),

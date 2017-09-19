@@ -17,12 +17,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include <memory>
-#include "HH_Common.h"
-#include "HH_ListenEvent.h"
-#include "HH_Poller.h"
-#include "HH_FDEvent.h"
-#include "parser/HH_Parse.h"
-#include "HH_Log.h"
+#include "../../include/HH_Common.h"
+#include "../../include/net/HH_ListenEvent.h"
+#include "../../include/net/HH_Poller.h"
+#include "../../include/net/HH_FDEvent.h"
+#include "../../include/parser/HH_Parse.h"
+#include "../../include/HH_Log.h"
 
 hhou::HHListenEvent::HHListenEvent(shared_ptr<HHPoller> poller)
         : m_Poller(poller)

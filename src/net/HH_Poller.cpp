@@ -16,11 +16,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include "HH_Parse.h"
-#include "HH_FDEvent.h"
-#include "HH_Poller.h"
-#include "HH_Task.h"
-#include "HH_Log.h"
+#include "../../include/parser/HH_Parse.h"
+#include "../../include/net/HH_FDEvent.h"
+#include "../../include/net/HH_Poller.h"
+#include "../../include/utils/HH_Task.h"
+#include "../../include/HH_Log.h"
 
 hhou::HHPoller::HHPoller()
 		: m_connectionNum(0),
