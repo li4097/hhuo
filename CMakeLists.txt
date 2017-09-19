@@ -76,3 +76,7 @@ INSTALL(FILES ${PROJECT_BINARY_DIR}/lib/libhhnet.a
 			  ${PROJECT_BINARY_DIR}/lib/libhhdata.a
 			  ${PROJECT_BINARY_DIR}/lib/libhhparser.a 
 			  ${PROJECT_BINARY_DIR}/lib/libhhutils.a DESTINATION /usr/local/lib)
+INSTALL(FILES ${PROJECT_BINARY_DIR}/lib/libhhnet.a 
+			  ${PROJECT_BINARY_DIR}/lib/libhhdata.a
+			  ${PROJECT_BINARY_DIR}/lib/libhhparser.a 
+			  ${PROJECT_BINARY_DIR}/lib/libhhutils.a DESTINATION /usr/lib)
