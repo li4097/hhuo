@@ -37,12 +37,16 @@ namespace hhou
 		/**
          * 初始化
          */
+#ifdef HAVE_OPENSSL
+        bool Init(const string &strHost, const int port, const string &strCert, const string &strKey);
+#else
         bool Init(const string &strHost, const int port);
+#endif
 		
 		/**
          * 开启服务
          */
-        void Start();
+        void Start(const int &nLoopTimeout = 60, const int &nFdTimeOut = 60);
 		
 		/**
          * 关闭服务
@@ -53,7 +57,7 @@ namespace hhou
 		/**
          * 循环事件处理
          */
-        bool Loop(const int &timeout);
+        bool Loop(const int &nLoopTimeout, const int &nFdTimeOut);
 
     private:
         bool m_bQuit; /// loop的中止标志

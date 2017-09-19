@@ -22,13 +22,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "HH_EventBase.h"
 #include "../HH_Common.h"
 #include "../utils/HH_CircularBuffer.h"
-#include "../HH_Config.h"
 
 namespace hhou
 {
-    /**每个fd给的缓存大小*/
-    #define TCP_BUFSIZE 8096
-
     /**net的loop对象*/
     class HHPoller;
 
@@ -62,7 +58,7 @@ namespace hhou
         /**
          * 默认只能引用构造
          */
-        HHFDEvent(shared_ptr<HHPoller> poller, size_t bufSize = HHConfig::Instance().ReadInt("connection", "circular", 8096));
+        HHFDEvent(shared_ptr<HHPoller> poller, size_t bufSize = TCP_BUFSIZE);
         virtual ~HHFDEvent();
 
         /**

@@ -20,13 +20,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define HHUO_HHLISTENEVENT_H
 
 #include "HH_EventBase.h"
-#include "../HH_Config.h"
 
 namespace hhou
 {
-    /**poller最大监听的fd数量*/
-    #define Poller_MAX_FD 8096
-
     class HHPoller;
     class HHFDEvent;
     /**
@@ -40,10 +36,14 @@ namespace hhou
         virtual ~HHListenEvent();
 
         /**初始化*/
+#ifdef HAVE_OPENSSL
+        bool Init(const string &strCert, const string &strKey);
+#else
         bool Init();
+#endif
 
         /**监听接口(包括bind的动作)*/
-        bool Listen(const string &addr, const port_t &port, int listenFds = Poller_MAX_FD);
+        bool Listen(const string &addr, const port_t &port, int listenFds = 8096);
 
         /**
          * 连接的处理

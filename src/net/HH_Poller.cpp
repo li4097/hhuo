@@ -26,7 +26,7 @@ hhou::HHPoller::HHPoller()
 		: m_connectionNum(0),
           m_nStart(time(nullptr))
 {
-    m_epollFd = epoll_create(8096); // 新建epoll对象
+    m_epollFd = epoll_create(Poller_MAX_CREATE); // 新建epoll对象
     if (m_epollFd <= 0)
     {
         LOG(ERROR) << "Poller epoll_create failure!";
@@ -71,10 +71,10 @@ void hhou::HHPoller::DelEvent(HHEventBase *event)
     UpdateConnNums(-1);
 }
 
-void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents)
+void hhou::HHPoller::ProcessEvents(int timeout, queue<HHEventBase *> &qEvents, int fdtimeout)
 {   
     /// check timeout
-    time_t expireTime = time(nullptr) - HHConfig::Instance().ReadInt("connection", "timeout", 60);
+    time_t expireTime = time(nullptr) - fdtimeout;
     while (!m_AllSockets.Empty())
     {
         auto it = m_AllSockets.Front();

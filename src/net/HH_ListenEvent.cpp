@@ -40,50 +40,52 @@ hhou::HHListenEvent::~HHListenEvent()
 #endif
 }
 
-bool hhou::HHListenEvent::Init()
-{
-    bool bRet = true;
 #ifdef HAVE_OPENSSL
-    string strCert = hhou::HHConfig::Instance().ReadStr("ssl", "cert", "../certificate/cacert.pem");
-    string strKey = hhou::HHConfig::Instance().ReadStr("ssl", "key", "../certificate/privkey.pem");
-    if (strCert.empty() || strKey.empty())
+    bool hhou::HHListenEvent::Init(const string &strCert, const string &strKey)
     {
-        LOG(ERROR) << "SSL certificate is empty";
-        return false;
+        if (strCert.empty() || strKey.empty())
+        {
+            LOG(ERROR) << "SSL certificate is empty";
+            return false;
+        }
+        LOG(INFO) << "SSL cert: " << strCert << " , key: " << strKey;
+        SSL_load_error_strings(); /// 加载SSL错误信息
+        if (!SSL_library_init()) /// 初始化ssl
+        {
+            LOG(ERROR) << "SSL_library_init failed";
+            return false;
+        }
+        m_sCtx = SSL_CTX_new(SSLv23_method());
+        if (!m_sCtx)
+        {
+            LOG(ERROR) << "SSL_CTX_new failed";
+            return false;
+        }
+        m_errBio = BIO_new_fd(2, BIO_NOCLOSE);
+        if (SSL_CTX_use_certificate_file(m_sCtx, strCert.c_str(), SSL_FILETYPE_PEM) < 0)
+        {
+            LOG(ERROR) << "SSL_CTX_use_certificate_file failed";
+            return false;
+        }
+        if (SSL_CTX_use_PrivateKey_file(m_sCtx, strKey.c_str(), SSL_FILETYPE_PEM) < 0)
+        {
+            LOG(ERROR) << "SSL_CTX_use_PrivateKey_file failed";
+            return false;
+        }
+        if (SSL_CTX_check_private_key(m_sCtx) < 0)
+        {
+            LOG(ERROR) << "SSL_CTX_check_private_key failed";
+            return false;
+        }
+        LOG(INFO) << "Init ssl ListenEvent";
+        return true;
     }
-    LOG(INFO) << "SSL cert: " << strCert << " , key: " << strKey;
-    SSL_load_error_strings(); /// 加载SSL错误信息
-    if (!SSL_library_init()) /// 初始化ssl
+#else
+    bool hhou::HHListenEvent::Init()
     {
-        LOG(ERROR) << "SSL_library_init failed";
-        bRet = false;
+        return true;
     }
-    m_sCtx = SSL_CTX_new(SSLv23_method());
-    if (!m_sCtx)
-    {
-        LOG(ERROR) << "SSL_CTX_new failed";
-        bRet = false;
-    }
-    m_errBio = BIO_new_fd(2, BIO_NOCLOSE);
-    if (SSL_CTX_use_certificate_file(m_sCtx, strCert.c_str(), SSL_FILETYPE_PEM) < 0)
-    {
-        LOG(ERROR) << "SSL_CTX_use_certificate_file failed";
-        bRet = false;
-    }
-    if (SSL_CTX_use_PrivateKey_file(m_sCtx, strKey.c_str(), SSL_FILETYPE_PEM) < 0)
-    {
-        LOG(ERROR) << "SSL_CTX_use_PrivateKey_file failed";
-        bRet = false;
-    }
-    if (SSL_CTX_check_private_key(m_sCtx) < 0)
-    {
-        LOG(ERROR) << "SSL_CTX_check_private_key failed";
-        bRet = false;
-    }
-    LOG(INFO) << "Init ssl ListenEvent";
 #endif
-    return bRet;
-}
 
 bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, int listenFds)
 {

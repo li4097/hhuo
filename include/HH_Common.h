@@ -190,4 +190,12 @@ struct HHEventInfo
     bool once; /// 是否长连接
 };
 
+/**每个fd给的缓存大小*/
+#define TCP_BUFSIZE 8096
+
+/**监听的最大数*/
+#define Poller_MAX_EVENT 8096
+
+/**新建的对象最大数*/
+#define Poller_MAX_CREATE 8096
 #endif //HH_COMMON_H

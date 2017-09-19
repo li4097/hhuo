@@ -10,14 +10,14 @@ int main(int argc, char *argv[])
     map<string, string> m1;
     m1["1"] = "1";
     m1["2"] = "2";
-    vector<map<string, string> > s;
+    vector<map<string, string>> s;
     s.push_back(m);
     s.push_back(m1);
 
     ////////////////////////////////
     string strRet;
     hhou::HHJson json;
-    json.Write(s, strRet);
+    json.WriteArray(s, strRet);
     cout << "Write ret: " << strRet << endl;
 
     /////////////////////////////////
@@ -26,7 +26,14 @@ int main(int argc, char *argv[])
         "msg":"成功",
         "data":[{},{}]
     }*/
-    vector<map<string, string> > shit;
-    json.Read(shit, strRet);
+    string strIn = "[{ \"property\" : \"value\" }]";
+    vector<map<string, string>> shit;
+    json.ReadArray(shit, strIn);
+    cout << "Size: " << shit.size() << endl;
+    if (shit.size())
+    {
+        map<string, string> ech = shit[0];
+        cout << "Read ret: " << ech["property"] << endl;
+    }    
     return 0;
 }

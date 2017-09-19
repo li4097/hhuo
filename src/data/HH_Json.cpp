@@ -21,28 +21,40 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 bool hhou::HHJson::ExistK(const string &strContent, const string &strK)
 {
-    Json::Reader reader;
-    Json::Value val;
-    if (reader.parse(strContent, val))
+    if (strContent.empty() || strK.empty())
     {
-        if (val[strK].isNull())
-        {
-            /// 不存在字段
-            return false;
-        }
-    }
-    else  /// 解析出错，则认为不存在次字段
-    {
+        LOG(ERROR) << "ExistK strContent or strK empty.";
         return false;
     }
-    return true;
+    bool bRet = false;
+    Json::CharReaderBuilder builder;
+    Json::CharReader* reader(builder.newCharReader());
+    JSONCPP_STRING errs;
+    Json::Value root;
+    bool ok = reader->parse(strContent.c_str(), strContent.c_str() + strContent.length(), &root, &errs);
+    if (ok && !root.get(strK, "UTF-8" ).asString().empty())
+    {
+        bRet = true;
+    }
+    delete reader;
+    reader = nullptr;
+    return bRet;
 }
 
-bool hhou::HHJson::Read(vector<map<string, string> > &vKV, const string &strContent)
+bool hhou::HHJson::ReadArray(vector<map<string, string>> &vKV, const string &strContent)
 {
-    Json::Reader reader;
+    if (strContent.empty())
+    {
+        LOG(ERROR) << "ExistK strContent empty.";
+        return false;
+    }
+    bool bRet = false;
+    Json::CharReaderBuilder builder;
+    Json::CharReader* reader(builder.newCharReader());
+    JSONCPP_STRING errs;
     Json::Value val;
-    if (reader.parse(strContent, val))
+    bool ok = reader->parse(strContent.c_str(), strContent.c_str() + strContent.length(), &val, &errs);
+    if (ok)
     {
         for (int n = 0; n < (int)val.size(); n++)
         {
@@ -54,19 +66,22 @@ bool hhou::HHJson::Read(vector<map<string, string> > &vKV, const string &strCont
             }
             vKV.push_back(mVal);
         }
+        bRet = true;
     }
     else
     {
-        return false;
+        LOG(ERROR) << "Parse error." << errs;
     }
-    return true;
+    delete reader;
+    reader = nullptr;
+    return bRet;
 }
 
-bool hhou::HHJson::Write(vector<map<string, string> > &vContent, string &strRet)
+bool hhou::HHJson::WriteArray(vector<map<string, string>> &vContent, string &strRet)
 {
     Json::Value root, array;
-    Json::FastWriter writer;
-    for (vector<map<string, string> >::iterator it = vContent.begin(); it != vContent.end(); it++)
+    Json::StreamWriterBuilder builder;
+    for (vector<map<string, string>>::iterator it = vContent.begin(); it != vContent.end(); it++)
     {
         Json::Value val;
         map<string, string> each = (*it);
@@ -76,6 +91,6 @@ bool hhou::HHJson::Write(vector<map<string, string> > &vContent, string &strRet)
         }
         array.append(val);
     }
-    strRet = writer.write(array);
+    strRet = Json::writeString(builder, array);
     return true;
 }

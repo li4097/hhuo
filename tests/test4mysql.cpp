@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
             MYSQL_ROW row;
             while ((row = mysql.GetRecord()))
             {
-                for (auto i = 0 ; i < mysql.GetFieldNum(); i++)
+                for (auto i = 0 ; i < (int)mysql.GetFieldNum(); i++)
                 {
                     cout << "key: " << mysql.GetFieldName(i) << ", value:" << row[i] << endl;
                 }

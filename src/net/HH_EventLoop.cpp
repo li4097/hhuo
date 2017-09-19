@@ -29,10 +29,10 @@ hhou::HHEventLoop::HHEventLoop()
     
 }
 
-void hhou::HHEventLoop::Start()
+void hhou::HHEventLoop::Start(const int &nLoopTimeout, const int &nFdTimeOut)
 {
 	m_bQuit = false;
-	m_Thread = make_shared<thread>(bind(&HHEventLoop::Loop, this, HHConfig::Instance().ReadInt("loop", "timeout", 60)));
+	m_Thread = make_shared<thread>(bind(&HHEventLoop::Loop, this, nLoopTimeout, nFdTimeOut));
 }
 
 void hhou::HHEventLoop::Stop()
@@ -40,33 +40,52 @@ void hhou::HHEventLoop::Stop()
 	m_bQuit = true;
 }
 
-bool hhou::HHEventLoop::Init(const string &strHost, const int port)
-{
-	m_Listener = make_shared<HHListenEvent>(m_Poller);
-	if (!m_Listener->Init())
+#ifdef HAVE_OPENSSL
+	bool hhou::HHEventLoop::Init(const string &strHost, const int port, const string &strCert, const string &strKey)
 	{
-		LOG(ERROR) << "Listener Init error.";
-		return false;
-	}
-	if (!m_Listener->Listen(strHost, port))
+		m_Listener = make_shared<HHListenEvent>(m_Poller);
+		if (!m_Listener->Init(strCert, strKey))
+		{
+			LOG(ERROR) << "Listener Init error.";
+			return false;
+		}
+		if (!m_Listener->Listen(strHost, port))
+		{
+			LOG(ERROR) << "Server Listen Addr: " << strHost <<" , port: " << port << " error.";
+			return false;
+		}
+		LOG(INFO) << "Server Listen Addr: " << strHost <<" , port: " << port;
+		return true;
+	}	
+#else
+	bool hhou::HHEventLoop::Init(const string &strHost, const int port)
 	{
-		LOG(ERROR) << "Server Listen Addr: " << strHost <<" , port: " << port << " error.";
-		return false;
+		m_Listener = make_shared<HHListenEvent>(m_Poller);
+		if (!m_Listener->Init())
+		{
+			LOG(ERROR) << "Listener Init error.";
+			return false;
+		}
+		if (!m_Listener->Listen(strHost, port))
+		{
+			LOG(ERROR) << "Server Listen Addr: " << strHost <<" , port: " << port << " error.";
+			return false;
+		}
+		LOG(INFO) << "Server Listen Addr: " << strHost <<" , port: " << port;
+		return true;
 	}
-	LOG(INFO) << "Server Listen Addr: " << strHost <<" , port: " << port;
-	return true;
-}
+#endif
 
 hhou::HHEventLoop::~HHEventLoop()
 {
     m_bQuit = true;
 }
 
-bool hhou::HHEventLoop::Loop(const int &timeout)
+bool hhou::HHEventLoop::Loop(const int &nLoopTimeout, const int &nFdTimeOut)
 {
     while (!m_bQuit)
     {
-        m_Poller->ProcessEvents(timeout, m_qEvents);
+        m_Poller->ProcessEvents(nLoopTimeout, m_qEvents, nFdTimeOut);
         while (!m_qEvents.empty())
         {
             /// 准备任务，将作分发处理

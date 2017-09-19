@@ -23,13 +23,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <queue>
 #include "../utils/HH_OrderQueue.h"
 #include "HH_EventBase.h"
-#include "../HH_Config.h"
 
 namespace hhou
 {
-    /**poller最大事件数量*/
-    #define Poller_MAX_EVENT 1024
-
     /**
      * epoll的操作类
      */
@@ -58,7 +54,7 @@ namespace hhou
         /**
          * 把epoll_wait事件添加到map
          */
-        void ProcessEvents(int timeout, queue<HHEventBase *> &qEvents);
+        void ProcessEvents(int timeout, queue<HHEventBase *> &qEvents, int fdtimeout);
 
         /**
          * 更新连接数
@@ -72,7 +68,7 @@ namespace hhou
 
     private:
         SOCKET m_epollFd; ///poller的fd
-        struct epoll_event m_events[Poller_MAX_EVENT]; ///关注事件的最大数量
+        struct epoll_event m_events[1024]; ///关注事件的最大数量
         int m_connectionNum; /// 连接的总数
         time_t m_nStart; /// 启动的开始时间
         HHOrderQueue<HHEventBase *> m_AllSockets; /// 所有的socket对象
