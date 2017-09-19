@@ -40,41 +40,22 @@ void hhou::HHEventLoop::Stop()
 	m_bQuit = true;
 }
 
-#ifdef HAVE_OPENSSL
-	bool hhou::HHEventLoop::Init(const string &strHost, const int port, const string &strCert, const string &strKey)
+bool hhou::HHEventLoop::Init(const string &strHost, const int port, const string &strCert, const string &strKey)
+{
+	m_Listener = make_shared<HHListenEvent>(m_Poller);
+	if (!m_Listener->Init(strCert, strKey))
 	{
-		m_Listener = make_shared<HHListenEvent>(m_Poller);
-		if (!m_Listener->Init(strCert, strKey))
-		{
-			LOG(ERROR) << "Listener Init error.";
-			return false;
-		}
-		if (!m_Listener->Listen(strHost, port))
-		{
-			LOG(ERROR) << "Server Listen Addr: " << strHost <<" , port: " << port << " error.";
-			return false;
-		}
-		LOG(INFO) << "Server Listen Addr: " << strHost <<" , port: " << port;
-		return true;
-	}	
-#else
-	bool hhou::HHEventLoop::Init(const string &strHost, const int port)
-	{
-		m_Listener = make_shared<HHListenEvent>(m_Poller);
-		if (!m_Listener->Init())
-		{
-			LOG(ERROR) << "Listener Init error.";
-			return false;
-		}
-		if (!m_Listener->Listen(strHost, port))
-		{
-			LOG(ERROR) << "Server Listen Addr: " << strHost <<" , port: " << port << " error.";
-			return false;
-		}
-		LOG(INFO) << "Server Listen Addr: " << strHost <<" , port: " << port;
-		return true;
+		LOG(ERROR) << "Listener Init error.";
+		return false;
 	}
-#endif
+	if (!m_Listener->Listen(strHost, port))
+	{
+		LOG(ERROR) << "Server Listen Addr: " << strHost <<" , port: " << port << " error.";
+		return false;
+	}
+	LOG(INFO) << "Server Listen Addr: " << strHost <<" , port: " << port;
+	return true;
+}
 
 hhou::HHEventLoop::~HHEventLoop()
 {

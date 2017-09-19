@@ -36,11 +36,7 @@ namespace hhou
         virtual ~HHListenEvent();
 
         /**初始化*/
-#ifdef HAVE_OPENSSL
         bool Init(const string &strCert, const string &strKey);
-#else
-        bool Init();
-#endif
 
         /**监听接口(包括bind的动作)*/
         bool Listen(const string &addr, const port_t &port, int listenFds = 8096);

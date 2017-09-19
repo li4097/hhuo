@@ -40,52 +40,45 @@ hhou::HHListenEvent::~HHListenEvent()
 #endif
 }
 
-#ifdef HAVE_OPENSSL
-    bool hhou::HHListenEvent::Init(const string &strCert, const string &strKey)
-    {
-        if (strCert.empty() || strKey.empty())
-        {
-            LOG(ERROR) << "SSL certificate is empty";
-            return false;
-        }
-        LOG(INFO) << "SSL cert: " << strCert << " , key: " << strKey;
-        SSL_load_error_strings(); /// 加载SSL错误信息
-        if (!SSL_library_init()) /// 初始化ssl
-        {
-            LOG(ERROR) << "SSL_library_init failed";
-            return false;
-        }
-        m_sCtx = SSL_CTX_new(SSLv23_method());
-        if (!m_sCtx)
-        {
-            LOG(ERROR) << "SSL_CTX_new failed";
-            return false;
-        }
-        m_errBio = BIO_new_fd(2, BIO_NOCLOSE);
-        if (SSL_CTX_use_certificate_file(m_sCtx, strCert.c_str(), SSL_FILETYPE_PEM) < 0)
-        {
-            LOG(ERROR) << "SSL_CTX_use_certificate_file failed";
-            return false;
-        }
-        if (SSL_CTX_use_PrivateKey_file(m_sCtx, strKey.c_str(), SSL_FILETYPE_PEM) < 0)
-        {
-            LOG(ERROR) << "SSL_CTX_use_PrivateKey_file failed";
-            return false;
-        }
-        if (SSL_CTX_check_private_key(m_sCtx) < 0)
-        {
-            LOG(ERROR) << "SSL_CTX_check_private_key failed";
-            return false;
-        }
-        LOG(INFO) << "Init ssl ListenEvent";
-        return true;
-    }
-#else
-    bool hhou::HHListenEvent::Init()
-    {
-        return true;
-    }
-#endif
+bool hhou::HHListenEvent::Init(const string &strCert, const string &strKey)
+{
+	if (strCert.empty() || strKey.empty())
+	{
+		LOG(ERROR) << "SSL certificate is empty";
+		return false;
+	}
+	LOG(INFO) << "SSL cert: " << strCert << " , key: " << strKey;
+	SSL_load_error_strings(); /// 加载SSL错误信息
+	if (!SSL_library_init()) /// 初始化ssl
+	{
+		LOG(ERROR) << "SSL_library_init failed";
+		return false;
+	}
+	m_sCtx = SSL_CTX_new(SSLv23_method());
+	if (!m_sCtx)
+	{
+		LOG(ERROR) << "SSL_CTX_new failed";
+		return false;
+	}
+	m_errBio = BIO_new_fd(2, BIO_NOCLOSE);
+	if (SSL_CTX_use_certificate_file(m_sCtx, strCert.c_str(), SSL_FILETYPE_PEM) < 0)
+	{
+		LOG(ERROR) << "SSL_CTX_use_certificate_file failed";
+		return false;
+	}
+	if (SSL_CTX_use_PrivateKey_file(m_sCtx, strKey.c_str(), SSL_FILETYPE_PEM) < 0)
+	{
+		LOG(ERROR) << "SSL_CTX_use_PrivateKey_file failed";
+		return false;
+	}
+	if (SSL_CTX_check_private_key(m_sCtx) < 0)
+	{
+		LOG(ERROR) << "SSL_CTX_check_private_key failed";
+		return false;
+	}
+	LOG(INFO) << "Init ssl ListenEvent";
+	return true;
+}
 
 bool hhou::HHListenEvent::Listen(const string &addr, const port_t &port, int listenFds)
 {

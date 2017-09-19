@@ -37,11 +37,7 @@ namespace hhou
 		/**
          * 初始化
          */
-#ifdef HAVE_OPENSSL
-        bool Init(const string &strHost, const int port, const string &strCert, const string &strKey);
-#else
-        bool Init(const string &strHost, const int port);
-#endif
+		bool Init(const string &strHost, const int port, const string &strCert, const string &strKey);
 		
 		/**
          * 开启服务
