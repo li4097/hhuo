@@ -2,7 +2,7 @@ PROJECT(hhuo)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
 SET(CMAKE_CXX_STANDARD 11)
-SET(CMAKE_BUILD_TYPE "Debug")
+SET(CMAKE_BUILD_TYPE "Release")
 SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb -pthread -std=c++11 -Wno-unused-function")
 SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall -pthread -std=c++11 -Wno-unused-function")
 
@@ -66,3 +66,12 @@ ENDIF()
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(tests)
 ADD_SUBDIRECTORY(unittests)
+
+#copy *.h
+INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION /usr/local/include/hhou)
+
+#install *.a
+INSTALL(FILES ${PROJECT_BINARY_DIR}/lib/libhhnet.a 
+			  ${PROJECT_BINARY_DIR}/lib/libhhdata.a
+			  ${PROJECT_BINARY_DIR}/lib/libhhparser.a 
+			  ${PROJECT_BINARY_DIR}/lib/libhhutils.a DESTINATION /usr/local/lib)
