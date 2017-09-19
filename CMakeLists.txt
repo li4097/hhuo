@@ -69,6 +69,7 @@ ADD_SUBDIRECTORY(unittests)
 
 #copy *.h
 INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION /usr/local/include/hhou)
+INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION /usr/include/hhou)
 
 #install *.a
 INSTALL(FILES ${PROJECT_BINARY_DIR}/lib/libhhnet.a 
