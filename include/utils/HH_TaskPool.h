@@ -50,7 +50,7 @@ namespace hhou
 	{
 		typedef vector<hhou::HHExcWorkerPool *>::const_iterator CTIter;
 	public:
-		HHTaskPool(int nNum = HHConfig::Instance().ReadInt("thread", "num", 10)) : m_nNum(nNum)
+		HHTaskPool(int nNum = thread::hardware_concurrency() * 2 - 1) : m_nNum(nNum)
 		{
 			m_taskPool.resize(nNum);
 			for (int j = 0; j < m_nNum; j++)
@@ -58,7 +58,7 @@ namespace hhou
 				m_taskPool[j] = new hhou::HHExcWorkerPool;
 			}
 		}
-
+		
 		virtual ~HHTaskPool()
 		{
 			for (CTIter it = m_taskPool.begin(); it != m_taskPool.end();)

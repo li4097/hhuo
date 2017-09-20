@@ -43,7 +43,11 @@ void hhou::HHEventLoop::Stop()
 bool hhou::HHEventLoop::Init(const string &strHost, const int port, const string &strCert, const string &strKey)
 {
 	m_Listener = make_shared<HHListenEvent>(m_Poller);
+#ifdef HAVE_OPENSSL
 	if (!m_Listener->Init(strCert, strKey))
+#else
+	if (!m_Listener->Init())
+#endif
 	{
 		LOG(ERROR) << "Listener Init error.";
 		return false;

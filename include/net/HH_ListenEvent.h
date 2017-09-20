@@ -36,7 +36,7 @@ namespace hhou
         virtual ~HHListenEvent();
 
         /**初始化*/
-        bool Init(const string &strCert, const string &strKey);
+        bool Init(const string &strCert = "", const string &strKey = "");
 
         /**监听接口(包括bind的动作)*/
         bool Listen(const string &addr, const port_t &port, int listenFds = 8096);

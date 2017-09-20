@@ -42,6 +42,7 @@ hhou::HHListenEvent::~HHListenEvent()
 
 bool hhou::HHListenEvent::Init(const string &strCert, const string &strKey)
 {
+#ifdef HAVE_OPENSSL
 	if (strCert.empty() || strKey.empty())
 	{
 		LOG(ERROR) << "SSL certificate is empty";
@@ -76,7 +77,8 @@ bool hhou::HHListenEvent::Init(const string &strCert, const string &strKey)
 		LOG(ERROR) << "SSL_CTX_check_private_key failed";
 		return false;
 	}
-	LOG(INFO) << "Init ssl ListenEvent";
+    LOG(INFO) << "Init ssl ListenEvent";
+#endif
 	return true;
 }
 

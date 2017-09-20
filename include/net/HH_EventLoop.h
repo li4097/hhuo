@@ -36,8 +36,9 @@ namespace hhou
 		
 		/**
          * 初始化
+         * ssl文件的地址，需给出全路径
          */
-		bool Init(const string &strHost, const int port, const string &strCert, const string &strKey);
+        bool Init(const string &strHost, const int port, const string &strCert = "", const string &strKey = "");
 		
 		/**
          * 开启服务
