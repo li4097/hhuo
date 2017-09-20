@@ -3,11 +3,11 @@ PROJECT(hhdata)
 
 #add headers
 INCLUDE_DIRECTORIES(
-        ../../include
-        ../../include/net
-        ../../include/parser
-        ../../include/utils
-        ../../include/data
+    ../../include
+    ../../include/net
+    ../../include/parser
+    ../../include/utils
+    ../../include/data
 )
 
 # add src
@@ -19,4 +19,4 @@ SET_TARGET_PROPERTIES(hhdata PROPERTIES OUTPUT_NAME "hhdata")
 SET_TARGET_PROPERTIES(hhdata PROPERTIES LINKER_LANGUAGE CXX)
 
 #add josn
-TARGET_LINK_LIBRARIES(hhdata jsoncpp mysqlclient hiredis glog)
+TARGET_LINK_LIBRARIES(hhdata)

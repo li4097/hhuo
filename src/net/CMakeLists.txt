@@ -2,10 +2,10 @@ PROJECT(hhnet)
 
 #add headers
 INCLUDE_DIRECTORIES(
-        ../../include
-        ../../include/net
-        ../../include/parser
-        ../../include/utils
+    ../../include
+    ../../include/net
+    ../../include/parser
+    ../../include/utils
 )
 
 # add src
@@ -16,10 +16,5 @@ ADD_LIBRARY(hhnet STATIC ${HHNET_SRC})
 SET_TARGET_PROPERTIES(hhnet PROPERTIES OUTPUT_NAME "hhnet")
 SET_TARGET_PROPERTIES(hhnet PROPERTIES LINKER_LANGUAGE CXX)
 
-# add ssl
-IF (USESSL)
-    TARGET_LINK_LIBRARIES(hhnet ssl crypto)
-ENDIF()
-
 # add glog
-TARGET_LINK_LIBRARIES(hhnet glog)
+TARGET_LINK_LIBRARIES(hhnet)

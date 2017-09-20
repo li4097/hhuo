@@ -2,9 +2,9 @@ PROJECT(hhparser)
 
 #add headers
 INCLUDE_DIRECTORIES(
-        ../../include
-        ../../include/parser
-        ../../include/utils
+    ../../include
+    ../../include/parser
+    ../../include/utils
 )
 
 # add src
@@ -16,4 +16,4 @@ SET_TARGET_PROPERTIES(hhparser PROPERTIES OUTPUT_NAME "hhparser")
 SET_TARGET_PROPERTIES(hhparser PROPERTIES LINKER_LANGUAGE CXX)
 
 #add log
-TARGET_LINK_LIBRARIES(hhparser glog)
+TARGET_LINK_LIBRARIES(hhparser)

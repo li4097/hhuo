@@ -2,9 +2,9 @@ PROJECT(hhutils)
 
 #add headers
 INCLUDE_DIRECTORIES(
-        ../../include
-        ../../include/net
-        ../../include/utils
+    ../../include
+    ../../include/net
+    ../../include/utils
 )
 # add src
 AUX_SOURCE_DIRECTORY(. HHUTILS_SRC)
@@ -12,7 +12,7 @@ AUX_SOURCE_DIRECTORY(. HHUTILS_SRC)
 # static library
 ADD_LIBRARY(hhutils STATIC ${HHUTILS_SRC})
 SET_TARGET_PROPERTIES(hhutils PROPERTIES OUTPUT_NAME "hhutils")
-set_target_properties(hhutils PROPERTIES LINKER_LANGUAGE CXX)
+SET_TARGET_PROPERTIES(hhutils PROPERTIES LINKER_LANGUAGE CXX)
 
 #add zlib
-TARGET_LINK_LIBRARIES(hhutils z ssl crypto)
+TARGET_LINK_LIBRARIES(hhutils)
