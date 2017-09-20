@@ -16,9 +16,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include "HH_ThRequest.h"
-#include "HH_Config.h"
-#include "utils/HH_Split.h"
+#include <hhou/parser/HH_ThRequest.h>
+#include <hhou/utils/HH_Split.h>
 
 hhou::HHThRequest::HHThRequest()
         : m_nMethod(HTTP_METHOD_NONE),

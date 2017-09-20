@@ -16,11 +16,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include "HH_TpResponse.h"
-#include "HH_Config.h"
-#include "utils/HH_Split.h"
-#include "utils/HH_Base64.h"
-#include "utils/HH_Sha1.h"
+#include <hhou/parser/HH_TpResponse.h>
+#include <hhou/utils/HH_Split.h>
+#include <hhou/utils/HH_Base64.h>
+#include <hhou/utils/HH_Sha1.h>
 
 hhou::HHTpResponse::HHTpResponse()
 {
