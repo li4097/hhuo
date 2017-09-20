@@ -43,21 +43,17 @@ void hhou::HHEventLoop::Stop()
 bool hhou::HHEventLoop::Init(const string &strHost, const int port, const string &strCert, const string &strKey)
 {
 	m_Listener = make_shared<HHListenEvent>(m_Poller);
-#ifdef HAVE_OPENSSL
 	if (!m_Listener->Init(strCert, strKey))
-#else
-	if (!m_Listener->Init())
-#endif
 	{
 		LOG(ERROR) << "Listener Init error.";
 		return false;
 	}
 	if (!m_Listener->Listen(strHost, port))
 	{
-		LOG(ERROR) << "Server Listen Addr: " << strHost <<" , port: " << port << " error.";
+		LOG(ERROR) << "Server Listen Addr: " << strHost << ", port: " << port << " error.";
 		return false;
 	}
-	LOG(INFO) << "Server Listen Addr: " << strHost <<" , port: " << port;
+	LOG(INFO) << "Server Listen Addr: " << strHost << ", port: " << port;
 	return true;
 }
 

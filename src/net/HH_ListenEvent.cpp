@@ -170,12 +170,11 @@ void hhou::HHListenEvent::OnConneting()
         if (!bConnected)
         {
             LOG(ERROR) << "Create ssl connection with " << pNew->handler << " ,error: " << nError;
-            SSL_CTX_free(m_sCtx);
-            m_sCtx = nullptr;
             delete pNew;
             pNew = nullptr;
+			break;
         }
 #endif
-        m_Poller->AddEvent(pNew);
+		m_Poller->AddEvent(pNew);
     }
 }

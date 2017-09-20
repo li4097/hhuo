@@ -1,5 +1,5 @@
 ADD_EXECUTABLE(test4server test4server.cpp)
-TARGET_LINK_LIBRARIES(test4server hhnet hhparser hhutils glog)
+TARGET_LINK_LIBRARIES(test4server hhnet hhparser hhutils glog ssl crypto)
 
 ADD_EXECUTABLE(test4json test4json.cpp)
 TARGET_LINK_LIBRARIES(test4json hhparser hhutils hhdata jsoncpp glog)

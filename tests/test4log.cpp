@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[])
 {
-    hhou::HHLog log("../log");
+    hhou::HHLog log("log", false);
     LOG(INFO) << "Found " << " cookies";
     LOG(ERROR) << "ssss";
     LOG(WARNING) << "12";
