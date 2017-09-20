@@ -35,14 +35,14 @@ IF(USESSL)
 ENDIF() 
 
 # http option
-OPTION(HTTP "Enable http" ON)
+OPTION(HTTP "Enable http" OFF)
 IF(HTTP)
     MESSAGE(STATUS "Http ON")
     ADD_DEFINITIONS(-DHTTP)
 ENDIF()
 
 # websocket option
-OPTION(WEBSOCKET "Enable websocket" OFF)
+OPTION(WEBSOCKET "Enable websocket" ON)
 IF(WEBSOCKET)
     MESSAGE(STATUS "Websocket ON")
     ADD_DEFINITIONS(-DWEBSOCKET)

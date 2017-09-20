@@ -138,7 +138,7 @@ int hhou::HHWsRequest::Parse(const char *szHttpReq, int nDataLen)
 	}
 	string strKey = iter->second;
     LOG(INFO) << "Client Key::" << strKey;
-    string strMagicKey = hhou::HHConfig::Instance().ReadStr("websocket", "magickey", "258EAFA5-E914-47DA-95CA-C5AB0DC85B11");
+    string strMagicKey = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
     if (strMagicKey.empty())
     {
         LOG(ERROR) << "No magickey";
