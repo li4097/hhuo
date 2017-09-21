@@ -16,10 +16,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include <set>
+#include "../../include/HH_Common.h"
 #include "../../include/net/HH_ListenEvent.h"
 #include "../../include/net/HH_EventLoop.h"
-#include "../../include/HH_Config.h"
 #include "../../include/utils/HH_TaskPool.h"
 
 hhou::HHEventLoop::HHEventLoop()

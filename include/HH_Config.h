@@ -27,13 +27,12 @@ namespace hhou
     /**
      * 读取配置文件类
      */
-    typedef map<string, map<string, string>> gStorage;
     class HHConfig
     {
     private:
         fstream m_file; /// 文件操作对象
         const char *m_pName; /// 文件路径
-        gStorage m_mKV; /// 配置保存的map
+        map<string, map<string, string>> m_mKV; /// 配置保存的map
         int m_nError; /// 错误代码
 
     private:
@@ -114,7 +113,7 @@ namespace hhou
             if (m_nError)
                 return;
             m_file.open(m_pName, ios::out | ios::trunc);
-            for (gStorage::iterator it = m_mKV.begin(); it != m_mKV.end(); ++it)
+            for (map<string, map<string, string>>::iterator it = m_mKV.begin(); it != m_mKV.end(); ++it)
             {
                 m_file << "[" << it->first << "]" << endl;
                 tmp = it->second;
@@ -143,7 +142,7 @@ namespace hhou
 		 * 获取cfg文件中的值
 		 * defalut：是不存在key的情况下的默认值
 		 */
-        string ReadStr(const string &section, const string &param, string defalut)
+        string &ReadStr(const string &section, const string &param, string defalut)
         {
 			return m_mKV[section][param].empty() ? defalut : m_mKV[section][param];
         }
