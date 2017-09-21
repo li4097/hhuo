@@ -137,13 +137,7 @@ int hhou::HHWsRequest::Parse(const char *szHttpReq, int nDataLen)
 	}
 	string strKey = iter->second;
     LOG(INFO) << "Client Key::" << strKey;
-    string strMagicKey = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
-    if (strMagicKey.empty())
-    {
-        LOG(ERROR) << "No magickey";
-        return WS_HEAD_ERROR;
-    }
-    strMagicKey = strKey + strMagicKey;
+    string strMagicKey = strKey + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
 	char shaHash[128] = {0};
     hhou::Sha1(strMagicKey, shaHash);
 	hhou::Base64Encode(shaHash, strlen(shaHash), m_cServerKey);	
