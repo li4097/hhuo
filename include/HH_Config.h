@@ -31,7 +31,7 @@ namespace hhou
     {
     private:
         fstream m_file; /// 文件操作对象
-        const char *m_pName; /// 文件路径
+        const string m_pName; /// 文件路径
         map<string, map<string, string>> m_mKV; /// 配置保存的map
         int m_nError; /// 错误代码
 
@@ -89,7 +89,7 @@ namespace hhou
 		 * 带参数的构造函数
 		 * pName: ini文件的路径
 		 */
-		HHConfig(const char *pName) : m_pName(pName)
+		HHConfig(const string &pName) : m_pName(pName)
         {
             m_nError = 0;
             m_file.open(pName, ios::in);
@@ -183,7 +183,7 @@ namespace hhou
 
     public:
         /**单例模式*/
-        static HHConfig &Instance(const char *pName = "../config/cfg.ini")
+        static HHConfig &Instance(const string &pName = "../config/cfg.ini")
         {
             static HHConfig cfg(pName);
             return cfg;
