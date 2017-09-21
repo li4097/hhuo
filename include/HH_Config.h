@@ -64,7 +64,7 @@ namespace hhou
                 if (!tmp.length())
 					continue;
                 if (tmp.at(0) == '[')
-                    section = tmp.substr(1, tmp.length() - 2);
+                    section = tmp.substr(1, tmp.length() - 3);
                 else if (tmp.find("=") < tmp.length())
                 {
                     if (section.length())
@@ -97,6 +97,7 @@ namespace hhou
             {
                 GetInfo();
                 m_file.close();
+                cout << "Cfg file: " << pName << endl;
             }
             else
             {
