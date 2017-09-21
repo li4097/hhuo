@@ -70,6 +70,7 @@ namespace hhou
                     {
                         string strKey = tmp.substr(0, tmp.find("="));
                         string strValue = tmp.substr(tmp.find("=") + 1);
+                        strValue = strValue.substr(0, strValue.length() - 1);
                         m_mKV[section][strKey] = strValue;
                     }
                     else
@@ -96,7 +97,6 @@ namespace hhou
             {
                 GetInfo();
                 m_file.close();
-                cout << "Cfg file: " << pName << endl;
             }
             else
             {
