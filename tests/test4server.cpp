@@ -1,8 +1,8 @@
-#include "hhou/net/HH_ListenEvent.h"
-#include "hhou/net/HH_EventLoop.h"
-#include "hhou/net/HH_ServerBase.h"
-#include "hhou/HH_Config.h"
-#include "hhou/HH_Log.h"
+#include "../include/net/HH_ListenEvent.h"
+#include "../include/net/HH_EventLoop.h"
+#include "../include/net/HH_ServerBase.h"
+#include "../include/HH_Config.h"
+#include "../include/HH_Log.h"
 
 class Test4Server : public hhou::HHServerBase
 {
