@@ -16,7 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include "../../include/HH_Parse.h"
+#include "../../../include/HH_Parse.h"
 
 bool hhou::HHParse::ParseData(void *buf, int nLen)
 {
