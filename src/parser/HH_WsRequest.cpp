@@ -113,12 +113,16 @@ int hhou::HHWsRequest::Parse(const char *szHttpReq, int nDataLen)
         return WS_HEAD_ERROR;
     vector<string> vLine;
     SplitString(strLine, vLine, " ");
-    if (vLine.size() < 3)  /// 第一行肯定是三块元素
-        return WS_HEAD_ERROR;
+	if (vLine.size() < 3)  /// 第一行肯定是三块元素
+	{
+		return WS_HEAD_ERROR;
+	}
 		
 	/**********************解析第一行****************/
-    if (vLine[0] != "GET")
-        return WS_HEAD_ERROR;
+	if (vLine[0] != "GET")
+	{
+		return WS_HEAD_ERROR;
+	}
 	
 	/**********************解析域****************/
 	map<string, string> mField;
