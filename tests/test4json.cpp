@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     ////////////////////////////////
     string strRet;
     hhou::HHJson json;
-    json.Write(s, strRet);
+    json.Write(m, strRet);
     cout << "Write ret: " << strRet << endl;
 
     /////////////////////////////////

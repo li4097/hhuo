@@ -132,8 +132,7 @@ bool hhou::HHJson::Write(map<string, string> &vContent, string &strRet)
     Json::StreamWriterBuilder builder;
     for (map<string, string>::iterator iter = vContent.begin(); iter != vContent.end(); iter++)
     {
-        Json::Value val;
-        val[iter->first] = iter->second;
+        root[iter->first] = iter->second;
     }
     strRet = Json::writeString(builder, root);
     return true;
