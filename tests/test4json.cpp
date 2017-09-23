@@ -26,14 +26,9 @@ int main(int argc, char *argv[])
         "msg":"成功",
         "data":[{},{}]
     }*/
-    string strIn = "[{ \"property\" : \"value\" }]";
-    vector<map<string, string>> shit;
+    string strIn = "{ \"property\" : \"value\" }";
+    map<string, string> shit;
     json.Read(shit, strIn);
-    cout << "Size: " << shit.size() << endl;
-    if (shit.size())
-    {
-        map<string, string> ech = shit[0];
-        cout << "Read ret: " << ech["property"] << endl;
-    }    
+    cout << "Read ret: " << shit["property"] << endl; 
     return 0;
 }

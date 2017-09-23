@@ -46,7 +46,9 @@ bool hhou::HHMysql::ConnectDB(const string &strHost, const string &strUser, cons
         return false;
     }
     else
-        cout << "Connect to mysql OK" << endl;
+    {
+        LOG(INFO) << "Connect to mysql OK";
+    }
     return true;
 }
 

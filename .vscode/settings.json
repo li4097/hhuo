@@ -12,6 +12,9 @@
         "xtree": "cpp",
         "xutility": "cpp",
         "utility": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "iostream": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp"
     }
 }

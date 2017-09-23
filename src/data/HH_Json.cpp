@@ -92,13 +92,10 @@ bool hhou::HHJson::Read(map<string, string> &vKV, const string &strContent)
     bool ok = reader->parse(strContent.c_str(), strContent.c_str() + strContent.length(), &val, &errs);
     if (ok)
     {
-        for (int n = 0; n < (int)val.size(); n++)
+        Json::Value::Members keys = val.getMemberNames();
+        for (Json::Value::Members::iterator it = keys.begin(); it != keys.end(); it++)
         {
-            Json::Value::Members keys = val[n].getMemberNames();
-            for (Json::Value::Members::iterator it = keys.begin(); it != keys.end(); it++)
-            {
-                vKV.insert(make_pair(*it, val[n][*it].asString()));
-            }
+            vKV.insert(make_pair(*it, val[*it].asString()));
         }
         bRet = true;
     }

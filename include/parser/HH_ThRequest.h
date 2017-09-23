@@ -73,6 +73,7 @@ namespace hhou
          */
         HttpMethodType &GetMethodType() { return m_nMethod;}
         string &GetMethod() { return m_strMethod;}
+		string &GetContent() { return m_strContent;}
         void GetParam(const string &strKey, string &strVal);
         void GetFieldInt(const string &strKey, int &nVal);
         void GetFieldStr(const string &strKey, string &strVal);
