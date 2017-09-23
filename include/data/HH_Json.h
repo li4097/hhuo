@@ -40,12 +40,22 @@ namespace hhou
         /**
          * Read函数
          */
-        bool ReadArray(vector<map<string, string>> &vKV, const string &strContent);
+         bool Read(map<string, string> &vKV, const string &strContent);
 
         /**
          * Write函数
          */
-        bool WriteArray(vector<map<string, string>> &vContent, string &strRet);
+        bool Write(map<string, string> &vContent, string &strRet);
+
+        /**
+         * Read函数
+         */
+        bool Read(vector<map<string, string>> &vKV, const string &strContent);
+
+        /**
+         * Write函数
+         */
+        bool Write(vector<map<string, string>> &vContent, string &strRet);
     };
 }
 

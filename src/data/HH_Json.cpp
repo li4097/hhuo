@@ -41,11 +41,11 @@ bool hhou::HHJson::ExistK(const string &strContent, const string &strK)
     return bRet;
 }
 
-bool hhou::HHJson::ReadArray(vector<map<string, string>> &vKV, const string &strContent)
+bool hhou::HHJson::Read(vector<map<string, string>> &vKV, const string &strContent)
 {
     if (strContent.empty())
     {
-        LOG(ERROR) << "ExistK strContent empty.";
+        LOG(ERROR) << "strContent empty.";
         return false;
     }
     bool bRet = false;
@@ -77,7 +77,41 @@ bool hhou::HHJson::ReadArray(vector<map<string, string>> &vKV, const string &str
     return bRet;
 }
 
-bool hhou::HHJson::WriteArray(vector<map<string, string>> &vContent, string &strRet)
+bool hhou::HHJson::Read(map<string, string> &vKV, const string &strContent)
+{
+    if (strContent.empty())
+    {
+        LOG(ERROR) << "strContent empty.";
+        return false;
+    }
+    bool bRet = false;
+    Json::CharReaderBuilder builder;
+    Json::CharReader* reader(builder.newCharReader());
+    JSONCPP_STRING errs;
+    Json::Value val;
+    bool ok = reader->parse(strContent.c_str(), strContent.c_str() + strContent.length(), &val, &errs);
+    if (ok)
+    {
+        for (int n = 0; n < (int)val.size(); n++)
+        {
+            Json::Value::Members keys = val[n].getMemberNames();
+            for (Json::Value::Members::iterator it = keys.begin(); it != keys.end(); it++)
+            {
+                vKV.insert(make_pair(*it, val[n][*it].asString()));
+            }
+        }
+        bRet = true;
+    }
+    else
+    {
+        LOG(ERROR) << "Parse error." << errs;
+    }
+    delete reader;
+    reader = nullptr;
+    return bRet;
+}
+
+bool hhou::HHJson::Write(vector<map<string, string>> &vContent, string &strRet)
 {
     Json::Value root, array;
     Json::StreamWriterBuilder builder;
@@ -90,6 +124,19 @@ bool hhou::HHJson::WriteArray(vector<map<string, string>> &vContent, string &str
             val[iter->first] = iter->second;
         }
         array.append(val);
+    }
+    strRet = Json::writeString(builder, array);
+    return true;
+}
+
+bool hhou::HHJson::Write(map<string, string> &vContent, string &strRet)
+{
+    Json::Value root, array;
+    Json::StreamWriterBuilder builder;
+    for (map<string, string>::iterator iter = vContent.begin(); iter != vContent.end(); iter++)
+    {
+        Json::Value val;
+        val[iter->first] = iter->second;
     }
     strRet = Json::writeString(builder, array);
     return true;

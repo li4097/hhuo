@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     ////////////////////////////////
     string strRet;
     hhou::HHJson json;
-    json.WriteArray(s, strRet);
+    json.Write(s, strRet);
     cout << "Write ret: " << strRet << endl;
 
     /////////////////////////////////
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     }*/
     string strIn = "[{ \"property\" : \"value\" }]";
     vector<map<string, string>> shit;
-    json.ReadArray(shit, strIn);
+    json.Read(shit, strIn);
     cout << "Size: " << shit.size() << endl;
     if (shit.size())
     {
