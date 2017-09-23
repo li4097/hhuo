@@ -28,6 +28,8 @@ MESSAGE(STATUS "OpenSSL include: ${OPENSSL_INCLUDE_DIR}")
 MESSAGE(STATUS "OpenSSL lib: ${OPENSSL_LIBRARIES}")
 INCLUDE_DIRECTORIES(${OPENSSL_INCLUDE_DIR})
 LINK_DIRECTORIES(${OPENSSL_LIBRARIES})
+SET(PARSER "hhparser")
+SET(LIBPARSER "libhhparser.a")
 OPTION(USESSL "Enable use openssl" ON)
 IF(USESSL)
     MESSAGE(STATUS "OpenSSL ON")
@@ -35,15 +37,19 @@ IF(USESSL)
 ENDIF() 
 
 # http option
-OPTION(HTTP "Enable http" OFF)
+OPTION(HTTP "Enable http" ON)
 IF(HTTP)
+	SET(PARSER "hhparser_http")
+	SET(LIBPARSER "libhhparser_http.a")
     MESSAGE(STATUS "Http ON")
     ADD_DEFINITIONS(-DHTTP)
 ENDIF()
 
 # websocket option
-OPTION(WEBSOCKET "Enable websocket" ON)
+OPTION(WEBSOCKET "Enable websocket" OFF)
 IF(WEBSOCKET)
+	SET(PARSER "hhparser_ws")
+	SET(LIBPARSER "libhhparser_ws.a")
     MESSAGE(STATUS "Websocket ON")
     ADD_DEFINITIONS(-DWEBSOCKET)
 ENDIF()
@@ -51,6 +57,7 @@ ENDIF()
 # tcpconnection option
 OPTION(TCPCONN "Enable tcpconnection" OFF)
 IF(TCPCONN)
+	SET(PARSER "hhparser_tp")
     MESSAGE(STATUS "Tcpconnection ON")
     ADD_DEFINITIONS(-DTCPCONN)
 ENDIF()
@@ -74,9 +81,10 @@ INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION /usr/include/hhou)
 #install *.a
 INSTALL(FILES ${PROJECT_BINARY_DIR}/lib/libhhnet.a 
 			  ${PROJECT_BINARY_DIR}/lib/libhhdata.a
-			  ${PROJECT_BINARY_DIR}/lib/libhhparser.a 
+			  ${PROJECT_BINARY_DIR}/lib/${LIBPARSER}
 			  ${PROJECT_BINARY_DIR}/lib/libhhutils.a DESTINATION /usr/local/lib)
+			  
 INSTALL(FILES ${PROJECT_BINARY_DIR}/lib/libhhnet.a 
 			  ${PROJECT_BINARY_DIR}/lib/libhhdata.a
-			  ${PROJECT_BINARY_DIR}/lib/libhhparser.a 
+			  ${PROJECT_BINARY_DIR}/lib/${LIBPARSER}
 			  ${PROJECT_BINARY_DIR}/lib/libhhutils.a DESTINATION /usr/lib)
