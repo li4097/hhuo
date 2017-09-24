@@ -87,6 +87,11 @@ namespace hhou
         void OnTimeout();
 
         /**
+         * 外部主动发送的接口
+         * */
+        bool SendData(const string &strData);
+
+        /**
          * 设置客户端的ip和port
          */
         void SetIpAndPort(ipaddr_t ip, port_t port)

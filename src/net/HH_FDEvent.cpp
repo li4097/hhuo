@@ -167,6 +167,19 @@ void hhou::HHFDEvent::OnWrite()
     }
 }
 
+bool hhou::HHFDEvent::SendData(const string &strData)
+{
+    if (m_bufOut.Space() < strData.length())
+    {
+        LOG(ERROR) << "SendData Error, too long string!";
+        return false;
+    }
+    m_bufOut.Write(strData.c_str(), strData.length());
+    eventInfo.status = Out;
+    m_Poller->ChangeEvent(this);
+    return true;
+}
+
 void hhou::HHFDEvent::OnTimeout()
 {
     if (eventInfo.status != Close)
