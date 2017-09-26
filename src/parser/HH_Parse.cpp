@@ -22,7 +22,7 @@ bool hhou::HHParse::ParseData(void *buf, int nLen)
 {
 #ifdef HTTP
     int nRet = (int)m_req.Parse((char *)buf, nLen);
-	if (!nRet && m_pDataDeal(Http, (void *) &m_req, (void *) &m_res))
+	if (!nRet && m_pDataDeal(Http, m_nFd, (void *) &m_req, (void *) &m_res))
 	{
 		m_res.AddHeader("Connection", "Keep-Alive");
 		m_res.MakeRes();
@@ -55,7 +55,7 @@ bool hhou::HHParse::ParseData(void *buf, int nLen)
             {
                 auto iter = m_req.m_ReadMsg.front();
                 HHMsg msg(0, 0);
-                m_pDataDeal(Websocket, (void *) iter.get(), (void *) &msg);
+                m_pDataDeal(Websocket, m_nFd, (void *) iter.get(), (void *) &msg);
                 m_res.WSEncodeFrame(msg);
                 m_req.m_ReadMsg.pop_front();
             }
@@ -75,7 +75,7 @@ bool hhou::HHParse::ParseData(void *buf, int nLen)
         {
             auto iter = m_req.m_ReadMsg.front();
             HHMsg msg(0, 0);
-            m_pDataDeal(Tcp, (void *) iter.get(), (void *) &msg);
+            m_pDataDeal(Tcp, m_nFd, (void *) iter.get(), (void *) &msg);
             m_res.MakeRes(msg);
             m_req.m_ReadMsg.pop_front();
         }
@@ -106,7 +106,7 @@ shared_ptr<hhou::HHParse> hhou::HHParserMgr::GetParser(const int fd)
     else
     {
         lock_guard<mutex> lock(m_mutex);
-        pParse = make_shared<HHParse>(m_pDataDeal);
+        pParse = make_shared<HHParse>(fd, m_pDataDeal);
         m_mParsers.insert(make_pair(fd, pParse));
     }
     return pParse;

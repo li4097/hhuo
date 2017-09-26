@@ -1,6 +1,7 @@
 #include "../include/net/HH_ListenEvent.h"
 #include "../include/net/HH_EventLoop.h"
 #include "../include/net/HH_ServerBase.h"
+#include "../include/parser/HH_Parse.h"
 #include "../include/HH_Config.h"
 #include "../include/HH_Log.h"
 
@@ -29,9 +30,10 @@ public:
 		m_Loop->Start();
 	}
 
-    int DataDeal(hhou::LinkType nType, void *first, void *second)
+    int DataDeal(hhou::LinkType nType, int fd, void *first, void *second)
     {
-        LOG(INFO) << "buf: " << (char *)first;
+        LOG(INFO) << "buf: " << (char *)first << ", fd: " << fd;
+		auto iter = hhou::HHParserMgr::Instance().GetParser(fd);
         return 1;
     }
     std::shared_ptr<hhou::HHEventLoop> m_Loop;

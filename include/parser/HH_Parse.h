@@ -40,11 +40,12 @@ namespace hhou
     
     /**
      * 应用层的处理回调
+	 * LinkType 协议类型
+     * int 唯一标示
      * void *待处理包
-     * int 待处理包的长度
      * void *相应包
      * */
-    typedef function<int(LinkType, void *, void *)> DataDeal;
+    typedef function<int(LinkType, int, void *, void *)> DataDeal;
 
     /**
      * 解析数据的基础类
@@ -53,7 +54,7 @@ namespace hhou
     {
     public:
         /**默认构造函数*/
-        HHParse(DataDeal dataProc) : m_pDataDeal(dataProc) {}
+        HHParse(int fd, DataDeal dataProc) : m_nFd(fd), m_pDataDeal(dataProc) {}
         virtual ~HHParse() {}
 
         /**先进行必要信息的解析*/
@@ -63,6 +64,7 @@ namespace hhou
         bool SendData(string &strRet, int nSize);
 
     private:
+		int m_nFd;
         DataDeal m_pDataDeal;
     #ifdef HTTP
         hhou::HHThRequest m_req;  /// 请求包对象
