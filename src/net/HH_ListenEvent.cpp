@@ -142,8 +142,7 @@ void hhou::HHListenEvent::OnConneting()
         pNew->NonBlock(true);
         /// 设置解析器
         auto parser = HHParserMgr::Instance().GetParser(fd);
-        pNew->SetRecvCallBack(bind(&HHParse::ParseData, parser, _1, _2));
-        pNew->SetSendCallBack(bind(&HHParse::SendData, parser, _1, _2));
+        pNew->SetCallBack(bind(&HHParse::ParseData, parser, _1, _2), bind(&HHParse::SendData, parser, _1, _2), bind(&HHParse::CloseConn, parser));
 #ifdef SHORT_CONN
         pNew->KeepAlive(false);
 #else

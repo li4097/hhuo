@@ -36,6 +36,12 @@ public:
 		auto iter = hhou::HHParserMgr::Instance().GetParser(fd);
         return 1;
     }
+	
+	void ConnClose(int nFd)
+	{
+		
+	}
+	
     std::shared_ptr<hhou::HHEventLoop> m_Loop;
 };
 

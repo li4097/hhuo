@@ -25,8 +25,7 @@ hhou::HHFDEvent::HHFDEvent(shared_ptr<HHPoller> poller, size_t bufSize)
           m_nTotalSend(0),
           m_Poller(poller),
           m_bufIn(bufSize),
-          m_bufOut(bufSize),
-          m_recvProc(nullptr)
+          m_bufOut(bufSize)
 {
     
 }
@@ -196,6 +195,7 @@ void hhou::HHFDEvent::OnClosing()
     SSL_shutdown(m_sSSL);
     SSL_free(m_sSSL);
 #endif
+	m_closeProc();
     closesocket(handler);
 }
 

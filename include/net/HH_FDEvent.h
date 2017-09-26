@@ -49,6 +49,12 @@ namespace hhou
 		 * int : 最大的数据长度
          * */
         typedef function<bool(string &, int)> SendProc;
+		
+		/**
+         * 断开回调函数
+         * */
+        typedef function<void()> CloseProc;
+		
     public:
         /**
          * 禁用的构造函数
@@ -112,17 +118,11 @@ namespace hhou
         /**
          * 设置解析回调函数
          */
-        void SetRecvCallBack(RecvProc pRecvProc)
+        void SetCallBack(RecvProc pRecvProc, SendProc pSendProc, CloseProc pCloseProc)
         {
             m_recvProc = pRecvProc;
-        }
-
-        /**
-         * 设置发送回调函数
-         */
-        void SetSendCallBack(SendProc pSendProc)
-        {
-            m_sendProc = pSendProc;
+			m_sendProc = pSendProc;
+			m_closeProc = pCloseProc;
         }
 
     public:
@@ -140,6 +140,7 @@ namespace hhou
         HHCircularBuffer m_bufOut; /// 发送的data
         RecvProc m_recvProc; ///解析层的回调函数
         SendProc m_sendProc; ///发送完数据的回调函数
+		CloseProc m_closeProc; ///关闭socket的回调
 
     public:
 #ifdef HAVE_OPENSSL

@@ -46,7 +46,13 @@ namespace hhou
      * void *相应包
      * */
     typedef function<int(LinkType, int, void *, void *)> DataDeal;
-
+	
+	/**
+     * 应用层的关闭回调
+     * int 唯一标示
+     * */
+    typedef function<void(int)> ConnClose;
+	
     /**
      * 解析数据的基础类
      */
@@ -54,7 +60,7 @@ namespace hhou
     {
     public:
         /**默认构造函数*/
-        HHParse(int fd, DataDeal dataProc) : m_nFd(fd), m_pDataDeal(dataProc) {}
+        HHParse(int fd, DataDeal dataProc, ConnClose closeProc) : m_nFd(fd), m_pDataDeal(dataProc), m_pCloseConn(closeProc) {}
         virtual ~HHParse() {}
 
         /**先进行必要信息的解析*/
@@ -62,10 +68,14 @@ namespace hhou
 
         /**发送回调函数*/
         bool SendData(string &strRet, int nSize);
-
+		
+		/**断开回调函数*/
+        void CloseConn();
+		
     private:
 		int m_nFd;
         DataDeal m_pDataDeal;
+		ConnClose m_pCloseConn;
     #ifdef HTTP
         hhou::HHThRequest m_req;  /// 请求包对象
         hhou::HHThResponse m_res; /// 回应包对象
@@ -94,7 +104,11 @@ namespace hhou
         bool RmParser(const int fd);
 
         /**设置回调*/
-        void Callback(DataDeal dataProc) {m_pDataDeal = dataProc;}
+        void Callback(DataDeal dataProc, ConnClose closeConn) 
+		{
+			m_pDataDeal = dataProc;
+			m_pCloseConn = closeConn;
+		}
 
         /**单例模式*/
         static HHParserMgr &Instance()
@@ -105,6 +119,7 @@ namespace hhou
 
     private:
         DataDeal m_pDataDeal;
+		ConnClose m_pCloseConn;
         mutex m_mutex; /// 锁
         map<int, shared_ptr<hhou::HHParse>> m_mParsers;   /// fd对应的解析器
     };

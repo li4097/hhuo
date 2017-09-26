@@ -94,6 +94,11 @@ bool hhou::HHParse::SendData(string &strRet, int nSize)
 	return true;
 }
 
+void hhou::HHParse::CloseConn()
+{
+	m_pCloseConn(m_nFd);
+}
+
 shared_ptr<hhou::HHParse> hhou::HHParserMgr::GetParser(const int fd)
 {
     /// 先去空闲的里面找，没有则new
@@ -106,7 +111,7 @@ shared_ptr<hhou::HHParse> hhou::HHParserMgr::GetParser(const int fd)
     else
     {
         lock_guard<mutex> lock(m_mutex);
-        pParse = make_shared<HHParse>(fd, m_pDataDeal);
+        pParse = make_shared<HHParse>(fd, m_pDataDeal, m_pCloseConn);
         m_mParsers.insert(make_pair(fd, pParse));
     }
     return pParse;

@@ -33,12 +33,15 @@ namespace hhou
     public:
         HHServerBase()
         {
-            HHParserMgr::Instance().Callback(bind(&HHServerBase::DataDeal, this, _1, _2, _3, _4));
+            HHParserMgr::Instance().Callback(bind(&HHServerBase::DataDeal, this, _1, _2, _3, _4), bind(&HHServerBase::ConnClose, this, _1));
         }
         virtual ~HHServerBase() {}
 
-        /**app的注册回调*/
+        /**app的处理回调*/
         virtual int DataDeal(hhou::LinkType nType, int fd, void *first, void *second) { return 0; }
+		
+		/**app的关闭回调*/
+        virtual void ConnClose(int nFd) {}
 
         /**初始化本服务（读取配置文件等等）*/
         virtual bool Init() { return true;}
