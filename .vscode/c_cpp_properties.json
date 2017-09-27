@@ -45,7 +45,7 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++",
+                "C:/MinGW/lib/gcc/mingw32/5.3.0/include/c++",
                 "${workspaceRoot}"
             ],
             "defines": [
@@ -55,7 +55,7 @@
             "intelliSenseMode": "msvc-x64",
             "browse": {
                 "path": [
-                    "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++",
+                    "C:/MinGW/lib/gcc/mingw32/5.3.0/include/c++",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
