@@ -57,6 +57,38 @@ namespace hhou
             return true;
         }
 
+        /**recv*/
+        bool Recv(char *buf, int nLen)
+        {
+            int rLen = recv(m_handler, buf, nLen, 0); 
+            if (rLen <= 0)
+            {
+                LOG(ERROR) << "Connection closed.";
+                closesocket(m_handler);
+                return false;
+            }
+            return true;
+        } 
+
+        /**send*/
+        bool Send(const string &strData)
+        {
+            ssize_t sLength = strData.length();
+            while (true)
+            {
+                sLength = send(m_handler, strData.c_str() + (strData.length() - sLength), (size_t)sLength, 0);
+                if (sLength <= 0)
+                {
+                    LOG(ERROR) << "Connection closed.";
+                    closesocket(m_handler);
+                    return false;
+                }
+                sLength = strData.length() - sLength;
+                if (sLength <= 0) break;
+            }
+            return true;
+        }
+
     private:
         SOCKET m_handler;  /// 句柄对象
     };
