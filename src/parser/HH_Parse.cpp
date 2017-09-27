@@ -96,6 +96,7 @@ bool hhou::HHParse::SendData(string &strRet, int nSize)
 
 void hhou::HHParse::CloseConn()
 {
+    HHParserMgr::Instance().RmParser(m_nFd);
 	m_pCloseConn(m_nFd);
 }
 
