@@ -30,8 +30,12 @@ INCLUDE_DIRECTORIES(${OPENSSL_INCLUDE_DIR})
 LINK_DIRECTORIES(${OPENSSL_LIBRARIES})
 SET(PARSER "hhparser")
 SET(LIBPARSER "libhhparser.a")
+SET(NET "hhnet")
+SET(LIBNET "libhhnet.a")
 OPTION(USESSL "Enable use openssl" ON)
 IF(USESSL)
+    SET(NET "hhnet_ws")
+    SET(LIBNET "libhhnet_ws.a")
     MESSAGE(STATUS "OpenSSL ON")
     ADD_DEFINITIONS(-DHAVE_OPENSSL)
 ENDIF() 
@@ -79,12 +83,12 @@ INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION /usr/local/include/
 INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION /usr/include/hhou)
 
 #install *.a
-INSTALL(FILES ${PROJECT_BINARY_DIR}/lib/libhhnet.a 
+INSTALL(FILES ${PROJECT_BINARY_DIR}/lib/${LIBNET} 
 			  ${PROJECT_BINARY_DIR}/lib/libhhdata.a
 			  ${PROJECT_BINARY_DIR}/lib/${LIBPARSER}
 			  ${PROJECT_BINARY_DIR}/lib/libhhutils.a DESTINATION /usr/local/lib)
 			  
-INSTALL(FILES ${PROJECT_BINARY_DIR}/lib/libhhnet.a 
+INSTALL(FILES ${PROJECT_BINARY_DIR}/lib/${LIBNET} 
 			  ${PROJECT_BINARY_DIR}/lib/libhhdata.a
 			  ${PROJECT_BINARY_DIR}/lib/${LIBPARSER}
 			  ${PROJECT_BINARY_DIR}/lib/libhhutils.a DESTINATION /usr/lib)
