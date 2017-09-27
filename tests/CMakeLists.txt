@@ -1,3 +1,6 @@
+ADD_EXECUTABLE(test4client test4client.cpp)
+TARGET_LINK_LIBRARIES(test4client hhnet hhparser_ws hhutils glog ssl crypto)
+
 ADD_EXECUTABLE(test4server test4server.cpp)
 TARGET_LINK_LIBRARIES(test4server hhnet hhparser_ws hhutils glog ssl crypto)
 
