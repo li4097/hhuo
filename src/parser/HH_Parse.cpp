@@ -118,6 +118,18 @@ shared_ptr<hhou::HHParse> hhou::HHParserMgr::GetParser(const int fd)
     return pParse;
 }
 
+shared_ptr<hhou::HHParse> hhou::HHParserMgr::GetExistParser(const int fd)
+{
+    /// 先去空闲的里面找，没有则new
+    shared_ptr<hhou::HHParse> pParse;
+    auto it = m_mParsers.find(fd);
+    if (it != m_mParsers.end())
+    {
+        pParse = it->second;
+    }
+    return pParse;
+}
+
 bool hhou::HHParserMgr::RmParser(const int fd)
 {
     lock_guard<mutex> lock(m_mutex);

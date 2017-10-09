@@ -50,7 +50,7 @@ IF(HTTP)
 ENDIF()
 
 # websocket option
-OPTION(WEBSOCKET "Enable websocket" ON)
+OPTION(WEBSOCKET "Enable websocket" OFF)
 IF(WEBSOCKET)
 	SET(PARSER "hhparser_ws")
 	SET(LIBPARSER "libhhparser_ws.a")
@@ -59,9 +59,10 @@ IF(WEBSOCKET)
 ENDIF()
 
 # tcpconnection option
-OPTION(TCPCONN "Enable tcpconnection" OFF)
+OPTION(TCPCONN "Enable tcpconnection" ON)
 IF(TCPCONN)
 	SET(PARSER "hhparser_tp")
+	SET(LIBPARSER "libhhparser_tp.a")
     MESSAGE(STATUS "Tcpconnection ON")
     ADD_DEFINITIONS(-DTCPCONN)
 ENDIF()

@@ -101,6 +101,7 @@ namespace hhou
 
         /**获取解析器，没有的话就给个新的*/
         shared_ptr<hhou::HHParse> GetParser(const int fd);
+        shared_ptr<hhou::HHParse> GetExistParser(const int fd);
         bool RmParser(const int fd);
 
         /**设置回调*/
