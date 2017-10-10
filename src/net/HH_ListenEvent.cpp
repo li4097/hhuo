@@ -169,8 +169,8 @@ void hhou::HHListenEvent::OnConneting()
         if (!bConnected)
         {
             LOG(ERROR) << "Create ssl connection with " << pNew->handler << " ,error: " << nError;
-            delete pNew;
-            pNew = nullptr;
+            pNew->eventInfo.status = Close;
+            pNew->OnClosing();
 			break;
         }
 #endif
