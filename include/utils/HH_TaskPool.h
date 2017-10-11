@@ -48,14 +48,14 @@ namespace hhou
 	
 	class HHTaskPool
 	{
-		typedef vector<hhou::HHExcWorkerPool *>::const_iterator CTIter;
+		typedef vector<shared_ptr<HHExcWorkerPool>>::const_iterator CTIter;
 	public:
 		HHTaskPool(int nNum = thread::hardware_concurrency() * 2 - 1) : m_nNum(nNum)
 		{
 			m_taskPool.resize(nNum);
 			for (int j = 0; j < m_nNum; j++)
 			{
-				m_taskPool[j] = new hhou::HHExcWorkerPool;
+				m_taskPool[j] = make_shared<HHExcWorkerPool>();
 			}
 		}
 		
@@ -63,12 +63,11 @@ namespace hhou
 		{
 			for (CTIter it = m_taskPool.begin(); it != m_taskPool.end();)
 			{
-				delete (*it);
 				it = m_taskPool.erase(it);
 			}
 		}
 
-		hhou::HHExcWorkerPool *GetWorkPool(int nSeq)
+		shared_ptr<HHExcWorkerPool> GetWorkPool(int nSeq)
 		{
 			return m_taskPool[nSeq % m_nNum];
 		}
@@ -81,7 +80,7 @@ namespace hhou
 
 	private:
 		int m_nNum;
-		vector<hhou::HHExcWorkerPool *> m_taskPool;
+		vector<shared_ptr<HHExcWorkerPool>> m_taskPool;
 	};
 }
 

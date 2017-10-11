@@ -30,7 +30,7 @@ namespace hhou
 	public:
 		typedef HHWorkerPool<T> THIS_TYPE;
 		typedef function<void(T *)> WorkerProc;
-		typedef vector<thread *> ThreadVec;
+		typedef vector<shared_ptr<thread>>::const_iterator TIter;
 
 		HHWorkerPool() : m_bActive(false) {}
 		virtual ~HHWorkerPool()
@@ -44,7 +44,7 @@ namespace hhou
 			m_vThreads.resize(workerNum);
 			for (int i = 0; i < workerNum; i++)
 			{
-				m_vThreads[i] = new thread(bind(&THIS_TYPE::Consumer, this));
+				m_vThreads[i] = make_shared<thread>(bind(&THIS_TYPE::Consumer, this));
 			}
 			m_pProc = f;
 		}
@@ -69,11 +69,11 @@ namespace hhou
 			m_mutex.unlock();
 			m_bActive = false;
 			m_cv.notify_all();
-			for (ThreadVec::iterator it = m_vThreads.begin(); it != m_vThreads.end(); ++it)
+			for (TIter it = m_vThreads.begin(); it != m_vThreads.end(); ++it)
 			{
 				(*it)->join();
-				delete (*it);
 			}
+			m_vThreads.clear();
 		}
 	private:
 		void Consumer()
@@ -99,7 +99,7 @@ namespace hhou
 		queue<T *> m_task;
 		condition_variable m_cv;
 		bool m_bActive;
-		vector<thread *> m_vThreads;
+		vector<shared_ptr<thread>> m_vThreads;
 		WorkerProc m_pProc;
 	};
 }
