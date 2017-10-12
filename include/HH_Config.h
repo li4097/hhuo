@@ -74,7 +74,7 @@ namespace hhou
                     {
                         string strKey = tmp.substr(0, tmp.find("="));
                         string strValue = tmp.substr(tmp.find("=") + 1);
-                        strValue = strValue.substr(0, strValue.length() - 1);
+                        strValue = strValue.substr(0, strValue.length());
                         m_mKV[section][strKey] = strValue;
                     }
                     else
