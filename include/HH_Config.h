@@ -61,9 +61,13 @@ namespace hhou
             while (getline(m_file, tmp))
             {
                 if (!tmp.length())
+                {
 					continue;
+                }
                 if (tmp.at(0) == '[')
-                    section = tmp.substr(1, tmp.length() - 3);
+                {
+                    section = tmp.substr(1, tmp.length() - 2);
+                }
                 else if (tmp.find("=") < tmp.length())
                 {
                     if (section.length())
@@ -74,7 +78,9 @@ namespace hhou
                         m_mKV[section][strKey] = strValue;
                     }
                     else
+                    {
                         throw 1;
+                    }
                 }
 				else
 				{
