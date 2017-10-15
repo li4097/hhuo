@@ -45,11 +45,21 @@ int hhou::HHTpRequest::Parse(const char *buf, int nSize)
             LOG(ERROR) << "TcpConn do not connected ok first!";
             return TCP_ERROR;
         }
+        if (nSize < nPos + 4)
+        {
+            LOG(ERROR) << "TcpConn has not msgID";
+            return TCP_ERROR;
+        }
 
         /// msgID
         int nID;
         memcpy(&nID, buf + nPos, 4);
         nPos += 4;
+        if (nSize <= nPos)
+        {
+		    LOG(INFO) << "op: " << nType << " nCompleted: " << nCompleted;
+            return TCP_OK;
+        }
         
 		/// 解析body的长度
         int nContentLen = buf[nPos++] & 0xff;
@@ -67,7 +77,7 @@ int hhou::HHTpRequest::Parse(const char *buf, int nSize)
             nPos += 8;        
 			nContentLen = ntohl(length);
         }
-		
+
 		/// 解析body
 		string strBody = string(buf, nPos, nContentLen);
 		
