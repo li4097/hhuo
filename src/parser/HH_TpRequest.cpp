@@ -27,11 +27,10 @@ hhou::HHTpRequest::HHTpRequest()
 int hhou::HHTpRequest::Parse(const char *buf, int nSize)
 {
     int nPos = 0;
-    if (nSize < 5) return TCP_ERROR;
     while (nSize > nPos)
     {
 		/// 判断是否合法
-        if ((buf[nPos] & 0x70) != 0x00) return TCP_ERROR;
+        if ((nSize - nPos) < 5 || (buf[nPos] & 0x70) != 0x00) return TCP_ERROR;
 		
 		/// 判断是否完整
         int nCompleted = true;
@@ -74,7 +73,7 @@ int hhou::HHTpRequest::Parse(const char *buf, int nSize)
         }
 
 		/// 解析body
-		string strBody = string(buf, nPos, nContentLen);
+		string strBody = string(buf + nPos, nContentLen);
 		
 		/// 进行数据填充
 		if (m_ReadMsg.empty() || m_ReadMsg.front()->m_bCompleted)			
