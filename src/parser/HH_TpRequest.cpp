@@ -85,7 +85,8 @@ int hhou::HHTpRequest::Parse(const char *buf, int nSize)
 			m_ReadMsg.front()->m_bCompleted = nCompleted;	
 			m_ReadMsg.front()->m_strMsg.append(strBody);		
 		}
-		LOG(INFO) << "op: " << nType << " nCompleted: " << nCompleted << " length: " << nContentLen;
+        nPos += nContentLen;
+		LOG(INFO) << "op: " << nType << " nCompleted: " << nCompleted << " length: " << nContentLen << " body: " << strBody;
 	}
     return TCP_OK;
 }
