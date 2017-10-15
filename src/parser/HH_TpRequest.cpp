@@ -27,7 +27,7 @@ hhou::HHTpRequest::HHTpRequest()
 int hhou::HHTpRequest::Parse(const char *buf, int nSize)
 {
     int nPos = 0;
-    if ((nSize - nPos) < 2) return TCP_ERROR;
+    if (nSize < 5) return TCP_ERROR;
     while (nSize > nPos)
     {
 		/// 判断是否合法
@@ -43,11 +43,6 @@ int hhou::HHTpRequest::Parse(const char *buf, int nSize)
         if (nType != 1 && !m_bConntected)
         {
             LOG(ERROR) << "TcpConn do not connected ok first!";
-            return TCP_ERROR;
-        }
-        if (nSize < nPos + 4)
-        {
-            LOG(ERROR) << "TcpConn has not msgID";
             return TCP_ERROR;
         }
 
