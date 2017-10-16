@@ -75,9 +75,12 @@ bool hhou::HHParse::ParseData(void *buf, int nLen)
         {
             auto iter = m_req.m_ReadMsg.front();
             HHMsg msg(0, 0);
-            m_pDataDeal(Tcp, m_nFd, (void *) iter.get(), (void *) &msg);
-            m_res.MakeRes(msg);
-            m_req.m_ReadMsg.pop_front();
+            if (m_pDataDeal(Tcp, m_nFd, (void *) iter.get(), (void *) &msg) && !m_req.Status())
+			{
+				m_req.SetStatus(true);
+			}
+			m_res.MakeRes(msg);
+			m_req.m_ReadMsg.pop_front();
         }
 	}
     else
