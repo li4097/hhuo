@@ -77,6 +77,7 @@ bool hhou::HHParse::ParseData(void *buf, int nLen)
             HHMsg msg(0, 0);
             if (m_pDataDeal(Tcp, m_nFd, (void *) iter.get(), (void *) &msg) && !m_req.Status())
 			{
+				LOG(INFO) << "Tcpconn ack ok!";
 				m_req.SetStatus(true);
 			}
 			m_res.MakeRes(msg);
