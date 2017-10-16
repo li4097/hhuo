@@ -6,7 +6,7 @@ SET(CMAKE_BUILD_TYPE "Release")
 SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb -pthread -std=c++11 -Wno-unused-function")
 SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall -pthread -std=c++11 -Wno-unused-function")
 
-# include directories
+#  include directories
 INCLUDE_DIRECTORIES( 
     ${PROJECT_SOURCE_DIR}/include
     /usr/local/include
@@ -32,7 +32,7 @@ SET(PARSER "hhparser")
 SET(LIBPARSER "libhhparser.a")
 SET(NET "hhnet")
 SET(LIBNET "libhhnet.a")
-OPTION(USESSL "Enable use openssl" ON)
+OPTION(USESSL "Enable use openssl" OFF)
 IF(USESSL)
     SET(NET "hhnet_ssl")
     SET(LIBNET "libhhnet_ssl.a")
