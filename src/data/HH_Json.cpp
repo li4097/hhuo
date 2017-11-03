@@ -111,13 +111,12 @@ bool hhou::HHJson::Write(vector<map<string, string>> &vContent, string &strRet)
 
 bool hhou::HHJson::Write(map<string, string> &vContent, string &strRet)
 {
-    Json::Value root, array;
+    Json::Value root;
     Json::FastWriter writer;
     for (map<string, string>::iterator iter = vContent.begin(); iter != vContent.end(); iter++)
     {
         root[iter->first] = iter->second;
     }
-    array.append(root);
-    strRet = writer.write(array);
+    strRet = writer.write(root);   
     return true;
 }

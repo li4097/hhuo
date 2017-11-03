@@ -40,7 +40,7 @@ namespace hhou
         /**
          * Read函数
          */
-         bool Read(map<string, string> &vKV, const string &strContent);
+        bool Read(map<string, string> &vKV, const string &strContent);
 
         /**
          * Write函数
