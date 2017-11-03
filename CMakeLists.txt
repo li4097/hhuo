@@ -41,7 +41,7 @@ IF(USESSL)
 ENDIF() 
 
 # http option
-OPTION(HTTP "Enable http" OFF)
+OPTION(HTTP "Enable http" ON)
 IF(HTTP)
 	SET(PARSER "hhparser_http")
 	SET(LIBPARSER "libhhparser_http.a")
@@ -59,7 +59,7 @@ IF(WEBSOCKET)
 ENDIF()
 
 # tcpconnection option
-OPTION(TCPCONN "Enable tcpconnection" ON)
+OPTION(TCPCONN "Enable tcpconnection" OFF)
 IF(TCPCONN)
 	SET(PARSER "hhparser_tp")
 	SET(LIBPARSER "libhhparser_tp.a")

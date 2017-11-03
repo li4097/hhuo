@@ -2,10 +2,10 @@ ADD_EXECUTABLE(test4client test4client.cpp)
 TARGET_LINK_LIBRARIES(test4client hhutils glog ssl crypto)
 
 ADD_EXECUTABLE(test4server test4server.cpp)
-TARGET_LINK_LIBRARIES(test4server hhnet hhparser_ws hhutils glog ssl crypto)
+TARGET_LINK_LIBRARIES(test4server hhnet hhparser_http hhutils glog ssl crypto)
 
 ADD_EXECUTABLE(test4json test4json.cpp)
-TARGET_LINK_LIBRARIES(test4json hhparser_ws hhutils hhdata jsoncpp glog)
+TARGET_LINK_LIBRARIES(test4json hhparser_http hhutils hhdata jsoncpp glog)
 
 ADD_EXECUTABLE(test4mysql test4mysql.cpp)
 TARGET_LINK_LIBRARIES(test4mysql hhdata mysqlclient glog)

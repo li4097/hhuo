@@ -115,8 +115,7 @@ bool hhou::HHJson::Write(map<string, string> &vContent, string &strRet)
     Json::FastWriter writer;
     for (map<string, string>::iterator iter = vContent.begin(); iter != vContent.end(); iter++)
     {
-        Json::Value val;
-        val[iter->first] = iter->second;
+        root[iter->first] = iter->second;
         array.append(val);
     }
     strRet = writer.write(array);
