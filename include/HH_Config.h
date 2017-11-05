@@ -67,11 +67,11 @@ namespace hhou
                 /// 去掉回车换行
                 if (tmp.at(tmp.length() - 1) == '\r' || tmp.at(tmp.length() - 1) == '\n')
                 {
-                    tmp.erase(tmp.length() - 1);
+                    tmp = tmp.erase(tmp.length() - 1);
                 }
                 if (tmp.at(0) == '[')
                 {
-                    section = tmp.substr(1, tmp.length() - 1);
+                    section = tmp.substr(1, tmp.length() - 2);
                 }
                 else if (tmp.find("=") < tmp.length())
                 {
