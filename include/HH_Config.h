@@ -64,9 +64,14 @@ namespace hhou
                 {
 					continue;
                 }
+                /// 去掉回车换行
+                if (tmp.at(tmp.length()) == '\r' || tmp.at(tmp.length()) == '\n')
+                {
+                    tmp.erase(tmp.length());
+                }
                 if (tmp.at(0) == '[')
                 {
-                    section = tmp.substr(1, tmp.length() - 2);
+                    section = tmp.substr(1, tmp.length() - 1);
                 }
                 else if (tmp.find("=") < tmp.length())
                 {
@@ -74,7 +79,6 @@ namespace hhou
                     {
                         string strKey = tmp.substr(0, tmp.find("="));
                         string strValue = tmp.substr(tmp.find("=") + 1);
-                        strValue = strValue.substr(0, strValue.length());
                         m_mKV[section][strKey] = strValue;
                     }
                     else
