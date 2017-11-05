@@ -65,7 +65,7 @@ namespace hhou
 					continue;
                 }
                 /// 去掉回车换行
-                if (tmp.at(tmp.length()) == '\r' || tmp.at(tmp.length()) == '\n')
+                if (tmp.at(tmp.length() - 1) == '\r' || tmp.at(tmp.length() - 1) == '\n')
                 {
                     tmp.erase(tmp.length());
                 }
