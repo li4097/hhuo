@@ -28,7 +28,6 @@ hhou::HHRedis::HHRedis()
 
 hhou::HHRedis::~HHRedis()
 {
-    freeReplyObject(m_pRedisReply);
     redisFree(m_pRedisConn);
 }
 
