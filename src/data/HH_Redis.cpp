@@ -28,8 +28,8 @@ hhou::HHRedis::HHRedis()
 
 hhou::HHRedis::~HHRedis()
 {
-    m_pRedisConn = nullptr;
-    m_pRedisReply = nullptr;
+    freeReplyObject(m_pRedisReply);
+    redisFree(m_pRedisConn);
 }
 
 bool hhou::HHRedis::ConnectToRedis(const string &strHost, int nPort, struct timeval &timeout)
