@@ -64,6 +64,11 @@ namespace hhou
                 {
 					continue;
                 }
+                /// 去掉回车换行
+                if (tmp.at(tmp.length() - 1) == '\r' || tmp.at(tmp.length() - 1) == '\n')
+                {
+                    tmp = tmp.erase(tmp.length() - 1);
+                }
                 if (tmp.at(0) == '[')
                 {
                     section = tmp.substr(1, tmp.length() - 2);
@@ -74,7 +79,6 @@ namespace hhou
                     {
                         string strKey = tmp.substr(0, tmp.find("="));
                         string strValue = tmp.substr(tmp.find("=") + 1);
-                        strValue = strValue.substr(0, strValue.length());
                         m_mKV[section][strKey] = strValue;
                     }
                     else
